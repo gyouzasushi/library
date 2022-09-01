@@ -122,6 +122,11 @@ struct Segment {
     }
     Segment(Point _a, Point _b) : a(_a), b(_b) {
     }
+    Line vertical_bisector() {
+        Point c = (a + b) / 2;
+        Point v = (a - b).normal();
+        return {c + v, c - v};
+    }
 };
 std::istream &operator>>(std::istream &is, Segment &s) {
     Point a, b;
@@ -137,11 +142,6 @@ struct Line {
     Line(Point _a, Point _b) : a(_a), b(_b) {
     }
     Line(const Segment &s) : a(s.a), b(s.b) {
-    }
-    Line vertical_bisector() {
-        Point c = (a + b) / 2;
-        Point v = (a - b).normal();
-        return {c + v, c - v};
     }
     Point projection(const Point &p) const {
         return a +
@@ -382,8 +382,8 @@ Circle incircle_of_triangle(const Polygon &poly) {
 // 三角形の外接円
 Circle circumscribed_circle_of_triangle(const Point &pa, const Point &pb,
                                         const Point &pc) {
-    Line l1 = Line(pa, pb).vertical_bisector();
-    Line l2 = Line(pa, pc).vertical_bisector();
+    Line l1 = Segment(pa, pb).vertical_bisector();
+    Line l2 = Segment(pa, pc).vertical_bisector();
     Point p = cross_point(l1, l2);
     coordinate_t r = (pa - p).abs();
     return Circle(p, r);
