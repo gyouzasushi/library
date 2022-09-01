@@ -357,7 +357,12 @@ data:
     \            r++;\n            if (r == (int)ps.size()) r = 0;\n        }\n  \
     \      if (sgn(ret.first - (ps[l] - ps[r]).abs()) < 0) {\n            ret.first\
     \ = (ps[l] - ps[r]).abs();\n            ret.second = {ps[l], ps[r]};\n       \
-    \ }\n    }\n    return ret;\n}\n}  // namespace geometry\n"
+    \ }\n    }\n    return ret;\n}\n\n// \u70B9a,\u70B9b\u304B\u3089\u306E\u8DDD\u96E2\
+    \u306E\u6BD4\u304Cn:m\u306B\u306A\u308B\u70B9\u306E\u8ECC\u8DE1\nCircle circle_of_apollonius(Point\
+    \ a, Point b, coordinate_t n, coordinate_t m) {\n    assert(sgn(n - m) != 0);\n\
+    \    Point c = (a * (-m * m) + b * (n * n)) / (n * n - m * m);\n    coordinate_t\
+    \ r = std::sqrt(dist(a, c) * dist(b, c));\n    return {c, r};\n}\n}  // namespace\
+    \ geometry\n"
   code: "#pragma once\nnamespace geometry {\nusing coordinate_t = double;\nconst coordinate_t\
     \ PI = std::acos(-1);\nconst coordinate_t EPS = 1e-9;\nint sgn(coordinate_t a)\
     \ {\n    return (a < -EPS) ? -1 : (a > EPS) ? 1 : 0;\n};\n\nstruct Point {\n \
@@ -637,12 +642,17 @@ data:
     \            r++;\n            if (r == (int)ps.size()) r = 0;\n        }\n  \
     \      if (sgn(ret.first - (ps[l] - ps[r]).abs()) < 0) {\n            ret.first\
     \ = (ps[l] - ps[r]).abs();\n            ret.second = {ps[l], ps[r]};\n       \
-    \ }\n    }\n    return ret;\n}\n}  // namespace geometry"
+    \ }\n    }\n    return ret;\n}\n\n// \u70B9a,\u70B9b\u304B\u3089\u306E\u8DDD\u96E2\
+    \u306E\u6BD4\u304Cn:m\u306B\u306A\u308B\u70B9\u306E\u8ECC\u8DE1\nCircle circle_of_apollonius(Point\
+    \ a, Point b, coordinate_t n, coordinate_t m) {\n    assert(sgn(n - m) != 0);\n\
+    \    Point c = (a * (-m * m) + b * (n * n)) / (n * n - m * m);\n    coordinate_t\
+    \ r = std::sqrt(dist(a, c) * dist(b, c));\n    return {c, r};\n}\n}  // namespace\
+    \ geometry"
   dependsOn: []
   isVerificationFile: false
   path: geometry/geometry.hpp
   requiredBy: []
-  timestamp: '2022-09-01 18:57:07+09:00'
+  timestamp: '2022-09-01 22:39:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_3_B.test.cpp
@@ -742,9 +752,8 @@ Line s.vertical_bisector()
 ## Line
 直線。
 ### コンストラクタ
-```diff
-(1) Line l(Point a,Point b);
--(2) Line l(Segment s);
+```
+Line l(Point a,Point b);
 ```
 
 ### projection

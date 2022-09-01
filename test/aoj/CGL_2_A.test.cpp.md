@@ -296,12 +296,17 @@ data:
     \            r++;\n            if (r == (int)ps.size()) r = 0;\n        }\n  \
     \      if (sgn(ret.first - (ps[l] - ps[r]).abs()) < 0) {\n            ret.first\
     \ = (ps[l] - ps[r]).abs();\n            ret.second = {ps[l], ps[r]};\n       \
-    \ }\n    }\n    return ret;\n}\n}  // namespace geometry\n#line 7 \"test/aoj/CGL_2_A.test.cpp\"\
-    \n\nusing namespace geometry;\nint main() {\n    int q;\n    cin >> q;\n    while\
-    \ (q--) {\n        Line l1, l2;\n        cin >> l1 >> l2;\n        if (!intersect(l1,\
-    \ l2)) {\n            cout << 2 << '\\n';\n        } else if (sgn(dot(l1.a - l1.b,\
-    \ l2.a - l2.b)) == 0) {\n            cout << 1 << '\\n';\n        } else {\n \
-    \           cout << 0 << '\\n';\n        }\n    }\n}\n"
+    \ }\n    }\n    return ret;\n}\n\n// \u70B9a,\u70B9b\u304B\u3089\u306E\u8DDD\u96E2\
+    \u306E\u6BD4\u304Cn:m\u306B\u306A\u308B\u70B9\u306E\u8ECC\u8DE1\nCircle circle_of_apollonius(Point\
+    \ a, Point b, coordinate_t n, coordinate_t m) {\n    assert(sgn(n - m) != 0);\n\
+    \    Point c = (a * (-m * m) + b * (n * n)) / (n * n - m * m);\n    coordinate_t\
+    \ r = std::sqrt(dist(a, c) * dist(b, c));\n    return {c, r};\n}\n}  // namespace\
+    \ geometry\n#line 7 \"test/aoj/CGL_2_A.test.cpp\"\n\nusing namespace geometry;\n\
+    int main() {\n    int q;\n    cin >> q;\n    while (q--) {\n        Line l1, l2;\n\
+    \        cin >> l1 >> l2;\n        if (!intersect(l1, l2)) {\n            cout\
+    \ << 2 << '\\n';\n        } else if (sgn(dot(l1.a - l1.b, l2.a - l2.b)) == 0)\
+    \ {\n            cout << 1 << '\\n';\n        } else {\n            cout << 0\
+    \ << '\\n';\n        }\n    }\n}\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n#define PROBLEM \\\n  \
     \  \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_2_A\"\n#include\
     \ \"../../geometry/geometry.hpp\"\n\nusing namespace geometry;\nint main() {\n\
@@ -315,7 +320,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 18:57:07+09:00'
+  timestamp: '2022-09-01 22:39:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_A.test.cpp

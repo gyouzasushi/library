@@ -297,9 +297,14 @@ data:
     \            r++;\n            if (r == (int)ps.size()) r = 0;\n        }\n  \
     \      if (sgn(ret.first - (ps[l] - ps[r]).abs()) < 0) {\n            ret.first\
     \ = (ps[l] - ps[r]).abs();\n            ret.second = {ps[l], ps[r]};\n       \
-    \ }\n    }\n    return ret;\n}\n}  // namespace geometry\n#line 9 \"test/aoj/CGL_7_B.test.cpp\"\
-    \nusing namespace geometry;\nint main() {\n    cout << fixed << setprecision(20);\n\
-    \n    Polygon poly(3);\n    for (Point &p : poly) cin >> p;\n    Circle c = incircle_of_triangle(poly);\n\
+    \ }\n    }\n    return ret;\n}\n\n// \u70B9a,\u70B9b\u304B\u3089\u306E\u8DDD\u96E2\
+    \u306E\u6BD4\u304Cn:m\u306B\u306A\u308B\u70B9\u306E\u8ECC\u8DE1\nCircle circle_of_apollonius(Point\
+    \ a, Point b, coordinate_t n, coordinate_t m) {\n    assert(sgn(n - m) != 0);\n\
+    \    Point c = (a * (-m * m) + b * (n * n)) / (n * n - m * m);\n    coordinate_t\
+    \ r = std::sqrt(dist(a, c) * dist(b, c));\n    return {c, r};\n}\n}  // namespace\
+    \ geometry\n#line 9 \"test/aoj/CGL_7_B.test.cpp\"\nusing namespace geometry;\n\
+    int main() {\n    cout << fixed << setprecision(20);\n\n    Polygon poly(3);\n\
+    \    for (Point &p : poly) cin >> p;\n    Circle c = incircle_of_triangle(poly);\n\
     \    cout << c.c << ' ' << c.r << '\\n';\n}\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n#define PROBLEM \\\n  \
     \  \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_B\"\n#define\
@@ -312,7 +317,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_7_B.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 19:14:18+09:00'
+  timestamp: '2022-09-01 22:39:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_B.test.cpp

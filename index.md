@@ -24,9 +24,6 @@ data:
       path: datastructure/plus_minus_one_range_minimum.hpp
       title: datastructure/plus_minus_one_range_minimum.hpp
     - icon: ':warning:'
-      path: datastructure/range_arithmetic_add_range_gcd.hpp
-      title: datastructure/range_arithmetic_add_range_gcd.hpp
-    - icon: ':warning:'
       path: datastructure/segment_tree.hpp
       title: datastructure/segment_tree.hpp
     - icon: ':warning:'
