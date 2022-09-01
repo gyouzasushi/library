@@ -9,6 +9,7 @@ using namespace std;
 
 using namespace geometry;
 int main() {
+    cout << fixed << setprecision(20);
     Line l;
     cin >> l;
     int q;

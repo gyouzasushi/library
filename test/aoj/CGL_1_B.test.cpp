@@ -8,6 +8,7 @@ using namespace std;
 #include "../../geometry/geometry.hpp"
 using namespace geometry;
 int main() {
+    cout << fixed << setprecision(20);
     Line l;
     cin >> l;
     int q;
