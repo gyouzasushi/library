@@ -35,14 +35,14 @@ data:
     - icon: ':warning:'
       path: datastructure/static_range_minimum.hpp
       title: datastructure/static_range_minimum.hpp
-    - icon: ':warning:'
-      path: datastructure/union_find.hpp
-      title: datastructure/union_find.hpp
+    - icon: ':heavy_check_mark:'
+      path: datastructure/unionfind.hpp
+      title: datastructure/unionfind.hpp
   - name: geometry
     pages:
     - icon: ':warning:'
       path: geometry/geometry.hpp
-      title: geometry/geometry.hpp
+      title: geomerty
   - name: graph
     pages:
     - icon: ':warning:'
@@ -80,6 +80,11 @@ data:
     - icon: ':warning:'
       path: math/semiring_matrix.hpp
       title: math/semiring_matrix.hpp
-  verificationCategories: []
+  verificationCategories:
+  - name: test/library-checker
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/unionfind.test.cpp
+      title: test/library-checker/unionfind.test.cpp
 layout: toppage
 ---
