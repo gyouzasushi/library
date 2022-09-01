@@ -300,19 +300,19 @@ data:
     \ }\n    }\n    return ret;\n}\n}  // namespace geometry\n#line 9 \"test/aoj/CGL_7_F.test.cpp\"\
     \nusing namespace geometry;\nint main() {\n    cout << fixed << setprecision(20);\n\
     \    Point p;\n    Circle c;\n    cin >> p >> c.c >> c.r;\n    auto ans = tangent_points(c,\
-    \ p);\n    cout << ans[0] << ' ' << ans[1] << '\\n';\n}\n"
+    \ p);\n    cout << ans[0] << '\\' << ans[1] << '\\n';\n}\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n#define PROBLEM \\\n  \
     \  \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_F\"\n#define\
     \ ERROR 0.00001\n\n#include \"../../geometry/geometry.hpp\"\nusing namespace geometry;\n\
     int main() {\n    cout << fixed << setprecision(20);\n    Point p;\n    Circle\
     \ c;\n    cin >> p >> c.c >> c.r;\n    auto ans = tangent_points(c, p);\n    cout\
-    \ << ans[0] << ' ' << ans[1] << '\\n';\n}"
+    \ << ans[0] << '\\' << ans[1] << '\\n';\n}"
   dependsOn:
   - geometry/geometry.hpp
   isVerificationFile: true
   path: test/aoj/CGL_7_F.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 19:14:18+09:00'
+  timestamp: '2022-09-01 19:24:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_F.test.cpp

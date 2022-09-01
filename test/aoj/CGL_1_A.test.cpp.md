@@ -6,9 +6,9 @@ data:
     title: geomerty
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.00000001'
@@ -298,22 +298,23 @@ data:
     \      if (sgn(ret.first - (ps[l] - ps[r]).abs()) < 0) {\n            ret.first\
     \ = (ps[l] - ps[r]).abs();\n            ret.second = {ps[l], ps[r]};\n       \
     \ }\n    }\n    return ret;\n}\n}  // namespace geometry\n#line 9 \"test/aoj/CGL_1_A.test.cpp\"\
-    \n\nusing namespace geometry;\nint main() {\n    Line l;\n    cin >> l;\n    int\
-    \ q;\n    cin >> q;\n    while (q--) {\n        Point p;\n        cin >> p;\n\
-    \        cout << l.projection(p) << '\\n';\n    }\n}\n"
+    \n\nusing namespace geometry;\nint main() {\n    cout << fixed << setprecision(20);\n\
+    \    Line l;\n    cin >> l;\n    int q;\n    cin >> q;\n    while (q--) {\n  \
+    \      Point p;\n        cin >> p;\n        cout << l.projection(p) << '\\n';\n\
+    \    }\n}\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n#define PROBLEM \\\n  \
     \  \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_1_A\"\n#define\
     \ ERROR 0.00000001\n\n#include \"../../geometry/geometry.hpp\"\n\nusing namespace\
-    \ geometry;\nint main() {\n    Line l;\n    cin >> l;\n    int q;\n    cin >>\
-    \ q;\n    while (q--) {\n        Point p;\n        cin >> p;\n        cout <<\
-    \ l.projection(p) << '\\n';\n    }\n}"
+    \ geometry;\nint main() {\n    cout << fixed << setprecision(20);\n    Line l;\n\
+    \    cin >> l;\n    int q;\n    cin >> q;\n    while (q--) {\n        Point p;\n\
+    \        cin >> p;\n        cout << l.projection(p) << '\\n';\n    }\n}"
   dependsOn:
   - geometry/geometry.hpp
   isVerificationFile: true
   path: test/aoj/CGL_1_A.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 19:14:18+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-01 19:24:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_1_A.test.cpp
 layout: document
