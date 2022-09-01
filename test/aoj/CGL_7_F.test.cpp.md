@@ -11,28 +11,29 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    ERROR: '0.00001'
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_F
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_F
   bundledCode: "#line 1 \"test/aoj/CGL_7_F.test.cpp\"\n#include <bits/stdc++.h>\n\
     using namespace std;\n\n#define PROBLEM \\\n    \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_F\"\
-    \n#line 2 \"geometry/geometry.hpp\"\nnamespace geometry {\nusing coordinate_t\
-    \ = double;\nconst coordinate_t PI = std::acos(-1);\nconst coordinate_t EPS =\
-    \ 1e-9;\nint sgn(coordinate_t a) {\n    return (a < -EPS) ? -1 : (a > EPS) ? 1\
-    \ : 0;\n};\n\nstruct Point {\n    coordinate_t x, y;\n    Point() {\n    }\n \
-    \   Point(coordinate_t _x, coordinate_t _y) : x(_x), y(_y) {\n    }\n    Point\
-    \ operator+(const Point &rhs) const {\n        Point res(*this);\n        return\
-    \ res += rhs;\n    }\n    Point operator-(const Point &rhs) const {\n        Point\
-    \ res(*this);\n        return res -= rhs;\n    }\n    Point operator*(const coordinate_t\
-    \ &rhs) const {\n        Point res(*this);\n        return res *= rhs;\n    }\n\
-    \    Point operator/(const coordinate_t &rhs) const {\n        Point res(*this);\n\
-    \        return res /= rhs;\n    }\n    inline bool operator<(const Point &b)\
-    \ {\n        if (sgn(x - b.x)) return sgn(x - b.x) < 0;\n        return sgn(y\
-    \ - b.y) < 0;\n    }\n    Point operator+=(const Point &rhs) {\n        x += rhs.x,\
-    \ y += rhs.y;\n        return *this;\n    }\n    Point operator-=(const Point\
-    \ &rhs) {\n        x -= rhs.x, y -= rhs.y;\n        return *this;\n    }\n   \
-    \ Point operator*=(const coordinate_t &rhs) {\n        x *= rhs, y *= rhs;\n \
-    \       return *this;\n    }\n    Point operator/=(const coordinate_t &rhs) {\n\
+    \n#define ERROR 0.00001\n\n#line 2 \"geometry/geometry.hpp\"\nnamespace geometry\
+    \ {\nusing coordinate_t = double;\nconst coordinate_t PI = std::acos(-1);\nconst\
+    \ coordinate_t EPS = 1e-9;\nint sgn(coordinate_t a) {\n    return (a < -EPS) ?\
+    \ -1 : (a > EPS) ? 1 : 0;\n};\n\nstruct Point {\n    coordinate_t x, y;\n    Point()\
+    \ {\n    }\n    Point(coordinate_t _x, coordinate_t _y) : x(_x), y(_y) {\n   \
+    \ }\n    Point operator+(const Point &rhs) const {\n        Point res(*this);\n\
+    \        return res += rhs;\n    }\n    Point operator-(const Point &rhs) const\
+    \ {\n        Point res(*this);\n        return res -= rhs;\n    }\n    Point operator*(const\
+    \ coordinate_t &rhs) const {\n        Point res(*this);\n        return res *=\
+    \ rhs;\n    }\n    Point operator/(const coordinate_t &rhs) const {\n        Point\
+    \ res(*this);\n        return res /= rhs;\n    }\n    inline bool operator<(const\
+    \ Point &b) {\n        if (sgn(x - b.x)) return sgn(x - b.x) < 0;\n        return\
+    \ sgn(y - b.y) < 0;\n    }\n    Point operator+=(const Point &rhs) {\n       \
+    \ x += rhs.x, y += rhs.y;\n        return *this;\n    }\n    Point operator-=(const\
+    \ Point &rhs) {\n        x -= rhs.x, y -= rhs.y;\n        return *this;\n    }\n\
+    \    Point operator*=(const coordinate_t &rhs) {\n        x *= rhs, y *= rhs;\n\
+    \        return *this;\n    }\n    Point operator/=(const coordinate_t &rhs) {\n\
     \        x /= rhs, y /= rhs;\n        return *this;\n    }\n    coordinate_t abs()\
     \ const {\n        return std::sqrt(x * x + y * y);\n    }\n    coordinate_t arg()\
     \ const {\n        return std::atan2(y, x);\n    }\n    Point normal() const {\n\
@@ -296,22 +297,22 @@ data:
     \            r++;\n            if (r == (int)ps.size()) r = 0;\n        }\n  \
     \      if (sgn(ret.first - (ps[l] - ps[r]).abs()) < 0) {\n            ret.first\
     \ = (ps[l] - ps[r]).abs();\n            ret.second = {ps[l], ps[r]};\n       \
-    \ }\n    }\n    return ret;\n}\n}  // namespace geometry\n#line 7 \"test/aoj/CGL_7_F.test.cpp\"\
-    \n\nusing namespace geometry;\nint main() {\n    cout << fixed << setprecision(20);\n\
+    \ }\n    }\n    return ret;\n}\n}  // namespace geometry\n#line 9 \"test/aoj/CGL_7_F.test.cpp\"\
+    \nusing namespace geometry;\nint main() {\n    cout << fixed << setprecision(20);\n\
     \    Point p;\n    Circle c;\n    cin >> p >> c.c >> c.r;\n    auto ans = tangent_points(c,\
     \ p);\n    cout << ans[0] << ' ' << ans[1] << '\\n';\n}\n"
   code: "#include <bits/stdc++.h>\nusing namespace std;\n\n#define PROBLEM \\\n  \
-    \  \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_F\"\n#include\
-    \ \"../../geometry/geometry.hpp\"\n\nusing namespace geometry;\nint main() {\n\
-    \    cout << fixed << setprecision(20);\n    Point p;\n    Circle c;\n    cin\
-    \ >> p >> c.c >> c.r;\n    auto ans = tangent_points(c, p);\n    cout << ans[0]\
-    \ << ' ' << ans[1] << '\\n';\n}"
+    \  \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_F\"\n#define\
+    \ ERROR 0.00001\n\n#include \"../../geometry/geometry.hpp\"\nusing namespace geometry;\n\
+    int main() {\n    cout << fixed << setprecision(20);\n    Point p;\n    Circle\
+    \ c;\n    cin >> p >> c.c >> c.r;\n    auto ans = tangent_points(c, p);\n    cout\
+    \ << ans[0] << ' ' << ans[1] << '\\n';\n}"
   dependsOn:
   - geometry/geometry.hpp
   isVerificationFile: true
   path: test/aoj/CGL_7_F.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 18:57:07+09:00'
+  timestamp: '2022-09-01 19:14:18+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_F.test.cpp

@@ -18,12 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_2_B.test.cpp
     title: test/aoj/CGL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_2_C.test.cpp
     title: test/aoj/CGL_2_C.test.cpp
-  - icon: ':x:'
-    path: test/aoj/CGL_2_D.test.cpp
-    title: test/aoj/CGL_2_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_3_A.test.cpp
     title: test/aoj/CGL_3_A.test.cpp
@@ -36,40 +33,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_4_A.test.cpp
     title: test/aoj/CGL_4_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_4_B.test.cpp
     title: test/aoj/CGL_4_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_4_C.test.cpp
     title: test/aoj/CGL_4_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_A.test.cpp
     title: test/aoj/CGL_7_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_D.test.cpp
     title: test/aoj/CGL_7_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_E.test.cpp
     title: test/aoj/CGL_7_E.test.cpp
   - icon: ':x:'
     path: test/aoj/CGL_7_F.test.cpp
     title: test/aoj/CGL_7_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_G.test.cpp
     title: test/aoj/CGL_7_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_H.test.cpp
     title: test/aoj/CGL_7_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_I.test.cpp
     title: test/aoj/CGL_7_I.test.cpp
   _isVerificationFailed: true
@@ -652,7 +649,6 @@ data:
   - test/aoj/CGL_7_G.test.cpp
   - test/aoj/CGL_7_F.test.cpp
   - test/aoj/CGL_2_B.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_4_B.test.cpp
   - test/aoj/CGL_7_D.test.cpp
   - test/aoj/CGL_1_B.test.cpp
@@ -675,7 +671,9 @@ title: geomerty
 
 - `using coordinate_t = double` しています。
 - 全部 `namespace geometry` に入っているので、`using namespace geometry` するか `geometry::Point p;` みたいに書きます。 
-***
+
+*** 
+
 ## 定数
 
 ### PI
@@ -688,7 +686,9 @@ $\pi$ 。`std::acos(-1)` が入っています。
 coordinate_t EPS;
 ```
 EPS。`1e-9` が入っています。
+
 ***
+
 ## Point
 点。
 ### コンストラクタ
@@ -727,21 +727,21 @@ coordinate_t p.unit()
 ```
 Segment s(Point a,Point b);
 ```
+### vertical_bisector
+```
+Line s.vertical_bisector()
+```
+線分 `s` の垂直二等分線を返します。
 
 ***
 
 ## Line
 直線。
 ### コンストラクタ
-```
+```diff
 (1) Line l(Point a,Point b);
-(2) Line l(Segment s);
+- (2) Line l(Segment s);
 ```
-### vertical_bisector
-```
-Line l.vertical_bisector()
-```
-直線 `l` の垂直二等分線を返します。
 
 ### projection
 ```
@@ -846,6 +846,12 @@ int ccw(Point a, Point b, Point c)
 - `a`-`b`-`c` の順にまっすぐなら `2` （定数 `ONLINE_FRONT`）
 
 を返します。
+
+### from_segment
+```
+Line from_segment(Segment s)
+```
+線分 `S` を延長した直線を返します。
 
 ### dist
 ```
