@@ -116,6 +116,27 @@ int ccw(Point a, Point b, Point c) {
     return ON_SEGMENT;  // a - c - b
 }
 
+struct Line {
+    Point a, b;
+    Line() {
+    }
+    Line(Point _a, Point _b) : a(_a), b(_b) {
+    }
+    Point projection(const Point &p) const {
+        return a +
+               (b - a) * (dot(b - a, p - a) / ((b - a).abs() * (b - a).abs()));
+    }
+    Point reflection(const Point &p) const {
+        return projection(p) * 2 - p;
+    }
+};
+std::istream &operator>>(std::istream &is, Line &l) {
+    Point a, b;
+    is >> a >> b;
+    l = {a, b};
+    return is;
+};
+
 struct Segment {
     Point a, b;
     Segment() {
@@ -135,28 +156,9 @@ std::istream &operator>>(std::istream &is, Segment &s) {
     return is;
 };
 
-struct Line {
-    Point a, b;
-    Line() {
-    }
-    Line(Point _a, Point _b) : a(_a), b(_b) {
-    }
-    Line(const Segment &s) : a(s.a), b(s.b) {
-    }
-    Point projection(const Point &p) const {
-        return a +
-               (b - a) * (dot(b - a, p - a) / ((b - a).abs() * (b - a).abs()));
-    }
-    Point reflection(const Point &p) const {
-        return projection(p) * 2 - p;
-    }
-};
-std::istream &operator>>(std::istream &is, Line &l) {
-    Point a, b;
-    is >> a >> b;
-    l = {a, b};
-    return is;
-};
+Line from_segment(const Segment &s) {
+    return Line(s.a, s.b);
+}
 
 struct Polygon : std::vector<Point> {
     Polygon(int n = 0) : std::vector<Point>(n) {
@@ -312,7 +314,7 @@ bool intersect(Circle c1, Circle c2) {
 
 Point cross_point(const Segment &s1, const Segment &s2) {
     assert(intersect(s1, s2));
-    return cross_point(Line(s1), Line(s2));
+    return cross_point(from_segment(s1), from_segment(s2));
 }
 Point cross_point(const Segment &s, const Line &l) {
     assert(intersect(s, l));
@@ -329,7 +331,7 @@ Point cross_point(const Line &l1, const Line &l2) {
 }
 std::vector<Point> cross_points(const Segment &s, const Circle &c) {
     if (!intersect(s, c)) return {};
-    std::vector<Point> ret = cross_points(Line(s), c);
+    std::vector<Point> ret = cross_points(from_segment(s), c);
     ret.erase(std::remove_if(ret.begin(), ret.end(),
                              [&](Point p) {
                                  return !(p == s.a) && !(p == s.b) &&
