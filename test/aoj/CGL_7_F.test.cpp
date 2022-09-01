@@ -13,5 +13,5 @@ int main() {
     Circle c;
     cin >> p >> c.c >> c.r;
     auto ans = tangent_points(c, p);
-    cout << ans[0] << '\' << ans[1] << '\n';
+    cout << ans[0] << '\n' << ans[1] << '\n';
 }
