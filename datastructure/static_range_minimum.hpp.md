@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: datastructure/plus_minus_one_range_minimum.hpp
     title: datastructure/plus_minus_one_range_minimum.hpp
+  - icon: ':warning:'
+    path: graph/lowest_common_ancestor.hpp
+    title: graph/lowest_common_ancestor.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -42,6 +45,7 @@ data:
   isVerificationFile: false
   path: datastructure/static_range_minimum.hpp
   requiredBy:
+  - graph/lowest_common_ancestor.hpp
   - datastructure/plus_minus_one_range_minimum.hpp
   timestamp: '2022-09-01 13:39:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS

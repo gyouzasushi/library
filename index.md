@@ -46,14 +46,14 @@ data:
   - name: graph
     pages:
     - icon: ':warning:'
-      path: graph/LowestCommonAncestor.hpp
-      title: graph/LowestCommonAncestor.hpp
-    - icon: ':warning:'
       path: graph/bfs_of_complement.hpp
       title: graph/bfs_of_complement.hpp
     - icon: ':warning:'
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
+    - icon: ':warning:'
+      path: graph/lowest_common_ancestor.hpp
+      title: graph/lowest_common_ancestor.hpp
     - icon: ':warning:'
       path: graph/maxflow.hpp
       title: graph/maxflow.hpp
@@ -80,11 +80,6 @@ data:
     - icon: ':warning:'
       path: math/semiring_matrix.hpp
       title: math/semiring_matrix.hpp
-  verificationCategories:
-  - name: .
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: example.test.cpp
-      title: example.test.cpp
+  verificationCategories: []
 layout: toppage
 ---
