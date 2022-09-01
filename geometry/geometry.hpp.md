@@ -22,6 +22,9 @@ data:
     path: test/aoj/CGL_2_C.test.cpp
     title: test/aoj/CGL_2_C.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_2_D.test.cpp
+    title: test/aoj/CGL_2_D.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_3_A.test.cpp
     title: test/aoj/CGL_3_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -649,6 +652,7 @@ data:
   - test/aoj/CGL_7_G.test.cpp
   - test/aoj/CGL_7_F.test.cpp
   - test/aoj/CGL_2_B.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_4_B.test.cpp
   - test/aoj/CGL_7_D.test.cpp
   - test/aoj/CGL_1_B.test.cpp
@@ -740,7 +744,7 @@ Line s.vertical_bisector()
 ### コンストラクタ
 ```diff
 (1) Line l(Point a,Point b);
-- (2) Line l(Segment s);
+-(2) Line l(Segment s);
 ```
 
 ### projection
