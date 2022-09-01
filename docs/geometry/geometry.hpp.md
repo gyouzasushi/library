@@ -72,9 +72,8 @@ Line s.vertical_bisector()
 ## Line
 直線。
 ### コンストラクタ
-```diff
-(1) Line l(Point a,Point b);
--(2) Line l(Segment s);
+```
+Line l(Point a,Point b);
 ```
 
 ### projection

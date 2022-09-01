@@ -629,4 +629,12 @@ std::pair<coordinate_t, std::pair<Point, Point>> farthest_pair(
     }
     return ret;
 }
+
+// 点a,点bからの距離の比がn:mになる点の軌跡
+Circle circle_of_apollonius(Point a, Point b, coordinate_t n, coordinate_t m) {
+    assert(sgn(n - m) != 0);
+    Point c = (a * (-m * m) + b * (n * n)) / (n * n - m * m);
+    coordinate_t r = std::sqrt(dist(a, c) * dist(b, c));
+    return {c, r};
+}
 }  // namespace geometry
