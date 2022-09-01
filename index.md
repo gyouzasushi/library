@@ -40,7 +40,7 @@ data:
       title: datastructure/unionfind.hpp
   - name: geometry
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: geometry/geometry.hpp
       title: geomerty
   - name: graph
@@ -81,6 +81,77 @@ data:
       path: math/semiring_matrix.hpp
       title: math/semiring_matrix.hpp
   verificationCategories:
+  - name: test/aoj
+    pages:
+    - icon: ':x:'
+      path: test/aoj/CGL_1_A.test.cpp
+      title: test/aoj/CGL_1_A.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_1_B.test.cpp
+      title: test/aoj/CGL_1_B.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_1_C.test.cpp
+      title: test/aoj/CGL_1_C.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_2_A.test.cpp
+      title: test/aoj/CGL_2_A.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_2_B.test.cpp
+      title: test/aoj/CGL_2_B.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_2_C.test.cpp
+      title: test/aoj/CGL_2_C.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_2_D.test.cpp
+      title: test/aoj/CGL_2_D.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_3_A.test.cpp
+      title: test/aoj/CGL_3_A.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_3_B.test.cpp
+      title: test/aoj/CGL_3_B.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_3_C.test.cpp
+      title: test/aoj/CGL_3_C.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_4_A.test.cpp
+      title: test/aoj/CGL_4_A.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_4_B.test.cpp
+      title: test/aoj/CGL_4_B.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_4_C.test.cpp
+      title: test/aoj/CGL_4_C.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_5_A.test.cpp
+      title: test/aoj/CGL_5_A.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_7_A.test.cpp
+      title: test/aoj/CGL_7_A.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_7_B.test.cpp
+      title: test/aoj/CGL_7_B.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_7_C.test.cpp
+      title: test/aoj/CGL_7_C.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_7_D.test.cpp
+      title: test/aoj/CGL_7_D.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_7_E.test.cpp
+      title: test/aoj/CGL_7_E.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_7_F.test.cpp
+      title: test/aoj/CGL_7_F.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_7_G.test.cpp
+      title: test/aoj/CGL_7_G.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_7_H.test.cpp
+      title: test/aoj/CGL_7_H.test.cpp
+    - icon: ':x:'
+      path: test/aoj/CGL_7_I.test.cpp
+      title: test/aoj/CGL_7_I.test.cpp
   - name: test/library-checker
     pages:
     - icon: ':heavy_check_mark:'

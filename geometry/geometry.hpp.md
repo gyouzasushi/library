@@ -2,10 +2,79 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/CGL_1_A.test.cpp
+    title: test/aoj/CGL_1_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_1_B.test.cpp
+    title: test/aoj/CGL_1_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_1_C.test.cpp
+    title: test/aoj/CGL_1_C.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_2_A.test.cpp
+    title: test/aoj/CGL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_2_B.test.cpp
+    title: test/aoj/CGL_2_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_2_C.test.cpp
+    title: test/aoj/CGL_2_C.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_2_D.test.cpp
+    title: test/aoj/CGL_2_D.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_3_A.test.cpp
+    title: test/aoj/CGL_3_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_3_B.test.cpp
+    title: test/aoj/CGL_3_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_3_C.test.cpp
+    title: test/aoj/CGL_3_C.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_4_A.test.cpp
+    title: test/aoj/CGL_4_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_4_B.test.cpp
+    title: test/aoj/CGL_4_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_4_C.test.cpp
+    title: test/aoj/CGL_4_C.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_5_A.test.cpp
+    title: test/aoj/CGL_5_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_7_A.test.cpp
+    title: test/aoj/CGL_7_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_7_B.test.cpp
+    title: test/aoj/CGL_7_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_7_C.test.cpp
+    title: test/aoj/CGL_7_C.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_7_D.test.cpp
+    title: test/aoj/CGL_7_D.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_7_E.test.cpp
+    title: test/aoj/CGL_7_E.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_7_F.test.cpp
+    title: test/aoj/CGL_7_F.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_7_G.test.cpp
+    title: test/aoj/CGL_7_G.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_7_H.test.cpp
+    title: test/aoj/CGL_7_H.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL_7_I.test.cpp
+    title: test/aoj/CGL_7_I.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/geometry.hpp\"\nnamespace geometry {\nusing coordinate_t\
@@ -51,20 +120,20 @@ data:
     \ - a - b\n    }\n    if (sgn(dot(a - b, c - b)) < 0) {\n        return ONLINE_FRONT;\
     \  // a - b - c\n    }\n    return ON_SEGMENT;  // a - c - b\n}\n\nstruct Segment\
     \ {\n    Point a, b;\n    Segment() {\n    }\n    Segment(Point _a, Point _b)\
-    \ : a(_a), b(_b) {\n    }\n};\nstd::istream &operator>>(std::istream &is, Segment\
-    \ &s) {\n    Point a, b;\n    is >> a >> b;\n    s = {a, b};\n    return is;\n\
-    };\n\nstruct Line {\n    Point a, b;\n    Line() {\n    }\n    Line(Point _a,\
-    \ Point _b) : a(_a), b(_b) {\n    }\n    Line(const Segment &s) : a(s.a), b(s.b)\
-    \ {\n    }\n    Line vertical_bisector() {\n        Point c = (a + b) / 2;\n \
-    \       Point v = (a - b).normal();\n        return {c + v, c - v};\n    }\n \
-    \   Point projection(const Point &p) const {\n        return a +\n           \
-    \    (b - a) * (dot(b - a, p - a) / ((b - a).abs() * (b - a).abs()));\n    }\n\
-    \    Point reflection(const Point &p) const {\n        return projection(p) *\
-    \ 2 - p;\n    }\n};\nstd::istream &operator>>(std::istream &is, Line &l) {\n \
-    \   Point a, b;\n    is >> a >> b;\n    l = {a, b};\n    return is;\n};\n\nstruct\
-    \ Polygon : std::vector<Point> {\n    Polygon(int n = 0) : std::vector<Point>(n)\
-    \ {\n    }\n    coordinate_t area() const {\n        coordinate_t ret = 0;\n \
-    \       for (int i = 0; i < (int)size(); i++) {\n            ret += det((*this)[i],\
+    \ : a(_a), b(_b) {\n    }\n    Line vertical_bisector() {\n        Point c = (a\
+    \ + b) / 2;\n        Point v = (a - b).normal();\n        return {c + v, c - v};\n\
+    \    }\n};\nstd::istream &operator>>(std::istream &is, Segment &s) {\n    Point\
+    \ a, b;\n    is >> a >> b;\n    s = {a, b};\n    return is;\n};\n\nstruct Line\
+    \ {\n    Point a, b;\n    Line() {\n    }\n    Line(Point _a, Point _b) : a(_a),\
+    \ b(_b) {\n    }\n    Line(const Segment &s) : a(s.a), b(s.b) {\n    }\n    Point\
+    \ projection(const Point &p) const {\n        return a +\n               (b -\
+    \ a) * (dot(b - a, p - a) / ((b - a).abs() * (b - a).abs()));\n    }\n    Point\
+    \ reflection(const Point &p) const {\n        return projection(p) * 2 - p;\n\
+    \    }\n};\nstd::istream &operator>>(std::istream &is, Line &l) {\n    Point a,\
+    \ b;\n    is >> a >> b;\n    l = {a, b};\n    return is;\n};\n\nstruct Polygon\
+    \ : std::vector<Point> {\n    Polygon(int n = 0) : std::vector<Point>(n) {\n \
+    \   }\n    coordinate_t area() const {\n        coordinate_t ret = 0;\n      \
+    \  for (int i = 0; i < (int)size(); i++) {\n            ret += det((*this)[i],\
     \ (*this)[(i + 1) % (int)size()]);\n        }\n        ret /= 2.0;\n        ret\
     \ = std::fabs(ret);\n        return ret;\n    }\n    bool is_convex() const {\n\
     \        for (int i = 0; i < (int)size(); i++) {\n            if (ccw((*this)[i],\
@@ -164,7 +233,7 @@ data:
     \ poly[0], &pb = poly[1], &pc = poly[2];\n    return incircle_of_triangle(pa,\
     \ pb, pc);\n}\n// \u4E09\u89D2\u5F62\u306E\u5916\u63A5\u5186\nCircle circumscribed_circle_of_triangle(const\
     \ Point &pa, const Point &pb,\n                                        const Point\
-    \ &pc) {\n    Line l1 = Line(pa, pb).vertical_bisector();\n    Line l2 = Line(pa,\
+    \ &pc) {\n    Line l1 = Segment(pa, pb).vertical_bisector();\n    Line l2 = Segment(pa,\
     \ pc).vertical_bisector();\n    Point p = cross_point(l1, l2);\n    coordinate_t\
     \ r = (pa - p).abs();\n    return Circle(p, r);\n}\n// \u4E09\u89D2\u5F62\u306E\
     \u5916\u63A5\u5186\nCircle circumscribed_circle_of_triangle(const Polygon &poly)\
@@ -331,20 +400,20 @@ data:
     \ c - a - b\n    }\n    if (sgn(dot(a - b, c - b)) < 0) {\n        return ONLINE_FRONT;\
     \  // a - b - c\n    }\n    return ON_SEGMENT;  // a - c - b\n}\n\nstruct Segment\
     \ {\n    Point a, b;\n    Segment() {\n    }\n    Segment(Point _a, Point _b)\
-    \ : a(_a), b(_b) {\n    }\n};\nstd::istream &operator>>(std::istream &is, Segment\
-    \ &s) {\n    Point a, b;\n    is >> a >> b;\n    s = {a, b};\n    return is;\n\
-    };\n\nstruct Line {\n    Point a, b;\n    Line() {\n    }\n    Line(Point _a,\
-    \ Point _b) : a(_a), b(_b) {\n    }\n    Line(const Segment &s) : a(s.a), b(s.b)\
-    \ {\n    }\n    Line vertical_bisector() {\n        Point c = (a + b) / 2;\n \
-    \       Point v = (a - b).normal();\n        return {c + v, c - v};\n    }\n \
-    \   Point projection(const Point &p) const {\n        return a +\n           \
-    \    (b - a) * (dot(b - a, p - a) / ((b - a).abs() * (b - a).abs()));\n    }\n\
-    \    Point reflection(const Point &p) const {\n        return projection(p) *\
-    \ 2 - p;\n    }\n};\nstd::istream &operator>>(std::istream &is, Line &l) {\n \
-    \   Point a, b;\n    is >> a >> b;\n    l = {a, b};\n    return is;\n};\n\nstruct\
-    \ Polygon : std::vector<Point> {\n    Polygon(int n = 0) : std::vector<Point>(n)\
-    \ {\n    }\n    coordinate_t area() const {\n        coordinate_t ret = 0;\n \
-    \       for (int i = 0; i < (int)size(); i++) {\n            ret += det((*this)[i],\
+    \ : a(_a), b(_b) {\n    }\n    Line vertical_bisector() {\n        Point c = (a\
+    \ + b) / 2;\n        Point v = (a - b).normal();\n        return {c + v, c - v};\n\
+    \    }\n};\nstd::istream &operator>>(std::istream &is, Segment &s) {\n    Point\
+    \ a, b;\n    is >> a >> b;\n    s = {a, b};\n    return is;\n};\n\nstruct Line\
+    \ {\n    Point a, b;\n    Line() {\n    }\n    Line(Point _a, Point _b) : a(_a),\
+    \ b(_b) {\n    }\n    Line(const Segment &s) : a(s.a), b(s.b) {\n    }\n    Point\
+    \ projection(const Point &p) const {\n        return a +\n               (b -\
+    \ a) * (dot(b - a, p - a) / ((b - a).abs() * (b - a).abs()));\n    }\n    Point\
+    \ reflection(const Point &p) const {\n        return projection(p) * 2 - p;\n\
+    \    }\n};\nstd::istream &operator>>(std::istream &is, Line &l) {\n    Point a,\
+    \ b;\n    is >> a >> b;\n    l = {a, b};\n    return is;\n};\n\nstruct Polygon\
+    \ : std::vector<Point> {\n    Polygon(int n = 0) : std::vector<Point>(n) {\n \
+    \   }\n    coordinate_t area() const {\n        coordinate_t ret = 0;\n      \
+    \  for (int i = 0; i < (int)size(); i++) {\n            ret += det((*this)[i],\
     \ (*this)[(i + 1) % (int)size()]);\n        }\n        ret /= 2.0;\n        ret\
     \ = std::fabs(ret);\n        return ret;\n    }\n    bool is_convex() const {\n\
     \        for (int i = 0; i < (int)size(); i++) {\n            if (ccw((*this)[i],\
@@ -444,7 +513,7 @@ data:
     \ poly[0], &pb = poly[1], &pc = poly[2];\n    return incircle_of_triangle(pa,\
     \ pb, pc);\n}\n// \u4E09\u89D2\u5F62\u306E\u5916\u63A5\u5186\nCircle circumscribed_circle_of_triangle(const\
     \ Point &pa, const Point &pb,\n                                        const Point\
-    \ &pc) {\n    Line l1 = Line(pa, pb).vertical_bisector();\n    Line l2 = Line(pa,\
+    \ &pc) {\n    Line l1 = Segment(pa, pb).vertical_bisector();\n    Line l2 = Segment(pa,\
     \ pc).vertical_bisector();\n    Point p = cross_point(l1, l2);\n    coordinate_t\
     \ r = (pa - p).abs();\n    return Circle(p, r);\n}\n// \u4E09\u89D2\u5F62\u306E\
     \u5916\u63A5\u5186\nCircle circumscribed_circle_of_triangle(const Polygon &poly)\
@@ -573,9 +642,32 @@ data:
   isVerificationFile: false
   path: geometry/geometry.hpp
   requiredBy: []
-  timestamp: '2022-09-01 13:39:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-09-01 18:36:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/CGL_3_B.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_1_A.test.cpp
+  - test/aoj/CGL_5_A.test.cpp
+  - test/aoj/CGL_7_G.test.cpp
+  - test/aoj/CGL_7_F.test.cpp
+  - test/aoj/CGL_2_B.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/CGL_4_B.test.cpp
+  - test/aoj/CGL_7_D.test.cpp
+  - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_7_H.test.cpp
+  - test/aoj/CGL_3_A.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_3_C.test.cpp
+  - test/aoj/CGL_7_E.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_2_A.test.cpp
+  - test/aoj/CGL_4_C.test.cpp
+  - test/aoj/CGL_7_A.test.cpp
+  - test/aoj/CGL_4_A.test.cpp
+  - test/aoj/CGL_7_I.test.cpp
+  - test/aoj/CGL_1_C.test.cpp
 documentation_of: geometry/geometry.hpp
 layout: document
 title: geomerty
