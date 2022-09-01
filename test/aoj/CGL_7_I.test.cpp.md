@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: geometry/geometry.hpp
     title: geomerty
   _extendedRequiredBy: []
@@ -57,19 +57,19 @@ data:
     \ (sgn(det(b - a, c - a)) < 0) {\n        return CLOCKWISE;  // clockwise\n  \
     \  }\n    if (sgn(dot(b - a, c - a)) < 0) {\n        return ONLINE_BACK;  // c\
     \ - a - b\n    }\n    if (sgn(dot(a - b, c - b)) < 0) {\n        return ONLINE_FRONT;\
-    \  // a - b - c\n    }\n    return ON_SEGMENT;  // a - c - b\n}\n\nstruct Segment\
-    \ {\n    Point a, b;\n    Segment() {\n    }\n    Segment(Point _a, Point _b)\
-    \ : a(_a), b(_b) {\n    }\n    Line vertical_bisector() {\n        Point c = (a\
-    \ + b) / 2;\n        Point v = (a - b).normal();\n        return {c + v, c - v};\n\
-    \    }\n};\nstd::istream &operator>>(std::istream &is, Segment &s) {\n    Point\
-    \ a, b;\n    is >> a >> b;\n    s = {a, b};\n    return is;\n};\n\nstruct Line\
+    \  // a - b - c\n    }\n    return ON_SEGMENT;  // a - c - b\n}\n\nstruct Line\
     \ {\n    Point a, b;\n    Line() {\n    }\n    Line(Point _a, Point _b) : a(_a),\
-    \ b(_b) {\n    }\n    Line(const Segment &s) : a(s.a), b(s.b) {\n    }\n    Point\
-    \ projection(const Point &p) const {\n        return a +\n               (b -\
-    \ a) * (dot(b - a, p - a) / ((b - a).abs() * (b - a).abs()));\n    }\n    Point\
-    \ reflection(const Point &p) const {\n        return projection(p) * 2 - p;\n\
-    \    }\n};\nstd::istream &operator>>(std::istream &is, Line &l) {\n    Point a,\
-    \ b;\n    is >> a >> b;\n    l = {a, b};\n    return is;\n};\n\nstruct Polygon\
+    \ b(_b) {\n    }\n    Point projection(const Point &p) const {\n        return\
+    \ a +\n               (b - a) * (dot(b - a, p - a) / ((b - a).abs() * (b - a).abs()));\n\
+    \    }\n    Point reflection(const Point &p) const {\n        return projection(p)\
+    \ * 2 - p;\n    }\n};\nstd::istream &operator>>(std::istream &is, Line &l) {\n\
+    \    Point a, b;\n    is >> a >> b;\n    l = {a, b};\n    return is;\n};\n\nstruct\
+    \ Segment {\n    Point a, b;\n    Segment() {\n    }\n    Segment(Point _a, Point\
+    \ _b) : a(_a), b(_b) {\n    }\n    Line vertical_bisector() {\n        Point c\
+    \ = (a + b) / 2;\n        Point v = (a - b).normal();\n        return {c + v,\
+    \ c - v};\n    }\n};\nstd::istream &operator>>(std::istream &is, Segment &s) {\n\
+    \    Point a, b;\n    is >> a >> b;\n    s = {a, b};\n    return is;\n};\n\nLine\
+    \ from_segment(const Segment &s) {\n    return Line(s.a, s.b);\n}\n\nstruct Polygon\
     \ : std::vector<Point> {\n    Polygon(int n = 0) : std::vector<Point>(n) {\n \
     \   }\n    coordinate_t area() const {\n        coordinate_t ret = 0;\n      \
     \  for (int i = 0; i < (int)size(); i++) {\n            ret += det((*this)[i],\
@@ -136,38 +136,38 @@ data:
     \ c1, Circle c2) {\n    return sgn((c1.c - c2.c).abs() - (c1.r + c2.r)) <= 0 &&\n\
     \           sgn((c1.c - c2.c).abs() - std::fabs(c1.r - c2.r)) >= 0;\n}\n\nPoint\
     \ cross_point(const Segment &s1, const Segment &s2) {\n    assert(intersect(s1,\
-    \ s2));\n    return cross_point(Line(s1), Line(s2));\n}\nPoint cross_point(const\
-    \ Segment &s, const Line &l) {\n    assert(intersect(s, l));\n    return s.a +\
-    \ (s.b - s.a) *\n                     (det(l.a - s.a, l.b - l.a) / det(s.b - s.a,\
-    \ l.b - l.a));\n}\nPoint cross_point(const Line &l, const Segment &s) {\n    return\
-    \ cross_point(s, l);\n}\nPoint cross_point(const Line &l1, const Line &l2) {\n\
-    \    assert(intersect(l1, l2));\n    return l1.a + (l1.b - l1.a) * (det(l2.a -\
-    \ l1.a, l2.b - l2.a) /\n                                   det(l1.b - l1.a, l2.b\
-    \ - l2.a));\n}\nstd::vector<Point> cross_points(const Segment &s, const Circle\
-    \ &c) {\n    if (!intersect(s, c)) return {};\n    std::vector<Point> ret = cross_points(Line(s),\
-    \ c);\n    ret.erase(std::remove_if(ret.begin(), ret.end(),\n                \
-    \             [&](Point p) {\n                                 return !(p == s.a)\
-    \ && !(p == s.b) &&\n                                        (p < s.a) == (p <\
-    \ s.b);\n                             }),\n              ret.end());\n    return\
-    \ ret;\n}\nstd::vector<Point> cross_points(const Circle &c, const Segment &s)\
-    \ {\n    return cross_points(s, c);\n}\nstd::vector<Point> cross_points(const\
-    \ Line &l, const Circle &c) {\n    if (!intersect(l, c)) return {};\n    Point\
-    \ p = l.projection(c.c);\n    Point v = (l.b - l.a) *\n              std::sqrt(c.r\
-    \ * c.r - (p - c.c).abs() * (p - c.c).abs()) /\n              (l.b - l.a).abs();\n\
-    \    v = std::max(v, v * -1);\n    return {p - v, p + v};\n}\nstd::vector<Point>\
-    \ cross_points(const Circle &c, const Line &l) {\n    return cross_points(l, c);\n\
-    }\nstd::vector<Point> cross_points(Circle c1, Circle c2) {\n    if (!intersect(c1,\
-    \ c2)) return {};\n    coordinate_t d = (c1.c - c2.c).abs();\n    coordinate_t\
-    \ d1 = (d + (c1.r * c1.r - c2.r * c2.r) / d) / 2;\n    coordinate_t h = std::sqrt(c1.r\
-    \ * c1.r - d1 * d1);\n    Point v = (c2.c - c1.c).normal();\n    v *= h / v.abs();\n\
-    \    std::vector<Point> ret = {c1.c + (c2.c - c1.c) * (d1 / d) + v,\n        \
-    \                      c1.c + (c2.c - c1.c) * (d1 / d) - v};\n    if (ret[0] >\
-    \ ret[1]) std::swap(ret[0], ret[1]);\n    return ret;\n}\n\n// \u4E09\u89D2\u5F62\
-    \u306E\u5185\u63A5\u5186\nCircle incircle_of_triangle(const Point &pa, const Point\
-    \ &pb, const Point &pc) {\n    coordinate_t a = (pb - pc).abs(), b = (pc - pa).abs(),\
-    \ c = (pa - pb).abs();\n    Point p = (pa * a + pb * b + pc * c) / (a + b + c);\n\
-    \    coordinate_t r = dist(Line(pa, pb), p);\n    return Circle(p, r);\n}\n//\
-    \ \u4E09\u89D2\u5F62\u306E\u5185\u63A5\u5186\nCircle incircle_of_triangle(const\
+    \ s2));\n    return cross_point(from_segment(s1), from_segment(s2));\n}\nPoint\
+    \ cross_point(const Segment &s, const Line &l) {\n    assert(intersect(s, l));\n\
+    \    return s.a + (s.b - s.a) *\n                     (det(l.a - s.a, l.b - l.a)\
+    \ / det(s.b - s.a, l.b - l.a));\n}\nPoint cross_point(const Line &l, const Segment\
+    \ &s) {\n    return cross_point(s, l);\n}\nPoint cross_point(const Line &l1, const\
+    \ Line &l2) {\n    assert(intersect(l1, l2));\n    return l1.a + (l1.b - l1.a)\
+    \ * (det(l2.a - l1.a, l2.b - l2.a) /\n                                   det(l1.b\
+    \ - l1.a, l2.b - l2.a));\n}\nstd::vector<Point> cross_points(const Segment &s,\
+    \ const Circle &c) {\n    if (!intersect(s, c)) return {};\n    std::vector<Point>\
+    \ ret = cross_points(from_segment(s), c);\n    ret.erase(std::remove_if(ret.begin(),\
+    \ ret.end(),\n                             [&](Point p) {\n                  \
+    \               return !(p == s.a) && !(p == s.b) &&\n                       \
+    \                 (p < s.a) == (p < s.b);\n                             }),\n\
+    \              ret.end());\n    return ret;\n}\nstd::vector<Point> cross_points(const\
+    \ Circle &c, const Segment &s) {\n    return cross_points(s, c);\n}\nstd::vector<Point>\
+    \ cross_points(const Line &l, const Circle &c) {\n    if (!intersect(l, c)) return\
+    \ {};\n    Point p = l.projection(c.c);\n    Point v = (l.b - l.a) *\n       \
+    \       std::sqrt(c.r * c.r - (p - c.c).abs() * (p - c.c).abs()) /\n         \
+    \     (l.b - l.a).abs();\n    v = std::max(v, v * -1);\n    return {p - v, p +\
+    \ v};\n}\nstd::vector<Point> cross_points(const Circle &c, const Line &l) {\n\
+    \    return cross_points(l, c);\n}\nstd::vector<Point> cross_points(Circle c1,\
+    \ Circle c2) {\n    if (!intersect(c1, c2)) return {};\n    coordinate_t d = (c1.c\
+    \ - c2.c).abs();\n    coordinate_t d1 = (d + (c1.r * c1.r - c2.r * c2.r) / d)\
+    \ / 2;\n    coordinate_t h = std::sqrt(c1.r * c1.r - d1 * d1);\n    Point v =\
+    \ (c2.c - c1.c).normal();\n    v *= h / v.abs();\n    std::vector<Point> ret =\
+    \ {c1.c + (c2.c - c1.c) * (d1 / d) + v,\n                              c1.c +\
+    \ (c2.c - c1.c) * (d1 / d) - v};\n    if (ret[0] > ret[1]) std::swap(ret[0], ret[1]);\n\
+    \    return ret;\n}\n\n// \u4E09\u89D2\u5F62\u306E\u5185\u63A5\u5186\nCircle incircle_of_triangle(const\
+    \ Point &pa, const Point &pb, const Point &pc) {\n    coordinate_t a = (pb - pc).abs(),\
+    \ b = (pc - pa).abs(), c = (pa - pb).abs();\n    Point p = (pa * a + pb * b +\
+    \ pc * c) / (a + b + c);\n    coordinate_t r = dist(Line(pa, pb), p);\n    return\
+    \ Circle(p, r);\n}\n// \u4E09\u89D2\u5F62\u306E\u5185\u63A5\u5186\nCircle incircle_of_triangle(const\
     \ Polygon &poly) {\n    assert((int)poly.size() == 3);\n    const Point &pa =\
     \ poly[0], &pb = poly[1], &pc = poly[2];\n    return incircle_of_triangle(pa,\
     \ pb, pc);\n}\n// \u4E09\u89D2\u5F62\u306E\u5916\u63A5\u5186\nCircle circumscribed_circle_of_triangle(const\
@@ -310,7 +310,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_7_I.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 18:36:28+09:00'
+  timestamp: '2022-09-01 18:57:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_I.test.cpp
