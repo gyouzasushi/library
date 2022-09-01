@@ -5,7 +5,7 @@ data:
     pages:
     - icon: ':warning:'
       path: algorithm/longest_increasing_subsequence.hpp
-      title: algorithm/longest_increasing_subsequence.hpp
+      title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(LIS)"
   - name: datastructure
     pages:
     - icon: ':warning:'

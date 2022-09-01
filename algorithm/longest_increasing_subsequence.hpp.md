@@ -42,8 +42,9 @@ data:
   verifiedWith: []
 documentation_of: algorithm/longest_increasing_subsequence.hpp
 layout: document
-redirect_from:
-- /library/algorithm/longest_increasing_subsequence.hpp
-- /library/algorithm/longest_increasing_subsequence.hpp.html
-title: algorithm/longest_increasing_subsequence.hpp
+title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(LIS)"
 ---
+
+## 最長増加部分列(LIS)
+### 使い方
+- がんばれ！
