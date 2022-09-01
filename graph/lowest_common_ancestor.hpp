@@ -2,7 +2,7 @@
 #include <cmath>
 #include <vector>
 
-#include "plus_minus_one_range_minimum.hpp"
+#include "../datastructure/plus_minus_one_range_minimum.hpp"
 struct LowestCommonAncestor {
 public:
     LowestCommonAncestor() {
