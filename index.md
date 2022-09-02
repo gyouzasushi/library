@@ -26,9 +26,9 @@ data:
     - icon: ':warning:'
       path: datastructure/segment_tree.hpp
       title: datastructure/segment_tree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/sparse_table.hpp
-      title: datastructure/sparse_table.hpp
+      title: Sparse Table
     - icon: ':heavy_check_mark:'
       path: datastructure/static_range_minimum.hpp
       title: datastructure/static_range_minimum.hpp
@@ -160,6 +160,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_sum.test.cpp
       title: test/library-checker/static_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/staticrmq.test.cpp
+      title: test/library-checker/staticrmq.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/unionfind.test.cpp
       title: test/library-checker/unionfind.test.cpp
