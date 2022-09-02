@@ -7,18 +7,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: datastructure/static_range_minimum.hpp
     title: datastructure/static_range_minimum.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library-checker/lca.test.cpp
-    title: test/library-checker/lca.test.cpp
+    path: graph/lowest_common_ancestor.hpp
+    title: graph/lowest_common_ancestor.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"graph/lowest_common_ancestor.hpp\"\n#include <cassert>\n\
-    #include <vector>\n\n#line 2 \"datastructure/plus_minus_one_range_minimum.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/lca
+    links:
+    - https://judge.yosupo.jp/problem/lca
+  bundledCode: "#line 1 \"test/library-checker/lca.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/lca\"\n#include <iostream>\n\n#line 2 \"graph/lowest_common_ancestor.hpp\"\
+    \n#include <cassert>\n#include <vector>\n\n#line 2 \"datastructure/plus_minus_one_range_minimum.hpp\"\
     \n#include <cmath>\n#line 4 \"datastructure/plus_minus_one_range_minimum.hpp\"\
     \n\n#line 3 \"datastructure/static_range_minimum.hpp\"\nstruct StaticRMQ {\npublic:\n\
     \    void init(const std::vector<std::pair<int, int>>& _v) {\n        _n = int(_v.size()),\
@@ -82,40 +86,32 @@ data:
     \ u) {\n        return dep[id[u]];\n    }\n    int dist(int u, int v) {\n    \
     \    return depth(u) + depth(v) - 2 * depth(get(u, v));\n    }\n\nprivate:\n \
     \   int _n, _root;\n    std::vector<std::vector<int>> g;\n    std::vector<int>\
-    \ id, vs, dep;\n    PlusMinusOneRMQ rmq;\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <vector>\n\n#include \"../datastructure/plus_minus_one_range_minimum.hpp\"\
-    \nstruct LowestCommonAncestor {\npublic:\n    LowestCommonAncestor() {\n    }\n\
-    \    LowestCommonAncestor(int n, int root = 0)\n        : _n(n), _root(root),\
-    \ g(n), id(n), vs(2 * n - 1), dep(2 * n - 1) {\n    }\n    void add_edge(int from,\
-    \ int to) {\n        assert(0 <= from && from < _n);\n        assert(0 <= to &&\
-    \ to < _n);\n        g[from].push_back(to);\n        g[to].push_back(from);\n\
-    \    }\n    void build() {\n        int k = 0;\n        auto dfs = [&](auto dfs,\
-    \ int pos, int pre, int d) -> void {\n            id[pos] = k;\n            vs[k]\
-    \ = pos;\n            dep[k++] = d;\n            for (int nxt : g[pos]) {\n  \
-    \              if (nxt == pre) continue;\n                dfs(dfs, nxt, pos, d\
-    \ + 1);\n                vs[k] = pos;\n                dep[k++] = d;\n       \
-    \     }\n        };\n        dfs(dfs, _root, -1, 0);\n        rmq.init(dep);\n\
-    \    }\n\n    int get(int u, int v) {\n        int l = std::min(id[u], id[v]);\n\
-    \        int r = std::max(id[u], id[v]) + 1;\n        return vs[rmq.prod(l, r)];\n\
-    \    }\n    int get(int u, int v, int r) {\n        return get(r, u) ^ get(u,\
-    \ v) ^ get(v, r);\n    }\n    int depth(int u) {\n        return dep[id[u]];\n\
-    \    }\n    int dist(int u, int v) {\n        return depth(u) + depth(v) - 2 *\
-    \ depth(get(u, v));\n    }\n\nprivate:\n    int _n, _root;\n    std::vector<std::vector<int>>\
-    \ g;\n    std::vector<int> id, vs, dep;\n    PlusMinusOneRMQ rmq;\n};"
+    \ id, vs, dep;\n    PlusMinusOneRMQ rmq;\n};\n#line 5 \"test/library-checker/lca.test.cpp\"\
+    \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    LowestCommonAncestor\
+    \ lca(n);\n    for (int i = 1; i < n; i++) {\n        int p;\n        std::cin\
+    \ >> p;\n        lca.add_edge(i, p);\n    }\n    lca.build();\n    while (q--)\
+    \ {\n        int u, v;\n        std::cin >> u >> v;\n        std::cout << lca.get(u,\
+    \ v) << '\\n';\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include <iostream>\n\
+    \n#include \"../../graph/lowest_common_ancestor.hpp\"\nint main() {\n    int n,\
+    \ q;\n    std::cin >> n >> q;\n    LowestCommonAncestor lca(n);\n    for (int\
+    \ i = 1; i < n; i++) {\n        int p;\n        std::cin >> p;\n        lca.add_edge(i,\
+    \ p);\n    }\n    lca.build();\n    while (q--) {\n        int u, v;\n       \
+    \ std::cin >> u >> v;\n        std::cout << lca.get(u, v) << '\\n';\n    }\n}"
   dependsOn:
+  - graph/lowest_common_ancestor.hpp
   - datastructure/plus_minus_one_range_minimum.hpp
   - datastructure/static_range_minimum.hpp
-  isVerificationFile: false
-  path: graph/lowest_common_ancestor.hpp
+  isVerificationFile: true
+  path: test/library-checker/lca.test.cpp
   requiredBy: []
   timestamp: '2022-09-02 14:42:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library-checker/lca.test.cpp
-documentation_of: graph/lowest_common_ancestor.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/library-checker/lca.test.cpp
 layout: document
 redirect_from:
-- /library/graph/lowest_common_ancestor.hpp
-- /library/graph/lowest_common_ancestor.hpp.html
-title: graph/lowest_common_ancestor.hpp
+- /verify/test/library-checker/lca.test.cpp
+- /verify/test/library-checker/lca.test.cpp.html
+title: test/library-checker/lca.test.cpp
 ---

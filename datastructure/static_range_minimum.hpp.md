@@ -2,16 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/plus_minus_one_range_minimum.hpp
     title: datastructure/plus_minus_one_range_minimum.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowest_common_ancestor.hpp
     title: graph/lowest_common_ancestor.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/lca.test.cpp
+    title: test/library-checker/lca.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/static_range_minimum.hpp\"\n#include <vector>\n\
@@ -48,8 +51,9 @@ data:
   - graph/lowest_common_ancestor.hpp
   - datastructure/plus_minus_one_range_minimum.hpp
   timestamp: '2022-09-01 13:39:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library-checker/lca.test.cpp
 documentation_of: datastructure/static_range_minimum.hpp
 layout: document
 redirect_from:

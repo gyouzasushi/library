@@ -20,7 +20,7 @@ data:
     - icon: ':warning:'
       path: datastructure/lazy_segment_tree.hpp
       title: datastructure/lazy_segment_tree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/plus_minus_one_range_minimum.hpp
       title: datastructure/plus_minus_one_range_minimum.hpp
     - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
     - icon: ':warning:'
       path: datastructure/sparse_table.hpp
       title: datastructure/sparse_table.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/static_range_minimum.hpp
       title: datastructure/static_range_minimum.hpp
     - icon: ':heavy_check_mark:'
@@ -48,7 +48,7 @@ data:
     - icon: ':warning:'
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowest_common_ancestor.hpp
       title: graph/lowest_common_ancestor.hpp
     - icon: ':warning:'
@@ -154,6 +154,9 @@ data:
       title: test/aoj/DPL_1_D.test.cpp
   - name: test/library-checker
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/lca.test.cpp
+      title: test/library-checker/lca.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_sum.test.cpp
       title: test/library-checker/static_range_sum.test.cpp
