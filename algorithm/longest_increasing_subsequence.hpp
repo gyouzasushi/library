@@ -1,19 +1,19 @@
 #pragma once
 #include <vector>
 template <typename T, class Compare>
-std::vector<T> longest_increasing_subsequence(const std::vector<T> &v,
+std::vector<T> longest_increasing_subsequence(const std::vector<T> &a,
                                               Compare comp) {
-    const int n = v.size();
+    const int n = a.size();
     std::vector<T> dp;
     std::vector<int> id(n);
     for (int i = 0; i < n; i++) {
         typename std::vector<T>::iterator it =
-            std::lower_bound(dp.begin(), dp.end(), v[i], comp);
+            std::lower_bound(dp.begin(), dp.end(), a[i], comp);
         id[i] = std::distance(dp.begin(), it);
         if (it == dp.end()) {
-            dp.push_back(v[i]);
+            dp.push_back(a[i]);
         } else {
-            *it = v[i];
+            *it = a[i];
         }
     }
     std::vector<T> lis(dp.size());
@@ -25,6 +25,6 @@ std::vector<T> longest_increasing_subsequence(const std::vector<T> &v,
     return lis;
 }
 template <typename T>
-std::vector<T> longest_increasing_subsequence(const std::vector<T> &v) {
-    return longest_increasing_subsequence(v, std::less<T>());
+std::vector<T> longest_increasing_subsequence(const std::vector<T> &a) {
+    return longest_increasing_subsequence(a, std::less<T>());
 }
