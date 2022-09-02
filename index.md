@@ -50,7 +50,7 @@ data:
       title: graph/dijkstra.hpp
     - icon: ':heavy_check_mark:'
       path: graph/lowest_common_ancestor.hpp
-      title: graph/lowest_common_ancestor.hpp
+      title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
     - icon: ':warning:'
       path: graph/maxflow.hpp
       title: graph/maxflow.hpp

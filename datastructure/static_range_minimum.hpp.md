@@ -7,7 +7,7 @@ data:
     title: datastructure/plus_minus_one_range_minimum.hpp
   - icon: ':heavy_check_mark:'
     path: graph/lowest_common_ancestor.hpp
-    title: graph/lowest_common_ancestor.hpp
+    title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/lca.test.cpp
