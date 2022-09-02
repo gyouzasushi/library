@@ -4,7 +4,7 @@ documentation_of: graph/lowest_common_ancestor.hpp
 ---
 
 ### 概要
-最小共通祖先(LCA)他を求める。
+- 最小共通祖先(LCA)他を求める。
 ### 使い方
 - `LowestCommonAncestor(n, root = 0)`: $\mathrm n$ 頂点で初期化する。頂点 `root` が根になる。
 - `add_edge(u, v)`: 頂点 `u` と 頂点 `v` とを結ぶ辺を追加する。
