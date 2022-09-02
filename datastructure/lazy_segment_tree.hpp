@@ -1,17 +1,19 @@
 #pragma once
+#include <cassert>
+#include <vector>
 template <class S, S (*op)(S, S), S (*e)(), class F, S (*mapping)(F, S),
           F (*composition)(F, F), F (*id)()>
 struct LazySegmentTree {
 public:
     LazySegmentTree() : LazySegmentTree(0) {
     }
-    LazySegmentTree(int n) : LazySegmentTree(vector<S>(n, e())) {
+    LazySegmentTree(int n) : LazySegmentTree(std::vector<S>(n, e())) {
     }
-    LazySegmentTree(const vector<S>& v) : _n(int(v.size())) {
+    LazySegmentTree(const std::vector<S>& v) : _n(int(v.size())) {
         log = ceil_pow2(_n);
         size = 1 << log;
-        d = vector<S>(2 * size, e());
-        lz = vector<F>(size, id());
+        d = std::vector<S>(2 * size, e());
+        lz = std::vector<F>(size, id());
         for (int i = 0; i < _n; i++) d[size + i] = v[i];
         for (int i = size - 1; i >= 1; i--) {
             update(i);
@@ -161,8 +163,8 @@ public:
 
 private:
     int _n, size, log;
-    vector<S> d;
-    vector<F> lz;
+    std::vector<S> d;
+    std::vector<F> lz;
     int ceil_pow2(int n) {
         int x = 0;
         while ((1U << x) < (unsigned int)(n)) x++;
