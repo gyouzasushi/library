@@ -62,6 +62,9 @@ data:
       title: graph/rerooting.hpp
   - name: math
     pages:
+    - icon: ':heavy_check_mark:'
+      path: math/convolution.hpp
+      title: math/convolution.hpp
     - icon: ':warning:'
       path: math/math.hpp
       title: math/math.hpp
@@ -154,6 +157,9 @@ data:
       title: test/aoj/DPL_1_D.test.cpp
   - name: test/library-checker
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/convolution_mod.test.cpp
+      title: test/library-checker/convolution_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/lca.test.cpp
       title: test/library-checker/lca.test.cpp

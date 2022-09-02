@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: datastructure/segment_tree.hpp
-    title: datastructure/segment_tree.hpp
+    path: math/convolution.hpp
+    title: math/convolution.hpp
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: math/modint.hpp
@@ -14,58 +14,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
+    PROBLEM: https://judge.yosupo.jp/problem/convolution_mod
     links:
-    - https://judge.yosupo.jp/problem/point_set_range_composite
-  bundledCode: "#line 1 \"test/library-checker/point_set_range_composite.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n#include <iostream>\n\n#line 2 \"datastructure/segment_tree.hpp\"\n#include<cassert>\n\
-    #include<vector>\ntemplate <class S, S (*op)(S, S), S (*e)()>\nstruct SegmentTree\
-    \ {\npublic:\n    SegmentTree() : SegmentTree(0) {\n    }\n    SegmentTree(int\
-    \ n) : SegmentTree(std::vector<S>(n, e())) {\n    }\n    SegmentTree(const std::vector<S>&\
-    \ v) : _n(int(v.size())) {\n        log = ceil_pow2(_n);\n        size = 1 <<\
-    \ log;\n        d = std::vector<S>(2 * size, e());\n        for (int i = 0; i\
-    \ < _n; i++) d[size + i] = v[i];\n        for (int i = size - 1; i >= 1; i--)\
-    \ {\n            update(i);\n        }\n    }\n\n    void set(int p, S x) {\n\
-    \        assert(0 <= p && p < _n);\n        p += size;\n        d[p] = x;\n  \
-    \      for (int i = 1; i <= log; i++) update(p >> i);\n    }\n\n    S get(int\
-    \ p) {\n        assert(0 <= p && p < _n);\n        return d[p + size];\n    }\n\
-    \n    S prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= _n);\n \
-    \       S sml = e(), smr = e();\n        l += size;\n        r += size;\n\n  \
-    \      while (l < r) {\n            if (l & 1) sml = op(sml, d[l++]);\n      \
-    \      if (r & 1) smr = op(d[--r], smr);\n            l >>= 1;\n            r\
-    \ >>= 1;\n        }\n        return op(sml, smr);\n    }\n\n    S all_prod() {\n\
-    \        return d[1];\n    }\n\n    template <bool (*f)(S)>\n    int max_right(int\
-    \ l) {\n        return max_right(l, [](S x) { return f(x); });\n    }\n    template\
-    \ <class F>\n    int max_right(int l, F f) {\n        assert(0 <= l && l <= _n);\n\
-    \        assert(f(e()));\n        if (l == _n) return _n;\n        l += size;\n\
-    \        S sm = e();\n        do {\n            while (l % 2 == 0) l >>= 1;\n\
-    \            if (!f(op(sm, d[l]))) {\n                while (l < size) {\n   \
-    \                 l = (2 * l);\n                    if (f(op(sm, d[l]))) {\n \
-    \                       sm = op(sm, d[l]);\n                        l++;\n   \
-    \                 }\n                }\n                return l - size;\n   \
-    \         }\n            sm = op(sm, d[l]);\n            l++;\n        } while\
-    \ ((l & -l) != l);\n        return _n;\n    }\n\n    template <bool (*f)(S)>\n\
-    \    int min_left(int r) {\n        return min_left(r, [](S x) { return f(x);\
-    \ });\n    }\n    template <class F>\n    int min_left(int r, F f) {\n       \
-    \ assert(0 <= r && r <= _n);\n        assert(f(e()));\n        if (r == 0) return\
-    \ 0;\n        r += size;\n        S sm = e();\n        do {\n            r--;\n\
-    \            while (r > 1 && (r % 2)) r >>= 1;\n            if (!f(op(d[r], sm)))\
-    \ {\n                while (r < size) {\n                    r = (2 * r + 1);\n\
-    \                    if (f(op(d[r], sm))) {\n                        sm = op(d[r],\
-    \ sm);\n                        r--;\n                    }\n                }\n\
-    \                return r + 1 - size;\n            }\n            sm = op(d[r],\
-    \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n\nprivate:\n\
-    \    int _n, size, log;\n    std::vector<S> d;\n    int ceil_pow2(int n) {\n \
-    \       int x = 0;\n        while ((1U << x) < (unsigned int)(n)) x++;\n     \
-    \   return x;\n    }\n    void update(int k) {\n        d[k] = op(d[2 * k], d[2\
-    \ * k + 1]);\n    }\n};\n#line 2 \"math/modint.hpp\"\n\n#include <algorithm>\n\
-    #include <array>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace\
-    \ modint {\n\nnamespace internal {\n\n// @param n `0 <= n`\n// @return minimum\
-    \ non-negative `x` s.t. `n <= 2**x`\nint ceil_pow2(int n) {\n    int x = 0;\n\
-    \    while ((1U << x) < (unsigned int)(n)) x++;\n    return x;\n}\n\n// @param\
-    \ n `1 <= n`\n// @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`\n\
-    int bsf(unsigned int n) {\n#ifdef _MSC_VER\n    unsigned long index;\n    _BitScanForward(&index,\
+    - https://judge.yosupo.jp/problem/convolution_mod
+  bundledCode: "#line 1 \"test/library-checker/convolution_mod.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n#include <iostream>\n\
+    \n#line 2 \"math/convolution.hpp\"\n#include <cassert>\n#include <type_traits>\n\
+    #include <vector>\n\n#line 2 \"math/modint.hpp\"\n\n#include <algorithm>\n#include\
+    \ <array>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace modint\
+    \ {\n\nnamespace internal {\n\n// @param n `0 <= n`\n// @return minimum non-negative\
+    \ `x` s.t. `n <= 2**x`\nint ceil_pow2(int n) {\n    int x = 0;\n    while ((1U\
+    \ << x) < (unsigned int)(n)) x++;\n    return x;\n}\n\n// @param n `1 <= n`\n\
+    // @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`\nint bsf(unsigned\
+    \ int n) {\n#ifdef _MSC_VER\n    unsigned long index;\n    _BitScanForward(&index,\
     \ n);\n    return index;\n#else\n    return __builtin_ctz(n);\n#endif\n}\n\n}\
     \  // namespace internal\n\n}  // namespace modint\n\n#include <utility>\n\nnamespace\
     \ modint {\n\nnamespace internal {\n\n// @param m `1 <= m`\n// @return x mod m\n\
@@ -129,15 +90,15 @@ data:
     \                break;\n            }\n        }\n        if (ok) return g;\n\
     \    }\n}\ntemplate <int m>\nconstexpr int primitive_root = primitive_root_constexpr(m);\n\
     \n}  // namespace internal\n\n}  // namespace modint\n\n#line 220 \"math/modint.hpp\"\
-    \n#include <numeric>\n#include <type_traits>\n\nnamespace modint {\n\nnamespace\
-    \ internal {\n\n#ifndef _MSC_VER\ntemplate <class T>\nusing is_signed_int128 =\n\
-    \    typename std::conditional<std::is_same<T, __int128_t>::value ||\n       \
-    \                           std::is_same<T, __int128>::value,\n              \
-    \                std::true_type, std::false_type>::type;\n\ntemplate <class T>\n\
-    using is_unsigned_int128 =\n    typename std::conditional<std::is_same<T, __uint128_t>::value\
-    \ ||\n                                  std::is_same<T, unsigned __int128>::value,\n\
-    \                              std::true_type, std::false_type>::type;\n\ntemplate\
-    \ <class T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+    \n#include <numeric>\n#line 222 \"math/modint.hpp\"\n\nnamespace modint {\n\n\
+    namespace internal {\n\n#ifndef _MSC_VER\ntemplate <class T>\nusing is_signed_int128\
+    \ =\n    typename std::conditional<std::is_same<T, __int128_t>::value ||\n   \
+    \                               std::is_same<T, __int128>::value,\n          \
+    \                    std::true_type, std::false_type>::type;\n\ntemplate <class\
+    \ T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
+    \ __uint128_t>::value ||\n                                  std::is_same<T, unsigned\
+    \ __int128>::value,\n                              std::true_type, std::false_type>::type;\n\
+    \ntemplate <class T>\nusing make_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
     \ __int128_t>::value, __uint128_t,\n                              unsigned __int128>;\n\
     \ntemplate <class T>\nusing is_integral =\n    typename std::conditional<std::is_integral<T>::value\
     \ ||\n                                  is_signed_int128<T>::value ||\n      \
@@ -265,46 +226,123 @@ data:
     template <typename T, typename std::enable_if_t<internal::is_modint<T>::value,\n\
     \                                                std::nullptr_t> = nullptr>\n\
     std::ostream& operator<<(std::ostream& os, const T& v) {\n    os << v.val();\n\
-    \    return os;\n}\n}  // namespace modint\n#line 6 \"test/library-checker/point_set_range_composite.test.cpp\"\
-    \n\nusing mint = modint::modint998244353;\nstruct S {\n    mint a, b;\n    bool\
-    \ e;\n    mint val(int x) {\n        return a * x + b;\n    }\n};\nS op(S f, S\
-    \ g) {\n    if (f.e) return g;\n    if (g.e) return f;\n    return {g.a * f.a,\
-    \ g.a * f.b + g.b};\n}\nS e() {\n    return {0, 0, true};\n}\nint main() {\n \
-    \   int n, q;\n    std::cin >> n >> q;\n    std::vector<S> f(n);\n    for (int\
-    \ i = 0; i < n; i++) {\n        mint a, b;\n        std::cin >> a >> b;\n    \
-    \    f[i] = {a, b};\n    }\n    SegmentTree<S, op, e> segt(f);\n    while (q--)\
-    \ {\n        int t;\n        std::cin >> t;\n        if (t == 0) {\n         \
-    \   int p, c, d;\n            std::cin >> p >> c >> d;\n            segt.set(p,\
-    \ {c, d});\n        }\n        if (t == 1) {\n            int l, r, x;\n     \
-    \       std::cin >> l >> r >> x;\n            std::cout << segt.prod(l, r).val(x)\
-    \ << '\\n';\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n#include <iostream>\n\n#include \"../../datastructure/segment_tree.hpp\"\n#include\
-    \ \"../../math/modint.hpp\"\n\nusing mint = modint::modint998244353;\nstruct S\
-    \ {\n    mint a, b;\n    bool e;\n    mint val(int x) {\n        return a * x\
-    \ + b;\n    }\n};\nS op(S f, S g) {\n    if (f.e) return g;\n    if (g.e) return\
-    \ f;\n    return {g.a * f.a, g.a * f.b + g.b};\n}\nS e() {\n    return {0, 0,\
-    \ true};\n}\nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<S>\
-    \ f(n);\n    for (int i = 0; i < n; i++) {\n        mint a, b;\n        std::cin\
-    \ >> a >> b;\n        f[i] = {a, b};\n    }\n    SegmentTree<S, op, e> segt(f);\n\
-    \    while (q--) {\n        int t;\n        std::cin >> t;\n        if (t == 0)\
-    \ {\n            int p, c, d;\n            std::cin >> p >> c >> d;\n        \
-    \    segt.set(p, {c, d});\n        }\n        if (t == 1) {\n            int l,\
-    \ r, x;\n            std::cin >> l >> r >> x;\n            std::cout << segt.prod(l,\
-    \ r).val(x) << '\\n';\n        }\n    }\n}"
+    \    return os;\n}\n}  // namespace modint\n#line 7 \"math/convolution.hpp\"\n\
+    namespace internal {\n\ntemplate <class mint, modint::internal::is_static_modint_t<mint>*\
+    \ = nullptr>\nvoid butterfly(std::vector<mint>& a) {\n    static constexpr int\
+    \ g = modint::internal::primitive_root<mint::mod()>;\n    int n = int(a.size());\n\
+    \    int h = modint::internal::ceil_pow2(n);\n\n    static bool first = true;\n\
+    \    static mint sum_e[30];  // sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]\n\
+    \    if (first) {\n        first = false;\n        mint es[30], ies[30];  // es[i]^(2^(2+i))\
+    \ == 1\n        int cnt2 = modint::internal::bsf(mint::mod() - 1);\n        mint\
+    \ e = mint(g).pow((mint::mod() - 1) >> cnt2), ie = e.inv();\n        for (int\
+    \ i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n            es[i - 2]\
+    \ = e;\n            ies[i - 2] = ie;\n            e *= e;\n            ie *= ie;\n\
+    \        }\n        mint now = 1;\n        for (int i = 0; i < cnt2 - 2; i++)\
+    \ {\n            sum_e[i] = es[i] * now;\n            now *= ies[i];\n       \
+    \ }\n    }\n    for (int ph = 1; ph <= h; ph++) {\n        int w = 1 << (ph -\
+    \ 1), p = 1 << (h - ph);\n        mint now = 1;\n        for (int s = 0; s < w;\
+    \ s++) {\n            int offset = s << (h - ph + 1);\n            for (int i\
+    \ = 0; i < p; i++) {\n                auto l = a[i + offset];\n              \
+    \  auto r = a[i + offset + p] * now;\n                a[i + offset] = l + r;\n\
+    \                a[i + offset + p] = l - r;\n            }\n            now *=\
+    \ sum_e[modint::internal::bsf(~(unsigned int)(s))];\n        }\n    }\n}\n\ntemplate\
+    \ <class mint, modint::internal::is_static_modint_t<mint>* = nullptr>\nvoid butterfly_inv(std::vector<mint>&\
+    \ a) {\n    static constexpr int g = modint::internal::primitive_root<mint::mod()>;\n\
+    \    int n = int(a.size());\n    int h = modint::internal::ceil_pow2(n);\n\n \
+    \   static bool first = true;\n    static mint sum_ie[30];  // sum_ie[i] = es[0]\
+    \ * ... * es[i - 1] * ies[i]\n    if (first) {\n        first = false;\n     \
+    \   mint es[30], ies[30];  // es[i]^(2^(2+i)) == 1\n        int cnt2 = modint::internal::bsf(mint::mod()\
+    \ - 1);\n        mint e = mint(g).pow((mint::mod() - 1) >> cnt2), ie = e.inv();\n\
+    \        for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n    \
+    \        es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n \
+    \           ie *= ie;\n        }\n        mint now = 1;\n        for (int i =\
+    \ 0; i < cnt2 - 2; i++) {\n            sum_ie[i] = ies[i] * now;\n           \
+    \ now *= es[i];\n        }\n    }\n\n    for (int ph = h; ph >= 1; ph--) {\n \
+    \       int w = 1 << (ph - 1), p = 1 << (h - ph);\n        mint inow = 1;\n  \
+    \      for (int s = 0; s < w; s++) {\n            int offset = s << (h - ph +\
+    \ 1);\n            for (int i = 0; i < p; i++) {\n                auto l = a[i\
+    \ + offset];\n                auto r = a[i + offset + p];\n                a[i\
+    \ + offset] = l + r;\n                a[i + offset + p] =\n                  \
+    \  (unsigned long long)(mint::mod() + l.val() - r.val()) *\n                 \
+    \   inow.val();\n            }\n            inow *= sum_ie[modint::internal::bsf(~(unsigned\
+    \ int)(s))];\n        }\n    }\n}\n\n}  // namespace internal\n\ntemplate <class\
+    \ mint, modint::internal::is_static_modint_t<mint>* = nullptr>\nstd::vector<mint>\
+    \ convolution(std::vector<mint> a, std::vector<mint> b) {\n    int n = int(a.size()),\
+    \ m = int(b.size());\n    if (!n || !m) return {};\n    if (std::min(n, m) <=\
+    \ 60) {\n        if (n < m) {\n            std::swap(n, m);\n            std::swap(a,\
+    \ b);\n        }\n        std::vector<mint> ans(n + m - 1);\n        for (int\
+    \ i = 0; i < n; i++) {\n            for (int j = 0; j < m; j++) {\n          \
+    \      ans[i + j] += a[i] * b[j];\n            }\n        }\n        return ans;\n\
+    \    }\n    int z = 1 << modint::internal::ceil_pow2(n + m - 1);\n    a.resize(z);\n\
+    \    internal::butterfly(a);\n    b.resize(z);\n    internal::butterfly(b);\n\
+    \    for (int i = 0; i < z; i++) {\n        a[i] *= b[i];\n    }\n    internal::butterfly_inv(a);\n\
+    \    a.resize(n + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i\
+    \ < n + m - 1; i++) a[i] *= iz;\n    return a;\n}\n\ntemplate <unsigned int mod\
+    \ = 998244353, class T,\n          std::enable_if_t<modint::internal::is_integral<T>::value>*\
+    \ = nullptr>\nstd::vector<T> convolution(const std::vector<T>& a, const std::vector<T>&\
+    \ b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return\
+    \ {};\n\n    using mint = modint::static_modint<mod>;\n    std::vector<mint> a2(n),\
+    \ b2(m);\n    for (int i = 0; i < n; i++) {\n        a2[i] = mint(a[i]);\n   \
+    \ }\n    for (int i = 0; i < m; i++) {\n        b2[i] = mint(b[i]);\n    }\n \
+    \   auto c2 = convolution(move(a2), move(b2));\n    std::vector<T> c(n + m - 1);\n\
+    \    for (int i = 0; i < n + m - 1; i++) {\n        c[i] = c2[i].val();\n    }\n\
+    \    return c;\n}\n\nstd::vector<long long> convolution_ll(const std::vector<long\
+    \ long>& a,\n                                      const std::vector<long long>&\
+    \ b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return\
+    \ {};\n\n    static constexpr unsigned long long MOD1 = 754974721;  // 2^24\n\
+    \    static constexpr unsigned long long MOD2 = 167772161;  // 2^25\n    static\
+    \ constexpr unsigned long long MOD3 = 469762049;  // 2^26\n    static constexpr\
+    \ unsigned long long M2M3 = MOD2 * MOD3;\n    static constexpr unsigned long long\
+    \ M1M3 = MOD1 * MOD3;\n    static constexpr unsigned long long M1M2 = MOD1 * MOD2;\n\
+    \    static constexpr unsigned long long M1M2M3 = MOD1 * MOD2 * MOD3;\n\n    static\
+    \ constexpr unsigned long long i1 =\n        modint::internal::inv_gcd(MOD2 *\
+    \ MOD3, MOD1).second;\n    static constexpr unsigned long long i2 =\n        modint::internal::inv_gcd(MOD1\
+    \ * MOD3, MOD2).second;\n    static constexpr unsigned long long i3 =\n      \
+    \  modint::internal::inv_gcd(MOD1 * MOD2, MOD3).second;\n\n    auto c1 = convolution<MOD1>(a,\
+    \ b);\n    auto c2 = convolution<MOD2>(a, b);\n    auto c3 = convolution<MOD3>(a,\
+    \ b);\n\n    std::vector<long long> c(n + m - 1);\n    for (int i = 0; i < n +\
+    \ m - 1; i++) {\n        unsigned long long x = 0;\n        x += (c1[i] * i1)\
+    \ % MOD1 * M2M3;\n        x += (c2[i] * i2) % MOD2 * M1M3;\n        x += (c3[i]\
+    \ * i3) % MOD3 * M1M2;\n        // B = 2^63, -B <= x, r(real value) < B\n    \
+    \    // (x, x - M, x - 2M, or x - 3M) = r (mod 2B)\n        // r = c1[i] (mod\
+    \ MOD1)\n        // focus on MOD1\n        // r = x, x - M', x - 2M', x - 3M'\
+    \ (M' = M % 2^64) (mod 2B)\n        // r = x,\n        //     x - M' + (0 or 2B),\n\
+    \        //     x - 2M' + (0, 2B or 4B),\n        //     x - 3M' + (0, 2B, 4B\
+    \ or 6B) (without mod!)\n        // (r - x) = 0, (0)\n        //           - M'\
+    \ + (0 or 2B), (1)\n        //           -2M' + (0 or 2B or 4B), (2)\n       \
+    \ //           -3M' + (0 or 2B or 4B or 6B) (3) (mod MOD1)\n        // we checked\
+    \ that\n        //   ((1) mod MOD1) mod 5 = 2\n        //   ((2) mod MOD1) mod\
+    \ 5 = 3\n        //   ((3) mod MOD1) mod 5 = 4\n        long long diff = c1[i]\
+    \ - modint::internal::safe_mod((long long)(x),\n                             \
+    \                               (long long)(MOD1));\n        if (diff < 0) diff\
+    \ += MOD1;\n        static constexpr unsigned long long offset[5] = {\n      \
+    \      0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n        x -= offset[diff % 5];\n\
+    \        c[i] = x;\n    }\n\n    return c;\n}\n#line 5 \"test/library-checker/convolution_mod.test.cpp\"\
+    \nusing mint = modint::modint998244353;\nint main() {\n    int n, m;\n    std::cin\
+    \ >> n >> m;\n    std::vector<mint> a(n), b(m);\n    for (int i = 0; i < n; i++)\
+    \ std::cin >> a[i];\n    for (int i = 0; i < m; i++) std::cin >> b[i];\n    std::vector<mint>\
+    \ c = convolution(a, b);\n    for (int i = 0; i <= (n - 1) + (m - 1); i++) {\n\
+    \        std::cout << c[i] << \" \\n\"[i == (n - 1) + (m - 1)];\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n#include\
+    \ <iostream>\n\n#include \"../../math/convolution.hpp\"\nusing mint = modint::modint998244353;\n\
+    int main() {\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<mint> a(n),\
+    \ b(m);\n    for (int i = 0; i < n; i++) std::cin >> a[i];\n    for (int i = 0;\
+    \ i < m; i++) std::cin >> b[i];\n    std::vector<mint> c = convolution(a, b);\n\
+    \    for (int i = 0; i <= (n - 1) + (m - 1); i++) {\n        std::cout << c[i]\
+    \ << \" \\n\"[i == (n - 1) + (m - 1)];\n    }\n}"
   dependsOn:
-  - datastructure/segment_tree.hpp
+  - math/convolution.hpp
   - math/modint.hpp
   isVerificationFile: true
-  path: test/library-checker/point_set_range_composite.test.cpp
+  path: test/library-checker/convolution_mod.test.cpp
   requiredBy: []
   timestamp: '2022-09-03 01:45:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library-checker/point_set_range_composite.test.cpp
+documentation_of: test/library-checker/convolution_mod.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library-checker/point_set_range_composite.test.cpp
-- /verify/test/library-checker/point_set_range_composite.test.cpp.html
-title: test/library-checker/point_set_range_composite.test.cpp
+- /verify/test/library-checker/convolution_mod.test.cpp
+- /verify/test/library-checker/convolution_mod.test.cpp.html
+title: test/library-checker/convolution_mod.test.cpp
 ---
