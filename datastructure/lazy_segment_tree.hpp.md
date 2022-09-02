@@ -152,8 +152,11 @@ data:
   - test/library-checker/range_affine_range_sum.test.cpp
 documentation_of: datastructure/lazy_segment_tree.hpp
 layout: document
-redirect_from:
-- /library/datastructure/lazy_segment_tree.hpp
-- /library/datastructure/lazy_segment_tree.hpp.html
-title: datastructure/lazy_segment_tree.hpp
+title: Lazy Segment Tree
 ---
+
+### 概要
+- ACL の Lazy Segtree。
+  
+### 使い方
+- [ACL のドキュメント](https://atcoder.github.io/ac-library/production/document_ja/lazysegtree.html)を参照。

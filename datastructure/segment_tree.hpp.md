@@ -101,11 +101,11 @@ data:
   - test/library-checker/point_set_range_composite.test.cpp
 documentation_of: datastructure/segment_tree.hpp
 layout: document
-title: Lazy Segment Tree
+title: Segment Tree
 ---
 
 ### 概要
-- ACL の Lazy Segtree。
+- ACL の Segtree。
   
 ### 使い方
-- [ACL のドキュメント](https://atcoder.github.io/ac-library/production/document_ja/lazysegtree.html)を参照。
+- [ACL のドキュメント](https://atcoder.github.io/ac-library/production/document_ja/segtree.html)を参照。

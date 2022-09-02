@@ -19,13 +19,13 @@ data:
       title: datastructure/fenwick_tree.hpp
     - icon: ':heavy_check_mark:'
       path: datastructure/lazy_segment_tree.hpp
-      title: datastructure/lazy_segment_tree.hpp
+      title: Lazy Segment Tree
     - icon: ':heavy_check_mark:'
       path: datastructure/plus_minus_one_range_minimum.hpp
       title: datastructure/plus_minus_one_range_minimum.hpp
     - icon: ':heavy_check_mark:'
       path: datastructure/segment_tree.hpp
-      title: Lazy Segment Tree
+      title: Segment Tree
     - icon: ':heavy_check_mark:'
       path: datastructure/sparse_table.hpp
       title: Sparse Table
@@ -51,7 +51,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lowest_common_ancestor.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/maxflow.hpp
       title: graph/maxflow.hpp
     - icon: ':warning:'
@@ -157,6 +157,9 @@ data:
       title: test/aoj/DPL_1_D.test.cpp
   - name: test/library-checker
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/bipartitematching.test.cpp
+      title: test/library-checker/bipartitematching.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/convolution_mod.test.cpp
       title: test/library-checker/convolution_mod.test.cpp

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: datastructure/lazy_segment_tree.hpp
-    title: datastructure/lazy_segment_tree.hpp
+    title: Lazy Segment Tree
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
