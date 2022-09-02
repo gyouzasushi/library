@@ -17,7 +17,7 @@ data:
     - icon: ':warning:'
       path: datastructure/fenwick_tree.hpp
       title: datastructure/fenwick_tree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/lazy_segment_tree.hpp
       title: datastructure/lazy_segment_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -160,6 +160,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/point_set_range_composite.test.cpp
       title: test/library-checker/point_set_range_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/range_affine_range_sum.test.cpp
+      title: test/library-checker/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_sum.test.cpp
       title: test/library-checker/static_range_sum.test.cpp
