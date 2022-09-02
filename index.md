@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: algorithm
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: algorithm/longest_increasing_subsequence.hpp
       title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(LIS)"
   - name: datastructure
@@ -11,9 +11,9 @@ data:
     - icon: ':warning:'
       path: datastructure/convex_hull.hpp
       title: datastructure/convex_hull.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/cumulative_sum.hpp
-      title: datastructure/cumulative_sum.hpp
+      title: "\u7D2F\u7A4D\u548C"
     - icon: ':warning:'
       path: datastructure/fenwick_tree.hpp
       title: datastructure/fenwick_tree.hpp
@@ -149,8 +149,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_I.test.cpp
       title: test/aoj/CGL_7_I.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL_1_D.test.cpp
+      title: test/aoj/DPL_1_D.test.cpp
   - name: test/library-checker
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/static_range_sum.test.cpp
+      title: test/library-checker/static_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/unionfind.test.cpp
       title: test/library-checker/unionfind.test.cpp
