@@ -1,5 +1,5 @@
 #pragma once
-#include <cmath>
+#include <cassert>
 #include <vector>
 
 #include "../datastructure/plus_minus_one_range_minimum.hpp"
