@@ -1,5 +1,7 @@
 #pragma once
-namespace maxflow {
+#include <cassert>
+#include <limits>
+#include <vector>
 namespace internal {
 template <class T>
 struct simple_queue {
@@ -155,4 +157,3 @@ private:
     std::vector<std::pair<int, int>> pos;
     std::vector<std::vector<_edge>> g;
 };
-}  // namespace maxflow

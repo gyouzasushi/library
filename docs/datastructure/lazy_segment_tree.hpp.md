@@ -1,6 +1,6 @@
 ---
 title: Lazy Segment Tree
-documentation_of: datastructure/segment_tree.hpp
+documentation_of: datastructure/lazy_segment_tree.hpp
 ---
 
 ### 概要
