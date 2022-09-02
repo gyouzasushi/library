@@ -1,6 +1,6 @@
 ---
 title: 最小共通祖先(LCA)
-documentation_of: agraph/lowest_common_ancestor.hpp
+documentation_of: graph/lowest_common_ancestor.hpp
 ---
 
 ### 概要
