@@ -25,7 +25,7 @@ data:
       title: datastructure/plus_minus_one_range_minimum.hpp
     - icon: ':heavy_check_mark:'
       path: datastructure/segment_tree.hpp
-      title: datastructure/segment_tree.hpp
+      title: Lazy Segment Tree
     - icon: ':heavy_check_mark:'
       path: datastructure/sparse_table.hpp
       title: Sparse Table
@@ -64,7 +64,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: math/convolution.hpp
-      title: math/convolution.hpp
+      title: convolution
     - icon: ':warning:'
       path: math/math.hpp
       title: math/math.hpp
@@ -73,7 +73,7 @@ data:
       title: math/matrix.hpp
     - icon: ':heavy_check_mark:'
       path: math/modint.hpp
-      title: math/modint.hpp
+      title: modint
     - icon: ':warning:'
       path: math/modpow.hpp
       title: math/modpow.hpp

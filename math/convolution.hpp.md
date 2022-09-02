@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
-    title: math/modint.hpp
+    title: modint
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -416,8 +416,10 @@ data:
   - test/library-checker/convolution_mod.test.cpp
 documentation_of: math/convolution.hpp
 layout: document
-redirect_from:
-- /library/math/convolution.hpp
-- /library/math/convolution.hpp.html
-title: math/convolution.hpp
+title: convolution
 ---
+
+### 概要
+- ACL の convolution。
+### 使い方
+- [ACL のドキュメント](https://atcoder.github.io/ac-library/production/document_ja/convolution.html)を参照。

@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: datastructure/segment_tree.hpp
-    title: datastructure/segment_tree.hpp
+    title: Lazy Segment Tree
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
-    title: math/modint.hpp
+    title: modint
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

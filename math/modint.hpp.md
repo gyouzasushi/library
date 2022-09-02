@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/convolution.hpp
-    title: math/convolution.hpp
+    title: convolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/convolution_mod.test.cpp
@@ -448,8 +448,10 @@ data:
   - test/library-checker/point_set_range_composite.test.cpp
 documentation_of: math/modint.hpp
 layout: document
-redirect_from:
-- /library/math/modint.hpp
-- /library/math/modint.hpp.html
-title: math/modint.hpp
+title: modint
 ---
+
+### 概要
+- ACL の modint + 入出力。
+### 使い方
+- [ACL のドキュメント](https://atcoder.github.io/ac-library/production/document_ja/modint.html)を参照。

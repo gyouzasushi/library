@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: math/convolution.hpp
-    title: math/convolution.hpp
+    title: convolution
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
-    title: math/modint.hpp
+    title: modint
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

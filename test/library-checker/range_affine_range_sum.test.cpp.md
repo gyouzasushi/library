@@ -6,7 +6,7 @@ data:
     title: datastructure/lazy_segment_tree.hpp
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
-    title: math/modint.hpp
+    title: modint
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
