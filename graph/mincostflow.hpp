@@ -1,4 +1,7 @@
 #pragma once
+#include <cassert>
+#include <limits>
+#include <vector>
 namespace mincostflow {
 template <class Cap, class Cost>
 struct mcf_graph {
