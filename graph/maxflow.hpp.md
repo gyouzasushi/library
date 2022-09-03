@@ -139,8 +139,11 @@ data:
   - test/library-checker/bipartitematching.test.cpp
 documentation_of: graph/maxflow.hpp
 layout: document
-redirect_from:
-- /library/graph/maxflow.hpp
-- /library/graph/maxflow.hpp.html
-title: graph/maxflow.hpp
+title: MaxFlow
 ---
+
+### 概要
+- ACL の MaxFlow。
+  
+### 使い方
+- [ACL のドキュメント](https://atcoder.github.io/ac-library/production/document_ja/maxflow.html)を参照。

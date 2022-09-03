@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: graph/maxflow.hpp
-    title: graph/maxflow.hpp
+    title: MaxFlow
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

@@ -14,9 +14,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/cumulative_sum.hpp
       title: "\u7D2F\u7A4D\u548C"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/fenwick_tree.hpp
-      title: datastructure/fenwick_tree.hpp
+      title: Fenwick Tree
     - icon: ':heavy_check_mark:'
       path: datastructure/lazy_segment_tree.hpp
       title: Lazy Segment Tree
@@ -53,7 +53,7 @@ data:
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
     - icon: ':heavy_check_mark:'
       path: graph/maxflow.hpp
-      title: graph/maxflow.hpp
+      title: MaxFlow
     - icon: ':warning:'
       path: graph/mincostflow.hpp
       title: graph/mincostflow.hpp
@@ -166,6 +166,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/lca.test.cpp
       title: test/library-checker/lca.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/point_add_range_sum.test.cpp
+      title: test/library-checker/point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/point_set_range_composite.test.cpp
       title: test/library-checker/point_set_range_composite.test.cpp

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/point_add_range_sum.test.cpp
+    title: test/library-checker/point_add_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Fenwick_tree
@@ -126,12 +129,18 @@ data:
   path: datastructure/fenwick_tree.hpp
   requiredBy: []
   timestamp: '2022-09-01 13:39:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library-checker/point_add_range_sum.test.cpp
 documentation_of: datastructure/fenwick_tree.hpp
 layout: document
-redirect_from:
-- /library/datastructure/fenwick_tree.hpp
-- /library/datastructure/fenwick_tree.hpp.html
-title: datastructure/fenwick_tree.hpp
+title: Fenwick Tree
 ---
+
+### 概要
+- ACL の Fenwick Tree + lower_bound / upper_bound。
+  
+### 使い方
+- `lower_bound(x)`: `sum(0, i) >= x` となる最小の `i` を求める。
+- `upper_bound(x)`: `sum(0, i) > x` となる最小の `i` を求める。
+- 他は [ACL のドキュメント](https://atcoder.github.io/ac-library/production/document_ja/fenwicktree.html)を参照。
