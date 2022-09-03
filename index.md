@@ -45,9 +45,9 @@ data:
     - icon: ':warning:'
       path: graph/bfs_of_complement.hpp
       title: graph/bfs_of_complement.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
-      title: graph/dijkstra.hpp
+      title: "Dijkstra \u6CD5"
     - icon: ':heavy_check_mark:'
       path: graph/lowest_common_ancestor.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
@@ -175,6 +175,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_range_sum.test.cpp
       title: test/library-checker/range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/shortest_path.test.cpp
+      title: test/library-checker/shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_sum.test.cpp
       title: test/library-checker/static_range_sum.test.cpp
