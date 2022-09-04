@@ -84,7 +84,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
-      title: string/rolling_hash.hpp
+      title: Rolling-Hash
   verificationCategories:
   - name: test/aoj
     pages:
