@@ -207,7 +207,7 @@ title: Rolling-Hash
 - ハッシュを用いて文字列の一致判定を高速に行う。
   
 ### 使い方
-- `RollingHash<base_num, mint>::from(s)`: 文字列 `s` のローリングハッシュを構築する。`base_num` 個の基数を用いて、`modint` でハッシュを計算する。デフォルトは、`base_num = 1, mint = modint2305843009213693951`。
+- `RollingHash<base_num, mint>::from(s)`: 文字列 `s` のローリングハッシュを構築する。`base_num` 個の基数を用いて、`mint` でハッシュを計算する。デフォルトは、`base_num = 1, mint = modint2305843009213693951`。
 - `rlh(l, r)`: `s[l..r]` のハッシュ値を求める。
 - `lcp(l1, r1, l2, r2)`: `s[l1..r1]` と `s[l2..r2]` の LCP の長さを求める。
 - `RollingHash<>::lcp(rh1, l1, r1, rh2, l2, r2)`: `s1[l1..r1]` と `s2[l2..r2]` の LCP の長さを求める。
