@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: '"https://judge.yosupo.jp/problem/enumerate_palindromes";'
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_palindromes
     links:
     - https://judge.yosupo.jp/problem/enumerate_palindromes
   bundledCode: "#line 1 \"test/library-checker/enumerate_palindromes.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\";\n#include\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\n#include\
     \ <iostream>\n\n#line 2 \"string/rolling_hash.hpp\"\n#include <cstdint>\nstruct\
     \ modint2305843009213693951 {\n    using mint = modint2305843009213693951;\n\n\
     public:\n    static constexpr uint64_t mod = 2305843009213693951;\n    modint2305843009213693951()\
@@ -119,7 +119,7 @@ data:
     \ (int i = 0; i < 2 * n - 1; i++) {\n        std::cout << ans[i] << \" \\n\"[i\
     \ == 2 * n - 2];\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\
-    ;\n#include <iostream>\n\n#include \"../../string/rolling_hash.hpp\"\nint main()\
+    \n#include <iostream>\n\n#include \"../../string/rolling_hash.hpp\"\nint main()\
     \ {\n    std::string s;\n    std::cin >> s;\n    int n = s.size();\n\n    auto\
     \ rh = RollingHash<>::from(s);\n    auto rh_rev = RollingHash<>::from(std::string(s.rbegin(),\
     \ s.rend()));\n\n    std::vector<int> ans(2 * n - 1);\n    for (int i = 0, j =\
@@ -139,8 +139,8 @@ data:
   isVerificationFile: true
   path: test/library-checker/enumerate_palindromes.test.cpp
   requiredBy: []
-  timestamp: '2022-09-04 19:05:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-04 19:07:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/enumerate_palindromes.test.cpp
 layout: document

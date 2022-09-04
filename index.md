@@ -82,7 +82,7 @@ data:
       title: math/semiring_matrix.hpp
   - name: string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: string/rolling_hash.hpp
   verificationCategories:
@@ -168,7 +168,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/convolution_mod.test.cpp
       title: test/library-checker/convolution_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/enumerate_palindromes.test.cpp
       title: test/library-checker/enumerate_palindromes.test.cpp
     - icon: ':heavy_check_mark:'

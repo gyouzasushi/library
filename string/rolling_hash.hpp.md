@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/enumerate_palindromes.test.cpp
     title: test/library-checker/enumerate_palindromes.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/rolling_hash.hpp\"\n#include <cstdint>\nstruct modint2305843009213693951\
@@ -191,7 +191,7 @@ data:
   path: string/rolling_hash.hpp
   requiredBy: []
   timestamp: '2022-09-04 19:05:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/enumerate_palindromes.test.cpp
 documentation_of: string/rolling_hash.hpp
