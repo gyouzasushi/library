@@ -60,7 +60,8 @@ public:
         assert(s != t);
         // variants (C = maxcost):
         // -(n-1)C <= dual[s] <= dual[i] <= dual[t] = 0
-        // reduced cost (= e.cost + dual[e.from] - dual[e.to]) >= 0 for all edge
+        // reduced cost (= e.cost + dual[e.from] - dual[e.to]) >= 0 for all
+        // edge
         std::vector<Cost> dual(_n, 0), dist(_n);
         std::vector<int> pv(_n), pe(_n);
         std::vector<bool> vis(_n);
@@ -110,10 +111,10 @@ public:
             for (int v = 0; v < _n; v++) {
                 if (!vis[v]) continue;
                 // dual[v] = dual[v] - dist[t] + dist[v]
-                //         = dual[v] - (shortest(s, t) + dual[s] - dual[t]) +
-                //         (shortest(s, v) + dual[s] - dual[v]) = - shortest(s,
-                //         t) + dual[t] + shortest(s, v) = shortest(s, v) -
-                //         shortest(s, t) >= 0 - (n-1)C
+                //         = dual[v] - (shortest(s, t) + dual[s] - dual[t])
+                //         + (shortest(s, v) + dual[s] - dual[v]) = -
+                //         shortest(s, t) + dual[t] + shortest(s, v) =
+                //         shortest(s, v) - shortest(s, t) >= 0 - (n-1)C
                 dual[v] -= dist[t] - dist[v];
             }
             return true;
