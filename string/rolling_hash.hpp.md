@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/enumerate_palindromes.test.cpp
     title: test/library-checker/enumerate_palindromes.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/zalgorithm_rolling_hash.test.cpp
+    title: test/library-checker/zalgorithm_rolling_hash.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -193,6 +196,7 @@ data:
   timestamp: '2022-09-04 19:05:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library-checker/zalgorithm_rolling_hash.test.cpp
   - test/library-checker/enumerate_palindromes.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document

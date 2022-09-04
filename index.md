@@ -195,5 +195,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/unionfind.test.cpp
       title: test/library-checker/unionfind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/zalgorithm_rolling_hash.test.cpp
+      title: test/library-checker/zalgorithm_rolling_hash.test.cpp
 layout: toppage
 ---
