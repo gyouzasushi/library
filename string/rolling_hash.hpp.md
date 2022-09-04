@@ -214,3 +214,10 @@ title: Rolling-Hash
 - `cmp(l1, r1, l2, r2)`: `s1 = s[l1..r1]` と `s2 = s[l2..r2]` を辞書順で比較する。返り値は、`s1 < s2 ? -1 : s1 == s2 ? 0 : 1`。
 - `RollingHash<>::cmp(rh1, l1, r1, rh2, l2, r2)`: `s1[l1..r1]` と `s2[l2..r2]` を辞書順で比較する。
 - `RollingHash<>::concat(h1, h2, h2_len)`: `s1[l1..r1]` と `s2[l2..r2]` の LCP の長さを求める。
+
+### 計算量
+- 構築: $\mathcal{O}(N)$
+- クエリ: $\mathcal{O}(1)$
+- `lcp`: $\mathcal{O}(\log N)$
+- `cmp`: $\mathcal{O}(\log N)$
+- `concat`: $\mathcal{O}(1)$
