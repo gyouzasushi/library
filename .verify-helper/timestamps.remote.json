@@ -25,6 +25,7 @@
 "test/aoj/DPL_1_D.test.cpp": "2022-09-02 13:25:33 +0900",
 "test/library-checker/bipartitematching.test.cpp": "2022-09-03 03:01:01 +0900",
 "test/library-checker/convolution_mod.test.cpp": "2022-09-03 01:45:07 +0900",
+"test/library-checker/enumerate_palindromes.test.cpp": "2022-09-04 19:07:55 +0900",
 "test/library-checker/lca.test.cpp": "2022-09-02 14:42:01 +0900",
 "test/library-checker/point_add_range_sum.test.cpp": "2022-09-03 16:33:57 +0900",
 "test/library-checker/point_set_range_composite.test.cpp": "2022-09-03 01:45:07 +0900",
