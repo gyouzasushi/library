@@ -1,4 +1,5 @@
 #pragma once
+#include <cassert>
 #include <cstdint>
 struct modint2305843009213693951 {
     using mint = modint2305843009213693951;
@@ -49,6 +50,15 @@ public:
     mint operator-() const {
         return mint() - *this;
     }
+    mint pow(uint64_t n) const {
+        mint x = *this, r = 1;
+        while (n) {
+            if (n & 1) r *= x;
+            x *= x;
+            n >>= 1;
+        }
+        return r;
+    }
     friend mint operator+(const mint& lhs, const mint& rhs) {
         return mint(lhs) += rhs;
     }
@@ -96,7 +106,6 @@ private:
 
 #include <algorithm>
 #include <array>
-#include <cassert>
 #include <random>
 template <int base_num = 1, typename mint = modint2305843009213693951>
 struct RollingHash {
@@ -187,8 +196,15 @@ private:
         static std::mt19937_64 rng(std::random_device{}());
         std::array<mint, base_num> bases;
         for (int i = 0; i < base_num; i++) {
-            bases[i] =
-                std::uniform_int_distribution<uint64_t>(1, mint::mod - 1)(rng);
+            while (true) {
+                uint64_t k = std::uniform_int_distribution<uint64_t>(
+                    1, mint::mod - 1)(rng);
+                if (std::gcd(k, mint::mod - 1) != 1) continue;
+                uint64_t b = mint(r).pow(k).val();
+                if (b <= A) continue;
+                bases[i] = b;
+                break;
+            }
         }
         return bases;
     }
@@ -204,4 +220,6 @@ private:
     static inline std::array<pow_mods<mint>, base_num> pows = init_pows(bases);
     int n;
     std::array<std::vector<mint>, base_num> hashes;
+    static constexpr uint64_t r = 37;
+    static constexpr uint64_t A = 2147483647;
 };
