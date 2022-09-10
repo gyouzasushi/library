@@ -1,4 +1,5 @@
 {
+"test/aoj/0355.test.cpp": "2022-09-10 18:25:53 +0900",
 "test/aoj/CGL_1_A.test.cpp": "2022-09-01 22:39:09 +0900",
 "test/aoj/CGL_1_B.test.cpp": "2022-09-01 22:39:09 +0900",
 "test/aoj/CGL_1_C.test.cpp": "2022-09-01 22:39:09 +0900",
@@ -25,14 +26,15 @@
 "test/aoj/DPL_1_D.test.cpp": "2022-09-02 13:25:33 +0900",
 "test/library-checker/bipartitematching.test.cpp": "2022-09-03 03:01:01 +0900",
 "test/library-checker/convolution_mod.test.cpp": "2022-09-03 01:45:07 +0900",
-"test/library-checker/enumerate_palindromes.test.cpp": "2022-09-05 00:01:37 +0900",
+"test/library-checker/enumerate_palindromes.test.cpp": "2022-09-10 18:25:53 +0900",
 "test/library-checker/lca.test.cpp": "2022-09-02 14:42:01 +0900",
-"test/library-checker/point_add_range_sum.test.cpp": "2022-09-03 16:33:57 +0900",
-"test/library-checker/point_set_range_composite.test.cpp": "2022-09-03 01:45:07 +0900",
+"test/library-checker/point_add_range_sum.test.cpp": "2022-09-10 18:25:53 +0900",
+"test/library-checker/point_set_range_composite.test.cpp": "2022-09-10 18:25:53 +0900",
+"test/library-checker/point_set_range_sum.test.cpp": "2022-09-10 18:25:53 +0900",
 "test/library-checker/range_affine_range_sum.test.cpp": "2022-09-03 01:45:07 +0900",
 "test/library-checker/shortest_path.test.cpp": "2022-09-03 17:27:23 +0900",
 "test/library-checker/static_range_sum.test.cpp": "2022-09-02 13:25:33 +0900",
 "test/library-checker/staticrmq.test.cpp": "2022-09-02 15:22:42 +0900",
 "test/library-checker/unionfind.test.cpp": "2022-09-01 17:53:44 +0900",
-"test/library-checker/zalgorithm_rolling_hash.test.cpp": "2022-09-05 00:01:37 +0900"
+"test/library-checker/zalgorithm_rolling_hash.test.cpp": "2022-09-10 18:25:53 +0900"
 }
