@@ -96,7 +96,7 @@ data:
     \ }\n    static int cmp(RollingHash<base_num, mint>& rh1, int l1, int r1,\n  \
     \                 RollingHash<base_num, mint>& rh2, int l2, int r2) {\n      \
     \  int x = std::min({lcp(rh1, l1, r1, rh2, l2, r2), r1 - l1, r2 - l2});\n    \
-    \    if (l1 + x == r1 && l2 + x != r2) return -1;\n        if (l1 + x == r1 ||\
+    \    if (l1 + x == r1 && l2 + x != r2) return -1;\n        if (l1 + x == r1 &&\
     \ l2 + x == r2) return 0;\n        if (l1 + x != r1 && l2 + x == r2) return 1;\n\
     \        return rh1(l1 + x, l1 + x + 1)[0].val() <\n                       rh2(l2\
     \ + x, l2 + x + 1)[0].val()\n                   ? -1\n                   : 1;\n\
@@ -131,7 +131,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/zalgorithm_rolling_hash.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 18:25:53+09:00'
+  timestamp: '2022-09-10 23:36:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/zalgorithm_rolling_hash.test.cpp
