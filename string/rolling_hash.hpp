@@ -82,7 +82,7 @@ public:
                    RollingHash<base_num, mint>& rh2, int l2, int r2) {
         int x = std::min({lcp(rh1, l1, r1, rh2, l2, r2), r1 - l1, r2 - l2});
         if (l1 + x == r1 && l2 + x != r2) return -1;
-        if (l1 + x == r1 || l2 + x == r2) return 0;
+        if (l1 + x == r1 && l2 + x == r2) return 0;
         if (l1 + x != r1 && l2 + x == r2) return 1;
         return rh1(l1 + x, l1 + x + 1)[0].val() <
                        rh2(l2 + x, l2 + x + 1)[0].val()
