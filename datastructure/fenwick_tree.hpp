@@ -107,6 +107,12 @@ public:
         }
     }
 
+    void set(int p, T x) {
+        assert(0 <= p && p < _n);
+        T d = x - sum(p, p + 1);
+        add(p, d);
+    }
+
     T sum(int l, int r) {
         assert(0 <= l && l <= r && r <= _n);
         return sum(r) - sum(l);
@@ -137,7 +143,6 @@ public:
 private:
     int _n;
     std::vector<U> data;
-
     U sum(int r) {
         U s = 0;
         while (r > 0) {

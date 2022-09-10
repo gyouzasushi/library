@@ -1,6 +1,6 @@
 #pragma once
-#include<cassert>
-#include<vector>
+#include <cassert>
+#include <vector>
 template <class S, S (*op)(S, S), S (*e)()>
 struct SegmentTree {
 public:
