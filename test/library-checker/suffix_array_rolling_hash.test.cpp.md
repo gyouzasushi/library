@@ -17,11 +17,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
+    PROBLEM: https://judge.yosupo.jp/problem/suffixarray
     links:
-    - https://judge.yosupo.jp/problem/zalgorithm
-  bundledCode: "#line 1 \"test/library-checker/zalgorithm_rolling_hash.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n#include <iostream>\n\
+    - https://judge.yosupo.jp/problem/suffixarray
+  bundledCode: "#line 1 \"test/library-checker/suffix_array_rolling_hash.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\n#include <iostream>\n\
     \n#line 2 \"string/rolling_hash.hpp\"\n#include <algorithm>\n#include <array>\n\
     #include <cassert>\n#include <random>\n#include <vector>\n\n#line 2 \"math/modint2305843009213693951.hpp\"\
     \n#include <cstdint>\nstruct modint2305843009213693951 {\n    using mint = modint2305843009213693951;\n\
@@ -115,29 +115,33 @@ data:
     \ base_num> bases = gen_bases();\n    static inline std::array<pow_mods<mint>,\
     \ base_num> pows = init_pows(bases);\n    int n;\n    std::array<std::vector<mint>,\
     \ base_num> hashes;\n    static constexpr uint64_t r = 37;\n    static constexpr\
-    \ uint64_t A = 2147483647;\n};\n#line 5 \"test/library-checker/zalgorithm_rolling_hash.test.cpp\"\
+    \ uint64_t A = 2147483647;\n};\n#line 5 \"test/library-checker/suffix_array_rolling_hash.test.cpp\"\
     \nint main() {\n    std::string s;\n    std::cin >> s;\n    int n = s.size();\n\
-    \n    auto rh = RollingHash<>::from(s);\n    for (int i = 0; i < n; i++) {\n \
-    \       std::cout << rh.lcp(0, n, i, n) << \" \\n\"[i == n - 1];\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n#include\
-    \ <iostream>\n\n#include \"../../string/rolling_hash.hpp\"\nint main() {\n   \
-    \ std::string s;\n    std::cin >> s;\n    int n = s.size();\n\n    auto rh = RollingHash<>::from(s);\n\
-    \    for (int i = 0; i < n; i++) {\n        std::cout << rh.lcp(0, n, i, n) <<\
-    \ \" \\n\"[i == n - 1];\n    }\n}"
+    \    auto rh = RollingHash<>::from(s);\n    std::vector<int> a(n);\n    std::iota(a.begin(),\
+    \ a.end(), 0);\n    std::sort(a.begin(), a.end(),\n              [&](int i, int\
+    \ j) { return rh.cmp(i, n, j, n) < 0; });\n    for (int i = 0; i < n; i++) {\n\
+    \        std::cout << a[i] << \" \\n\"[i == n - 1];\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\n#include\
+    \ <iostream>\n\n#include \"string/rolling_hash.hpp\"\nint main() {\n    std::string\
+    \ s;\n    std::cin >> s;\n    int n = s.size();\n    auto rh = RollingHash<>::from(s);\n\
+    \    std::vector<int> a(n);\n    std::iota(a.begin(), a.end(), 0);\n    std::sort(a.begin(),\
+    \ a.end(),\n              [&](int i, int j) { return rh.cmp(i, n, j, n) < 0; });\n\
+    \    for (int i = 0; i < n; i++) {\n        std::cout << a[i] << \" \\n\"[i ==\
+    \ n - 1];\n    }\n}"
   dependsOn:
   - string/rolling_hash.hpp
   - math/modint2305843009213693951.hpp
   - math/pow_table.hpp
   isVerificationFile: true
-  path: test/library-checker/zalgorithm_rolling_hash.test.cpp
+  path: test/library-checker/suffix_array_rolling_hash.test.cpp
   requiredBy: []
   timestamp: '2022-09-11 05:20:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library-checker/zalgorithm_rolling_hash.test.cpp
+documentation_of: test/library-checker/suffix_array_rolling_hash.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library-checker/zalgorithm_rolling_hash.test.cpp
-- /verify/test/library-checker/zalgorithm_rolling_hash.test.cpp.html
-title: test/library-checker/zalgorithm_rolling_hash.test.cpp
+- /verify/test/library-checker/suffix_array_rolling_hash.test.cpp
+- /verify/test/library-checker/suffix_array_rolling_hash.test.cpp.html
+title: test/library-checker/suffix_array_rolling_hash.test.cpp
 ---

@@ -23,13 +23,14 @@ data:
   bundledCode: "#line 1 \"test/library-checker/enumerate_palindromes.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\n#include\
     \ <iostream>\n\n#line 2 \"string/rolling_hash.hpp\"\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <random>\n#include <vector>\n\n#line 2 \"math/modint2305843009213693951.hpp\"\
-    \n#include <cstdint>\nstruct modint2305843009213693951 {\n    using mint = modint2305843009213693951;\n\
-    \npublic:\n    static constexpr uint64_t mod = 2305843009213693951;\n    modint2305843009213693951()\
-    \ : _v(0) {\n    }\n    modint2305843009213693951(uint64_t v) : _v(fast_mod(v))\
-    \ {\n    }\n    static constexpr uint64_t fast_mod(uint64_t v) {\n        uint64_t\
-    \ u = v >> 61;\n        uint64_t d = v & mod;\n        uint64_t x = u + d;\n \
-    \       if (x > mod) x -= mod;\n        return x;\n    }\n    uint64_t val() const\
+    \ <array>\n#include <cassert>\n#include <random>\n#include <vector>\n\n#line 2\
+    \ \"math/modint2305843009213693951.hpp\"\n#include <cstdint>\nstruct modint2305843009213693951\
+    \ {\n    using mint = modint2305843009213693951;\n\npublic:\n    static constexpr\
+    \ uint64_t mod = 2305843009213693951;\n    modint2305843009213693951() : _v(0)\
+    \ {\n    }\n    modint2305843009213693951(uint64_t v) : _v(fast_mod(v)) {\n  \
+    \  }\n    static constexpr uint64_t fast_mod(uint64_t v) {\n        uint64_t u\
+    \ = v >> 61;\n        uint64_t d = v & mod;\n        uint64_t x = u + d;\n   \
+    \     if (x > mod) x -= mod;\n        return x;\n    }\n    uint64_t val() const\
     \ {\n        return _v;\n    }\n\n    mint& operator+=(const mint& rhs) {\n  \
     \      _v += rhs._v;\n        if (_v >= mod) _v -= mod;\n        return *this;\n\
     \    }\n    mint& operator-=(const mint& rhs) {\n        _v -= rhs._v;\n     \
@@ -58,7 +59,7 @@ data:
     \ n) const {\n        int sz = pows.size();\n        if (sz > n) return;\n   \
     \     pows.resize(n + 1);\n        for (int i = sz; i <= n; i++) pows[i] = base\
     \ * pows[i - 1];\n    }\n\nprivate:\n    mutable std::vector<mint> pows{1};\n\
-    \    mint base;\n    static constexpr int mod = mint::mod;\n};\n#line 9 \"string/rolling_hash.hpp\"\
+    \    mint base;\n    static constexpr int mod = mint::mod;\n};\n#line 10 \"string/rolling_hash.hpp\"\
     \ntemplate <int base_num = 1, typename mint = modint2305843009213693951>\nstruct\
     \ RollingHash {\npublic:\n    RollingHash() {\n    }\n    RollingHash(const std::vector<int>&\
     \ a) : n(a.size()) {\n        for (int base_id = 0; base_id < base_num; base_id++)\
@@ -153,7 +154,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/enumerate_palindromes.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 04:51:04+09:00'
+  timestamp: '2022-09-11 05:20:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/enumerate_palindromes.test.cpp

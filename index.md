@@ -229,6 +229,9 @@ data:
       path: test/library-checker/staticrmq.test.cpp
       title: test/library-checker/staticrmq.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/suffix_array_rolling_hash.test.cpp
+      title: test/library-checker/suffix_array_rolling_hash.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/unionfind.test.cpp
       title: test/library-checker/unionfind.test.cpp
     - icon: ':heavy_check_mark:'
