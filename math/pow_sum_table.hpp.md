@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: string/range_update_range_hash.hpp
-    title: string/range_update_range_hash.hpp
+    title: Range Update Range Hash
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0355.test.cpp

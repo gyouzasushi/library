@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: string/range_update_range_hash.hpp
-    title: string/range_update_range_hash.hpp
+    title: Range Update Range Hash
   - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: Rolling-Hash
