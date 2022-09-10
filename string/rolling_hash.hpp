@@ -28,9 +28,7 @@ public:
         return RollingHash(a);
     }
     std::array<mint, base_num> operator()(int l, int r) {
-        assert(0 <= l && l < n);
-        assert(0 <= r && r <= n);
-        assert(l <= r);
+        assert(0 <= l && l <= r && r <= n);
         std::array<mint, base_num> res;
         for (int base_id = 0; base_id < base_num; base_id++) {
             res[base_id] =
