@@ -4,6 +4,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_A.test.cpp
+    title: test/aoj/DSL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_B.test.cpp
+    title: test/aoj/DSL_2_B.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/point_set_range_composite.test.cpp
     title: test/library-checker/point_set_range_composite.test.cpp
   _isVerificationFailed: false
@@ -100,6 +106,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/point_set_range_composite.test.cpp
+  - test/aoj/DSL_2_B.test.cpp
+  - test/aoj/DSL_2_A.test.cpp
 documentation_of: datastructure/segment_tree.hpp
 layout: document
 title: Segment Tree

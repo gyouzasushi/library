@@ -10,6 +10,18 @@ data:
     path: test/aoj/0355.test.cpp
     title: test/aoj/0355.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_F.test.cpp
+    title: test/aoj/DSL_2_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_G.test.cpp
+    title: test/aoj/DSL_2_G.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_H.test.cpp
+    title: test/aoj/DSL_2_H.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL_2_l.test.cpp
+    title: test/aoj/DSL_2_l.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/range_affine_range_sum.test.cpp
     title: test/library-checker/range_affine_range_sum.test.cpp
   _isVerificationFailed: false
@@ -157,6 +169,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/range_affine_range_sum.test.cpp
+  - test/aoj/DSL_2_F.test.cpp
+  - test/aoj/DSL_2_H.test.cpp
+  - test/aoj/DSL_2_l.test.cpp
+  - test/aoj/DSL_2_G.test.cpp
   - test/aoj/0355.test.cpp
 documentation_of: datastructure/lazy_segment_tree.hpp
 layout: document

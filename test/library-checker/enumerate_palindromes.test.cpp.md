@@ -68,26 +68,26 @@ data:
     \          }\n        }\n    }\n    template <typename Iterable>\n    static RollingHash\
     \ from(const Iterable& s) {\n        std::vector<int> a;\n        for (auto&&\
     \ e : s) a.push_back(int(e));\n        return RollingHash(a);\n    }\n    std::array<mint,\
-    \ base_num> operator()(int l, int r) {\n        assert(0 <= l && l < n);\n   \
-    \     assert(0 <= r && r <= n);\n        assert(l <= r);\n        std::array<mint,\
-    \ base_num> res;\n        for (int base_id = 0; base_id < base_num; base_id++)\
-    \ {\n            res[base_id] =\n                hashes[base_id][r] - hashes[base_id][l]\
-    \ * pows[base_id][r - l];\n        }\n        return res;\n    }\n    static std::array<mint,\
-    \ base_num> concat(\n        const std::array<mint, base_num>& h1,\n        const\
-    \ std::array<mint, base_num>& h2, int h2_len) {\n        std::array<mint, base_num>\
-    \ res;\n        for (int base_id = 0; base_id < base_num; base_id++) {\n     \
-    \       res[base_id] = h1[base_id] * pows[base_id][h2_len] + h2[base_id];\n  \
-    \      }\n        return res;\n    }\n    int lcp(int l1, int r1, int l2, int\
-    \ r2) {\n        int len = std::min(r1 - l1, r2 - l2);\n        int ok = 0, ng\
-    \ = len + 1;\n        while (ng - ok > 1) {\n            int mid = (ok + ng) /\
-    \ 2;\n            bool f = (*this)(l1, l1 + mid) == (*this)(l2, l2 + mid);\n \
-    \           (f ? ok : ng) = mid;\n        }\n        return ok;\n    }\n    int\
-    \ cmp(int l1, int r1, int l2, int r2) {\n        int x = std::min({lcp(l1, r1,\
-    \ l2, r2), r1 - l1, r2 - l2});\n        if (l1 + x == r1 && l2 + x != r2) return\
-    \ -1;\n        if (l1 + x == r1 && l2 + x == r2) return 0;\n        if (l1 + x\
-    \ != r1 && l2 + x == r2) return 1;\n        return (*this)(l1 + x, l1 + x + 1)[0].val()\
-    \ <\n                       (*this)(l2 + x, l2 + x + 1)[0].val()\n           \
-    \        ? -1\n                   : 1;\n    }\n    static int lcp(RollingHash<base_num,\
+    \ base_num> operator()(int l, int r) {\n        assert(0 <= l && l <= r && r <=\
+    \ n);\n        std::array<mint, base_num> res;\n        for (int base_id = 0;\
+    \ base_id < base_num; base_id++) {\n            res[base_id] =\n             \
+    \   hashes[base_id][r] - hashes[base_id][l] * pows[base_id][r - l];\n        }\n\
+    \        return res;\n    }\n    static std::array<mint, base_num> concat(\n \
+    \       const std::array<mint, base_num>& h1,\n        const std::array<mint,\
+    \ base_num>& h2, int h2_len) {\n        std::array<mint, base_num> res;\n    \
+    \    for (int base_id = 0; base_id < base_num; base_id++) {\n            res[base_id]\
+    \ = h1[base_id] * pows[base_id][h2_len] + h2[base_id];\n        }\n        return\
+    \ res;\n    }\n    int lcp(int l1, int r1, int l2, int r2) {\n        int len\
+    \ = std::min(r1 - l1, r2 - l2);\n        int ok = 0, ng = len + 1;\n        while\
+    \ (ng - ok > 1) {\n            int mid = (ok + ng) / 2;\n            bool f =\
+    \ (*this)(l1, l1 + mid) == (*this)(l2, l2 + mid);\n            (f ? ok : ng) =\
+    \ mid;\n        }\n        return ok;\n    }\n    int cmp(int l1, int r1, int\
+    \ l2, int r2) {\n        int x = std::min({lcp(l1, r1, l2, r2), r1 - l1, r2 -\
+    \ l2});\n        if (l1 + x == r1 && l2 + x != r2) return -1;\n        if (l1\
+    \ + x == r1 && l2 + x == r2) return 0;\n        if (l1 + x != r1 && l2 + x ==\
+    \ r2) return 1;\n        return (*this)(l1 + x, l1 + x + 1)[0].val() <\n     \
+    \                  (*this)(l2 + x, l2 + x + 1)[0].val()\n                   ?\
+    \ -1\n                   : 1;\n    }\n    static int lcp(RollingHash<base_num,\
     \ mint>& rh1, int l1, int r1,\n                   RollingHash<base_num, mint>&\
     \ rh2, int l2, int r2) {\n        int len = std::min(r1 - l1, r2 - l2);\n    \
     \    int ok = 0, ng = len + 1;\n        while (ng - ok > 1) {\n            int\
@@ -153,7 +153,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/enumerate_palindromes.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 23:36:01+09:00'
+  timestamp: '2022-09-11 04:51:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/enumerate_palindromes.test.cpp
