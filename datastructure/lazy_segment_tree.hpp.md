@@ -1,8 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: string/range_update_range_hash.hpp
+    title: string/range_update_range_hash.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/0355.test.cpp
+    title: test/aoj/0355.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/range_affine_range_sum.test.cpp
     title: test/library-checker/range_affine_range_sum.test.cpp
@@ -145,11 +151,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: datastructure/lazy_segment_tree.hpp
-  requiredBy: []
+  requiredBy:
+  - string/range_update_range_hash.hpp
   timestamp: '2022-09-03 00:04:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/range_affine_range_sum.test.cpp
+  - test/aoj/0355.test.cpp
 documentation_of: datastructure/lazy_segment_tree.hpp
 layout: document
 title: Lazy Segment Tree

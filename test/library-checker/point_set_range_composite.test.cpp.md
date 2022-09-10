@@ -19,23 +19,23 @@ data:
     - https://judge.yosupo.jp/problem/point_set_range_composite
   bundledCode: "#line 1 \"test/library-checker/point_set_range_composite.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n#include <iostream>\n\n#line 2 \"datastructure/segment_tree.hpp\"\n#include<cassert>\n\
-    #include<vector>\ntemplate <class S, S (*op)(S, S), S (*e)()>\nstruct SegmentTree\
-    \ {\npublic:\n    SegmentTree() : SegmentTree(0) {\n    }\n    SegmentTree(int\
-    \ n) : SegmentTree(std::vector<S>(n, e())) {\n    }\n    SegmentTree(const std::vector<S>&\
-    \ v) : _n(int(v.size())) {\n        log = ceil_pow2(_n);\n        size = 1 <<\
-    \ log;\n        d = std::vector<S>(2 * size, e());\n        for (int i = 0; i\
-    \ < _n; i++) d[size + i] = v[i];\n        for (int i = size - 1; i >= 1; i--)\
-    \ {\n            update(i);\n        }\n    }\n\n    void set(int p, S x) {\n\
-    \        assert(0 <= p && p < _n);\n        p += size;\n        d[p] = x;\n  \
-    \      for (int i = 1; i <= log; i++) update(p >> i);\n    }\n\n    S get(int\
-    \ p) {\n        assert(0 <= p && p < _n);\n        return d[p + size];\n    }\n\
-    \n    S prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= _n);\n \
-    \       S sml = e(), smr = e();\n        l += size;\n        r += size;\n\n  \
-    \      while (l < r) {\n            if (l & 1) sml = op(sml, d[l++]);\n      \
-    \      if (r & 1) smr = op(d[--r], smr);\n            l >>= 1;\n            r\
-    \ >>= 1;\n        }\n        return op(sml, smr);\n    }\n\n    S all_prod() {\n\
-    \        return d[1];\n    }\n\n    template <bool (*f)(S)>\n    int max_right(int\
+    \n#include <iostream>\n\n#line 2 \"datastructure/segment_tree.hpp\"\n#include\
+    \ <cassert>\n#include <vector>\ntemplate <class S, S (*op)(S, S), S (*e)()>\n\
+    struct SegmentTree {\npublic:\n    SegmentTree() : SegmentTree(0) {\n    }\n \
+    \   SegmentTree(int n) : SegmentTree(std::vector<S>(n, e())) {\n    }\n    SegmentTree(const\
+    \ std::vector<S>& v) : _n(int(v.size())) {\n        log = ceil_pow2(_n);\n   \
+    \     size = 1 << log;\n        d = std::vector<S>(2 * size, e());\n        for\
+    \ (int i = 0; i < _n; i++) d[size + i] = v[i];\n        for (int i = size - 1;\
+    \ i >= 1; i--) {\n            update(i);\n        }\n    }\n\n    void set(int\
+    \ p, S x) {\n        assert(0 <= p && p < _n);\n        p += size;\n        d[p]\
+    \ = x;\n        for (int i = 1; i <= log; i++) update(p >> i);\n    }\n\n    S\
+    \ get(int p) {\n        assert(0 <= p && p < _n);\n        return d[p + size];\n\
+    \    }\n\n    S prod(int l, int r) {\n        assert(0 <= l && l <= r && r <=\
+    \ _n);\n        S sml = e(), smr = e();\n        l += size;\n        r += size;\n\
+    \n        while (l < r) {\n            if (l & 1) sml = op(sml, d[l++]);\n   \
+    \         if (r & 1) smr = op(d[--r], smr);\n            l >>= 1;\n          \
+    \  r >>= 1;\n        }\n        return op(sml, smr);\n    }\n\n    S all_prod()\
+    \ {\n        return d[1];\n    }\n\n    template <bool (*f)(S)>\n    int max_right(int\
     \ l) {\n        return max_right(l, [](S x) { return f(x); });\n    }\n    template\
     \ <class F>\n    int max_right(int l, F f) {\n        assert(0 <= l && l <= _n);\n\
     \        assert(f(e()));\n        if (l == _n) return _n;\n        l += size;\n\
@@ -298,7 +298,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-09-03 01:45:07+09:00'
+  timestamp: '2022-09-10 18:25:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/point_set_range_composite.test.cpp

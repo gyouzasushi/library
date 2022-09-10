@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/modint2305843009213693951.hpp
+    title: math/modint2305843009213693951.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/pow_table.hpp
+    title: math/pow_table.hpp
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: Rolling-Hash
   _extendedRequiredBy: []
@@ -16,8 +22,9 @@ data:
     - https://judge.yosupo.jp/problem/zalgorithm
   bundledCode: "#line 1 \"test/library-checker/zalgorithm_rolling_hash.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n#include <iostream>\n\
-    \n#line 2 \"string/rolling_hash.hpp\"\n#include <cassert>\n#include <cstdint>\n\
-    struct modint2305843009213693951 {\n    using mint = modint2305843009213693951;\n\
+    \n#line 2 \"string/rolling_hash.hpp\"\n#include <algorithm>\n#include <cassert>\n\
+    #include <random>\n#include <vector>\n\n#line 2 \"math/modint2305843009213693951.hpp\"\
+    \n#include <cstdint>\nstruct modint2305843009213693951 {\n    using mint = modint2305843009213693951;\n\
     \npublic:\n    static constexpr uint64_t mod = 2305843009213693951;\n    modint2305843009213693951()\
     \ : _v(0) {\n    }\n    modint2305843009213693951(uint64_t v) : _v(fast_mod(v))\
     \ {\n    }\n    static constexpr uint64_t fast_mod(uint64_t v) {\n        uint64_t\
@@ -44,43 +51,43 @@ data:
     \ {\n        return mint(lhs) *= rhs;\n    }\n    friend bool operator==(const\
     \ mint& lhs, const mint& rhs) {\n        return lhs._v == rhs._v;\n    }\n   \
     \ friend bool operator!=(const mint& lhs, const mint& rhs) {\n        return lhs._v\
-    \ != rhs._v;\n    }\n\nprivate:\n    uint64_t _v;\n};\n\n#include <vector>\ntemplate\
-    \ <typename mint>\nstruct pow_mods {\n    pow_mods() {\n    }\n    pow_mods(mint\
+    \ != rhs._v;\n    }\n\nprivate:\n    uint64_t _v;\n};\n#line 3 \"math/pow_table.hpp\"\
+    \ntemplate <typename mint>\nstruct pow_mods {\n    pow_mods() {\n    }\n    pow_mods(mint\
     \ base, int n) : base(base) {\n        ensure(n);\n    }\n    const mint& operator[](int\
     \ i) const {\n        ensure(i);\n        return pows[i];\n    }\n    void ensure(int\
     \ n) const {\n        int sz = pows.size();\n        if (sz > n) return;\n   \
     \     pows.resize(n + 1);\n        for (int i = sz; i <= n; i++) pows[i] = base\
     \ * pows[i - 1];\n    }\n\nprivate:\n    mutable std::vector<mint> pows{1};\n\
-    \    mint base;\n    static constexpr int mod = mint::mod;\n};\n\n#include <algorithm>\n\
-    #include <array>\n#include <random>\ntemplate <int base_num = 1, typename mint\
-    \ = modint2305843009213693951>\nstruct RollingHash {\npublic:\n    RollingHash()\
-    \ {\n    }\n    RollingHash(const std::vector<int>& a) : n(a.size()) {\n     \
-    \   for (int base_id = 0; base_id < base_num; base_id++) {\n            hashes[base_id].resize(n\
-    \ + 1);\n            hashes[base_id][0] = 0;\n            for (int i = 0; i <\
-    \ n; i++) {\n                hashes[base_id][i + 1] =\n                    hashes[base_id][i]\
-    \ * bases[base_id] + a[i];\n            }\n        }\n    }\n    template <typename\
-    \ Iterable>\n    static RollingHash from(const Iterable& s) {\n        std::vector<int>\
-    \ a;\n        for (auto&& e : s) a.push_back(int(e));\n        return RollingHash(a);\n\
-    \    }\n    std::array<mint, base_num> operator()(int l, int r) {\n        assert(0\
-    \ <= l && l < n);\n        assert(0 <= r && r <= n);\n        assert(l <= r);\n\
-    \        std::array<mint, base_num> res;\n        for (int base_id = 0; base_id\
-    \ < base_num; base_id++) {\n            res[base_id] =\n                hashes[base_id][r]\
-    \ - hashes[base_id][l] * pows[base_id][r - l];\n        }\n        return res;\n\
-    \    }\n    static std::array<mint, base_num> concat(\n        const std::array<mint,\
-    \ base_num>& h1,\n        const std::array<mint, base_num>& h2, int h2_len) {\n\
-    \        std::array<mint, base_num> res;\n        for (int base_id = 0; base_id\
-    \ < base_num; base_id++) {\n            res[base_id] = h1[base_id] * pows[base_id][h2_len]\
-    \ + h2[base_id];\n        }\n        return res;\n    }\n    int lcp(int l1, int\
-    \ r1, int l2, int r2) {\n        int len = std::min(r1 - l1, r2 - l2);\n     \
-    \   int ok = 0, ng = len + 1;\n        while (ng - ok > 1) {\n            int\
-    \ mid = (ok + ng) / 2;\n            bool f = (*this)(l1, l1 + mid) == (*this)(l2,\
-    \ l2 + mid);\n            (f ? ok : ng) = mid;\n        }\n        return ok;\n\
-    \    }\n    int cmp(int l1, int r1, int l2, int r2) {\n        int x = std::min({lcp(l1,\
-    \ r1, l2, r2), r1 - l1, r2 - l2});\n        if (l1 + x == r1 && l2 + x != r2)\
-    \ return -1;\n        if (l1 + x == r1 || l2 + x == r2) return 0;\n        if\
-    \ (l1 + x != r1 && l2 + x == r2) return 1;\n        return (*this)(l1 + x, l1\
-    \ + x + 1)[0].val() <\n                       (*this)(l2 + x, l2 + x + 1)[0].val()\n\
-    \                   ? -1\n                   : 1;\n    }\n    static int lcp(RollingHash<base_num,\
+    \    mint base;\n    static constexpr int mod = mint::mod;\n};\n#line 9 \"string/rolling_hash.hpp\"\
+    \ntemplate <int base_num = 1, typename mint = modint2305843009213693951>\nstruct\
+    \ RollingHash {\npublic:\n    RollingHash() {\n    }\n    RollingHash(const std::vector<int>&\
+    \ a) : n(a.size()) {\n        for (int base_id = 0; base_id < base_num; base_id++)\
+    \ {\n            hashes[base_id].resize(n + 1);\n            hashes[base_id][0]\
+    \ = 0;\n            for (int i = 0; i < n; i++) {\n                hashes[base_id][i\
+    \ + 1] =\n                    hashes[base_id][i] * bases[base_id] + a[i];\n  \
+    \          }\n        }\n    }\n    template <typename Iterable>\n    static RollingHash\
+    \ from(const Iterable& s) {\n        std::vector<int> a;\n        for (auto&&\
+    \ e : s) a.push_back(int(e));\n        return RollingHash(a);\n    }\n    std::array<mint,\
+    \ base_num> operator()(int l, int r) {\n        assert(0 <= l && l < n);\n   \
+    \     assert(0 <= r && r <= n);\n        assert(l <= r);\n        std::array<mint,\
+    \ base_num> res;\n        for (int base_id = 0; base_id < base_num; base_id++)\
+    \ {\n            res[base_id] =\n                hashes[base_id][r] - hashes[base_id][l]\
+    \ * pows[base_id][r - l];\n        }\n        return res;\n    }\n    static std::array<mint,\
+    \ base_num> concat(\n        const std::array<mint, base_num>& h1,\n        const\
+    \ std::array<mint, base_num>& h2, int h2_len) {\n        std::array<mint, base_num>\
+    \ res;\n        for (int base_id = 0; base_id < base_num; base_id++) {\n     \
+    \       res[base_id] = h1[base_id] * pows[base_id][h2_len] + h2[base_id];\n  \
+    \      }\n        return res;\n    }\n    int lcp(int l1, int r1, int l2, int\
+    \ r2) {\n        int len = std::min(r1 - l1, r2 - l2);\n        int ok = 0, ng\
+    \ = len + 1;\n        while (ng - ok > 1) {\n            int mid = (ok + ng) /\
+    \ 2;\n            bool f = (*this)(l1, l1 + mid) == (*this)(l2, l2 + mid);\n \
+    \           (f ? ok : ng) = mid;\n        }\n        return ok;\n    }\n    int\
+    \ cmp(int l1, int r1, int l2, int r2) {\n        int x = std::min({lcp(l1, r1,\
+    \ l2, r2), r1 - l1, r2 - l2});\n        if (l1 + x == r1 && l2 + x != r2) return\
+    \ -1;\n        if (l1 + x == r1 && l2 + x == r2) return 0;\n        if (l1 + x\
+    \ != r1 && l2 + x == r2) return 1;\n        return (*this)(l1 + x, l1 + x + 1)[0].val()\
+    \ <\n                       (*this)(l2 + x, l2 + x + 1)[0].val()\n           \
+    \        ? -1\n                   : 1;\n    }\n    static int lcp(RollingHash<base_num,\
     \ mint>& rh1, int l1, int r1,\n                   RollingHash<base_num, mint>&\
     \ rh2, int l2, int r2) {\n        int len = std::min(r1 - l1, r2 - l2);\n    \
     \    int ok = 0, ng = len + 1;\n        while (ng - ok > 1) {\n            int\
@@ -119,10 +126,12 @@ data:
     \ \" \\n\"[i == n - 1];\n    }\n}"
   dependsOn:
   - string/rolling_hash.hpp
+  - math/modint2305843009213693951.hpp
+  - math/pow_table.hpp
   isVerificationFile: true
   path: test/library-checker/zalgorithm_rolling_hash.test.cpp
   requiredBy: []
-  timestamp: '2022-09-05 00:01:37+09:00'
+  timestamp: '2022-09-10 18:25:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/zalgorithm_rolling_hash.test.cpp

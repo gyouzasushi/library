@@ -74,20 +74,35 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: modint
+    - icon: ':heavy_check_mark:'
+      path: math/modint2305843009213693951.hpp
+      title: math/modint2305843009213693951.hpp
     - icon: ':warning:'
       path: math/modpow.hpp
       title: math/modpow.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/pow_sum_table.hpp
+      title: math/pow_sum_table.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/pow_table.hpp
+      title: math/pow_table.hpp
     - icon: ':warning:'
       path: math/semiring_matrix.hpp
       title: math/semiring_matrix.hpp
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
+      path: string/range_update_range_hash.hpp
+      title: string/range_update_range_hash.hpp
+    - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: Rolling-Hash
   verificationCategories:
   - name: test/aoj
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/0355.test.cpp
+      title: test/aoj/0355.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_A.test.cpp
       title: test/aoj/CGL_1_A.test.cpp
@@ -180,6 +195,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/point_set_range_composite.test.cpp
       title: test/library-checker/point_set_range_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/point_set_range_sum.test.cpp
+      title: test/library-checker/point_set_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_range_sum.test.cpp
       title: test/library-checker/range_affine_range_sum.test.cpp

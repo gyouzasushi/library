@@ -14,7 +14,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
     - https://judge.yosupo.jp/problem/point_add_range_sum
-  bundledCode: "#line 1 \"test/library-checker/point_add_range_sum.test.cpp\"\n#define\
+  bundledCode: "#line 1 \"test/library-checker/point_set_range_sum.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n#include <iostream>\n\
     \n#line 2 \"datastructure/fenwick_tree.hpp\"\n\n#include <cassert>\n#include <numeric>\n\
     #include <type_traits>\nnamespace internal {\n\n#ifndef _MSC_VER\ntemplate <class\
@@ -73,35 +73,37 @@ data:
     \       return i;\n    }\n\nprivate:\n    int _n;\n    std::vector<U> data;\n\
     \    U sum(int r) {\n        U s = 0;\n        while (r > 0) {\n            s\
     \ += data[r - 1];\n            r -= r & -r;\n        }\n        return s;\n  \
-    \  }\n};\n#line 5 \"test/library-checker/point_add_range_sum.test.cpp\"\nint main()\
+    \  }\n};\n#line 5 \"test/library-checker/point_set_range_sum.test.cpp\"\nint main()\
     \ {\n    int n, q;\n    std::cin >> n >> q;\n    FenwickTree<long long> ft(n);\n\
     \    for (int i = 0; i < n; i++) {\n        long long a;\n        std::cin >>\
-    \ a;\n        ft.add(i, a);\n    }\n    while (q--) {\n        int t;\n      \
+    \ a;\n        ft.set(i, a);\n    }\n    while (q--) {\n        int t;\n      \
     \  std::cin >> t;\n        if (t == 0) {\n            int p;\n            long\
-    \ long x;\n            std::cin >> p >> x;\n            ft.add(p, x);\n      \
-    \  }\n        if (t == 1) {\n            int l, r;\n            std::cin >> l\
-    \ >> r;\n            std::cout << ft.sum(l, r) << '\\n';\n        }\n    }\n}\n"
+    \ long x;\n            std::cin >> p >> x;\n            long long d = ft.sum(p,\
+    \ p + 1) + x;\n            ft.set(p, d);\n        }\n        if (t == 1) {\n \
+    \           int l, r;\n            std::cin >> l >> r;\n            std::cout\
+    \ << ft.sum(l, r) << '\\n';\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
     #include <iostream>\n\n#include \"../../datastructure/fenwick_tree.hpp\"\nint\
     \ main() {\n    int n, q;\n    std::cin >> n >> q;\n    FenwickTree<long long>\
     \ ft(n);\n    for (int i = 0; i < n; i++) {\n        long long a;\n        std::cin\
-    \ >> a;\n        ft.add(i, a);\n    }\n    while (q--) {\n        int t;\n   \
+    \ >> a;\n        ft.set(i, a);\n    }\n    while (q--) {\n        int t;\n   \
     \     std::cin >> t;\n        if (t == 0) {\n            int p;\n            long\
-    \ long x;\n            std::cin >> p >> x;\n            ft.add(p, x);\n      \
-    \  }\n        if (t == 1) {\n            int l, r;\n            std::cin >> l\
-    \ >> r;\n            std::cout << ft.sum(l, r) << '\\n';\n        }\n    }\n}"
+    \ long x;\n            std::cin >> p >> x;\n            long long d = ft.sum(p,\
+    \ p + 1) + x;\n            ft.set(p, d);\n        }\n        if (t == 1) {\n \
+    \           int l, r;\n            std::cin >> l >> r;\n            std::cout\
+    \ << ft.sum(l, r) << '\\n';\n        }\n    }\n}"
   dependsOn:
   - datastructure/fenwick_tree.hpp
   isVerificationFile: true
-  path: test/library-checker/point_add_range_sum.test.cpp
+  path: test/library-checker/point_set_range_sum.test.cpp
   requiredBy: []
   timestamp: '2022-09-10 18:25:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library-checker/point_add_range_sum.test.cpp
+documentation_of: test/library-checker/point_set_range_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library-checker/point_add_range_sum.test.cpp
-- /verify/test/library-checker/point_add_range_sum.test.cpp.html
-title: test/library-checker/point_add_range_sum.test.cpp
+- /verify/test/library-checker/point_set_range_sum.test.cpp
+- /verify/test/library-checker/point_set_range_sum.test.cpp.html
+title: test/library-checker/point_set_range_sum.test.cpp
 ---
