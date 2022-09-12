@@ -6,7 +6,7 @@
 
 using F = int;
 F composition(F a, F b) {
-    return a;
+    return (a == -1 ? b : a);
 }
 F id() {
     return -1;
@@ -14,7 +14,7 @@ F id() {
 int main() {
     int n, q;
     std::cin >> n >> q;
-    DualSegmentTree<F, composition, id> segt(n, false);
+    DualSegmentTree<F, composition, id> segt(n);
     segt.apply(0, n, 2147483647);
     while (q--) {
         int type;
