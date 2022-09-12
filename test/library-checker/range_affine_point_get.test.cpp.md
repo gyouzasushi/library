@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/dual_segment_tree.hpp
     title: Dual Segment Tree
   - icon: ':heavy_check_mark:'

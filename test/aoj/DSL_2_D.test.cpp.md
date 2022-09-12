@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/dual_segment_tree.hpp
     title: Dual Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
@@ -35,31 +35,31 @@ data:
     \ + 0]);\n        lz[2 * k + 1] = composition(lz[k], lz[2 * k + 1]);\n       \
     \ lz[k] = id();\n    }\n    inline void thrust(int k) {\n        for (int i =\
     \ height; i > 0; i--) propagate(k >> i);\n    }\n};\n#line 6 \"test/aoj/DSL_2_D.test.cpp\"\
-    \n\nusing F = int;\nF composition(F a, F b) {\n    return a;\n}\nF id() {\n  \
-    \  return -1;\n}\nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    DualSegmentTree<F,\
-    \ composition, id> segt(n, false);\n    segt.apply(0, n, 2147483647);\n    while\
-    \ (q--) {\n        int type;\n        std::cin >> type;\n        if (type == 0)\
-    \ {\n            int l, r, x;\n            std::cin >> l >> r >> x;\n        \
-    \    segt.apply(l, ++r, x);\n        }\n        if (type == 1) {\n           \
-    \ int i;\n            std::cin >> i;\n            std::cout << segt.get(i) <<\
-    \ '\\n';\n        }\n    }\n}\n"
+    \n\nusing F = int;\nF composition(F a, F b) {\n    return (a == -1 ? b : a);\n\
+    }\nF id() {\n    return -1;\n}\nint main() {\n    int n, q;\n    std::cin >> n\
+    \ >> q;\n    DualSegmentTree<F, composition, id> segt(n);\n    segt.apply(0, n,\
+    \ 2147483647);\n    while (q--) {\n        int type;\n        std::cin >> type;\n\
+    \        if (type == 0) {\n            int l, r, x;\n            std::cin >> l\
+    \ >> r >> x;\n            segt.apply(l, ++r, x);\n        }\n        if (type\
+    \ == 1) {\n            int i;\n            std::cin >> i;\n            std::cout\
+    \ << segt.get(i) << '\\n';\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n\n\
     #include <iostream>\n\n#include \"datastructure/dual_segment_tree.hpp\"\n\nusing\
-    \ F = int;\nF composition(F a, F b) {\n    return a;\n}\nF id() {\n    return\
-    \ -1;\n}\nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    DualSegmentTree<F,\
-    \ composition, id> segt(n, false);\n    segt.apply(0, n, 2147483647);\n    while\
-    \ (q--) {\n        int type;\n        std::cin >> type;\n        if (type == 0)\
-    \ {\n            int l, r, x;\n            std::cin >> l >> r >> x;\n        \
-    \    segt.apply(l, ++r, x);\n        }\n        if (type == 1) {\n           \
-    \ int i;\n            std::cin >> i;\n            std::cout << segt.get(i) <<\
-    \ '\\n';\n        }\n    }\n}"
+    \ F = int;\nF composition(F a, F b) {\n    return (a == -1 ? b : a);\n}\nF id()\
+    \ {\n    return -1;\n}\nint main() {\n    int n, q;\n    std::cin >> n >> q;\n\
+    \    DualSegmentTree<F, composition, id> segt(n);\n    segt.apply(0, n, 2147483647);\n\
+    \    while (q--) {\n        int type;\n        std::cin >> type;\n        if (type\
+    \ == 0) {\n            int l, r, x;\n            std::cin >> l >> r >> x;\n  \
+    \          segt.apply(l, ++r, x);\n        }\n        if (type == 1) {\n     \
+    \       int i;\n            std::cin >> i;\n            std::cout << segt.get(i)\
+    \ << '\\n';\n        }\n    }\n}"
   dependsOn:
   - datastructure/dual_segment_tree.hpp
   isVerificationFile: true
   path: test/aoj/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2022-09-12 17:58:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-12 18:02:50+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_D.test.cpp
 layout: document
