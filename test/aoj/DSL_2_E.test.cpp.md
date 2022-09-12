@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/dual_segment_tree.hpp
     title: Dual Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
-  bundledCode: "#line 1 \"test/aoj/DSL_2_E.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E
+  bundledCode: "#line 1 \"test/aoj/DSL_2_E.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E\"\
     \n\n#include <iostream>\n\n#line 1 \"datastructure/dual_segment_tree.hpp\"\n#include\
     \ <vector>\ntemplate <class F, F (*composition)(F, F), F (*id)()>\nstruct DualSegmentTree\
     \ {\npublic:\n    DualSegmentTree() {\n    }\n    DualSegmentTree(int n, bool\
@@ -43,7 +43,7 @@ data:
     \ >> r >> x;\n            segt.apply(--l, r, x);\n        }\n        if (type\
     \ == 1) {\n            int i;\n            std::cin >> i;\n            std::cout\
     \ << segt.get(--i) << '\\n';\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n\n\
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E\"\n\n\
     #include <iostream>\n\n#include \"datastructure/dual_segment_tree.hpp\"\n\nusing\
     \ F = int;\nF composition(F a, F b) {\n    return a + b;\n}\nF id() {\n    return\
     \ 0;\n}\nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    DualSegmentTree<F,\
@@ -57,8 +57,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_E.test.cpp
   requiredBy: []
-  timestamp: '2022-09-12 16:35:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-12 16:39:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_E.test.cpp
 layout: document
