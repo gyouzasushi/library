@@ -1,5 +1,5 @@
 {
-"test/aoj/0355.test.cpp": "2022-09-10 18:25:53 +0900",
+"test/aoj/0355.test.cpp": "2022-09-12 16:35:42 +0900",
 "test/aoj/CGL_1_A.test.cpp": "2022-09-01 22:39:09 +0900",
 "test/aoj/CGL_1_B.test.cpp": "2022-09-01 22:39:09 +0900",
 "test/aoj/CGL_1_C.test.cpp": "2022-09-01 22:39:09 +0900",
@@ -26,6 +26,7 @@
 "test/aoj/DPL_1_D.test.cpp": "2022-09-02 13:25:33 +0900",
 "test/aoj/DSL_2_A.test.cpp": "2022-09-11 04:51:04 +0900",
 "test/aoj/DSL_2_B.test.cpp": "2022-09-11 04:51:04 +0900",
+"test/aoj/DSL_2_D.test.cpp": "2022-09-12 16:35:42 +0900",
 "test/aoj/DSL_2_F.test.cpp": "2022-09-11 04:51:04 +0900",
 "test/aoj/DSL_2_G.test.cpp": "2022-09-11 04:51:04 +0900",
 "test/aoj/DSL_2_H.test.cpp": "2022-09-11 04:51:04 +0900",
