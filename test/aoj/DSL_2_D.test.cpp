@@ -6,7 +6,7 @@
 
 using F = int;
 F composition(F a, F b) {
-    return b;
+    return a;
 }
 F id() {
     return -1;
