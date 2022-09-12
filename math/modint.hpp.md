@@ -13,6 +13,9 @@ data:
     path: test/library-checker/point_set_range_composite.test.cpp
     title: test/library-checker/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library-checker/range_affine_point_get.test.cpp
+    title: test/library-checker/range_affine_point_get.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/range_affine_range_sum.test.cpp
     title: test/library-checker/range_affine_range_sum.test.cpp
   _isVerificationFailed: false
@@ -446,6 +449,7 @@ data:
   - test/library-checker/range_affine_range_sum.test.cpp
   - test/library-checker/convolution_mod.test.cpp
   - test/library-checker/point_set_range_composite.test.cpp
+  - test/library-checker/range_affine_point_get.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint
