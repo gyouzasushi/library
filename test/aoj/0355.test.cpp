@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/0355"
-#include "../../string/range_update_range_hash.hpp"
-
 #include <iostream>
+
+#include "../../string/range_update_range_hash.hpp"
 int main() {
     int n;
     std::string u;
