@@ -18,6 +18,9 @@ data:
       path: datastructure/dual_segment_tree.hpp
       title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
+      path: datastructure/dynamic_li_chao_tree.hpp
+      title: Dynamic Li Chao Tree
+    - icon: ':heavy_check_mark:'
       path: datastructure/fenwick_tree.hpp
       title: Fenwick Tree
     - icon: ':heavy_check_mark:'
@@ -217,6 +220,9 @@ data:
       path: test/library-checker/lca.test.cpp
       title: test/library-checker/lca.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/line_add_get_min.test.cpp
+      title: test/library-checker/line_add_get_min.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/point_add_range_sum.test.cpp
       title: test/library-checker/point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -231,6 +237,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_range_sum.test.cpp
       title: test/library-checker/range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/segment_add_get_min.test.cpp
+      title: test/library-checker/segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/shortest_path.test.cpp
       title: test/library-checker/shortest_path.test.cpp
