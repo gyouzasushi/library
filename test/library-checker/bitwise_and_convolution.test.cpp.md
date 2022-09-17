@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: math/bitwise_and_convolution.hpp
-    title: math/bitwise_and_convolution.hpp
+    title: Bitwise And Convolution
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint

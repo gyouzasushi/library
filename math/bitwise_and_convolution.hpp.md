@@ -53,8 +53,11 @@ data:
   - test/library-checker/bitwise_and_convolution.test.cpp
 documentation_of: math/bitwise_and_convolution.hpp
 layout: document
-redirect_from:
-- /library/math/bitwise_and_convolution.hpp
-- /library/math/bitwise_and_convolution.hpp.html
-title: math/bitwise_and_convolution.hpp
+title: Bitwise And Convolution
 ---
+
+### 使い方
+- `bitwise_and_convolution(a, b)`: $c_k = \displaystyle \sum_{i\&j=k}a_ib_j$ となる数列 `c` を求める。
+
+### 制約
+- ある非負整数 $n$ が存在して $|a|=|b|=2^n$ 。

@@ -70,10 +70,10 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: math/bitwise_and_convolution.hpp
-      title: math/bitwise_and_convolution.hpp
+      title: Bitwise And Convolution
     - icon: ':heavy_check_mark:'
       path: math/bitwise_or_convolution.hpp
-      title: math/bitwise_or_convolution.hpp
+      title: Bitwise Or Convolution
     - icon: ':heavy_check_mark:'
       path: math/convolution.hpp
       title: convolution
