@@ -10,4 +10,4 @@ documentation_of: math/zeta_mobius_transform.hpp
 - `subset_mobius(f)`: `f` を $f(S) = \displaystyle \sum_{S \supset T}g(T)$ となる `g` に置き換える。
   
 ### 制約
-- ある非負整数 $n$ が存在して $|f|=2^n$ 。
+- ある非負整数 $n$ が存在して $\|f\|=2^n$ 。
