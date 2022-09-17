@@ -77,4 +77,4 @@ title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3
 - `subset_mobius(f)`: `f` を $f(S) = \displaystyle \sum_{S \supset T}g(T)$ となる `g` に置き換える。
   
 ### 制約
-- ある非負整数 $n$ が存在して $|f|=2^n$ 。
+- ある非負整数 $n$ が存在して $\|f\|=2^n$ 。
