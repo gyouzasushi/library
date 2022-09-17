@@ -103,7 +103,8 @@ data:
       title: math/semiring_matrix.hpp
     - icon: ':heavy_check_mark:'
       path: math/zeta_mobius_transform.hpp
-      title: math/zeta_mobius_transform.hpp
+      title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\
+        \u30A6\u30B9\u5909\u63DB"
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
