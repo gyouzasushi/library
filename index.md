@@ -69,6 +69,12 @@ data:
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
+      path: math/bitwise_and_convolution.hpp
+      title: math/bitwise_and_convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/bitwise_or_convolution.hpp
+      title: math/bitwise_or_convolution.hpp
+    - icon: ':heavy_check_mark:'
       path: math/convolution.hpp
       title: convolution
     - icon: ':warning:'
@@ -95,6 +101,9 @@ data:
     - icon: ':warning:'
       path: math/semiring_matrix.hpp
       title: math/semiring_matrix.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/zeta_mobius_transform.hpp
+      title: math/zeta_mobius_transform.hpp
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
@@ -210,6 +219,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/bipartitematching.test.cpp
       title: test/library-checker/bipartitematching.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/bitwise_and_convolution.test.cpp
+      title: test/library-checker/bitwise_and_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/bitwise_or_convolution.test.cpp
+      title: test/library-checker/bitwise_or_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/convolution_mod.test.cpp
       title: test/library-checker/convolution_mod.test.cpp
