@@ -137,8 +137,8 @@ data:
   timestamp: '2022-09-10 18:25:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library-checker/point_add_range_sum.test.cpp
   - test/library-checker/point_set_range_sum.test.cpp
+  - test/library-checker/point_add_range_sum.test.cpp
 documentation_of: datastructure/fenwick_tree.hpp
 layout: document
 title: Fenwick Tree

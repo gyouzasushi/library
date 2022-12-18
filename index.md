@@ -8,9 +8,9 @@ data:
       title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(LIS)"
   - name: datastructure
     pages:
-    - icon: ':warning:'
-      path: datastructure/convex_hull.hpp
-      title: datastructure/convex_hull.hpp
+    - icon: ':heavy_check_mark:'
+      path: datastructure/cartesian_tree.hpp
+      title: datastructure/cartesian_tree.hpp
     - icon: ':heavy_check_mark:'
       path: datastructure/cumulative_sum.hpp
       title: "\u7D2F\u7A4D\u548C"
@@ -226,6 +226,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/bitwise_or_convolution.test.cpp
       title: test/library-checker/bitwise_or_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/cartesian_tree.test.cpp
+      title: test/library-checker/cartesian_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/convolution_mod.test.cpp
       title: test/library-checker/convolution_mod.test.cpp

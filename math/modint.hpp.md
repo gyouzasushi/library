@@ -452,12 +452,12 @@ data:
   timestamp: '2022-09-03 01:45:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library-checker/bitwise_and_convolution.test.cpp
-  - test/library-checker/range_affine_range_sum.test.cpp
   - test/library-checker/bitwise_or_convolution.test.cpp
   - test/library-checker/convolution_mod.test.cpp
-  - test/library-checker/point_set_range_composite.test.cpp
   - test/library-checker/range_affine_point_get.test.cpp
+  - test/library-checker/range_affine_range_sum.test.cpp
+  - test/library-checker/point_set_range_composite.test.cpp
+  - test/library-checker/bitwise_and_convolution.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint
