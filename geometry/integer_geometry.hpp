@@ -80,16 +80,29 @@ Polygon convex_hull(std::vector<Point> ps) {
     Polygon ret(2 * n);
     int k = 0;
     for (int i = 0; i < n; ret[k++] = ps[i++]) {
-        while (k >= 2 && det(ret[k - 1] - ret[k - 2], ps[i] - ret[k - 2]) < 0) {
+        while (k >= 2 && det(ret[k - 1] - ret[k - 2], ps[i] - ret[k - 1]) < 0) {
             k--;
         }
     }
     for (int i = n - 2, t = k + 1; i >= 0; ret[k++] = ps[i--]) {
-        while (k >= t && det(ret[k - 1] - ret[k - 2], ps[i] - ret[k - 2]) < 0) {
+        while (k >= t && det(ret[k - 1] - ret[k - 2], ps[i] - ret[k - 1]) < 0) {
             k--;
         }
     }
     ret.resize(k - 1);
+    return ret;
+}
+Polygon lower_convex_hull(std::vector<Point> ps) {
+    int n = int(ps.size());
+    std::sort(ps.begin(), ps.end());
+    Polygon ret(n);
+    int k = 0;
+    for (int i = 0; i < n; ret[k++] = ps[i++]) {
+        while (k >= 2 && det(ret[k - 1] - ret[k - 2], ps[i] - ret[k - 1]) < 0) {
+            k--;
+        }
+    }
+    ret.resize(k);
     return ret;
 }
 }  // namespace integer_geometry

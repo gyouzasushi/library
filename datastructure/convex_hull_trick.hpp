@@ -1,8 +1,9 @@
 #pragma once
+#include <vector>
 template <typename T>
-struct ConvexHullTrick {
+struct ConvexHullTrickAddMonotone {
 public:
-    ConvexHullTrick() {
+    ConvexHullTrickAddMonotone() : pos(0) {
     }
     struct F {
         T a, b;
@@ -16,14 +17,15 @@ public:
         q.push_back(f);
     }
     T get_min(T x) {
-        while (int(q.size()) >= 2 && f(q[0], x) >= f(q[1], x)) {
-            q.pop_front();
+        while (pos + 1 < int(q.size()) && f(q[pos], x) >= f(q[pos + 1], x)) {
+            pos++;
         }
-        return f(q[0], x);
+        return f(q[pos], x);
     }
 
 private:
-    std::deque<F> q;
+    int pos;
+    std::vector<F> q;
     bool check(F f1, F f2, F f3) {
         return (f2.a - f1.a) * (f3.b - f2.b) >= (f2.b - f1.b) * (f3.a - f2.a);
     }
