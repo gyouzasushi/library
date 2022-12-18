@@ -10,7 +10,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: datastructure/cartesian_tree.hpp
-      title: datastructure/cartesian_tree.hpp
+      title: Cartesian Tree
     - icon: ':heavy_check_mark:'
       path: datastructure/cumulative_sum.hpp
       title: "\u7D2F\u7A4D\u548C"
