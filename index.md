@@ -66,6 +66,9 @@ data:
     - icon: ':warning:'
       path: graph/rerooting.hpp
       title: graph/rerooting.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/strongly_connected_components.hpp
+      title: Strongly Connected Components
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
@@ -256,6 +259,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_range_sum.test.cpp
       title: test/library-checker/range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/scc.test.cpp
+      title: test/library-checker/scc.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/segment_add_get_min.test.cpp
       title: test/library-checker/segment_add_get_min.test.cpp
