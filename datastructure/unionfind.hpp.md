@@ -3,12 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library-checker/manhattanmst.test.cpp
+    title: test/library-checker/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/unionfind.test.cpp
     title: test/library-checker/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/unionfind.hpp\"\n#include <algorithm>\n#include\
@@ -50,9 +53,10 @@ data:
   path: datastructure/unionfind.hpp
   requiredBy: []
   timestamp: '2022-09-01 17:53:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library-checker/unionfind.test.cpp
+  - test/library-checker/manhattanmst.test.cpp
 documentation_of: datastructure/unionfind.hpp
 layout: document
 redirect_from:

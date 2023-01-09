@@ -38,7 +38,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/static_range_minimum.hpp
       title: datastructure/static_range_minimum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: datastructure/unionfind.hpp
       title: datastructure/unionfind.hpp
   - name: geometry
@@ -57,6 +57,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lowest_common_ancestor.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
+    - icon: ':x:'
+      path: graph/manhattan_mst.hpp
+      title: Manhattan MST
     - icon: ':heavy_check_mark:'
       path: graph/maxflow.hpp
       title: MaxFlow
@@ -244,6 +247,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/line_add_get_min.test.cpp
       title: test/library-checker/line_add_get_min.test.cpp
+    - icon: ':x:'
+      path: test/library-checker/manhattanmst.test.cpp
+      title: test/library-checker/manhattanmst.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/point_add_range_sum.test.cpp
       title: test/library-checker/point_add_range_sum.test.cpp
