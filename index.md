@@ -53,7 +53,7 @@ data:
       title: graph/bfs_of_complement.hpp
     - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.hpp
-      title: graph/chromatic_number.hpp
+      title: "\u5F69\u8272\u6570"
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: "Dijkstra \u6CD5"

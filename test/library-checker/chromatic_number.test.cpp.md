@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic_number.hpp
-    title: graph/chromatic_number.hpp
+    title: "\u5F69\u8272\u6570"
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
