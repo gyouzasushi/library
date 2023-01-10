@@ -4,7 +4,7 @@
 #include "../../datastructure/segment_tree.hpp"
 #include "../../math/modint.hpp"
 
-using mint = modint::modint998244353;
+using mint = modint998244353;
 struct S {
     mint a, b;
     bool e;

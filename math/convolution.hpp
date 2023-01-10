@@ -6,18 +6,18 @@
 #include "modint.hpp"
 namespace internal {
 
-template <class mint, modint::internal::is_static_modint_t<mint>* = nullptr>
+template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 void butterfly(std::vector<mint>& a) {
-    static constexpr int g = modint::internal::primitive_root<mint::mod()>;
+    static constexpr int g = internal::primitive_root<mint::mod()>;
     int n = int(a.size());
-    int h = modint::internal::ceil_pow2(n);
+    int h = internal::ceil_pow2(n);
 
     static bool first = true;
     static mint sum_e[30];  // sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]
     if (first) {
         first = false;
         mint es[30], ies[30];  // es[i]^(2^(2+i)) == 1
-        int cnt2 = modint::internal::bsf(mint::mod() - 1);
+        int cnt2 = internal::bsf(mint::mod() - 1);
         mint e = mint(g).pow((mint::mod() - 1) >> cnt2), ie = e.inv();
         for (int i = cnt2; i >= 2; i--) {
             // e^(2^i) == 1
@@ -43,23 +43,23 @@ void butterfly(std::vector<mint>& a) {
                 a[i + offset] = l + r;
                 a[i + offset + p] = l - r;
             }
-            now *= sum_e[modint::internal::bsf(~(unsigned int)(s))];
+            now *= sum_e[internal::bsf(~(unsigned int)(s))];
         }
     }
 }
 
-template <class mint, modint::internal::is_static_modint_t<mint>* = nullptr>
+template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 void butterfly_inv(std::vector<mint>& a) {
-    static constexpr int g = modint::internal::primitive_root<mint::mod()>;
+    static constexpr int g = internal::primitive_root<mint::mod()>;
     int n = int(a.size());
-    int h = modint::internal::ceil_pow2(n);
+    int h = internal::ceil_pow2(n);
 
     static bool first = true;
     static mint sum_ie[30];  // sum_ie[i] = es[0] * ... * es[i - 1] * ies[i]
     if (first) {
         first = false;
         mint es[30], ies[30];  // es[i]^(2^(2+i)) == 1
-        int cnt2 = modint::internal::bsf(mint::mod() - 1);
+        int cnt2 = internal::bsf(mint::mod() - 1);
         mint e = mint(g).pow((mint::mod() - 1) >> cnt2), ie = e.inv();
         for (int i = cnt2; i >= 2; i--) {
             // e^(2^i) == 1
@@ -88,14 +88,14 @@ void butterfly_inv(std::vector<mint>& a) {
                     (unsigned long long)(mint::mod() + l.val() - r.val()) *
                     inow.val();
             }
-            inow *= sum_ie[modint::internal::bsf(~(unsigned int)(s))];
+            inow *= sum_ie[internal::bsf(~(unsigned int)(s))];
         }
     }
 }
 
 }  // namespace internal
 
-template <class mint, modint::internal::is_static_modint_t<mint>* = nullptr>
+template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
@@ -112,7 +112,7 @@ std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {
         }
         return ans;
     }
-    int z = 1 << modint::internal::ceil_pow2(n + m - 1);
+    int z = 1 << internal::ceil_pow2(n + m - 1);
     a.resize(z);
     internal::butterfly(a);
     b.resize(z);
@@ -128,12 +128,12 @@ std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {
 }
 
 template <unsigned int mod = 998244353, class T,
-          std::enable_if_t<modint::internal::is_integral<T>::value>* = nullptr>
+          std::enable_if_t<internal::is_integral<T>::value>* = nullptr>
 std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
 
-    using mint = modint::static_modint<mod>;
+    using mint = static_modint<mod>;
     std::vector<mint> a2(n), b2(m);
     for (int i = 0; i < n; i++) {
         a2[i] = mint(a[i]);
@@ -163,11 +163,11 @@ std::vector<long long> convolution_ll(const std::vector<long long>& a,
     static constexpr unsigned long long M1M2M3 = MOD1 * MOD2 * MOD3;
 
     static constexpr unsigned long long i1 =
-        modint::internal::inv_gcd(MOD2 * MOD3, MOD1).second;
+        internal::inv_gcd(MOD2 * MOD3, MOD1).second;
     static constexpr unsigned long long i2 =
-        modint::internal::inv_gcd(MOD1 * MOD3, MOD2).second;
+        internal::inv_gcd(MOD1 * MOD3, MOD2).second;
     static constexpr unsigned long long i3 =
-        modint::internal::inv_gcd(MOD1 * MOD2, MOD3).second;
+        internal::inv_gcd(MOD1 * MOD2, MOD3).second;
 
     auto c1 = convolution<MOD1>(a, b);
     auto c2 = convolution<MOD2>(a, b);
@@ -196,8 +196,8 @@ std::vector<long long> convolution_ll(const std::vector<long long>& a,
         //   ((1) mod MOD1) mod 5 = 2
         //   ((2) mod MOD1) mod 5 = 3
         //   ((3) mod MOD1) mod 5 = 4
-        long long diff = c1[i] - modint::internal::safe_mod((long long)(x),
-                                                            (long long)(MOD1));
+        long long diff =
+            c1[i] - internal::safe_mod((long long)(x), (long long)(MOD1));
         if (diff < 0) diff += MOD1;
         static constexpr unsigned long long offset[5] = {
             0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};

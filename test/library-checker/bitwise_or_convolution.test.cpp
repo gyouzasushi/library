@@ -5,7 +5,7 @@
 
 #include "../../math/modint.hpp"
 
-using mint = modint::modint998244353;
+using mint = modint998244353;
 int main() {
     int n;
     std::cin >> n;

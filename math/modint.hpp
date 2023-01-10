@@ -7,8 +7,6 @@
 #include <intrin.h>
 #endif
 
-namespace modint {
-
 namespace internal {
 
 // @param n `0 <= n`
@@ -33,11 +31,7 @@ int bsf(unsigned int n) {
 
 }  // namespace internal
 
-}  // namespace modint
-
 #include <utility>
-
-namespace modint {
 
 namespace internal {
 
@@ -214,13 +208,9 @@ constexpr int primitive_root = primitive_root_constexpr(m);
 
 }  // namespace internal
 
-}  // namespace modint
-
 #include <cassert>
 #include <numeric>
 #include <type_traits>
-
-namespace modint {
 
 namespace internal {
 
@@ -303,8 +293,6 @@ using to_unsigned_t = typename to_unsigned<T>::type;
 
 }  // namespace internal
 
-}  // namespace modint
-
 #include <cassert>
 #include <numeric>
 #include <type_traits>
@@ -312,8 +300,6 @@ using to_unsigned_t = typename to_unsigned<T>::type;
 #ifdef _MSC_VER
 #include <intrin.h>
 #endif
-
-namespace modint {
 
 namespace internal {
 
@@ -624,4 +610,3 @@ std::ostream& operator<<(std::ostream& os, const T& v) {
     os << v.val();
     return os;
 }
-}  // namespace modint

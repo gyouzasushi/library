@@ -3,7 +3,7 @@
 
 #include "datastructure/dual_segment_tree.hpp"
 #include "math/modint.hpp"
-using mint = modint::modint998244353;
+using mint = modint998244353;
 struct F {
     mint b, c;
     mint val(mint x) {
