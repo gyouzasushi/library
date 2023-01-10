@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: datastructure/lazy_segment_tree.hpp
-    title: Lazy Segment Tree
+    path: graph/chromatic_number.hpp
+    title: graph/chromatic_number.hpp
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
@@ -14,88 +14,23 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
+    PROBLEM: https://judge.yosupo.jp/problem/chromatic_number
     links:
-    - https://judge.yosupo.jp/problem/range_affine_range_sum
-  bundledCode: "#line 1 \"test/library-checker/range_affine_range_sum.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\n#include\
-    \ <iostream>\n\n#line 2 \"datastructure/lazy_segment_tree.hpp\"\n#include <cassert>\n\
-    #include <vector>\ntemplate <class S, S (*op)(S, S), S (*e)(), class F, S (*mapping)(F,\
-    \ S),\n          F (*composition)(F, F), F (*id)()>\nstruct LazySegmentTree {\n\
-    public:\n    LazySegmentTree() : LazySegmentTree(0) {\n    }\n    LazySegmentTree(int\
-    \ n) : LazySegmentTree(std::vector<S>(n, e())) {\n    }\n    LazySegmentTree(const\
-    \ std::vector<S>& v) : _n(int(v.size())) {\n        log = ceil_pow2(_n);\n   \
-    \     size = 1 << log;\n        d = std::vector<S>(2 * size, e());\n        lz\
-    \ = std::vector<F>(size, id());\n        for (int i = 0; i < _n; i++) d[size +\
-    \ i] = v[i];\n        for (int i = size - 1; i >= 1; i--) {\n            update(i);\n\
-    \        }\n    }\n\n    void set(int p, S x) {\n        assert(0 <= p && p <\
-    \ _n);\n        p += size;\n        for (int i = log; i >= 1; i--) push(p >> i);\n\
-    \        d[p] = x;\n        for (int i = 1; i <= log; i++) update(p >> i);\n \
-    \   }\n\n    S get(int p) {\n        assert(0 <= p && p < _n);\n        p += size;\n\
-    \        for (int i = log; i >= 1; i--) push(p >> i);\n        return d[p];\n\
-    \    }\n\n    S prod(int l, int r) {\n        assert(0 <= l && l <= r && r <=\
-    \ _n);\n        if (l == r) return e();\n\n        l += size;\n        r += size;\n\
-    \n        for (int i = log; i >= 1; i--) {\n            if (((l >> i) << i) !=\
-    \ l) push(l >> i);\n            if (((r >> i) << i) != r) push(r >> i);\n    \
-    \    }\n\n        S sml = e(), smr = e();\n        while (l < r) {\n         \
-    \   if (l & 1) sml = op(sml, d[l++]);\n            if (r & 1) smr = op(d[--r],\
-    \ smr);\n            l >>= 1;\n            r >>= 1;\n        }\n\n        return\
-    \ op(sml, smr);\n    }\n\n    S all_prod() {\n        return d[1];\n    }\n\n\
-    \    void apply(int p, F f) {\n        assert(0 <= p && p < _n);\n        p +=\
-    \ size;\n        for (int i = log; i >= 1; i--) push(p >> i);\n        d[p] =\
-    \ mapping(f, d[p]);\n        for (int i = 1; i <= log; i++) update(p >> i);\n\
-    \    }\n    void apply(int l, int r, F f) {\n        assert(0 <= l && l <= r &&\
-    \ r <= _n);\n        if (l == r) return;\n\n        l += size;\n        r += size;\n\
-    \n        for (int i = log; i >= 1; i--) {\n            if (((l >> i) << i) !=\
-    \ l) push(l >> i);\n            if (((r >> i) << i) != r) push((r - 1) >> i);\n\
-    \        }\n\n        {\n            int l2 = l, r2 = r;\n            while (l\
-    \ < r) {\n                if (l & 1) all_apply(l++, f);\n                if (r\
-    \ & 1) all_apply(--r, f);\n                l >>= 1;\n                r >>= 1;\n\
-    \            }\n            l = l2;\n            r = r2;\n        }\n\n      \
-    \  for (int i = 1; i <= log; i++) {\n            if (((l >> i) << i) != l) update(l\
-    \ >> i);\n            if (((r >> i) << i) != r) update((r - 1) >> i);\n      \
-    \  }\n    }\n\n    template <bool (*g)(S)>\n    int max_right(int l) {\n     \
-    \   return max_right(l, [](S x) { return g(x); });\n    }\n    template <class\
-    \ G>\n    int max_right(int l, G g) {\n        assert(0 <= l && l <= _n);\n  \
-    \      assert(g(e()));\n        if (l == _n) return _n;\n        l += size;\n\
-    \        for (int i = log; i >= 1; i--) push(l >> i);\n        S sm = e();\n \
-    \       do {\n            while (l % 2 == 0) l >>= 1;\n            if (!g(op(sm,\
-    \ d[l]))) {\n                while (l < size) {\n                    push(l);\n\
-    \                    l = (2 * l);\n                    if (g(op(sm, d[l]))) {\n\
-    \                        sm = op(sm, d[l]);\n                        l++;\n  \
-    \                  }\n                }\n                return l - size;\n  \
-    \          }\n            sm = op(sm, d[l]);\n            l++;\n        } while\
-    \ ((l & -l) != l);\n        return _n;\n    }\n\n    template <bool (*g)(S)>\n\
-    \    int min_left(int r) {\n        return min_left(r, [](S x) { return g(x);\
-    \ });\n    }\n    template <class G>\n    int min_left(int r, G g) {\n       \
-    \ assert(0 <= r && r <= _n);\n        assert(g(e()));\n        if (r == 0) return\
-    \ 0;\n        r += size;\n        for (int i = log; i >= 1; i--) push((r - 1)\
-    \ >> i);\n        S sm = e();\n        do {\n            r--;\n            while\
-    \ (r > 1 && (r % 2)) r >>= 1;\n            if (!g(op(d[r], sm))) {\n         \
-    \       while (r < size) {\n                    push(r);\n                   \
-    \ r = (2 * r + 1);\n                    if (g(op(d[r], sm))) {\n             \
-    \           sm = op(d[r], sm);\n                        r--;\n               \
-    \     }\n                }\n                return r + 1 - size;\n           \
-    \ }\n            sm = op(d[r], sm);\n        } while ((r & -r) != r);\n      \
-    \  return 0;\n    }\n\nprivate:\n    int _n, size, log;\n    std::vector<S> d;\n\
-    \    std::vector<F> lz;\n    int ceil_pow2(int n) {\n        int x = 0;\n    \
-    \    while ((1U << x) < (unsigned int)(n)) x++;\n        return x;\n    }\n  \
-    \  void update(int k) {\n        d[k] = op(d[2 * k], d[2 * k + 1]);\n    }\n \
-    \   void all_apply(int k, F f) {\n        d[k] = mapping(f, d[k]);\n        if\
-    \ (k < size) lz[k] = composition(f, lz[k]);\n    }\n    void push(int k) {\n \
-    \       all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n     \
-    \   lz[k] = id();\n    }\n};\n#line 2 \"math/modint.hpp\"\n\n#include <algorithm>\n\
-    #include <array>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace\
-    \ internal {\n\n// @param n `0 <= n`\n// @return minimum non-negative `x` s.t.\
-    \ `n <= 2**x`\nint ceil_pow2(int n) {\n    int x = 0;\n    while ((1U << x) <\
-    \ (unsigned int)(n)) x++;\n    return x;\n}\n\n// @param n `1 <= n`\n// @return\
-    \ minimum non-negative `x` s.t. `(n & (1 << x)) != 0`\nint bsf(unsigned int n)\
-    \ {\n#ifdef _MSC_VER\n    unsigned long index;\n    _BitScanForward(&index, n);\n\
-    \    return index;\n#else\n    return __builtin_ctz(n);\n#endif\n}\n\n}  // namespace\
-    \ internal\n\n#include <utility>\n\nnamespace internal {\n\n// @param m `1 <=\
-    \ m`\n// @return x mod m\nconstexpr long long safe_mod(long long x, long long\
-    \ m) {\n    x %= m;\n    if (x < 0) x += m;\n    return x;\n}\n\n// Fast moduler\
-    \ by barrett reduction\n// Reference: https://en.wikipedia.org/wiki/Barrett_reduction\n\
+    - https://judge.yosupo.jp/problem/chromatic_number
+  bundledCode: "#line 1 \"test/library-checker/chromatic_number.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n#line 2 \"graph/chromatic_number.hpp\"\
+    \n#include <cassert>\n#include <type_traits>\n#include <vector>\n\n#line 2 \"\
+    math/modint.hpp\"\n\n#include <algorithm>\n#include <array>\n\n#ifdef _MSC_VER\n\
+    #include <intrin.h>\n#endif\n\nnamespace internal {\n\n// @param n `0 <= n`\n\
+    // @return minimum non-negative `x` s.t. `n <= 2**x`\nint ceil_pow2(int n) {\n\
+    \    int x = 0;\n    while ((1U << x) < (unsigned int)(n)) x++;\n    return x;\n\
+    }\n\n// @param n `1 <= n`\n// @return minimum non-negative `x` s.t. `(n & (1 <<\
+    \ x)) != 0`\nint bsf(unsigned int n) {\n#ifdef _MSC_VER\n    unsigned long index;\n\
+    \    _BitScanForward(&index, n);\n    return index;\n#else\n    return __builtin_ctz(n);\n\
+    #endif\n}\n\n}  // namespace internal\n\n#include <utility>\n\nnamespace internal\
+    \ {\n\n// @param m `1 <= m`\n// @return x mod m\nconstexpr long long safe_mod(long\
+    \ long x, long long m) {\n    x %= m;\n    if (x < 0) x += m;\n    return x;\n\
+    }\n\n// Fast moduler by barrett reduction\n// Reference: https://en.wikipedia.org/wiki/Barrett_reduction\n\
     // NOTE: reconsider after Ice Lake\nstruct barrett {\n    unsigned int _m;\n \
     \   unsigned long long im;\n\n    // @param m `1 <= m`\n    barrett(unsigned int\
     \ m) : _m(m), im((unsigned long long)(-1) / m + 1) {\n    }\n\n    // @return\
@@ -154,8 +89,8 @@ data:
     \                break;\n            }\n        }\n        if (ok) return g;\n\
     \    }\n}\ntemplate <int m>\nconstexpr int primitive_root = primitive_root_constexpr(m);\n\
     \n}  // namespace internal\n\n#line 212 \"math/modint.hpp\"\n#include <numeric>\n\
-    #include <type_traits>\n\nnamespace internal {\n\n#ifndef _MSC_VER\ntemplate <class\
-    \ T>\nusing is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
+    #line 214 \"math/modint.hpp\"\n\nnamespace internal {\n\n#ifndef _MSC_VER\ntemplate\
+    \ <class T>\nusing is_signed_int128 =\n    typename std::conditional<std::is_same<T,\
     \ __int128_t>::value ||\n                                  std::is_same<T, __int128>::value,\n\
     \                              std::true_type, std::false_type>::type;\n\ntemplate\
     \ <class T>\nusing is_unsigned_int128 =\n    typename std::conditional<std::is_same<T,\
@@ -281,56 +216,50 @@ data:
     \ntemplate <class>\nstruct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n#line 599 \"math/modint.hpp\"\ntemplate <typename\
-    \ T, typename std::enable_if_t<internal::is_modint<T>::value,\n              \
-    \                                  std::nullptr_t> = nullptr>\nstd::istream& operator>>(std::istream&\
+    \n}  // namespace internal\n\n#include <iostream>\ntemplate <typename T, typename\
+    \ std::enable_if_t<internal::is_modint<T>::value,\n                          \
+    \                      std::nullptr_t> = nullptr>\nstd::istream& operator>>(std::istream&\
     \ is, T& v) {\n    long long x;\n    is >> x;\n    v = x;\n    return is;\n}\n\
     template <typename T, typename std::enable_if_t<internal::is_modint<T>::value,\n\
     \                                                std::nullptr_t> = nullptr>\n\
     std::ostream& operator<<(std::ostream& os, const T& v) {\n    os << v.val();\n\
-    \    return os;\n}\n#line 6 \"test/library-checker/range_affine_range_sum.test.cpp\"\
-    \n\nusing mint = modint998244353;\nstruct S {\n    mint val;\n    int size;\n\
-    };\nS op(S a, S b) {\n    return {a.val + b.val, a.size + b.size};\n}\nS e() {\n\
-    \    return {0, 0};\n}\nstruct F {\n    mint b, c;\n};\nF id() {\n    return {1,\
-    \ 0};\n}\nS mapping(F f, S x) {\n    return {f.b * x.val + f.c * x.size, x.size};\n\
-    }\nF composition(F f, F g) {\n    return {f.b * g.b, f.b * g.c + f.c};\n}\n\n\
-    int main() {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<S> a(n);\n\
-    \    for (int i = 0; i < n; i++) {\n        std::cin >> a[i].val;\n        a[i].size\
-    \ = 1;\n    }\n    LazySegmentTree<S, op, e, F, mapping, composition, id> segt(a);\n\
-    \    while (q--) {\n        int t;\n        std::cin >> t;\n        if (t == 0)\
-    \ {\n            int l, r, b, c;\n            std::cin >> l >> r >> b >> c;\n\
-    \            segt.apply(l, r, {b, c});\n        }\n        if (t == 1) {\n   \
-    \         int l, r;\n            std::cin >> l >> r;\n            std::cout <<\
-    \ segt.prod(l, r).val << '\\n';\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n#include <iostream>\n\n#include \"../../datastructure/lazy_segment_tree.hpp\"\
-    \n#include \"../../math/modint.hpp\"\n\nusing mint = modint998244353;\nstruct\
-    \ S {\n    mint val;\n    int size;\n};\nS op(S a, S b) {\n    return {a.val +\
-    \ b.val, a.size + b.size};\n}\nS e() {\n    return {0, 0};\n}\nstruct F {\n  \
-    \  mint b, c;\n};\nF id() {\n    return {1, 0};\n}\nS mapping(F f, S x) {\n  \
-    \  return {f.b * x.val + f.c * x.size, x.size};\n}\nF composition(F f, F g) {\n\
-    \    return {f.b * g.b, f.b * g.c + f.c};\n}\n\nint main() {\n    int n, q;\n\
-    \    std::cin >> n >> q;\n    std::vector<S> a(n);\n    for (int i = 0; i < n;\
-    \ i++) {\n        std::cin >> a[i].val;\n        a[i].size = 1;\n    }\n    LazySegmentTree<S,\
-    \ op, e, F, mapping, composition, id> segt(a);\n    while (q--) {\n        int\
-    \ t;\n        std::cin >> t;\n        if (t == 0) {\n            int l, r, b,\
-    \ c;\n            std::cin >> l >> r >> b >> c;\n            segt.apply(l, r,\
-    \ {b, c});\n        }\n        if (t == 1) {\n            int l, r;\n        \
-    \    std::cin >> l >> r;\n            std::cout << segt.prod(l, r).val << '\\\
-    n';\n        }\n    }\n}"
+    \    return os;\n}\n#line 7 \"graph/chromatic_number.hpp\"\nint chromatic_number(std::vector<std::vector<bool>>\
+    \ g) {\n    int n = g.size();\n    std::vector<int> bit(n);\n    for (int i =\
+    \ 0; i < n; i++) {\n        assert(int(g[i].size()) == n);\n        for (int j\
+    \ = 0; j < n; j++) {\n            bit[i] |= g[i][j] << j;\n        }\n    }\n\
+    \    int ret = n;\n    using mint = modint;\n    for (int mod : {1e9 + 7, 1e9\
+    \ + 11, 1e9 + 21}) {\n        mint::set_mod(mod);\n        std::vector<mint> dp(1\
+    \ << n), prod(1 << n, 1);\n        dp[0] = 1;\n        for (int s = 1; s < 1 <<\
+    \ n; s++) {\n            int u = __builtin_ctz(s);\n            dp[s] = dp[s ^\
+    \ (1 << u)] + dp[(s ^ (1 << u)) & ~bit[u]];\n        }\n        for (int i = 1;\
+    \ i < ret; i++) {\n            mint sum = 0;\n            for (int j = 0; j <\
+    \ 1 << n; j++) {\n                int s = j ^ (j >> 1);\n                prod[s]\
+    \ *= dp[s];\n                sum += j & 1 ? prod[s] : -prod[s];\n            }\n\
+    \            if (sum.val() != 0) ret = i;\n        }\n    }\n    return ret;\n\
+    }\n#line 4 \"test/library-checker/chromatic_number.test.cpp\"\n\n#line 6 \"test/library-checker/chromatic_number.test.cpp\"\
+    \nint main() {\n    int n, m;\n    std::cin >> n >> m;\n    std::vector g(n, std::vector(n,\
+    \ false));\n    for (int i = 0; i < m; i++) {\n        int u, v;\n        std::cin\
+    \ >> u >> v;\n        g[u][v] = g[v][u] = true;\n    }\n    std::cout << chromatic_number(g)\
+    \ << '\\n';\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n\
+    #include \"../../graph/chromatic_number.hpp\"\n\n#include <iostream>\nint main()\
+    \ {\n    int n, m;\n    std::cin >> n >> m;\n    std::vector g(n, std::vector(n,\
+    \ false));\n    for (int i = 0; i < m; i++) {\n        int u, v;\n        std::cin\
+    \ >> u >> v;\n        g[u][v] = g[v][u] = true;\n    }\n    std::cout << chromatic_number(g)\
+    \ << '\\n';\n}"
   dependsOn:
-  - datastructure/lazy_segment_tree.hpp
+  - graph/chromatic_number.hpp
   - math/modint.hpp
   isVerificationFile: true
-  path: test/library-checker/range_affine_range_sum.test.cpp
+  path: test/library-checker/chromatic_number.test.cpp
   requiredBy: []
   timestamp: '2023-01-10 16:57:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library-checker/range_affine_range_sum.test.cpp
+documentation_of: test/library-checker/chromatic_number.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library-checker/range_affine_range_sum.test.cpp
-- /verify/test/library-checker/range_affine_range_sum.test.cpp.html
-title: test/library-checker/range_affine_range_sum.test.cpp
+- /verify/test/library-checker/chromatic_number.test.cpp
+- /verify/test/library-checker/chromatic_number.test.cpp.html
+title: test/library-checker/chromatic_number.test.cpp
 ---

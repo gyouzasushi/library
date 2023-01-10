@@ -52,6 +52,9 @@ data:
       path: graph/bfs_of_complement.hpp
       title: graph/bfs_of_complement.hpp
     - icon: ':heavy_check_mark:'
+      path: graph/chromatic_number.hpp
+      title: graph/chromatic_number.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: "Dijkstra \u6CD5"
     - icon: ':heavy_check_mark:'
@@ -235,6 +238,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/cartesian_tree.test.cpp
       title: test/library-checker/cartesian_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/chromatic_number.test.cpp
+      title: test/library-checker/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/convolution_mod.test.cpp
       title: test/library-checker/convolution_mod.test.cpp
