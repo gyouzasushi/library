@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/manhattan_mst.hpp
+    title: Manhattan MST
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_A.test.cpp
@@ -9,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_B.test.cpp
     title: test/aoj/DSL_2_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/manhattanmst.test.cpp
+    title: test/library-checker/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/point_set_range_composite.test.cpp
     title: test/library-checker/point_set_range_composite.test.cpp
@@ -101,13 +107,15 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: datastructure/segment_tree.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/manhattan_mst.hpp
   timestamp: '2022-09-10 18:25:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_A.test.cpp
   - test/aoj/DSL_2_B.test.cpp
   - test/library-checker/point_set_range_composite.test.cpp
+  - test/library-checker/manhattanmst.test.cpp
 documentation_of: datastructure/segment_tree.hpp
 layout: document
 title: Segment Tree
