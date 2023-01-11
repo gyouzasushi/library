@@ -75,6 +75,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/strongly_connected_components.hpp
       title: Strongly Connected Components
+    - icon: ':heavy_check_mark:'
+      path: graph/subtree_classify.hpp
+      title: "\u6839\u4ED8\u304D\u6728\u306E\u540C\u578B\u6027\u306B\u3088\u308B\u90E8\
+        \u5206\u6728\u306E\u5206\u985E"
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
@@ -277,6 +281,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_range_sum.test.cpp
       title: test/library-checker/range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
+      title: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/scc.test.cpp
       title: test/library-checker/scc.test.cpp

@@ -187,8 +187,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/suffix_array_rolling_hash.test.cpp
-  - test/library-checker/zalgorithm_rolling_hash.test.cpp
   - test/library-checker/enumerate_palindromes.test.cpp
+  - test/library-checker/zalgorithm_rolling_hash.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document
 title: Rolling-Hash
