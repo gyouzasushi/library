@@ -48,6 +48,7 @@
 "test/library-checker/point_set_range_sum.test.cpp": "2022-09-10 18:25:53 +0900",
 "test/library-checker/range_affine_point_get.test.cpp": "2023-01-10 16:57:46 +0900",
 "test/library-checker/range_affine_range_sum.test.cpp": "2023-01-10 16:57:46 +0900",
+"test/library-checker/rooted_tree_isomorphism_classification.test.cpp": "2023-01-11 14:05:50 +0900",
 "test/library-checker/scc.test.cpp": "2023-01-08 14:08:09 +0900",
 "test/library-checker/segment_add_get_min.test.cpp": "2022-09-13 19:30:13 +0900",
 "test/library-checker/shortest_path.test.cpp": "2022-09-03 17:27:23 +0900",
