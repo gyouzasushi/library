@@ -86,6 +86,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/convolution.hpp
       title: convolution
+    - icon: ':heavy_check_mark:'
+      path: math/factorize.hpp
+      title: math/factorize.hpp
     - icon: ':warning:'
       path: math/math.hpp
       title: math/math.hpp
@@ -247,6 +250,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/enumerate_palindromes.test.cpp
       title: test/library-checker/enumerate_palindromes.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/factorize.test.cpp
+      title: test/library-checker/factorize.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/lca.test.cpp
       title: test/library-checker/lca.test.cpp
