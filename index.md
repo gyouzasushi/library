@@ -58,6 +58,9 @@ data:
       path: graph/dijkstra.hpp
       title: "Dijkstra \u6CD5"
     - icon: ':heavy_check_mark:'
+      path: graph/grid.hpp
+      title: graph/grid.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/lowest_common_ancestor.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
     - icon: ':heavy_check_mark:'
@@ -135,6 +138,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/0355.test.cpp
       title: test/aoj/0355.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/0558.test.cpp
+      title: test/aoj/0558.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/1160.test.cpp
+      title: test/aoj/1160.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_A.test.cpp
       title: test/aoj/CGL_1_A.test.cpp

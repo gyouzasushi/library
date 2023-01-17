@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/1160.test.cpp
+    title: test/aoj/1160.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/manhattanmst.test.cpp
     title: test/library-checker/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -55,6 +58,7 @@ data:
   timestamp: '2022-09-01 17:53:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/1160.test.cpp
   - test/library-checker/manhattanmst.test.cpp
   - test/library-checker/unionfind.test.cpp
 documentation_of: datastructure/unionfind.hpp
