@@ -30,6 +30,9 @@ data:
       path: datastructure/plus_minus_one_range_minimum.hpp
       title: datastructure/plus_minus_one_range_minimum.hpp
     - icon: ':heavy_check_mark:'
+      path: datastructure/range_set.hpp
+      title: datastructure/range_set.hpp
+    - icon: ':heavy_check_mark:'
       path: datastructure/segment_tree.hpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -317,5 +320,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/zalgorithm_rolling_hash.test.cpp
       title: test/library-checker/zalgorithm_rolling_hash.test.cpp
+  - name: test/yukicoder
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1601.test.cpp
+      title: test/yukicoder/1601.test.cpp
 layout: toppage
 ---
