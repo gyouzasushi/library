@@ -59,7 +59,7 @@ data:
       title: "Dijkstra \u6CD5"
     - icon: ':heavy_check_mark:'
       path: graph/grid.hpp
-      title: graph/grid.hpp
+      title: "\u30B0\u30EA\u30C3\u30C9"
     - icon: ':heavy_check_mark:'
       path: graph/lowest_common_ancestor.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
