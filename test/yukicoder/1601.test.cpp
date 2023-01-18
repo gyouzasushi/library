@@ -13,7 +13,7 @@ int main() {
         long long a, b;
         std::cin >> a >> b;
         st.insert(a, b);
-        auto [l, r] = *st.covered_by(a);
+        auto [l, r] = st.covered_by(a);
         ans = std::max(ans, r - l + 1);
         std::cout << ans << '\n';
     }

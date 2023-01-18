@@ -21,12 +21,12 @@ public:
     bool is_covered(T p) {
         return is_covered(p, p);
     }
-    auto covered_by(T l, T r) {
+    std::pair<T, T> covered_by(T l, T r) {
         assert(l <= r);
         assert(is_covered(l, r));
-        return std::prev(mp.upper_bound(l));
+        return *std::prev(mp.upper_bound(l));
     }
-    auto covered_by(T p) {
+    std::pair<T, T> covered_by(T p) {
         return covered_by(p, p);
     }
     void insert(T l, T r) {
