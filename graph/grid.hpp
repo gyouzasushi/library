@@ -28,6 +28,10 @@ public:
         }
         return ret;
     }
+    static grid from(int i) {
+        return grid(i / (_max_x - _min_x + 1) + _min_y,
+                    i % (_max_x - _min_x + 1) + _min_x);
+    }
     bool is_valid() {
         return _min_y <= y && y <= _max_y && _min_x <= x && x <= _max_x;
     }
