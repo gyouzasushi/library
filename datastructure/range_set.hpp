@@ -47,7 +47,7 @@ public:
     void erase(T l, T r) {
         assert(l <= r);
         auto it_l = mp.upper_bound(l);
-        auto it_r = mp.upper_bound(r + int(merge_adjacent_segment));
+        auto it_r = mp.upper_bound(r);
         if (it_l != mp.begin()) {
             if (std::prev(it_l)->second >= l) {
                 it_l--;
