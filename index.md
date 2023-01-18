@@ -31,7 +31,7 @@ data:
       title: datastructure/plus_minus_one_range_minimum.hpp
     - icon: ':heavy_check_mark:'
       path: datastructure/range_set.hpp
-      title: datastructure/range_set.hpp
+      title: Range Set
     - icon: ':heavy_check_mark:'
       path: datastructure/segment_tree.hpp
       title: Segment Tree
