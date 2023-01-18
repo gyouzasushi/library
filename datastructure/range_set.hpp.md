@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/2880.test.cpp
+    title: test/aoj/2880.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
   _isVerificationFailed: false
@@ -29,13 +32,13 @@ data:
     \ it_l; it != it_r; it = mp.erase(it)) {\n            l = std::min(l, it->first);\n\
     \            r = std::max(r, it->second);\n        }\n        mp[l] = r;\n   \
     \ }\n    void erase(T l, T r) {\n        assert(l <= r);\n        auto it_l =\
-    \ mp.upper_bound(l);\n        auto it_r = mp.upper_bound(r + int(merge_adjacent_segment));\n\
-    \        if (it_l != mp.begin()) {\n            if (std::prev(it_l)->second >=\
-    \ l) {\n                it_l--;\n            }\n        }\n        int nl = std::min(l,\
-    \ it_l->first);\n        int nr = std::max(r, std::prev(it_r)->second);\n    \
-    \    mp.erase(it_l, it_r);\n        if (nl < l) mp[nl] = l - 1;\n        if (r\
-    \ < nr) mp[r + 1] = nr;\n    }\n\nprivate:\n    bool merge_adjacent_segment;\n\
-    \    std::map<T, T> mp;\n};\n"
+    \ mp.upper_bound(l);\n        auto it_r = mp.upper_bound(r);\n        if (it_l\
+    \ != mp.begin()) {\n            if (std::prev(it_l)->second >= l) {\n        \
+    \        it_l--;\n            }\n        }\n        int nl = std::min(l, it_l->first);\n\
+    \        int nr = std::max(r, std::prev(it_r)->second);\n        mp.erase(it_l,\
+    \ it_r);\n        if (nl < l) mp[nl] = l - 1;\n        if (r < nr) mp[r + 1] =\
+    \ nr;\n    }\n\nprivate:\n    bool merge_adjacent_segment;\n    std::map<T, T>\
+    \ mp;\n};\n"
   code: "#include <cassert>\n#include <map>\ntemplate <typename T>\nstruct range_set\
     \ {\npublic:\n    range_set(bool merge_adjacent_segment = true)\n        : merge_adjacent_segment(merge_adjacent_segment)\
     \ {\n    }\n    void clear() {\n        mp.clear();\n    }\n    size_t size()\
@@ -53,21 +56,22 @@ data:
     \ it_l; it != it_r; it = mp.erase(it)) {\n            l = std::min(l, it->first);\n\
     \            r = std::max(r, it->second);\n        }\n        mp[l] = r;\n   \
     \ }\n    void erase(T l, T r) {\n        assert(l <= r);\n        auto it_l =\
-    \ mp.upper_bound(l);\n        auto it_r = mp.upper_bound(r + int(merge_adjacent_segment));\n\
-    \        if (it_l != mp.begin()) {\n            if (std::prev(it_l)->second >=\
-    \ l) {\n                it_l--;\n            }\n        }\n        int nl = std::min(l,\
-    \ it_l->first);\n        int nr = std::max(r, std::prev(it_r)->second);\n    \
-    \    mp.erase(it_l, it_r);\n        if (nl < l) mp[nl] = l - 1;\n        if (r\
-    \ < nr) mp[r + 1] = nr;\n    }\n\nprivate:\n    bool merge_adjacent_segment;\n\
-    \    std::map<T, T> mp;\n};\n"
+    \ mp.upper_bound(l);\n        auto it_r = mp.upper_bound(r);\n        if (it_l\
+    \ != mp.begin()) {\n            if (std::prev(it_l)->second >= l) {\n        \
+    \        it_l--;\n            }\n        }\n        int nl = std::min(l, it_l->first);\n\
+    \        int nr = std::max(r, std::prev(it_r)->second);\n        mp.erase(it_l,\
+    \ it_r);\n        if (nl < l) mp[nl] = l - 1;\n        if (r < nr) mp[r + 1] =\
+    \ nr;\n    }\n\nprivate:\n    bool merge_adjacent_segment;\n    std::map<T, T>\
+    \ mp;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: datastructure/range_set.hpp
   requiredBy: []
-  timestamp: '2023-01-18 21:17:54+09:00'
+  timestamp: '2023-01-19 00:19:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1601.test.cpp
+  - test/aoj/2880.test.cpp
 documentation_of: datastructure/range_set.hpp
 layout: document
 redirect_from:

@@ -148,6 +148,9 @@ data:
       path: test/aoj/1160.test.cpp
       title: test/aoj/1160.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/2880.test.cpp
+      title: test/aoj/2880.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_A.test.cpp
       title: test/aoj/CGL_1_A.test.cpp
     - icon: ':heavy_check_mark:'
