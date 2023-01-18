@@ -23,14 +23,16 @@ data:
     \        _max_x = max_x;\n    }\n    static std::vector<grid> grids() {\n    \
     \    std::vector<grid> ret;\n        for (int y = _min_y; y <= _max_y; y++) {\n\
     \            for (int x = _min_x; x <= _max_x; x++) {\n                ret.emplace_back(y,\
-    \ x);\n            }\n        }\n        return ret;\n    }\n    bool is_valid()\
-    \ {\n        return _min_y <= y && y <= _max_y && _min_x <= x && x <= _max_x;\n\
-    \    }\n    std::vector<grid> neighbors() {\n        std::vector<grid> ret;\n\
-    \        for (auto [dy, dx] : grid::delta) {\n            if (grid(y + dy, x +\
-    \ dx).is_valid()) {\n                ret.emplace_back(y + dy, x + dx);\n     \
-    \       }\n        }\n        return ret;\n    }\n    std::vector<grid> neighbors_8()\
-    \ {\n        std::vector<grid> ret;\n        for (auto [dy, dx] : grid::delta_8)\
-    \ {\n            if (grid(y + dy, x + dx).is_valid()) {\n                ret.emplace_back(y\
+    \ x);\n            }\n        }\n        return ret;\n    }\n    static grid from(int\
+    \ i) {\n        return grid(i / (_max_x - _min_x + 1) + _min_y,\n            \
+    \        i % (_max_x - _min_x + 1) + _min_x);\n    }\n    bool is_valid() {\n\
+    \        return _min_y <= y && y <= _max_y && _min_x <= x && x <= _max_x;\n  \
+    \  }\n    std::vector<grid> neighbors() {\n        std::vector<grid> ret;\n  \
+    \      for (auto [dy, dx] : grid::delta) {\n            if (grid(y + dy, x + dx).is_valid())\
+    \ {\n                ret.emplace_back(y + dy, x + dx);\n            }\n      \
+    \  }\n        return ret;\n    }\n    std::vector<grid> neighbors_8() {\n    \
+    \    std::vector<grid> ret;\n        for (auto [dy, dx] : grid::delta_8) {\n \
+    \           if (grid(y + dy, x + dx).is_valid()) {\n                ret.emplace_back(y\
     \ + dy, x + dx);\n            }\n        }\n        return ret;\n    }\n    operator\
     \ int() const {\n        return (y - _min_y) * (_max_x - _min_x + 1) + (x - _min_x);\n\
     \    }\n\nprivate:\n    static inline int _min_y, _min_x, _max_y, _max_x;\n  \
@@ -47,7 +49,9 @@ data:
     \ _max_x = max_x;\n    }\n    static std::vector<grid> grids() {\n        std::vector<grid>\
     \ ret;\n        for (int y = _min_y; y <= _max_y; y++) {\n            for (int\
     \ x = _min_x; x <= _max_x; x++) {\n                ret.emplace_back(y, x);\n \
-    \           }\n        }\n        return ret;\n    }\n    bool is_valid() {\n\
+    \           }\n        }\n        return ret;\n    }\n    static grid from(int\
+    \ i) {\n        return grid(i / (_max_x - _min_x + 1) + _min_y,\n            \
+    \        i % (_max_x - _min_x + 1) + _min_x);\n    }\n    bool is_valid() {\n\
     \        return _min_y <= y && y <= _max_y && _min_x <= x && x <= _max_x;\n  \
     \  }\n    std::vector<grid> neighbors() {\n        std::vector<grid> ret;\n  \
     \      for (auto [dy, dx] : grid::delta) {\n            if (grid(y + dy, x + dx).is_valid())\
@@ -66,7 +70,7 @@ data:
   isVerificationFile: false
   path: graph/grid.hpp
   requiredBy: []
-  timestamp: '2023-01-18 08:29:28+09:00'
+  timestamp: '2023-01-18 16:13:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/0558.test.cpp
