@@ -30,6 +30,9 @@ data:
       path: datastructure/plus_minus_one_range_minimum.hpp
       title: datastructure/plus_minus_one_range_minimum.hpp
     - icon: ':heavy_check_mark:'
+      path: datastructure/range_map.hpp
+      title: Range Map
+    - icon: ':heavy_check_mark:'
       path: datastructure/range_set.hpp
       title: Range Set
     - icon: ':heavy_check_mark:'
