@@ -125,8 +125,8 @@ data:
   timestamp: '2023-01-19 19:46:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1601.test.cpp
   - test/aoj/2880.test.cpp
+  - test/yukicoder/1601.test.cpp
 documentation_of: datastructure/range_set.hpp
 layout: document
 title: Range Set

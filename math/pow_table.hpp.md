@@ -46,8 +46,8 @@ data:
   isVerificationFile: false
   path: math/pow_table.hpp
   requiredBy:
-  - string/rolling_hash.hpp
   - string/range_update_range_hash.hpp
+  - string/rolling_hash.hpp
   timestamp: '2022-09-10 18:25:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

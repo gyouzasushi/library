@@ -59,8 +59,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1160.test.cpp
-  - test/library-checker/manhattanmst.test.cpp
   - test/library-checker/unionfind.test.cpp
+  - test/library-checker/manhattanmst.test.cpp
 documentation_of: datastructure/unionfind.hpp
 layout: document
 redirect_from:

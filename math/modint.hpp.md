@@ -454,13 +454,13 @@ data:
   timestamp: '2023-01-10 16:57:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library-checker/range_affine_point_get.test.cpp
-  - test/library-checker/chromatic_number.test.cpp
-  - test/library-checker/point_set_range_composite.test.cpp
   - test/library-checker/bitwise_and_convolution.test.cpp
   - test/library-checker/convolution_mod.test.cpp
-  - test/library-checker/range_affine_range_sum.test.cpp
+  - test/library-checker/point_set_range_composite.test.cpp
   - test/library-checker/bitwise_or_convolution.test.cpp
+  - test/library-checker/range_affine_point_get.test.cpp
+  - test/library-checker/chromatic_number.test.cpp
+  - test/library-checker/range_affine_range_sum.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint

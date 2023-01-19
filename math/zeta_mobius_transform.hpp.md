@@ -57,8 +57,8 @@ data:
   isVerificationFile: false
   path: math/zeta_mobius_transform.hpp
   requiredBy:
-  - math/bitwise_and_convolution.hpp
   - math/bitwise_or_convolution.hpp
+  - math/bitwise_and_convolution.hpp
   timestamp: '2022-09-17 18:19:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
