@@ -27,7 +27,7 @@ int main() {
             st.insert(l, r);
         } else {
             if (l < r) {
-                ans[id - m] = st.is_covered(l, r);
+                ans[id - m] = st.contains(l, r).has_value();
             } else {
                 ans[id - m] = true;
             }
