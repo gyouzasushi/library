@@ -17,9 +17,7 @@ documentation_of: datastructure/range_map.hpp
 - `ranges()`: すべての区間とそれに対応する値 `(l, r, x)` を列挙する。
 
 ### 問題例
-ABC255 Ex - Range Harvest Query（[リンク](https://atcoder.jp/contests/abc255/tasks/abc255_h)）
-<details>
-<summary>コード</summary>
+ABC255 Ex - Range Harvest Query（[問題リンク](https://atcoder.jp/contests/abc255/tasks/abc255_h)）
 
 ```cpp
 #include <iostream>
@@ -49,16 +47,12 @@ int main() {
     }
 }
 ```
-</details>
 <br>
 
-第六回PAST M - 等しい数（[リンク](https://atcoder.jp/contests/past202104-open/tasks/past202104_m)）
-<details>
-<summary>コード</summary>
+第六回PAST M - 等しい数（[問題リンク](https://atcoder.jp/contests/past202104-open/tasks/past202104_m)）
 
 ```cpp
 #include <iostream>
-
 #include "datastructure/range_map.hpp"
 int main() {
     int n;
@@ -91,4 +85,3 @@ int main() {
     }
 }
 ```
-</details>
