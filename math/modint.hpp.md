@@ -8,7 +8,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/convolution.hpp
     title: convolution
+  - icon: ':heavy_check_mark:'
+    path: string/wildcard_matching.hpp
+    title: Wildcard Matching
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/0378.test.cpp
+    title: test/aoj/0378.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/bitwise_and_convolution.test.cpp
     title: test/library-checker/bitwise_and_convolution.test.cpp
@@ -30,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/range_affine_range_sum.test.cpp
     title: test/library-checker/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2231.test.cpp
+    title: test/yukicoder/2231.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -449,18 +458,21 @@ data:
   isVerificationFile: false
   path: math/modint.hpp
   requiredBy:
-  - graph/chromatic_number.hpp
   - math/convolution.hpp
+  - graph/chromatic_number.hpp
+  - string/wildcard_matching.hpp
   timestamp: '2023-01-10 16:57:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library-checker/bitwise_and_convolution.test.cpp
+  - test/yukicoder/2231.test.cpp
   - test/library-checker/convolution_mod.test.cpp
-  - test/library-checker/point_set_range_composite.test.cpp
-  - test/library-checker/bitwise_or_convolution.test.cpp
   - test/library-checker/range_affine_point_get.test.cpp
   - test/library-checker/chromatic_number.test.cpp
+  - test/library-checker/bitwise_or_convolution.test.cpp
+  - test/library-checker/bitwise_and_convolution.test.cpp
+  - test/library-checker/point_set_range_composite.test.cpp
   - test/library-checker/range_affine_range_sum.test.cpp
+  - test/aoj/0378.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint

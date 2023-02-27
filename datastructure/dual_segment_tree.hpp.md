@@ -63,9 +63,9 @@ data:
   timestamp: '2022-09-12 17:58:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library-checker/range_affine_point_get.test.cpp
   - test/aoj/DSL_2_D.test.cpp
   - test/aoj/DSL_2_E.test.cpp
-  - test/library-checker/range_affine_point_get.test.cpp
 documentation_of: datastructure/dual_segment_tree.hpp
 layout: document
 title: Dual Segment Tree

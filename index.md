@@ -138,12 +138,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: Rolling-Hash
+    - icon: ':heavy_check_mark:'
+      path: string/wildcard_matching.hpp
+      title: Wildcard Matching
   verificationCategories:
   - name: test/aoj
     pages:
     - icon: ':heavy_check_mark:'
       path: test/aoj/0355.test.cpp
       title: test/aoj/0355.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/0378.test.cpp
+      title: test/aoj/0378.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/0558.test.cpp
       title: test/aoj/0558.test.cpp
@@ -331,5 +337,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1601.test.cpp
       title: test/yukicoder/1601.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2231.test.cpp
+      title: test/yukicoder/2231.test.cpp
 layout: toppage
 ---

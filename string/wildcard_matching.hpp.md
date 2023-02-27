@@ -2,19 +2,16 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/convolution.hpp
+    title: convolution
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: string/wildcard_matching.hpp
-    title: Wildcard Matching
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0378.test.cpp
     title: test/aoj/0378.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library-checker/convolution_mod.test.cpp
-    title: test/library-checker/convolution_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
@@ -316,116 +313,58 @@ data:
     \         c1[i] - internal::safe_mod((long long)(x), (long long)(MOD1));\n   \
     \     if (diff < 0) diff += MOD1;\n        static constexpr unsigned long long\
     \ offset[5] = {\n            0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n        x\
-    \ -= offset[diff % 5];\n        c[i] = x;\n    }\n\n    return c;\n}\n"
-  code: "#pragma once\n#include <cassert>\n#include <type_traits>\n#include <vector>\n\
-    \n#include \"modint.hpp\"\nnamespace internal {\n\ntemplate <class mint, internal::is_static_modint_t<mint>*\
-    \ = nullptr>\nvoid butterfly(std::vector<mint>& a) {\n    static constexpr int\
-    \ g = internal::primitive_root<mint::mod()>;\n    int n = int(a.size());\n   \
-    \ int h = internal::ceil_pow2(n);\n\n    static bool first = true;\n    static\
-    \ mint sum_e[30];  // sum_e[i] = ies[0] * ... * ies[i - 1] * es[i]\n    if (first)\
-    \ {\n        first = false;\n        mint es[30], ies[30];  // es[i]^(2^(2+i))\
-    \ == 1\n        int cnt2 = internal::bsf(mint::mod() - 1);\n        mint e = mint(g).pow((mint::mod()\
-    \ - 1) >> cnt2), ie = e.inv();\n        for (int i = cnt2; i >= 2; i--) {\n  \
-    \          // e^(2^i) == 1\n            es[i - 2] = e;\n            ies[i - 2]\
-    \ = ie;\n            e *= e;\n            ie *= ie;\n        }\n        mint now\
-    \ = 1;\n        for (int i = 0; i < cnt2 - 2; i++) {\n            sum_e[i] = es[i]\
-    \ * now;\n            now *= ies[i];\n        }\n    }\n    for (int ph = 1; ph\
-    \ <= h; ph++) {\n        int w = 1 << (ph - 1), p = 1 << (h - ph);\n        mint\
-    \ now = 1;\n        for (int s = 0; s < w; s++) {\n            int offset = s\
-    \ << (h - ph + 1);\n            for (int i = 0; i < p; i++) {\n              \
-    \  auto l = a[i + offset];\n                auto r = a[i + offset + p] * now;\n\
-    \                a[i + offset] = l + r;\n                a[i + offset + p] = l\
-    \ - r;\n            }\n            now *= sum_e[internal::bsf(~(unsigned int)(s))];\n\
-    \        }\n    }\n}\n\ntemplate <class mint, internal::is_static_modint_t<mint>*\
-    \ = nullptr>\nvoid butterfly_inv(std::vector<mint>& a) {\n    static constexpr\
-    \ int g = internal::primitive_root<mint::mod()>;\n    int n = int(a.size());\n\
-    \    int h = internal::ceil_pow2(n);\n\n    static bool first = true;\n    static\
-    \ mint sum_ie[30];  // sum_ie[i] = es[0] * ... * es[i - 1] * ies[i]\n    if (first)\
-    \ {\n        first = false;\n        mint es[30], ies[30];  // es[i]^(2^(2+i))\
-    \ == 1\n        int cnt2 = internal::bsf(mint::mod() - 1);\n        mint e = mint(g).pow((mint::mod()\
-    \ - 1) >> cnt2), ie = e.inv();\n        for (int i = cnt2; i >= 2; i--) {\n  \
-    \          // e^(2^i) == 1\n            es[i - 2] = e;\n            ies[i - 2]\
-    \ = ie;\n            e *= e;\n            ie *= ie;\n        }\n        mint now\
-    \ = 1;\n        for (int i = 0; i < cnt2 - 2; i++) {\n            sum_ie[i] =\
-    \ ies[i] * now;\n            now *= es[i];\n        }\n    }\n\n    for (int ph\
-    \ = h; ph >= 1; ph--) {\n        int w = 1 << (ph - 1), p = 1 << (h - ph);\n \
-    \       mint inow = 1;\n        for (int s = 0; s < w; s++) {\n            int\
-    \ offset = s << (h - ph + 1);\n            for (int i = 0; i < p; i++) {\n   \
-    \             auto l = a[i + offset];\n                auto r = a[i + offset +\
-    \ p];\n                a[i + offset] = l + r;\n                a[i + offset +\
-    \ p] =\n                    (unsigned long long)(mint::mod() + l.val() - r.val())\
-    \ *\n                    inow.val();\n            }\n            inow *= sum_ie[internal::bsf(~(unsigned\
-    \ int)(s))];\n        }\n    }\n}\n\n}  // namespace internal\n\ntemplate <class\
-    \ mint, internal::is_static_modint_t<mint>* = nullptr>\nstd::vector<mint> convolution(std::vector<mint>\
-    \ a, std::vector<mint> b) {\n    int n = int(a.size()), m = int(b.size());\n \
-    \   if (!n || !m) return {};\n    if (std::min(n, m) <= 60) {\n        if (n <\
-    \ m) {\n            std::swap(n, m);\n            std::swap(a, b);\n        }\n\
-    \        std::vector<mint> ans(n + m - 1);\n        for (int i = 0; i < n; i++)\
-    \ {\n            for (int j = 0; j < m; j++) {\n                ans[i + j] +=\
-    \ a[i] * b[j];\n            }\n        }\n        return ans;\n    }\n    int\
-    \ z = 1 << internal::ceil_pow2(n + m - 1);\n    a.resize(z);\n    internal::butterfly(a);\n\
-    \    b.resize(z);\n    internal::butterfly(b);\n    for (int i = 0; i < z; i++)\
-    \ {\n        a[i] *= b[i];\n    }\n    internal::butterfly_inv(a);\n    a.resize(n\
-    \ + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i < n + m - 1;\
-    \ i++) a[i] *= iz;\n    return a;\n}\n\ntemplate <unsigned int mod = 998244353,\
-    \ class T,\n          std::enable_if_t<internal::is_integral<T>::value>* = nullptr>\n\
-    std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {\n\
-    \    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return {};\n\
-    \n    using mint = static_modint<mod>;\n    std::vector<mint> a2(n), b2(m);\n\
-    \    for (int i = 0; i < n; i++) {\n        a2[i] = mint(a[i]);\n    }\n    for\
-    \ (int i = 0; i < m; i++) {\n        b2[i] = mint(b[i]);\n    }\n    auto c2 =\
-    \ convolution(move(a2), move(b2));\n    std::vector<T> c(n + m - 1);\n    for\
-    \ (int i = 0; i < n + m - 1; i++) {\n        c[i] = c2[i].val();\n    }\n    return\
-    \ c;\n}\n\nstd::vector<long long> convolution_ll(const std::vector<long long>&\
-    \ a,\n                                      const std::vector<long long>& b) {\n\
-    \    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return {};\n\
-    \n    static constexpr unsigned long long MOD1 = 754974721;  // 2^24\n    static\
-    \ constexpr unsigned long long MOD2 = 167772161;  // 2^25\n    static constexpr\
-    \ unsigned long long MOD3 = 469762049;  // 2^26\n    static constexpr unsigned\
-    \ long long M2M3 = MOD2 * MOD3;\n    static constexpr unsigned long long M1M3\
-    \ = MOD1 * MOD3;\n    static constexpr unsigned long long M1M2 = MOD1 * MOD2;\n\
-    \    static constexpr unsigned long long M1M2M3 = MOD1 * MOD2 * MOD3;\n\n    static\
-    \ constexpr unsigned long long i1 =\n        internal::inv_gcd(MOD2 * MOD3, MOD1).second;\n\
-    \    static constexpr unsigned long long i2 =\n        internal::inv_gcd(MOD1\
-    \ * MOD3, MOD2).second;\n    static constexpr unsigned long long i3 =\n      \
-    \  internal::inv_gcd(MOD1 * MOD2, MOD3).second;\n\n    auto c1 = convolution<MOD1>(a,\
-    \ b);\n    auto c2 = convolution<MOD2>(a, b);\n    auto c3 = convolution<MOD3>(a,\
-    \ b);\n\n    std::vector<long long> c(n + m - 1);\n    for (int i = 0; i < n +\
-    \ m - 1; i++) {\n        unsigned long long x = 0;\n        x += (c1[i] * i1)\
-    \ % MOD1 * M2M3;\n        x += (c2[i] * i2) % MOD2 * M1M3;\n        x += (c3[i]\
-    \ * i3) % MOD3 * M1M2;\n        // B = 2^63, -B <= x, r(real value) < B\n    \
-    \    // (x, x - M, x - 2M, or x - 3M) = r (mod 2B)\n        // r = c1[i] (mod\
-    \ MOD1)\n        // focus on MOD1\n        // r = x, x - M', x - 2M', x - 3M'\
-    \ (M' = M % 2^64) (mod 2B)\n        // r = x,\n        //     x - M' + (0 or 2B),\n\
-    \        //     x - 2M' + (0, 2B or 4B),\n        //     x - 3M' + (0, 2B, 4B\
-    \ or 6B) (without mod!)\n        // (r - x) = 0, (0)\n        //           - M'\
-    \ + (0 or 2B), (1)\n        //           -2M' + (0 or 2B or 4B), (2)\n       \
-    \ //           -3M' + (0 or 2B or 4B or 6B) (3) (mod MOD1)\n        // we checked\
-    \ that\n        //   ((1) mod MOD1) mod 5 = 2\n        //   ((2) mod MOD1) mod\
-    \ 5 = 3\n        //   ((3) mod MOD1) mod 5 = 4\n        long long diff =\n   \
-    \         c1[i] - internal::safe_mod((long long)(x), (long long)(MOD1));\n   \
-    \     if (diff < 0) diff += MOD1;\n        static constexpr unsigned long long\
-    \ offset[5] = {\n            0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n        x\
-    \ -= offset[diff % 5];\n        c[i] = x;\n    }\n\n    return c;\n}"
+    \ -= offset[diff % 5];\n        c[i] = x;\n    }\n\n    return c;\n}\n#line 3\
+    \ \"string/wildcard_matching.hpp\"\nstd::vector<bool> wildcard_matching(std::string\
+    \ s, std::string t) {\n    int n = s.size(), m = t.size();\n    assert(m > 0);\n\
+    \    assert(n >= m);\n    std::vector<long long> a1(n), a2(n), a3(n);\n    for\
+    \ (int i = 0; i < n; i++) {\n        a1[i] = s[i] == '?' ? 0 : 1;\n        a2[i]\
+    \ = a1[i] * (s[i] == '?' ? 0 : (long long)s[i]);\n        a3[i] = a2[i] * (s[i]\
+    \ == '?' ? 0 : (long long)s[i]);\n    }\n    std::vector<long long> b1(m), b2(m),\
+    \ b3(m);\n    for (int i = 0; i < m; i++) {\n        b1[i] = t[i] == '?' ? 0 :\
+    \ 1;\n        b2[i] = b1[i] * (t[i] == '?' ? 0 : (long long)t[i]);\n        b3[i]\
+    \ = b2[i] * (t[i] == '?' ? 0 : (long long)t[i]);\n    }\n    auto f = [](const\
+    \ std::vector<long long> &a, std::vector<long long> &b) {\n        std::reverse(b.begin(),\
+    \ b.end());\n        std::vector<long long> c = convolution_ll(a, b);\n      \
+    \  return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n    };\n\
+    \    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long> c2 = f(a2,\
+    \ b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool> ret(n\
+    \ - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] = c1[i]\
+    \ - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n"
+  code: "#pragma once\n#include \"math/convolution.hpp\"\nstd::vector<bool> wildcard_matching(std::string\
+    \ s, std::string t) {\n    int n = s.size(), m = t.size();\n    assert(m > 0);\n\
+    \    assert(n >= m);\n    std::vector<long long> a1(n), a2(n), a3(n);\n    for\
+    \ (int i = 0; i < n; i++) {\n        a1[i] = s[i] == '?' ? 0 : 1;\n        a2[i]\
+    \ = a1[i] * (s[i] == '?' ? 0 : (long long)s[i]);\n        a3[i] = a2[i] * (s[i]\
+    \ == '?' ? 0 : (long long)s[i]);\n    }\n    std::vector<long long> b1(m), b2(m),\
+    \ b3(m);\n    for (int i = 0; i < m; i++) {\n        b1[i] = t[i] == '?' ? 0 :\
+    \ 1;\n        b2[i] = b1[i] * (t[i] == '?' ? 0 : (long long)t[i]);\n        b3[i]\
+    \ = b2[i] * (t[i] == '?' ? 0 : (long long)t[i]);\n    }\n    auto f = [](const\
+    \ std::vector<long long> &a, std::vector<long long> &b) {\n        std::reverse(b.begin(),\
+    \ b.end());\n        std::vector<long long> c = convolution_ll(a, b);\n      \
+    \  return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n    };\n\
+    \    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long> c2 = f(a2,\
+    \ b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool> ret(n\
+    \ - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] = c1[i]\
+    \ - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}"
   dependsOn:
+  - math/convolution.hpp
   - math/modint.hpp
   isVerificationFile: false
-  path: math/convolution.hpp
-  requiredBy:
-  - string/wildcard_matching.hpp
-  timestamp: '2023-01-10 16:57:46+09:00'
+  path: string/wildcard_matching.hpp
+  requiredBy: []
+  timestamp: '2023-02-27 21:57:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2231.test.cpp
-  - test/library-checker/convolution_mod.test.cpp
   - test/aoj/0378.test.cpp
-documentation_of: math/convolution.hpp
+documentation_of: string/wildcard_matching.hpp
 layout: document
-title: convolution
+title: Wildcard Matching
 ---
 
 ### 概要
-- ACL の convolution。
+- 2つのワイルドカード付き文字列をスライドさせて、各箇所について一致するかどうかを調べる。
+- 定数倍高速化の余地あり → 畳み込んだ後の配列の要素は $N\sigma^2$ 程度の大きさになるが、これが収まる限りで $\mathrm{mod}$ を小さくとることで `convolution` の回数を減らすことができる。
   
 ### 使い方
-- [ACL のドキュメント](https://atcoder.github.io/ac-library/production/document_ja/convolution.html)を参照。
+- `wildcard_matching(s, t)`:長さ $|s| - |t| + 1$ の配列 `ret` を返す。`ret[i]` は、'?' をワイルドカードとして `s.substr(i, t.size())` と `t` がマッチするかを表す。

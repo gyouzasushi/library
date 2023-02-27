@@ -97,8 +97,11 @@ data:
     \ x_2);\n        }\n    }\n    std::vector<std::tuple<T, T, U>> ranges() {\n \
     \       std::vector<std::tuple<T, T, U>> ret;\n        for (auto it = mp.begin();\
     \ it != mp.end(); it++) {\n            ret.emplace_back(it->first, it->second.first,\
-    \ it->second.second);\n        }\n        return ret;\n    }\n\nprotected:\n \
-    \   bool merge_adjacent_segment;\n    std::map<T, std::pair<T, U>> mp;\n};\n"
+    \ it->second.second);\n        }\n        return ret;\n    }\n    const U &operator[](std::pair<T,\
+    \ T> p) const {\n        std::optional<std::pair<T, T>> _p = contains(p);\n  \
+    \      assert(_p.has_value());\n        return mp[_p.first].second;\n    }\n\n\
+    protected:\n    bool merge_adjacent_segment;\n    std::map<T, std::pair<T, U>>\
+    \ mp;\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <map>\n\
     #include <optional>\n#include <vector>\ntemplate <typename T, typename U>\nstruct\
     \ range_map {\npublic:\n    range_map(bool merge_adjacent_segment = true)\n  \
@@ -179,18 +182,21 @@ data:
     \ x_2);\n        }\n    }\n    std::vector<std::tuple<T, T, U>> ranges() {\n \
     \       std::vector<std::tuple<T, T, U>> ret;\n        for (auto it = mp.begin();\
     \ it != mp.end(); it++) {\n            ret.emplace_back(it->first, it->second.first,\
-    \ it->second.second);\n        }\n        return ret;\n    }\n\nprotected:\n \
-    \   bool merge_adjacent_segment;\n    std::map<T, std::pair<T, U>> mp;\n};\n"
+    \ it->second.second);\n        }\n        return ret;\n    }\n    const U &operator[](std::pair<T,\
+    \ T> p) const {\n        std::optional<std::pair<T, T>> _p = contains(p);\n  \
+    \      assert(_p.has_value());\n        return mp[_p.first].second;\n    }\n\n\
+    protected:\n    bool merge_adjacent_segment;\n    std::map<T, std::pair<T, U>>\
+    \ mp;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: datastructure/range_map.hpp
   requiredBy:
   - datastructure/range_set.hpp
-  timestamp: '2023-01-19 19:46:21+09:00'
+  timestamp: '2023-02-27 21:57:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2880.test.cpp
   - test/yukicoder/1601.test.cpp
+  - test/aoj/2880.test.cpp
 documentation_of: datastructure/range_map.hpp
 layout: document
 title: Range Map

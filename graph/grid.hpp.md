@@ -73,8 +73,8 @@ data:
   timestamp: '2023-01-18 16:13:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/0558.test.cpp
   - test/aoj/1160.test.cpp
+  - test/aoj/0558.test.cpp
 documentation_of: graph/grid.hpp
 layout: document
 title: "\u30B0\u30EA\u30C3\u30C9"

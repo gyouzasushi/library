@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/zalgorithm_rolling_hash.test.cpp
     title: test/library-checker/zalgorithm_rolling_hash.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2231.test.cpp
+    title: test/yukicoder/2231.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -186,9 +189,10 @@ data:
   timestamp: '2022-09-11 05:20:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/2231.test.cpp
+  - test/library-checker/zalgorithm_rolling_hash.test.cpp
   - test/library-checker/suffix_array_rolling_hash.test.cpp
   - test/library-checker/enumerate_palindromes.test.cpp
-  - test/library-checker/zalgorithm_rolling_hash.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document
 title: Rolling-Hash

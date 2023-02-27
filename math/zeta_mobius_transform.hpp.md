@@ -57,13 +57,13 @@ data:
   isVerificationFile: false
   path: math/zeta_mobius_transform.hpp
   requiredBy:
-  - math/bitwise_or_convolution.hpp
   - math/bitwise_and_convolution.hpp
+  - math/bitwise_or_convolution.hpp
   timestamp: '2022-09-17 18:19:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library-checker/bitwise_and_convolution.test.cpp
   - test/library-checker/bitwise_or_convolution.test.cpp
+  - test/library-checker/bitwise_and_convolution.test.cpp
 documentation_of: math/zeta_mobius_transform.hpp
 layout: document
 title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\
