@@ -1,3 +1,5 @@
 .DS_Store
 .vscode/
 *.out
+graph/heavy_light_decomposition.hpp
+test/library-checker/vertex_add_path_sum.test.cpp

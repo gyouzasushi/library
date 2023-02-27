@@ -196,6 +196,11 @@ public:
         }
         return ret;
     }
+    const U &operator[](std::pair<T, T> p) const {
+        std::optional<std::pair<T, T>> _p = contains(p);
+        assert(_p.has_value());
+        return mp[_p.first].second;
+    }
 
 protected:
     bool merge_adjacent_segment;
