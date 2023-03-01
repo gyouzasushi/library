@@ -329,7 +329,38 @@ data:
     \    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long> c2 = f(a2,\
     \ b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool> ret(n\
     \ - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] = c1[i]\
-    \ - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n"
+    \ - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n\nstd::vector<bool> wildcard_matching_lower(std::string\
+    \ s, std::string t) {\n    int n = s.size(), m = t.size();\n    assert(m > 0);\n\
+    \    assert(n >= m);\n    std::vector<long long> a1(n), a2(n), a3(n);\n    for\
+    \ (int i = 0; i < n; i++) {\n        a1[i] = s[i] == '?' ? 0 : 1;\n        a2[i]\
+    \ = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i] - 'a' + 1));\n        a3[i] =\
+    \ a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] - 'a' + 1));\n    }\n    std::vector<long\
+    \ long> b1(m), b2(m), b3(m);\n    for (int i = 0; i < m; i++) {\n        b1[i]\
+    \ = t[i] == '?' ? 0 : 1;\n        b2[i] = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i]\
+    \ - 'a' + 1));\n        b3[i] = b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] -\
+    \ 'a' + 1));\n    }\n    auto f = [](const std::vector<long long> &a, std::vector<long\
+    \ long> &b) {\n        std::reverse(b.begin(), b.end());\n        std::vector\
+    \ c = convolution(a, b);\n        return std::vector<long long>(c.begin() + b.size()\
+    \ - 1, c.end());\n    };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long\
+    \ long> c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
+    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
+    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n\nstd::vector<bool>\
+    \ wildcard_matching_upper(std::string s, std::string t) {\n    int n = s.size(),\
+    \ m = t.size();\n    assert(m > 0);\n    assert(n >= m);\n    std::vector<long\
+    \ long> a1(n), a2(n), a3(n);\n    for (int i = 0; i < n; i++) {\n        a1[i]\
+    \ = s[i] == '?' ? 0 : 1;\n        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i]\
+    \ - 'A' + 1));\n        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] -\
+    \ 'A' + 1));\n    }\n    std::vector<long long> b1(m), b2(m), b3(m);\n    for\
+    \ (int i = 0; i < m; i++) {\n        b1[i] = t[i] == '?' ? 0 : 1;\n        b2[i]\
+    \ = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));\n        b3[i] =\
+    \ b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));\n    }\n    auto f\
+    \ = [](const std::vector<long long> &a, std::vector<long long> &b) {\n       \
+    \ std::reverse(b.begin(), b.end());\n        std::vector c = convolution(a, b);\n\
+    \        return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n \
+    \   };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
+    \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
+    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
+    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n"
   code: "#pragma once\n#include \"math/convolution.hpp\"\nstd::vector<bool> wildcard_matching(std::string\
     \ s, std::string t) {\n    int n = s.size(), m = t.size();\n    assert(m > 0);\n\
     \    assert(n >= m);\n    std::vector<long long> a1(n), a2(n), a3(n);\n    for\
@@ -345,14 +376,45 @@ data:
     \    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long> c2 = f(a2,\
     \ b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool> ret(n\
     \ - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] = c1[i]\
-    \ - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}"
+    \ - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n\nstd::vector<bool> wildcard_matching_lower(std::string\
+    \ s, std::string t) {\n    int n = s.size(), m = t.size();\n    assert(m > 0);\n\
+    \    assert(n >= m);\n    std::vector<long long> a1(n), a2(n), a3(n);\n    for\
+    \ (int i = 0; i < n; i++) {\n        a1[i] = s[i] == '?' ? 0 : 1;\n        a2[i]\
+    \ = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i] - 'a' + 1));\n        a3[i] =\
+    \ a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] - 'a' + 1));\n    }\n    std::vector<long\
+    \ long> b1(m), b2(m), b3(m);\n    for (int i = 0; i < m; i++) {\n        b1[i]\
+    \ = t[i] == '?' ? 0 : 1;\n        b2[i] = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i]\
+    \ - 'a' + 1));\n        b3[i] = b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] -\
+    \ 'a' + 1));\n    }\n    auto f = [](const std::vector<long long> &a, std::vector<long\
+    \ long> &b) {\n        std::reverse(b.begin(), b.end());\n        std::vector\
+    \ c = convolution(a, b);\n        return std::vector<long long>(c.begin() + b.size()\
+    \ - 1, c.end());\n    };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long\
+    \ long> c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
+    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
+    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n\nstd::vector<bool>\
+    \ wildcard_matching_upper(std::string s, std::string t) {\n    int n = s.size(),\
+    \ m = t.size();\n    assert(m > 0);\n    assert(n >= m);\n    std::vector<long\
+    \ long> a1(n), a2(n), a3(n);\n    for (int i = 0; i < n; i++) {\n        a1[i]\
+    \ = s[i] == '?' ? 0 : 1;\n        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i]\
+    \ - 'A' + 1));\n        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] -\
+    \ 'A' + 1));\n    }\n    std::vector<long long> b1(m), b2(m), b3(m);\n    for\
+    \ (int i = 0; i < m; i++) {\n        b1[i] = t[i] == '?' ? 0 : 1;\n        b2[i]\
+    \ = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));\n        b3[i] =\
+    \ b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));\n    }\n    auto f\
+    \ = [](const std::vector<long long> &a, std::vector<long long> &b) {\n       \
+    \ std::reverse(b.begin(), b.end());\n        std::vector c = convolution(a, b);\n\
+    \        return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n \
+    \   };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
+    \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
+    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
+    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}"
   dependsOn:
   - math/convolution.hpp
   - math/modint.hpp
   isVerificationFile: false
   path: string/wildcard_matching.hpp
   requiredBy: []
-  timestamp: '2023-02-27 21:57:14+09:00'
+  timestamp: '2023-03-02 07:12:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2231.test.cpp
@@ -367,4 +429,4 @@ title: Wildcard Matching
 - 定数倍高速化の余地あり → 畳み込んだ後の配列の要素は $N\sigma^2$ 程度の大きさになるが、これが収まる限りで $\mathrm{mod}$ を小さくとることで `convolution` の回数を減らすことができる。
   
 ### 使い方
-- `wildcard_matching(s, t)`:長さ $|s| - |t| + 1$ の配列 `ret` を返す。`ret[i]` は、'?' をワイルドカードとして `s.substr(i, t.size())` と `t` がマッチするかを表す。
+- `wildcard_matching(s, t)`:長さ $\|s\| - \|t\| + 1$ の配列 `ret` を返す。`ret[i]` は、'?' をワイルドカードとして `s.substr(i, t.size())` と `t` がマッチするかを表す。
