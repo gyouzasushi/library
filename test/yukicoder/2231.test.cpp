@@ -7,7 +7,7 @@ void solve() {
     int n, m;
     std::string s, t;
     std::cin >> n >> m >> s >> t;
-    std::vector<bool> ok = wildcard_matching(s, t);
+    std::vector<bool> ok = wildcard_matching_lower(s, t);
     for (char &c : s) {
         if (c == '?') c = 'a';
     }
