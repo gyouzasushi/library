@@ -1,6 +1,6 @@
 #pragma once
-#include <random>
-
+#include <cmath>
+#include <numeric>
 long long modmul(long long x, long long y, long long mod) {
     using i128 = __int128_t;
     return (long long)(i128(x) * i128(y) % i128(mod));
@@ -15,15 +15,14 @@ long long modpow(long long a, long long n, long long mod) {
     return ret;
 }
 long long rho(long long n) {
-    std::random_device seed_gen;
-    std::mt19937_64 rnd(seed_gen());
+    long long z = 0;
     auto f = [&](long long x) -> long long {
-        long long ret = modmul(x, x, n) + 1;
+        long long ret = modmul(x, x, n) + z;
         if (ret == n) return 0;
         return ret;
     };
     while (true) {
-        long long x = std::uniform_int_distribution<long long>(0, 1000)(rnd);
+        long long x = ++z;
         long long y = f(x);
         while (true) {
             long long d = std::gcd(std::abs(x - y), n);
@@ -34,6 +33,7 @@ long long rho(long long n) {
         }
     }
 }
+#include <initializer_list>
 bool miller_rabin(long long n) {
     if (n == 1) return 0;
     long long d = n - 1, s = 0;
