@@ -11,7 +11,7 @@ int main() {
         std::cin >> x[i] >> y[i];
     }
 
-    UnionFind uf(n);
+    unionfind uf(n);
     long long sum = 0;
     std::vector<std::pair<int, int>> ans;
     for (auto [u, v, w] : manhattan_mst(x, y)) {
