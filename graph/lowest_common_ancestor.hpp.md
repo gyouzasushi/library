@@ -64,11 +64,11 @@ data:
     \ lookup_table;\n    std::vector<int> pattern, v;\n    const int INF = 1 << 30;\n\
     \    int argmin(int i, int j) {\n        if (i >= INF || j >= INF || v[i] == v[j])\
     \ return std::min(i, j);\n        return v[i] < v[j] ? i : j;\n    }\n};\n#line\
-    \ 6 \"graph/lowest_common_ancestor.hpp\"\nstruct LowestCommonAncestor {\npublic:\n\
-    \    LowestCommonAncestor() {\n    }\n    LowestCommonAncestor(int n, int root\
-    \ = 0)\n        : _n(n), _root(root), g(n), id(n), vs(2 * n - 1), dep(2 * n -\
-    \ 1) {\n    }\n    void add_edge(int from, int to) {\n        assert(0 <= from\
-    \ && from < _n);\n        assert(0 <= to && to < _n);\n        g[from].push_back(to);\n\
+    \ 6 \"graph/lowest_common_ancestor.hpp\"\nstruct lowest_common_ancestor {\npublic:\n\
+    \    lowest_common_ancestor() {\n    }\n    lowest_common_ancestor(int n, int\
+    \ root = 0)\n        : _n(n), _root(root), g(n), id(n), vs(2 * n - 1), dep(2 *\
+    \ n - 1) {\n    }\n    void add_edge(int from, int to) {\n        assert(0 <=\
+    \ from && from < _n);\n        assert(0 <= to && to < _n);\n        g[from].push_back(to);\n\
     \        g[to].push_back(from);\n    }\n    void build() {\n        int k = 0;\n\
     \        auto dfs = [&](auto dfs, int pos, int pre, int d) -> void {\n       \
     \     id[pos] = k;\n            vs[k] = pos;\n            dep[k++] = d;\n    \
@@ -84,8 +84,8 @@ data:
     \   int _n, _root;\n    std::vector<std::vector<int>> g;\n    std::vector<int>\
     \ id, vs, dep;\n    PlusMinusOneRMQ rmq;\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n\n#include \"../datastructure/plus_minus_one_range_minimum.hpp\"\
-    \nstruct LowestCommonAncestor {\npublic:\n    LowestCommonAncestor() {\n    }\n\
-    \    LowestCommonAncestor(int n, int root = 0)\n        : _n(n), _root(root),\
+    \nstruct lowest_common_ancestor {\npublic:\n    lowest_common_ancestor() {\n \
+    \   }\n    lowest_common_ancestor(int n, int root = 0)\n        : _n(n), _root(root),\
     \ g(n), id(n), vs(2 * n - 1), dep(2 * n - 1) {\n    }\n    void add_edge(int from,\
     \ int to) {\n        assert(0 <= from && from < _n);\n        assert(0 <= to &&\
     \ to < _n);\n        g[from].push_back(to);\n        g[to].push_back(from);\n\
@@ -108,7 +108,7 @@ data:
   isVerificationFile: false
   path: graph/lowest_common_ancestor.hpp
   requiredBy: []
-  timestamp: '2022-09-02 14:42:01+09:00'
+  timestamp: '2023-03-05 19:05:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/lca.test.cpp

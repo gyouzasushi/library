@@ -68,11 +68,11 @@ data:
     \ lookup_table;\n    std::vector<int> pattern, v;\n    const int INF = 1 << 30;\n\
     \    int argmin(int i, int j) {\n        if (i >= INF || j >= INF || v[i] == v[j])\
     \ return std::min(i, j);\n        return v[i] < v[j] ? i : j;\n    }\n};\n#line\
-    \ 6 \"graph/lowest_common_ancestor.hpp\"\nstruct LowestCommonAncestor {\npublic:\n\
-    \    LowestCommonAncestor() {\n    }\n    LowestCommonAncestor(int n, int root\
-    \ = 0)\n        : _n(n), _root(root), g(n), id(n), vs(2 * n - 1), dep(2 * n -\
-    \ 1) {\n    }\n    void add_edge(int from, int to) {\n        assert(0 <= from\
-    \ && from < _n);\n        assert(0 <= to && to < _n);\n        g[from].push_back(to);\n\
+    \ 6 \"graph/lowest_common_ancestor.hpp\"\nstruct lowest_common_ancestor {\npublic:\n\
+    \    lowest_common_ancestor() {\n    }\n    lowest_common_ancestor(int n, int\
+    \ root = 0)\n        : _n(n), _root(root), g(n), id(n), vs(2 * n - 1), dep(2 *\
+    \ n - 1) {\n    }\n    void add_edge(int from, int to) {\n        assert(0 <=\
+    \ from && from < _n);\n        assert(0 <= to && to < _n);\n        g[from].push_back(to);\n\
     \        g[to].push_back(from);\n    }\n    void build() {\n        int k = 0;\n\
     \        auto dfs = [&](auto dfs, int pos, int pre, int d) -> void {\n       \
     \     id[pos] = k;\n            vs[k] = pos;\n            dep[k++] = d;\n    \
@@ -87,15 +87,15 @@ data:
     \    return depth(u) + depth(v) - 2 * depth(get(u, v));\n    }\n\nprivate:\n \
     \   int _n, _root;\n    std::vector<std::vector<int>> g;\n    std::vector<int>\
     \ id, vs, dep;\n    PlusMinusOneRMQ rmq;\n};\n#line 5 \"test/library-checker/lca.test.cpp\"\
-    \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    LowestCommonAncestor\
+    \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    lowest_common_ancestor\
     \ lca(n);\n    for (int i = 1; i < n; i++) {\n        int p;\n        std::cin\
     \ >> p;\n        lca.add_edge(i, p);\n    }\n    lca.build();\n    while (q--)\
     \ {\n        int u, v;\n        std::cin >> u >> v;\n        std::cout << lca.get(u,\
     \ v) << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include <iostream>\n\
-    \n#include \"../../graph/lowest_common_ancestor.hpp\"\nint main() {\n    int n,\
-    \ q;\n    std::cin >> n >> q;\n    LowestCommonAncestor lca(n);\n    for (int\
-    \ i = 1; i < n; i++) {\n        int p;\n        std::cin >> p;\n        lca.add_edge(i,\
+    \n#include \"graph/lowest_common_ancestor.hpp\"\nint main() {\n    int n, q;\n\
+    \    std::cin >> n >> q;\n    lowest_common_ancestor lca(n);\n    for (int i =\
+    \ 1; i < n; i++) {\n        int p;\n        std::cin >> p;\n        lca.add_edge(i,\
     \ p);\n    }\n    lca.build();\n    while (q--) {\n        int u, v;\n       \
     \ std::cin >> u >> v;\n        std::cout << lca.get(u, v) << '\\n';\n    }\n}"
   dependsOn:
@@ -105,7 +105,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/lca.test.cpp
   requiredBy: []
-  timestamp: '2022-09-02 14:42:01+09:00'
+  timestamp: '2023-03-05 19:05:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/lca.test.cpp

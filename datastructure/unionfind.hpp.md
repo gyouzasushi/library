@@ -7,9 +7,6 @@ data:
     path: test/aoj/1160.test.cpp
     title: test/aoj/1160.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library-checker/manhattanmst.test.cpp
-    title: test/library-checker/manhattanmst.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library-checker/unionfind.test.cpp
     title: test/library-checker/unionfind.test.cpp
   _isVerificationFailed: false
@@ -18,7 +15,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/unionfind.hpp\"\n#include <algorithm>\n#include\
-    \ <vector>\nstruct UnionFind {\n    int n;\n    std::vector<int> data;\n    UnionFind(int\
+    \ <vector>\nstruct unionfind {\n    int n;\n    std::vector<int> data;\n    unionfind(int\
     \ _n) : n(_n), data(_n, -1) {\n    }\n    int root(int x) {\n        return (data[x]\
     \ < 0) ? x : data[x] = root(data[x]);\n    }\n    bool unite(int x, int y) {\n\
     \        x = root(x);\n        y = root(y);\n        if (x != y) {\n         \
@@ -34,8 +31,8 @@ data:
     \        }\n        ret.erase(std::remove_if(\n                      ret.begin(),\
     \ ret.end(),\n                      [&](const std::vector<int>& v) { return v.empty();\
     \ }),\n                  ret.end());\n        return ret;\n    }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\nstruct UnionFind {\n\
-    \    int n;\n    std::vector<int> data;\n    UnionFind(int _n) : n(_n), data(_n,\
+  code: "#pragma once\n#include <algorithm>\n#include <vector>\nstruct unionfind {\n\
+    \    int n;\n    std::vector<int> data;\n    unionfind(int _n) : n(_n), data(_n,\
     \ -1) {\n    }\n    int root(int x) {\n        return (data[x] < 0) ? x : data[x]\
     \ = root(data[x]);\n    }\n    bool unite(int x, int y) {\n        x = root(x);\n\
     \        y = root(y);\n        if (x != y) {\n            if (data[y] < data[x])\
@@ -55,11 +52,10 @@ data:
   isVerificationFile: false
   path: datastructure/unionfind.hpp
   requiredBy: []
-  timestamp: '2022-09-01 17:53:44+09:00'
+  timestamp: '2023-03-05 19:05:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/unionfind.test.cpp
-  - test/library-checker/manhattanmst.test.cpp
   - test/aoj/1160.test.cpp
 documentation_of: datastructure/unionfind.hpp
 layout: document

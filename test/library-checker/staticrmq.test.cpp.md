@@ -35,8 +35,8 @@ data:
     \  while (q--) {\n        int l, r;\n        std::cin >> l >> r;\n        std::cout\
     \ << s.prod(l, r) << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include <iostream>\n\
-    \n#include \"../../datastructure/sparse_table.hpp\"\nusing S = int;\nS op(S a,\
-    \ S b) {\n    return std::min(a, b);\n}\nint main() {\n    int n, q;\n    std::cin\
+    \n#include \"datastructure/sparse_table.hpp\"\nusing S = int;\nS op(S a, S b)\
+    \ {\n    return std::min(a, b);\n}\nint main() {\n    int n, q;\n    std::cin\
     \ >> n >> q;\n    std::vector<S> a(n);\n    for (int i = 0; i < n; i++) std::cin\
     \ >> a[i];\n    SparseTable<S, op> s(a);\n    while (q--) {\n        int l, r;\n\
     \        std::cin >> l >> r;\n        std::cout << s.prod(l, r) << '\\n';\n  \
@@ -46,7 +46,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2022-09-02 15:22:42+09:00'
+  timestamp: '2023-03-05 19:05:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/staticrmq.test.cpp

@@ -17,26 +17,26 @@ data:
   bundledCode: "#line 1 \"test/library-checker/segment_add_get_min.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n#include <iostream>\n\
     \n#line 1 \"datastructure/dynamic_li_chao_tree.hpp\"\n#include <algorithm>\n#include\
-    \ <limits>\nstruct DynamicLiChaoTree {\npublic:\n    DynamicLiChaoTree(long long\
-    \ min_index = -1'000'000'000,\n                      long long max_index = 1'000'000'000)\n\
-    \        : min_index(min_index), max_index(max_index + 1), root(nullptr) {\n \
-    \   }\n    void add_line(long long a, long long b) {\n        Line line = Line{a,\
-    \ b};\n        add_line(root, min_index, max_index, line);\n    }\n    void add_segment(long\
-    \ long a, long long b, long long l_lim,\n                     long long r_lim)\
-    \ {\n        Line line = Line{a, b};\n        add_segment(root, l_lim, r_lim,\
-    \ min_index, max_index, line);\n    }\n    long long get(long long x) {\n    \
-    \    node* t = root;\n        long long l = min_index, r = max_index;\n      \
-    \  long long ret = std::numeric_limits<long long>::max();\n        while (r -\
-    \ l > 0 && t != nullptr) {\n            long long m = (l + r) >> 1;\n        \
-    \    ret = std::min(ret, t->line.f(x));\n            if (x < m) {\n          \
-    \      r = m;\n                t = t->left;\n            } else {\n          \
-    \      l = m;\n                t = t->right;\n            }\n        }\n     \
-    \   return ret;\n    }\n\nprivate:\n    struct Line {\n        long long slope,\
-    \ intercept;\n        Line() : slope(0), intercept(std::numeric_limits<long long>::max())\
-    \ {\n        }\n        Line(long long a, long long b) : slope(a), intercept(b)\
-    \ {\n        }\n        long long f(long long x) {\n            return slope *\
-    \ x + intercept;\n        }\n    };\n    struct node {\n        Line line;\n \
-    \       node *left, *right;\n        node(Line line) : line(line), left(nullptr),\
+    \ <limits>\nstruct dynamic_li_chao_tree {\npublic:\n    dynamic_li_chao_tree(long\
+    \ long min_index = -1'000'000'000,\n                         long long max_index\
+    \ = 1'000'000'000)\n        : min_index(min_index), max_index(max_index + 1),\
+    \ root(nullptr) {\n    }\n    void add_line(long long a, long long b) {\n    \
+    \    Line line = Line{a, b};\n        add_line(root, min_index, max_index, line);\n\
+    \    }\n    void add_segment(long long a, long long b, long long l_lim,\n    \
+    \                 long long r_lim) {\n        Line line = Line{a, b};\n      \
+    \  add_segment(root, l_lim, r_lim, min_index, max_index, line);\n    }\n    long\
+    \ long get(long long x) {\n        node* t = root;\n        long long l = min_index,\
+    \ r = max_index;\n        long long ret = std::numeric_limits<long long>::max();\n\
+    \        while (r - l > 0 && t != nullptr) {\n            long long m = (l + r)\
+    \ >> 1;\n            ret = std::min(ret, t->line.f(x));\n            if (x < m)\
+    \ {\n                r = m;\n                t = t->left;\n            } else\
+    \ {\n                l = m;\n                t = t->right;\n            }\n  \
+    \      }\n        return ret;\n    }\n\nprivate:\n    struct Line {\n        long\
+    \ long slope, intercept;\n        Line() : slope(0), intercept(std::numeric_limits<long\
+    \ long>::max()) {\n        }\n        Line(long long a, long long b) : slope(a),\
+    \ intercept(b) {\n        }\n        long long f(long long x) {\n            return\
+    \ slope * x + intercept;\n        }\n    };\n    struct node {\n        Line line;\n\
+    \        node *left, *right;\n        node(Line line) : line(line), left(nullptr),\
     \ right(nullptr) {\n        }\n    };\n    const long long min_index, max_index;\n\
     \    node* root;\n    node* add_line(node*& t, long long l, long long r, Line\
     \ line) const {\n        if (l == r) return nullptr;\n        if (!t) {\n    \
@@ -56,11 +56,11 @@ data:
     \        t->left = add_segment(t->left, l_lim, r_lim, l, m, line);\n        t->right\
     \ = add_segment(t->right, l_lim, r_lim, m, r, line);\n        return t;\n    }\n\
     };\n#line 5 \"test/library-checker/segment_add_get_min.test.cpp\"\nint main()\
-    \ {\n    int n, q;\n    std::cin >> n >> q;\n    DynamicLiChaoTree lct;\n    while\
-    \ (n--) {\n        long long l, r, a, b;\n        std::cin >> l >> r >> a >> b;\n\
-    \        lct.add_segment(a, b, l, r);\n    }\n    while (q--) {\n        int t;\n\
-    \        std::cin >> t;\n        if (t == 0) {\n            long long l, r, a,\
-    \ b;\n            std::cin >> l >> r >> a >> b;\n            lct.add_segment(a,\
+    \ {\n    int n, q;\n    std::cin >> n >> q;\n    dynamic_li_chao_tree lct;\n \
+    \   while (n--) {\n        long long l, r, a, b;\n        std::cin >> l >> r >>\
+    \ a >> b;\n        lct.add_segment(a, b, l, r);\n    }\n    while (q--) {\n  \
+    \      int t;\n        std::cin >> t;\n        if (t == 0) {\n            long\
+    \ long l, r, a, b;\n            std::cin >> l >> r >> a >> b;\n            lct.add_segment(a,\
     \ b, l, r);\n        }\n        if (t == 1) {\n            long long p;\n    \
     \        std::cin >> p;\n            long long ans = lct.get(p);\n           \
     \ if (ans == std::numeric_limits<long long>::max()) {\n                std::cout\
@@ -68,7 +68,7 @@ data:
     \ << '\\n';\n            }\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n\
     #include <iostream>\n\n#include \"datastructure/dynamic_li_chao_tree.hpp\"\nint\
-    \ main() {\n    int n, q;\n    std::cin >> n >> q;\n    DynamicLiChaoTree lct;\n\
+    \ main() {\n    int n, q;\n    std::cin >> n >> q;\n    dynamic_li_chao_tree lct;\n\
     \    while (n--) {\n        long long l, r, a, b;\n        std::cin >> l >> r\
     \ >> a >> b;\n        lct.add_segment(a, b, l, r);\n    }\n    while (q--) {\n\
     \        int t;\n        std::cin >> t;\n        if (t == 0) {\n            long\
@@ -83,7 +83,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-09-13 19:30:13+09:00'
+  timestamp: '2023-03-05 19:05:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/segment_add_get_min.test.cpp

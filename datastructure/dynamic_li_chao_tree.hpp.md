@@ -15,8 +15,8 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"datastructure/dynamic_li_chao_tree.hpp\"\n#include <algorithm>\n\
-    #include <limits>\nstruct DynamicLiChaoTree {\npublic:\n    DynamicLiChaoTree(long\
-    \ long min_index = -1'000'000'000,\n                      long long max_index\
+    #include <limits>\nstruct dynamic_li_chao_tree {\npublic:\n    dynamic_li_chao_tree(long\
+    \ long min_index = -1'000'000'000,\n                         long long max_index\
     \ = 1'000'000'000)\n        : min_index(min_index), max_index(max_index + 1),\
     \ root(nullptr) {\n    }\n    void add_line(long long a, long long b) {\n    \
     \    Line line = Line{a, b};\n        add_line(root, min_index, max_index, line);\n\
@@ -54,9 +54,9 @@ data:
     \        t->left = add_segment(t->left, l_lim, r_lim, l, m, line);\n        t->right\
     \ = add_segment(t->right, l_lim, r_lim, m, r, line);\n        return t;\n    }\n\
     };\n"
-  code: "#include <algorithm>\n#include <limits>\nstruct DynamicLiChaoTree {\npublic:\n\
-    \    DynamicLiChaoTree(long long min_index = -1'000'000'000,\n               \
-    \       long long max_index = 1'000'000'000)\n        : min_index(min_index),\
+  code: "#include <algorithm>\n#include <limits>\nstruct dynamic_li_chao_tree {\n\
+    public:\n    dynamic_li_chao_tree(long long min_index = -1'000'000'000,\n    \
+    \                     long long max_index = 1'000'000'000)\n        : min_index(min_index),\
     \ max_index(max_index + 1), root(nullptr) {\n    }\n    void add_line(long long\
     \ a, long long b) {\n        Line line = Line{a, b};\n        add_line(root, min_index,\
     \ max_index, line);\n    }\n    void add_segment(long long a, long long b, long\
@@ -97,7 +97,7 @@ data:
   isVerificationFile: false
   path: datastructure/dynamic_li_chao_tree.hpp
   requiredBy: []
-  timestamp: '2022-09-13 19:30:13+09:00'
+  timestamp: '2023-03-05 19:05:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/line_add_get_min.test.cpp

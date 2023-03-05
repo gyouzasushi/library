@@ -60,20 +60,20 @@ data:
     \ * pows[i - 1];\n    }\n\nprivate:\n    mutable std::vector<mint> pows{1};\n\
     \    mint base;\n    static constexpr int mod = mint::mod;\n};\n#line 10 \"string/rolling_hash.hpp\"\
     \ntemplate <int base_num = 1, typename mint = modint2305843009213693951>\nstruct\
-    \ RollingHash {\npublic:\n    RollingHash() {\n    }\n    RollingHash(const std::vector<int>&\
-    \ a) : n(a.size()) {\n        for (int base_id = 0; base_id < base_num; base_id++)\
-    \ {\n            hashes[base_id].resize(n + 1);\n            hashes[base_id][0]\
-    \ = 0;\n            for (int i = 0; i < n; i++) {\n                hashes[base_id][i\
-    \ + 1] =\n                    hashes[base_id][i] * bases[base_id] + a[i];\n  \
-    \          }\n        }\n    }\n    template <typename Iterable>\n    static RollingHash\
-    \ from(const Iterable& s) {\n        std::vector<int> a;\n        for (auto&&\
-    \ e : s) a.push_back(int(e));\n        return RollingHash(a);\n    }\n    std::array<mint,\
-    \ base_num> operator()(int l, int r) {\n        assert(0 <= l && l <= r && r <=\
-    \ n);\n        std::array<mint, base_num> res;\n        for (int base_id = 0;\
-    \ base_id < base_num; base_id++) {\n            res[base_id] =\n             \
-    \   hashes[base_id][r] - hashes[base_id][l] * pows[base_id][r - l];\n        }\n\
-    \        return res;\n    }\n    static std::array<mint, base_num> concat(\n \
-    \       const std::array<mint, base_num>& h1,\n        const std::array<mint,\
+    \ rolling_hash {\npublic:\n    rolling_hash() {\n    }\n    rolling_hash(const\
+    \ std::vector<int>& a) : n(a.size()) {\n        for (int base_id = 0; base_id\
+    \ < base_num; base_id++) {\n            hashes[base_id].resize(n + 1);\n     \
+    \       hashes[base_id][0] = 0;\n            for (int i = 0; i < n; i++) {\n \
+    \               hashes[base_id][i + 1] =\n                    hashes[base_id][i]\
+    \ * bases[base_id] + a[i];\n            }\n        }\n    }\n    template <typename\
+    \ Iterable>\n    static rolling_hash from(const Iterable& s) {\n        std::vector<int>\
+    \ a;\n        for (auto&& e : s) a.push_back(int(e));\n        return rolling_hash(a);\n\
+    \    }\n    std::array<mint, base_num> operator()(int l, int r) {\n        assert(0\
+    \ <= l && l <= r && r <= n);\n        std::array<mint, base_num> res;\n      \
+    \  for (int base_id = 0; base_id < base_num; base_id++) {\n            res[base_id]\
+    \ =\n                hashes[base_id][r] - hashes[base_id][l] * pows[base_id][r\
+    \ - l];\n        }\n        return res;\n    }\n    static std::array<mint, base_num>\
+    \ concat(\n        const std::array<mint, base_num>& h1,\n        const std::array<mint,\
     \ base_num>& h2, int h2_len) {\n        std::array<mint, base_num> res;\n    \
     \    for (int base_id = 0; base_id < base_num; base_id++) {\n            res[base_id]\
     \ = h1[base_id] * pows[base_id][h2_len] + h2[base_id];\n        }\n        return\
@@ -87,21 +87,21 @@ data:
     \ + x == r1 && l2 + x == r2) return 0;\n        if (l1 + x != r1 && l2 + x ==\
     \ r2) return 1;\n        return (*this)(l1 + x, l1 + x + 1)[0].val() <\n     \
     \                  (*this)(l2 + x, l2 + x + 1)[0].val()\n                   ?\
-    \ -1\n                   : 1;\n    }\n    static int lcp(RollingHash<base_num,\
-    \ mint>& rh1, int l1, int r1,\n                   RollingHash<base_num, mint>&\
+    \ -1\n                   : 1;\n    }\n    static int lcp(rolling_hash<base_num,\
+    \ mint>& rh1, int l1, int r1,\n                   rolling_hash<base_num, mint>&\
     \ rh2, int l2, int r2) {\n        int len = std::min(r1 - l1, r2 - l2);\n    \
     \    int ok = 0, ng = len + 1;\n        while (ng - ok > 1) {\n            int\
     \ mid = (ok + ng) / 2;\n            bool f = rh1(l1, l1 + mid) == rh2(l2, l2 +\
     \ mid);\n            (f ? ok : ng) = mid;\n        }\n        return ok;\n   \
-    \ }\n    static int cmp(RollingHash<base_num, mint>& rh1, int l1, int r1,\n  \
-    \                 RollingHash<base_num, mint>& rh2, int l2, int r2) {\n      \
-    \  int x = std::min({lcp(rh1, l1, r1, rh2, l2, r2), r1 - l1, r2 - l2});\n    \
-    \    if (l1 + x == r1 && l2 + x != r2) return -1;\n        if (l1 + x == r1 &&\
-    \ l2 + x == r2) return 0;\n        if (l1 + x != r1 && l2 + x == r2) return 1;\n\
-    \        return rh1(l1 + x, l1 + x + 1)[0].val() <\n                       rh2(l2\
-    \ + x, l2 + x + 1)[0].val()\n                   ? -1\n                   : 1;\n\
-    \    }\n\nprivate:\n    static inline std::array<mint, base_num> gen_bases() {\n\
-    \        static std::mt19937_64 rng(std::random_device{}());\n        std::array<mint,\
+    \ }\n    static int cmp(rolling_hash<base_num, mint>& rh1, int l1, int r1,\n \
+    \                  rolling_hash<base_num, mint>& rh2, int l2, int r2) {\n    \
+    \    int x = std::min({lcp(rh1, l1, r1, rh2, l2, r2), r1 - l1, r2 - l2});\n  \
+    \      if (l1 + x == r1 && l2 + x != r2) return -1;\n        if (l1 + x == r1\
+    \ && l2 + x == r2) return 0;\n        if (l1 + x != r1 && l2 + x == r2) return\
+    \ 1;\n        return rh1(l1 + x, l1 + x + 1)[0].val() <\n                    \
+    \   rh2(l2 + x, l2 + x + 1)[0].val()\n                   ? -1\n              \
+    \     : 1;\n    }\n\nprivate:\n    static inline std::array<mint, base_num> gen_bases()\
+    \ {\n        static std::mt19937_64 rng(std::random_device{}());\n        std::array<mint,\
     \ base_num> bases;\n        for (int i = 0; i < base_num; i++) {\n           \
     \ while (true) {\n                uint64_t k = std::uniform_int_distribution<uint64_t>(\n\
     \                    1, mint::mod - 1)(rng);\n                if (std::gcd(k,\
@@ -117,13 +117,13 @@ data:
     \ base_num> hashes;\n    static constexpr uint64_t r = 37;\n    static constexpr\
     \ uint64_t A = 2147483647;\n};\n#line 5 \"test/library-checker/suffix_array_rolling_hash.test.cpp\"\
     \nint main() {\n    std::string s;\n    std::cin >> s;\n    int n = s.size();\n\
-    \    auto rh = RollingHash<>::from(s);\n    std::vector<int> a(n);\n    std::iota(a.begin(),\
+    \    auto rh = rolling_hash<>::from(s);\n    std::vector<int> a(n);\n    std::iota(a.begin(),\
     \ a.end(), 0);\n    std::sort(a.begin(), a.end(),\n              [&](int i, int\
     \ j) { return rh.cmp(i, n, j, n) < 0; });\n    for (int i = 0; i < n; i++) {\n\
     \        std::cout << a[i] << \" \\n\"[i == n - 1];\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\n#include\
     \ <iostream>\n\n#include \"string/rolling_hash.hpp\"\nint main() {\n    std::string\
-    \ s;\n    std::cin >> s;\n    int n = s.size();\n    auto rh = RollingHash<>::from(s);\n\
+    \ s;\n    std::cin >> s;\n    int n = s.size();\n    auto rh = rolling_hash<>::from(s);\n\
     \    std::vector<int> a(n);\n    std::iota(a.begin(), a.end(), 0);\n    std::sort(a.begin(),\
     \ a.end(),\n              [&](int i, int j) { return rh.cmp(i, n, j, n) < 0; });\n\
     \    for (int i = 0; i < n; i++) {\n        std::cout << a[i] << \" \\n\"[i ==\
@@ -135,7 +135,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/suffix_array_rolling_hash.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 05:20:27+09:00'
+  timestamp: '2023-03-05 19:05:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/suffix_array_rolling_hash.test.cpp

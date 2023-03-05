@@ -11,24 +11,24 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"datastructure/cumulative_sum.hpp\"\n#include<vector>\ntemplate\
-    \ <typename T>\nstruct CumulativeSum {\n    int n;\n    std::vector<T> cumsum;\n\
-    \    CumulativeSum() {\n    }\n    CumulativeSum(std::vector<T>& d) : n(d.size()),\
-    \ cumsum(n + 1) {\n        for (int i = 0; i < n; i++) {\n            cumsum[i\
-    \ + 1] = cumsum[i] + d[i];\n        }\n    }\n    T sum(int l, int r) {\n    \
-    \    // 0-indexed\n        // [l, r)\n        return cumsum[r] - cumsum[l];\n\
-    \    }\n};\n"
-  code: "#pragma once\n#include<vector>\ntemplate <typename T>\nstruct CumulativeSum\
-    \ {\n    int n;\n    std::vector<T> cumsum;\n    CumulativeSum() {\n    }\n  \
-    \  CumulativeSum(std::vector<T>& d) : n(d.size()), cumsum(n + 1) {\n        for\
-    \ (int i = 0; i < n; i++) {\n            cumsum[i + 1] = cumsum[i] + d[i];\n \
-    \       }\n    }\n    T sum(int l, int r) {\n        // 0-indexed\n        //\
+  bundledCode: "#line 2 \"datastructure/cumulative_sum.hpp\"\n#include <vector>\n\
+    template <typename T>\nstruct cumulative_sum {\n    int n;\n    std::vector<T>\
+    \ cumsum;\n    cumulative_sum() {\n    }\n    cumulative_sum(std::vector<T>& d)\
+    \ : n(d.size()), cumsum(n + 1) {\n        for (int i = 0; i < n; i++) {\n    \
+    \        cumsum[i + 1] = cumsum[i] + d[i];\n        }\n    }\n    T sum(int l,\
+    \ int r) {\n        // 0-indexed\n        // [l, r)\n        return cumsum[r]\
+    \ - cumsum[l];\n    }\n};\n"
+  code: "#pragma once\n#include <vector>\ntemplate <typename T>\nstruct cumulative_sum\
+    \ {\n    int n;\n    std::vector<T> cumsum;\n    cumulative_sum() {\n    }\n \
+    \   cumulative_sum(std::vector<T>& d) : n(d.size()), cumsum(n + 1) {\n       \
+    \ for (int i = 0; i < n; i++) {\n            cumsum[i + 1] = cumsum[i] + d[i];\n\
+    \        }\n    }\n    T sum(int l, int r) {\n        // 0-indexed\n        //\
     \ [l, r)\n        return cumsum[r] - cumsum[l];\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: datastructure/cumulative_sum.hpp
   requiredBy: []
-  timestamp: '2022-09-02 13:25:33+09:00'
+  timestamp: '2023-03-05 19:05:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/static_range_sum.test.cpp
