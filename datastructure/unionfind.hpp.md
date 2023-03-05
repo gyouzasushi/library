@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1160.test.cpp
     title: test/aoj/1160.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/manhattanmst.test.cpp
     title: test/library-checker/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/unionfind.test.cpp
     title: test/library-checker/unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/unionfind.hpp\"\n#include <algorithm>\n#include\
@@ -56,7 +56,7 @@ data:
   path: datastructure/unionfind.hpp
   requiredBy: []
   timestamp: '2023-03-05 19:05:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/unionfind.test.cpp
   - test/library-checker/manhattanmst.test.cpp

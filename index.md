@@ -17,7 +17,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/fenwicktree.hpp
       title: atcoder/fenwicktree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/internal_bit.hpp
       title: atcoder/internal_bit.hpp
     - icon: ':heavy_check_mark:'
@@ -53,7 +53,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/scc.hpp
       title: atcoder/scc.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/segtree.hpp
       title: atcoder/segtree.hpp
     - icon: ':warning:'
@@ -91,7 +91,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/static_range_minimum.hpp
       title: datastructure/static_range_minimum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/unionfind.hpp
       title: datastructure/unionfind.hpp
   - name: geometry
@@ -116,7 +116,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lowest_common_ancestor.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/manhattan_mst.hpp
       title: Manhattan MST
     - icon: ':warning:'
@@ -295,7 +295,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/line_add_get_min.test.cpp
       title: test/library-checker/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/manhattanmst.test.cpp
       title: test/library-checker/manhattanmst.test.cpp
     - icon: ':heavy_check_mark:'

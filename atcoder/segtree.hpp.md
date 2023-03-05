@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
     title: Manhattan MST
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/manhattanmst.test.cpp
     title: test/library-checker/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/point_set_range_composite.test.cpp
     title: test/library-checker/point_set_range_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"atcoder/segtree.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -118,7 +118,7 @@ data:
   requiredBy:
   - graph/manhattan_mst.hpp
   timestamp: '2023-03-05 19:19:13+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/manhattanmst.test.cpp
   - test/library-checker/point_set_range_composite.test.cpp

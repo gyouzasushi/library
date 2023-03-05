@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/segtree.hpp
     title: atcoder/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/unionfind.hpp
     title: datastructure/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
     title: Manhattan MST
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/manhattanmst
@@ -124,7 +124,7 @@ data:
     \ b) { return std::get<2>(a) < std::get<2>(b); });\n    return ret;\n}\n#line\
     \ 6 \"test/library-checker/manhattanmst.test.cpp\"\nint main() {\n    int n;\n\
     \    std::cin >> n;\n    std::vector<long long> x(n), y(n);\n    for (int i =\
-    \ 0; i < n; i++) {\n        std::cin >> x[i] >> y[i];\n    }\n\n    UnionFind\
+    \ 0; i < n; i++) {\n        std::cin >> x[i] >> y[i];\n    }\n\n    unionfind\
     \ uf(n);\n    long long sum = 0;\n    std::vector<std::pair<int, int>> ans;\n\
     \    for (auto [u, v, w] : manhattan_mst(x, y)) {\n        if (uf.unite(u, v))\
     \ {\n            sum += w;\n            ans.emplace_back(u, v);\n        }\n \
@@ -134,7 +134,7 @@ data:
     \ <iostream>\n\n#include \"datastructure/unionfind.hpp\"\n#include \"graph/manhattan_mst.hpp\"\
     \nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<long long> x(n),\
     \ y(n);\n    for (int i = 0; i < n; i++) {\n        std::cin >> x[i] >> y[i];\n\
-    \    }\n\n    UnionFind uf(n);\n    long long sum = 0;\n    std::vector<std::pair<int,\
+    \    }\n\n    unionfind uf(n);\n    long long sum = 0;\n    std::vector<std::pair<int,\
     \ int>> ans;\n    for (auto [u, v, w] : manhattan_mst(x, y)) {\n        if (uf.unite(u,\
     \ v)) {\n            sum += w;\n            ans.emplace_back(u, v);\n        }\n\
     \    }\n    std::cout << sum << '\\n';\n    for (auto [u, v] : ans) {\n      \
@@ -147,8 +147,8 @@ data:
   isVerificationFile: true
   path: test/library-checker/manhattanmst.test.cpp
   requiredBy: []
-  timestamp: '2023-03-05 19:19:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-03-05 19:39:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/manhattanmst.test.cpp
 layout: document
