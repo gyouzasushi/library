@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: datastructure/dual_segtree.hpp
-    title: datastructure/dual_segtree.hpp
+    title: Dual Segment Tree
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint

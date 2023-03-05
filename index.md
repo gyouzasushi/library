@@ -16,7 +16,7 @@ data:
       title: "\u7D2F\u7A4D\u548C"
     - icon: ':heavy_check_mark:'
       path: datastructure/dual_segtree.hpp
-      title: datastructure/dual_segtree.hpp
+      title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
       path: datastructure/dynamic_li_chao_tree.hpp
       title: Dynamic Li Chao Tree

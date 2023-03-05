@@ -60,8 +60,13 @@ data:
   - test/library-checker/range_affine_point_get.test.cpp
 documentation_of: datastructure/dual_segtree.hpp
 layout: document
-redirect_from:
-- /library/datastructure/dual_segtree.hpp
-- /library/datastructure/dual_segtree.hpp.html
-title: datastructure/dual_segtree.hpp
+title: Dual Segment Tree
 ---
+
+### 概要
+- 区間更新・一点取得ができるデータ構造。
+
+### 使い方
+- `dual_segtree<F, composition, id>(n, is_commutative = false)`: 長さ `n` の数列 `a` を作る。`F` は作用の型。`composition` は $f \circ g$ を計算する関数。`id` は $id$ を返す関数。$\cdot$ が可換である場合は `commutative = true` にするとよい。
+- `apply(l, r, x)`: `a_l, ..., a_r` に `x` を作用させる。
+- `get(p)`: `a_p` を求める。
