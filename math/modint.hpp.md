@@ -1,15 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_math.hpp
-    title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_type_traits.hpp
-    title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.hpp
-    title: atcoder/modint.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic_number.hpp
@@ -266,10 +257,7 @@ data:
     \                                                std::nullptr_t> = nullptr>\n\
     std::ostream& operator<<(std::ostream& os, const T& v) {\n    os << v.val();\n\
     \    return os;\n}\n}  // namespace atcoder\nusing namespace atcoder;"
-  dependsOn:
-  - atcoder/modint.hpp
-  - atcoder/internal_math.hpp
-  - atcoder/internal_type_traits.hpp
+  dependsOn: []
   isVerificationFile: false
   path: math/modint.hpp
   requiredBy:

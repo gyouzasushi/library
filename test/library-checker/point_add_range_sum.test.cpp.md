@@ -1,12 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/fenwicktree.hpp
-    title: atcoder/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_type_traits.hpp
-    title: atcoder/internal_type_traits.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -92,9 +86,7 @@ data:
     \ long x;\n            std::cin >> p >> x;\n            ft.add(p, x);\n      \
     \  }\n        if (t == 1) {\n            int l, r;\n            std::cin >> l\
     \ >> r;\n            std::cout << ft.sum(l, r) << '\\n';\n        }\n    }\n}"
-  dependsOn:
-  - atcoder/fenwicktree.hpp
-  - atcoder/internal_type_traits.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/library-checker/point_add_range_sum.test.cpp
   requiredBy: []

@@ -2,12 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.hpp
-    title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/segtree.hpp
-    title: atcoder/segtree.hpp
-  - icon: ':heavy_check_mark:'
     path: datastructure/unionfind.hpp
     title: datastructure/unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -142,8 +136,6 @@ data:
   dependsOn:
   - datastructure/unionfind.hpp
   - graph/manhattan_mst.hpp
-  - atcoder/segtree.hpp
-  - atcoder/internal_bit.hpp
   isVerificationFile: true
   path: test/library-checker/manhattanmst.test.cpp
   requiredBy: []

@@ -1,15 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_csr.hpp
-    title: atcoder/internal_csr.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_scc.hpp
-    title: atcoder/internal_scc.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/scc.hpp
-    title: atcoder/scc.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -83,10 +74,7 @@ data:
     \ {\n        int k = v.size();\n        std::cout << k << ' ';\n        for (int\
     \ i = 0; i < k; i++) {\n            std::cout << v[i] << \" \\n\"[i == k - 1];\n\
     \        }\n    }\n}"
-  dependsOn:
-  - atcoder/scc.hpp
-  - atcoder/internal_scc.hpp
-  - atcoder/internal_csr.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/library-checker/scc.test.cpp
   requiredBy: []

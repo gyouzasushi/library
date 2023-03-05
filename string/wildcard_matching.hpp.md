@@ -1,21 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/convolution.hpp
-    title: atcoder/convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.hpp
-    title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_math.hpp
-    title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_type_traits.hpp
-    title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.hpp
-    title: atcoder/modint.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -488,12 +473,7 @@ data:
     \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
     \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
     \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}"
-  dependsOn:
-  - atcoder/convolution.hpp
-  - atcoder/internal_bit.hpp
-  - atcoder/modint.hpp
-  - atcoder/internal_math.hpp
-  - atcoder/internal_type_traits.hpp
+  dependsOn: []
   isVerificationFile: false
   path: string/wildcard_matching.hpp
   requiredBy: []

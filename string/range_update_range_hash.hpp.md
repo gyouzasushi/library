@@ -2,12 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.hpp
-    title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/lazysegtree.hpp
-    title: atcoder/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
     path: math/modint2305843009213693951.hpp
     title: math/modint2305843009213693951.hpp
   - icon: ':heavy_check_mark:'
@@ -270,8 +264,6 @@ data:
     \ true};\n    }\n    atcoder::lazy_segtree<S, op, e, F, mapping, composition,\
     \ id> segt;\n};"
   dependsOn:
-  - atcoder/lazysegtree.hpp
-  - atcoder/internal_bit.hpp
   - math/modint2305843009213693951.hpp
   - math/pow_sum_table.hpp
   - math/pow_table.hpp

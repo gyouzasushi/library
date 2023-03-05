@@ -1,12 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_queue.hpp
-    title: atcoder/internal_queue.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/maxflow.hpp
-    title: atcoder/maxflow.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -100,9 +94,7 @@ data:
     \ std::cout << k << '\\n';\n    for (auto e : g.edges()) {\n        if (e.flow\
     \ == 1 && e.from != s && e.to != t) {\n            std::cout << e.from << ' '\
     \ << e.to - l << '\\n';\n        }\n    }\n}"
-  dependsOn:
-  - atcoder/maxflow.hpp
-  - atcoder/internal_queue.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/library-checker/bipartitematching.test.cpp
   requiredBy: []

@@ -2,15 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: atcoder/internal_math.hpp
-    title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_type_traits.hpp
-    title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.hpp
-    title: atcoder/modint.hpp
-  - icon: ':heavy_check_mark:'
     path: datastructure/dual_segtree.hpp
     title: datastructure/dual_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -288,9 +279,6 @@ data:
   dependsOn:
   - datastructure/dual_segtree.hpp
   - math/modint.hpp
-  - atcoder/modint.hpp
-  - atcoder/internal_math.hpp
-  - atcoder/internal_type_traits.hpp
   isVerificationFile: true
   path: test/library-checker/range_affine_point_get.test.cpp
   requiredBy: []

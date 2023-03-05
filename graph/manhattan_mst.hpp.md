@@ -1,12 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.hpp
-    title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/segtree.hpp
-    title: atcoder/segtree.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -128,9 +122,7 @@ data:
     \          }\n            for (T &x : x) x = -x;\n        }\n        for (T &y\
     \ : y) y = -y;\n    }\n    sort(ret.begin(), ret.end(),\n         [](auto a, auto\
     \ b) { return std::get<2>(a) < std::get<2>(b); });\n    return ret;\n}"
-  dependsOn:
-  - atcoder/segtree.hpp
-  - atcoder/internal_bit.hpp
+  dependsOn: []
   isVerificationFile: false
   path: graph/manhattan_mst.hpp
   requiredBy: []

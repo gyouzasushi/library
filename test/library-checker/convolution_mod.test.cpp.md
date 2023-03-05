@@ -2,21 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: atcoder/convolution.hpp
-    title: atcoder/convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.hpp
-    title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_math.hpp
-    title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_type_traits.hpp
-    title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.hpp
-    title: atcoder/modint.hpp
-  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
   _extendedRequiredBy: []
@@ -417,11 +402,6 @@ data:
     \ i++) {\n        std::cout << c[i] << \" \\n\"[i == (n - 1) + (m - 1)];\n   \
     \ }\n}"
   dependsOn:
-  - atcoder/convolution.hpp
-  - atcoder/internal_bit.hpp
-  - atcoder/modint.hpp
-  - atcoder/internal_math.hpp
-  - atcoder/internal_type_traits.hpp
   - math/modint.hpp
   isVerificationFile: true
   path: test/library-checker/convolution_mod.test.cpp

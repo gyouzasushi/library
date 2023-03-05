@@ -2,21 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: atcoder/internal_bit.hpp
-    title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_math.hpp
-    title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/internal_type_traits.hpp
-    title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/modint.hpp
-    title: atcoder/modint.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/segtree.hpp
-    title: atcoder/segtree.hpp
-  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
   _extendedRequiredBy: []
@@ -324,12 +309,7 @@ data:
     \   std::cin >> l >> r >> x;\n            std::cout << segt.prod(l, r).val(x)\
     \ << '\\n';\n        }\n    }\n}"
   dependsOn:
-  - atcoder/segtree.hpp
-  - atcoder/internal_bit.hpp
   - math/modint.hpp
-  - atcoder/modint.hpp
-  - atcoder/internal_math.hpp
-  - atcoder/internal_type_traits.hpp
   isVerificationFile: true
   path: test/library-checker/point_set_range_composite.test.cpp
   requiredBy: []
