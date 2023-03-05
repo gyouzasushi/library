@@ -2,25 +2,24 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: atcoder/fenwicktree.hpp
-    title: atcoder/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/point_add_range_sum.test.cpp
+    title: test/library-checker/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/point_set_range_sum.test.cpp
+    title: test/library-checker/point_set_range_sum.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
-    - https://judge.yosupo.jp/problem/point_add_range_sum
-  bundledCode: "#line 1 \"test/library-checker/point_add_range_sum.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n#include <iostream>\n\
-    \n#line 1 \"atcoder/fenwicktree.hpp\"\n\n\n\n#include <cassert>\n#include <vector>\n\
-    \n#line 1 \"atcoder/internal_type_traits.hpp\"\n\n\n\n#line 5 \"atcoder/internal_type_traits.hpp\"\
+    - https://en.wikipedia.org/wiki/Fenwick_tree
+  bundledCode: "#line 1 \"atcoder/fenwicktree.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <vector>\n\n#line 1 \"atcoder/internal_type_traits.hpp\"\n\n\n\n#line 5 \"atcoder/internal_type_traits.hpp\"\
     \n#include <numeric>\n#include <type_traits>\n\nnamespace atcoder {\n\nnamespace\
     \ internal {\n\n#ifndef _MSC_VER\ntemplate <class T>\nusing is_signed_int128 =\n\
     \    typename std::conditional<std::is_same<T, __int128_t>::value ||\n       \
@@ -74,37 +73,34 @@ data:
     \    }\n\n  private:\n    int _n;\n    std::vector<U> data;\n\n    U sum(int r)\
     \ {\n        U s = 0;\n        while (r > 0) {\n            s += data[r - 1];\n\
     \            r -= r & -r;\n        }\n        return s;\n    }\n};\n\n}  // namespace\
-    \ atcoder\n\n\n#line 5 \"test/library-checker/point_add_range_sum.test.cpp\"\n\
-    int main() {\n    int n, q;\n    std::cin >> n >> q;\n    atcoder::fenwick_tree<long\
-    \ long> ft(n);\n    for (int i = 0; i < n; i++) {\n        long long a;\n    \
-    \    std::cin >> a;\n        ft.add(i, a);\n    }\n    while (q--) {\n       \
-    \ int t;\n        std::cin >> t;\n        if (t == 0) {\n            int p;\n\
-    \            long long x;\n            std::cin >> p >> x;\n            ft.add(p,\
-    \ x);\n        }\n        if (t == 1) {\n            int l, r;\n            std::cin\
-    \ >> l >> r;\n            std::cout << ft.sum(l, r) << '\\n';\n        }\n   \
-    \ }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
-    #include <iostream>\n\n#include \"atcoder/fenwicktree.hpp\"\nint main() {\n  \
-    \  int n, q;\n    std::cin >> n >> q;\n    atcoder::fenwick_tree<long long> ft(n);\n\
-    \    for (int i = 0; i < n; i++) {\n        long long a;\n        std::cin >>\
-    \ a;\n        ft.add(i, a);\n    }\n    while (q--) {\n        int t;\n      \
-    \  std::cin >> t;\n        if (t == 0) {\n            int p;\n            long\
-    \ long x;\n            std::cin >> p >> x;\n            ft.add(p, x);\n      \
-    \  }\n        if (t == 1) {\n            int l, r;\n            std::cin >> l\
-    \ >> r;\n            std::cout << ft.sum(l, r) << '\\n';\n        }\n    }\n}"
+    \ atcoder\n\n\n"
+  code: "#ifndef ATCODER_FENWICKTREE_HPP\n#define ATCODER_FENWICKTREE_HPP 1\n\n#include\
+    \ <cassert>\n#include <vector>\n\n#include \"atcoder/internal_type_traits\"\n\n\
+    namespace atcoder {\n\n// Reference: https://en.wikipedia.org/wiki/Fenwick_tree\n\
+    template <class T> struct fenwick_tree {\n    using U = internal::to_unsigned_t<T>;\n\
+    \n  public:\n    fenwick_tree() : _n(0) {}\n    explicit fenwick_tree(int n) :\
+    \ _n(n), data(n) {}\n\n    void add(int p, T x) {\n        assert(0 <= p && p\
+    \ < _n);\n        p++;\n        while (p <= _n) {\n            data[p - 1] +=\
+    \ U(x);\n            p += p & -p;\n        }\n    }\n\n    T sum(int l, int r)\
+    \ {\n        assert(0 <= l && l <= r && r <= _n);\n        return sum(r) - sum(l);\n\
+    \    }\n\n  private:\n    int _n;\n    std::vector<U> data;\n\n    U sum(int r)\
+    \ {\n        U s = 0;\n        while (r > 0) {\n            s += data[r - 1];\n\
+    \            r -= r & -r;\n        }\n        return s;\n    }\n};\n\n}  // namespace\
+    \ atcoder\n\n#endif  // ATCODER_FENWICKTREE_HPP\n"
   dependsOn:
-  - atcoder/fenwicktree.hpp
   - atcoder/internal_type_traits.hpp
-  isVerificationFile: true
-  path: test/library-checker/point_add_range_sum.test.cpp
+  isVerificationFile: false
+  path: atcoder/fenwicktree.hpp
   requiredBy: []
   timestamp: '2023-03-05 19:19:13+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/library-checker/point_add_range_sum.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library-checker/point_add_range_sum.test.cpp
+  - test/library-checker/point_set_range_sum.test.cpp
+documentation_of: atcoder/fenwicktree.hpp
 layout: document
 redirect_from:
-- /verify/test/library-checker/point_add_range_sum.test.cpp
-- /verify/test/library-checker/point_add_range_sum.test.cpp.html
-title: test/library-checker/point_add_range_sum.test.cpp
+- /library/atcoder/fenwicktree.hpp
+- /library/atcoder/fenwicktree.hpp.html
+title: atcoder/fenwicktree.hpp
 ---

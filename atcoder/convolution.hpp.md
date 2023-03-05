@@ -1,9 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: atcoder/convolution.hpp
-    title: atcoder/convolution.hpp
   - icon: ':question:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
@@ -16,126 +13,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/modint2305843009213693951.hpp
-    title: math/modint2305843009213693951.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/pow_table.hpp
-    title: math/pow_table.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/rolling_hash.hpp
-    title: Rolling-Hash
+  _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: string/wildcard_matching.hpp
     title: Wildcard Matching
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/0378.test.cpp
+    title: test/aoj/0378.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/convolution_mod.test.cpp
+    title: test/library-checker/convolution_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2231.test.cpp
+    title: test/yukicoder/2231.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/2231
-    links:
-    - https://yukicoder.me/problems/no/2231
-  bundledCode: "#line 1 \"test/yukicoder/2231.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/2231\"\
-    \n#include <iostream>\n\n#line 2 \"string/rolling_hash.hpp\"\n#include <algorithm>\n\
-    #include <array>\n#include <cassert>\n#include <random>\n#include <vector>\n\n\
-    #line 2 \"math/modint2305843009213693951.hpp\"\n#include <cstdint>\nstruct modint2305843009213693951\
-    \ {\n    using mint = modint2305843009213693951;\n\npublic:\n    static constexpr\
-    \ uint64_t mod = 2305843009213693951;\n    modint2305843009213693951() : _v(0)\
-    \ {\n    }\n    modint2305843009213693951(uint64_t v) : _v(fast_mod(v)) {\n  \
-    \  }\n    static constexpr uint64_t fast_mod(uint64_t v) {\n        uint64_t u\
-    \ = v >> 61;\n        uint64_t d = v & mod;\n        uint64_t x = u + d;\n   \
-    \     if (x > mod) x -= mod;\n        return x;\n    }\n    uint64_t val() const\
-    \ {\n        return _v;\n    }\n\n    mint& operator+=(const mint& rhs) {\n  \
-    \      _v += rhs._v;\n        if (_v >= mod) _v -= mod;\n        return *this;\n\
-    \    }\n    mint& operator-=(const mint& rhs) {\n        _v -= rhs._v;\n     \
-    \   if (_v >= mod) _v += mod;\n        return *this;\n    }\n    mint& operator*=(const\
-    \ mint& rhs) {\n        static constexpr uint64_t mask31 = (uint64_t(1) << 31)\
-    \ - 1;\n        static constexpr uint64_t mask30 = (uint64_t(1) << 30) - 1;\n\
-    \        uint64_t au = _v >> 31;\n        uint64_t ad = _v & mask31;\n       \
-    \ uint64_t bu = rhs._v >> 31;\n        uint64_t bd = rhs._v & mask31;\n      \
-    \  uint64_t m = ad * bu + au * bd;\n        uint64_t mu = m >> 30;\n        uint64_t\
-    \ md = m & mask30;\n        _v = fast_mod((au * bu << 1) + mu + (md << 31) + ad\
-    \ * bd);\n        return *this;\n    }\n    mint operator+() const {\n       \
-    \ return *this;\n    }\n    mint operator-() const {\n        return mint() -\
-    \ *this;\n    }\n    mint pow(uint64_t n) const {\n        mint x = *this, r =\
-    \ 1;\n        while (n) {\n            if (n & 1) r *= x;\n            x *= x;\n\
-    \            n >>= 1;\n        }\n        return r;\n    }\n    friend mint operator+(const\
-    \ mint& lhs, const mint& rhs) {\n        return mint(lhs) += rhs;\n    }\n   \
-    \ friend mint operator-(const mint& lhs, const mint& rhs) {\n        return mint(lhs)\
-    \ -= rhs;\n    }\n    friend mint operator*(const mint& lhs, const mint& rhs)\
-    \ {\n        return mint(lhs) *= rhs;\n    }\n    friend bool operator==(const\
-    \ mint& lhs, const mint& rhs) {\n        return lhs._v == rhs._v;\n    }\n   \
-    \ friend bool operator!=(const mint& lhs, const mint& rhs) {\n        return lhs._v\
-    \ != rhs._v;\n    }\n\nprivate:\n    uint64_t _v;\n};\n#line 3 \"math/pow_table.hpp\"\
-    \ntemplate <typename mint>\nstruct pow_mods {\n    pow_mods() {\n    }\n    pow_mods(mint\
-    \ base, int n) : base(base) {\n        ensure(n);\n    }\n    const mint& operator[](int\
-    \ i) const {\n        ensure(i);\n        return pows[i];\n    }\n    void ensure(int\
-    \ n) const {\n        int sz = pows.size();\n        if (sz > n) return;\n   \
-    \     pows.resize(n + 1);\n        for (int i = sz; i <= n; i++) pows[i] = base\
-    \ * pows[i - 1];\n    }\n\nprivate:\n    mutable std::vector<mint> pows{1};\n\
-    \    mint base;\n    static constexpr int mod = mint::mod;\n};\n#line 10 \"string/rolling_hash.hpp\"\
-    \ntemplate <int base_num = 1, typename mint = modint2305843009213693951>\nstruct\
-    \ rolling_hash {\npublic:\n    rolling_hash() {\n    }\n    rolling_hash(const\
-    \ std::vector<int>& a) : n(a.size()) {\n        for (int base_id = 0; base_id\
-    \ < base_num; base_id++) {\n            hashes[base_id].resize(n + 1);\n     \
-    \       hashes[base_id][0] = 0;\n            for (int i = 0; i < n; i++) {\n \
-    \               hashes[base_id][i + 1] =\n                    hashes[base_id][i]\
-    \ * bases[base_id] + a[i];\n            }\n        }\n    }\n    template <typename\
-    \ Iterable>\n    static rolling_hash from(const Iterable& s) {\n        std::vector<int>\
-    \ a;\n        for (auto&& e : s) a.push_back(int(e));\n        return rolling_hash(a);\n\
-    \    }\n    std::array<mint, base_num> operator()(int l, int r) {\n        assert(0\
-    \ <= l && l <= r && r <= n);\n        std::array<mint, base_num> res;\n      \
-    \  for (int base_id = 0; base_id < base_num; base_id++) {\n            res[base_id]\
-    \ =\n                hashes[base_id][r] - hashes[base_id][l] * pows[base_id][r\
-    \ - l];\n        }\n        return res;\n    }\n    static std::array<mint, base_num>\
-    \ concat(\n        const std::array<mint, base_num>& h1,\n        const std::array<mint,\
-    \ base_num>& h2, int h2_len) {\n        std::array<mint, base_num> res;\n    \
-    \    for (int base_id = 0; base_id < base_num; base_id++) {\n            res[base_id]\
-    \ = h1[base_id] * pows[base_id][h2_len] + h2[base_id];\n        }\n        return\
-    \ res;\n    }\n    int lcp(int l1, int r1, int l2, int r2) {\n        int len\
-    \ = std::min(r1 - l1, r2 - l2);\n        int ok = 0, ng = len + 1;\n        while\
-    \ (ng - ok > 1) {\n            int mid = (ok + ng) / 2;\n            bool f =\
-    \ (*this)(l1, l1 + mid) == (*this)(l2, l2 + mid);\n            (f ? ok : ng) =\
-    \ mid;\n        }\n        return ok;\n    }\n    int cmp(int l1, int r1, int\
-    \ l2, int r2) {\n        int x = std::min({lcp(l1, r1, l2, r2), r1 - l1, r2 -\
-    \ l2});\n        if (l1 + x == r1 && l2 + x != r2) return -1;\n        if (l1\
-    \ + x == r1 && l2 + x == r2) return 0;\n        if (l1 + x != r1 && l2 + x ==\
-    \ r2) return 1;\n        return (*this)(l1 + x, l1 + x + 1)[0].val() <\n     \
-    \                  (*this)(l2 + x, l2 + x + 1)[0].val()\n                   ?\
-    \ -1\n                   : 1;\n    }\n    static int lcp(rolling_hash<base_num,\
-    \ mint>& rh1, int l1, int r1,\n                   rolling_hash<base_num, mint>&\
-    \ rh2, int l2, int r2) {\n        int len = std::min(r1 - l1, r2 - l2);\n    \
-    \    int ok = 0, ng = len + 1;\n        while (ng - ok > 1) {\n            int\
-    \ mid = (ok + ng) / 2;\n            bool f = rh1(l1, l1 + mid) == rh2(l2, l2 +\
-    \ mid);\n            (f ? ok : ng) = mid;\n        }\n        return ok;\n   \
-    \ }\n    static int cmp(rolling_hash<base_num, mint>& rh1, int l1, int r1,\n \
-    \                  rolling_hash<base_num, mint>& rh2, int l2, int r2) {\n    \
-    \    int x = std::min({lcp(rh1, l1, r1, rh2, l2, r2), r1 - l1, r2 - l2});\n  \
-    \      if (l1 + x == r1 && l2 + x != r2) return -1;\n        if (l1 + x == r1\
-    \ && l2 + x == r2) return 0;\n        if (l1 + x != r1 && l2 + x == r2) return\
-    \ 1;\n        return rh1(l1 + x, l1 + x + 1)[0].val() <\n                    \
-    \   rh2(l2 + x, l2 + x + 1)[0].val()\n                   ? -1\n              \
-    \     : 1;\n    }\n\nprivate:\n    static inline std::array<mint, base_num> gen_bases()\
-    \ {\n        static std::mt19937_64 rng(std::random_device{}());\n        std::array<mint,\
-    \ base_num> bases;\n        for (int i = 0; i < base_num; i++) {\n           \
-    \ while (true) {\n                uint64_t k = std::uniform_int_distribution<uint64_t>(\n\
-    \                    1, mint::mod - 1)(rng);\n                if (std::gcd(k,\
-    \ mint::mod - 1) != 1) continue;\n                uint64_t b = mint(r).pow(k).val();\n\
-    \                if (b <= A) continue;\n                bases[i] = b;\n      \
-    \          break;\n            }\n        }\n        return bases;\n    }\n  \
-    \  static inline std::array<pow_mods<mint>, base_num> init_pows(\n        const\
-    \ std::array<mint, base_num>& bases) {\n        std::array<pow_mods<mint>, base_num>\
-    \ pows;\n        for (int i = 0; i < base_num; i++) {\n            pows[i] = pow_mods<mint>(bases[i],\
-    \ 0);\n        }\n        return pows;\n    }\n    static inline std::array<mint,\
-    \ base_num> bases = gen_bases();\n    static inline std::array<pow_mods<mint>,\
-    \ base_num> pows = init_pows(bases);\n    int n;\n    std::array<std::vector<mint>,\
-    \ base_num> hashes;\n    static constexpr uint64_t r = 37;\n    static constexpr\
-    \ uint64_t A = 2147483647;\n};\n#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#line\
-    \ 7 \"atcoder/convolution.hpp\"\n#include <type_traits>\n#line 9 \"atcoder/convolution.hpp\"\
-    \n\n#line 1 \"atcoder/internal_bit.hpp\"\n\n\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
+    links: []
+  bundledCode: "#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#include <algorithm>\n\
+    #include <array>\n#include <cassert>\n#include <type_traits>\n#include <vector>\n\
+    \n#line 1 \"atcoder/internal_bit.hpp\"\n\n\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
     #endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n// @param n `0 <= n`\n\
     // @return minimum non-negative `x` s.t. `n <= 2**x`\nint ceil_pow2(int n) {\n\
     \    int x = 0;\n    while ((1U << x) < (unsigned int)(n)) x++;\n    return x;\n\
@@ -496,112 +395,174 @@ data:
     \     if (diff < 0) diff += MOD1;\n        static constexpr unsigned long long\
     \ offset[5] = {\n            0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n        x\
     \ -= offset[diff % 5];\n        c[i] = x;\n    }\n\n    return c;\n}\n\n}  //\
-    \ namespace atcoder\n\n\n#line 3 \"string/wildcard_matching.hpp\"\nstd::vector<bool>\
-    \ wildcard_matching(std::string s, std::string t) {\n    int n = s.size(), m =\
-    \ t.size();\n    assert(m > 0);\n    assert(n >= m);\n    std::vector<long long>\
-    \ a1(n), a2(n), a3(n);\n    for (int i = 0; i < n; i++) {\n        a1[i] = s[i]\
-    \ == '?' ? 0 : 1;\n        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)s[i]);\n\
-    \        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)s[i]);\n    }\n    std::vector<long\
-    \ long> b1(m), b2(m), b3(m);\n    for (int i = 0; i < m; i++) {\n        b1[i]\
-    \ = t[i] == '?' ? 0 : 1;\n        b2[i] = b1[i] * (t[i] == '?' ? 0 : (long long)t[i]);\n\
-    \        b3[i] = b2[i] * (t[i] == '?' ? 0 : (long long)t[i]);\n    }\n    auto\
-    \ f = [](const std::vector<long long> &a, std::vector<long long> &b) {\n     \
-    \   std::reverse(b.begin(), b.end());\n        std::vector<long long> c = atcoder::convolution_ll(a,\
-    \ b);\n        return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n\
-    \    };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
-    \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
-    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
-    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n\nstd::vector<bool>\
-    \ wildcard_matching_lower(std::string s, std::string t) {\n    int n = s.size(),\
-    \ m = t.size();\n    assert(m > 0);\n    assert(n >= m);\n    std::vector<long\
-    \ long> a1(n), a2(n), a3(n);\n    for (int i = 0; i < n; i++) {\n        a1[i]\
-    \ = s[i] == '?' ? 0 : 1;\n        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i]\
-    \ - 'a' + 1));\n        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] -\
-    \ 'a' + 1));\n    }\n    std::vector<long long> b1(m), b2(m), b3(m);\n    for\
-    \ (int i = 0; i < m; i++) {\n        b1[i] = t[i] == '?' ? 0 : 1;\n        b2[i]\
-    \ = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'a' + 1));\n        b3[i] =\
-    \ b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'a' + 1));\n    }\n    auto f\
-    \ = [](const std::vector<long long> &a, std::vector<long long> &b) {\n       \
-    \ std::reverse(b.begin(), b.end());\n        std::vector c = atcoder::convolution(a,\
-    \ b);\n        return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n\
-    \    };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
-    \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
-    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
-    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n\nstd::vector<bool>\
-    \ wildcard_matching_upper(std::string s, std::string t) {\n    int n = s.size(),\
-    \ m = t.size();\n    assert(m > 0);\n    assert(n >= m);\n    std::vector<long\
-    \ long> a1(n), a2(n), a3(n);\n    for (int i = 0; i < n; i++) {\n        a1[i]\
-    \ = s[i] == '?' ? 0 : 1;\n        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i]\
-    \ - 'A' + 1));\n        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] -\
-    \ 'A' + 1));\n    }\n    std::vector<long long> b1(m), b2(m), b3(m);\n    for\
-    \ (int i = 0; i < m; i++) {\n        b1[i] = t[i] == '?' ? 0 : 1;\n        b2[i]\
-    \ = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));\n        b3[i] =\
-    \ b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));\n    }\n    auto f\
-    \ = [](const std::vector<long long> &a, std::vector<long long> &b) {\n       \
-    \ std::reverse(b.begin(), b.end());\n        std::vector c = atcoder::convolution(a,\
-    \ b);\n        return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n\
-    \    };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
-    \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
-    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
-    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n#line 6 \"test/yukicoder/2231.test.cpp\"\
-    \nvoid solve() {\n    int n, m;\n    std::string s, t;\n    std::cin >> n >> m\
-    \ >> s >> t;\n    std::vector<bool> ok = wildcard_matching_lower(s, t);\n    for\
-    \ (char &c : s) {\n        if (c == '?') c = 'a';\n    }\n    auto rhs = rolling_hash<>::from(s);\n\
-    \    auto rht = rolling_hash<>::from(t);\n    auto gt = [&](int i, int j) {\n\
-    \        if (i == -1) return true;\n        if (j - i > m) {\n            int\
-    \ cmp1 = rolling_hash<>::cmp(rht, 0, m, rhs, i, i + m);\n            if (cmp1\
-    \ != 0) return cmp1 == 1;\n            int cmp2 = rolling_hash<>::cmp(rhs, j,\
-    \ j + m, rht, 0, m);\n            return cmp2 == 1;\n        }\n        int cmp1\
-    \ = rolling_hash<>::cmp(rht, 0, j - i, rhs, i, j);\n        if (cmp1 != 0) return\
-    \ cmp1 == 1;\n        int cmp2 = rht.cmp(j - i, m, 0, m - (j - i));\n        if\
-    \ (cmp2 != 0) return cmp2 == 1;\n        int cmp3 = rolling_hash<>::cmp(rhs, i\
-    \ + m, j + m, rht, m - (j - i), m);\n        return cmp3 == 1;\n    };\n    int\
-    \ ans = -1;\n    for (int i = 0; i < n - m + 1; i++) {\n        if (ok[i] && gt(ans,\
-    \ i)) {\n            ans = i;\n        }\n    }\n    if (ans == -1) {\n      \
-    \  std::cout << -1 << '\\n';\n    } else {\n        for (int i = 0; i < m; i++)\
-    \ {\n            s[ans + i] = t[i];\n        }\n        std::cout << s << '\\\
-    n';\n    }\n    return;\n}\nint main() {\n    int tt;\n    std::cin >> tt;\n \
-    \   while (tt--) solve();\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/2231\"\n#include <iostream>\n\
-    \n#include \"string/rolling_hash.hpp\"\n#include \"string/wildcard_matching.hpp\"\
-    \nvoid solve() {\n    int n, m;\n    std::string s, t;\n    std::cin >> n >> m\
-    \ >> s >> t;\n    std::vector<bool> ok = wildcard_matching_lower(s, t);\n    for\
-    \ (char &c : s) {\n        if (c == '?') c = 'a';\n    }\n    auto rhs = rolling_hash<>::from(s);\n\
-    \    auto rht = rolling_hash<>::from(t);\n    auto gt = [&](int i, int j) {\n\
-    \        if (i == -1) return true;\n        if (j - i > m) {\n            int\
-    \ cmp1 = rolling_hash<>::cmp(rht, 0, m, rhs, i, i + m);\n            if (cmp1\
-    \ != 0) return cmp1 == 1;\n            int cmp2 = rolling_hash<>::cmp(rhs, j,\
-    \ j + m, rht, 0, m);\n            return cmp2 == 1;\n        }\n        int cmp1\
-    \ = rolling_hash<>::cmp(rht, 0, j - i, rhs, i, j);\n        if (cmp1 != 0) return\
-    \ cmp1 == 1;\n        int cmp2 = rht.cmp(j - i, m, 0, m - (j - i));\n        if\
-    \ (cmp2 != 0) return cmp2 == 1;\n        int cmp3 = rolling_hash<>::cmp(rhs, i\
-    \ + m, j + m, rht, m - (j - i), m);\n        return cmp3 == 1;\n    };\n    int\
-    \ ans = -1;\n    for (int i = 0; i < n - m + 1; i++) {\n        if (ok[i] && gt(ans,\
-    \ i)) {\n            ans = i;\n        }\n    }\n    if (ans == -1) {\n      \
-    \  std::cout << -1 << '\\n';\n    } else {\n        for (int i = 0; i < m; i++)\
-    \ {\n            s[ans + i] = t[i];\n        }\n        std::cout << s << '\\\
-    n';\n    }\n    return;\n}\nint main() {\n    int tt;\n    std::cin >> tt;\n \
-    \   while (tt--) solve();\n}\n"
+    \ namespace atcoder\n\n\n"
+  code: "#ifndef ATCODER_CONVOLUTION_HPP\n#define ATCODER_CONVOLUTION_HPP 1\n\n#include\
+    \ <algorithm>\n#include <array>\n#include <cassert>\n#include <type_traits>\n\
+    #include <vector>\n\n#include \"atcoder/internal_bit\"\n#include \"atcoder/modint\"\
+    \n\nnamespace atcoder {\n\nnamespace internal {\n\ntemplate <class mint,\n   \
+    \       int g = internal::primitive_root<mint::mod()>,\n          internal::is_static_modint_t<mint>*\
+    \ = nullptr>\nstruct fft_info {\n    static constexpr int rank2 = bsf_constexpr(mint::mod()\
+    \ - 1);\n    std::array<mint, rank2 + 1> root;   // root[i]^(2^i) == 1\n    std::array<mint,\
+    \ rank2 + 1> iroot;  // root[i] * iroot[i] == 1\n\n    std::array<mint, std::max(0,\
+    \ rank2 - 2 + 1)> rate2;\n    std::array<mint, std::max(0, rank2 - 2 + 1)> irate2;\n\
+    \n    std::array<mint, std::max(0, rank2 - 3 + 1)> rate3;\n    std::array<mint,\
+    \ std::max(0, rank2 - 3 + 1)> irate3;\n\n    fft_info() {\n        root[rank2]\
+    \ = mint(g).pow((mint::mod() - 1) >> rank2);\n        iroot[rank2] = root[rank2].inv();\n\
+    \        for (int i = rank2 - 1; i >= 0; i--) {\n            root[i] = root[i\
+    \ + 1] * root[i + 1];\n            iroot[i] = iroot[i + 1] * iroot[i + 1];\n \
+    \       }\n\n        {\n            mint prod = 1, iprod = 1;\n            for\
+    \ (int i = 0; i <= rank2 - 2; i++) {\n                rate2[i] = root[i + 2] *\
+    \ prod;\n                irate2[i] = iroot[i + 2] * iprod;\n                prod\
+    \ *= iroot[i + 2];\n                iprod *= root[i + 2];\n            }\n   \
+    \     }\n        {\n            mint prod = 1, iprod = 1;\n            for (int\
+    \ i = 0; i <= rank2 - 3; i++) {\n                rate3[i] = root[i + 3] * prod;\n\
+    \                irate3[i] = iroot[i + 3] * iprod;\n                prod *= iroot[i\
+    \ + 3];\n                iprod *= root[i + 3];\n            }\n        }\n   \
+    \ }\n};\n\ntemplate <class mint, internal::is_static_modint_t<mint>* = nullptr>\n\
+    void butterfly(std::vector<mint>& a) {\n    int n = int(a.size());\n    int h\
+    \ = internal::ceil_pow2(n);\n\n    static const fft_info<mint> info;\n\n    int\
+    \ len = 0;  // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\n    while (len\
+    \ < h) {\n        if (h - len == 1) {\n            int p = 1 << (h - len - 1);\n\
+    \            mint rot = 1;\n            for (int s = 0; s < (1 << len); s++) {\n\
+    \                int offset = s << (h - len);\n                for (int i = 0;\
+    \ i < p; i++) {\n                    auto l = a[i + offset];\n               \
+    \     auto r = a[i + offset + p] * rot;\n                    a[i + offset] = l\
+    \ + r;\n                    a[i + offset + p] = l - r;\n                }\n  \
+    \              if (s + 1 != (1 << len))\n                    rot *= info.rate2[bsf(~(unsigned\
+    \ int)(s))];\n            }\n            len++;\n        } else {\n          \
+    \  // 4-base\n            int p = 1 << (h - len - 2);\n            mint rot =\
+    \ 1, imag = info.root[2];\n            for (int s = 0; s < (1 << len); s++) {\n\
+    \                mint rot2 = rot * rot;\n                mint rot3 = rot2 * rot;\n\
+    \                int offset = s << (h - len);\n                for (int i = 0;\
+    \ i < p; i++) {\n                    auto mod2 = 1ULL * mint::mod() * mint::mod();\n\
+    \                    auto a0 = 1ULL * a[i + offset].val();\n                 \
+    \   auto a1 = 1ULL * a[i + offset + p].val() * rot.val();\n                  \
+    \  auto a2 = 1ULL * a[i + offset + 2 * p].val() * rot2.val();\n              \
+    \      auto a3 = 1ULL * a[i + offset + 3 * p].val() * rot3.val();\n          \
+    \          auto a1na3imag =\n                        1ULL * mint(a1 + mod2 - a3).val()\
+    \ * imag.val();\n                    auto na2 = mod2 - a2;\n                 \
+    \   a[i + offset] = a0 + a2 + a1 + a3;\n                    a[i + offset + 1 *\
+    \ p] = a0 + a2 + (2 * mod2 - (a1 + a3));\n                    a[i + offset + 2\
+    \ * p] = a0 + na2 + a1na3imag;\n                    a[i + offset + 3 * p] = a0\
+    \ + na2 + (mod2 - a1na3imag);\n                }\n                if (s + 1 !=\
+    \ (1 << len))\n                    rot *= info.rate3[bsf(~(unsigned int)(s))];\n\
+    \            }\n            len += 2;\n        }\n    }\n}\n\ntemplate <class\
+    \ mint, internal::is_static_modint_t<mint>* = nullptr>\nvoid butterfly_inv(std::vector<mint>&\
+    \ a) {\n    int n = int(a.size());\n    int h = internal::ceil_pow2(n);\n\n  \
+    \  static const fft_info<mint> info;\n\n    int len = h;  // a[i, i+(n>>len),\
+    \ i+2*(n>>len), ..] is transformed\n    while (len) {\n        if (len == 1) {\n\
+    \            int p = 1 << (h - len);\n            mint irot = 1;\n           \
+    \ for (int s = 0; s < (1 << (len - 1)); s++) {\n                int offset = s\
+    \ << (h - len + 1);\n                for (int i = 0; i < p; i++) {\n         \
+    \           auto l = a[i + offset];\n                    auto r = a[i + offset\
+    \ + p];\n                    a[i + offset] = l + r;\n                    a[i +\
+    \ offset + p] =\n                        (unsigned long long)(mint::mod() + l.val()\
+    \ - r.val()) *\n                        irot.val();\n                    ;\n \
+    \               }\n                if (s + 1 != (1 << (len - 1)))\n          \
+    \          irot *= info.irate2[bsf(~(unsigned int)(s))];\n            }\n    \
+    \        len--;\n        } else {\n            // 4-base\n            int p =\
+    \ 1 << (h - len);\n            mint irot = 1, iimag = info.iroot[2];\n       \
+    \     for (int s = 0; s < (1 << (len - 2)); s++) {\n                mint irot2\
+    \ = irot * irot;\n                mint irot3 = irot2 * irot;\n               \
+    \ int offset = s << (h - len + 2);\n                for (int i = 0; i < p; i++)\
+    \ {\n                    auto a0 = 1ULL * a[i + offset + 0 * p].val();\n     \
+    \               auto a1 = 1ULL * a[i + offset + 1 * p].val();\n              \
+    \      auto a2 = 1ULL * a[i + offset + 2 * p].val();\n                    auto\
+    \ a3 = 1ULL * a[i + offset + 3 * p].val();\n\n                    auto a2na3iimag\
+    \ =\n                        1ULL *\n                        mint((mint::mod()\
+    \ + a2 - a3) * iimag.val()).val();\n\n                    a[i + offset] = a0 +\
+    \ a1 + a2 + a3;\n                    a[i + offset + 1 * p] =\n               \
+    \         (a0 + (mint::mod() - a1) + a2na3iimag) * irot.val();\n             \
+    \       a[i + offset + 2 * p] =\n                        (a0 + a1 + (mint::mod()\
+    \ - a2) + (mint::mod() - a3)) *\n                        irot2.val();\n      \
+    \              a[i + offset + 3 * p] =\n                        (a0 + (mint::mod()\
+    \ - a1) + (mint::mod() - a2na3iimag)) *\n                        irot3.val();\n\
+    \                }\n                if (s + 1 != (1 << (len - 2)))\n         \
+    \           irot *= info.irate3[bsf(~(unsigned int)(s))];\n            }\n   \
+    \         len -= 2;\n        }\n    }\n}\n\ntemplate <class mint, internal::is_static_modint_t<mint>*\
+    \ = nullptr>\nstd::vector<mint> convolution_naive(const std::vector<mint>& a,\n\
+    \                                    const std::vector<mint>& b) {\n    int n\
+    \ = int(a.size()), m = int(b.size());\n    std::vector<mint> ans(n + m - 1);\n\
+    \    if (n < m) {\n        for (int j = 0; j < m; j++) {\n            for (int\
+    \ i = 0; i < n; i++) {\n                ans[i + j] += a[i] * b[j];\n         \
+    \   }\n        }\n    } else {\n        for (int i = 0; i < n; i++) {\n      \
+    \      for (int j = 0; j < m; j++) {\n                ans[i + j] += a[i] * b[j];\n\
+    \            }\n        }\n    }\n    return ans;\n}\n\ntemplate <class mint,\
+    \ internal::is_static_modint_t<mint>* = nullptr>\nstd::vector<mint> convolution_fft(std::vector<mint>\
+    \ a, std::vector<mint> b) {\n    int n = int(a.size()), m = int(b.size());\n \
+    \   int z = 1 << internal::ceil_pow2(n + m - 1);\n    a.resize(z);\n    internal::butterfly(a);\n\
+    \    b.resize(z);\n    internal::butterfly(b);\n    for (int i = 0; i < z; i++)\
+    \ {\n        a[i] *= b[i];\n    }\n    internal::butterfly_inv(a);\n    a.resize(n\
+    \ + m - 1);\n    mint iz = mint(z).inv();\n    for (int i = 0; i < n + m - 1;\
+    \ i++) a[i] *= iz;\n    return a;\n}\n\n}  // namespace internal\n\ntemplate <class\
+    \ mint, internal::is_static_modint_t<mint>* = nullptr>\nstd::vector<mint> convolution(std::vector<mint>&&\
+    \ a, std::vector<mint>&& b) {\n    int n = int(a.size()), m = int(b.size());\n\
+    \    if (!n || !m) return {};\n    if (std::min(n, m) <= 60) return convolution_naive(a,\
+    \ b);\n    return internal::convolution_fft(a, b);\n}\n\ntemplate <class mint,\
+    \ internal::is_static_modint_t<mint>* = nullptr>\nstd::vector<mint> convolution(const\
+    \ std::vector<mint>& a,\n                              const std::vector<mint>&\
+    \ b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return\
+    \ {};\n    if (std::min(n, m) <= 60) return convolution_naive(a, b);\n    return\
+    \ internal::convolution_fft(a, b);\n}\n\ntemplate <unsigned int mod = 998244353,\n\
+    \          class T,\n          std::enable_if_t<internal::is_integral<T>::value>*\
+    \ = nullptr>\nstd::vector<T> convolution(const std::vector<T>& a, const std::vector<T>&\
+    \ b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return\
+    \ {};\n\n    using mint = static_modint<mod>;\n    std::vector<mint> a2(n), b2(m);\n\
+    \    for (int i = 0; i < n; i++) {\n        a2[i] = mint(a[i]);\n    }\n    for\
+    \ (int i = 0; i < m; i++) {\n        b2[i] = mint(b[i]);\n    }\n    auto c2 =\
+    \ convolution(move(a2), move(b2));\n    std::vector<T> c(n + m - 1);\n    for\
+    \ (int i = 0; i < n + m - 1; i++) {\n        c[i] = c2[i].val();\n    }\n    return\
+    \ c;\n}\n\nstd::vector<long long> convolution_ll(const std::vector<long long>&\
+    \ a,\n                                      const std::vector<long long>& b) {\n\
+    \    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return {};\n\
+    \n    static constexpr unsigned long long MOD1 = 754974721;  // 2^24\n    static\
+    \ constexpr unsigned long long MOD2 = 167772161;  // 2^25\n    static constexpr\
+    \ unsigned long long MOD3 = 469762049;  // 2^26\n    static constexpr unsigned\
+    \ long long M2M3 = MOD2 * MOD3;\n    static constexpr unsigned long long M1M3\
+    \ = MOD1 * MOD3;\n    static constexpr unsigned long long M1M2 = MOD1 * MOD2;\n\
+    \    static constexpr unsigned long long M1M2M3 = MOD1 * MOD2 * MOD3;\n\n    static\
+    \ constexpr unsigned long long i1 =\n        internal::inv_gcd(MOD2 * MOD3, MOD1).second;\n\
+    \    static constexpr unsigned long long i2 =\n        internal::inv_gcd(MOD1\
+    \ * MOD3, MOD2).second;\n    static constexpr unsigned long long i3 =\n      \
+    \  internal::inv_gcd(MOD1 * MOD2, MOD3).second;\n\n    auto c1 = convolution<MOD1>(a,\
+    \ b);\n    auto c2 = convolution<MOD2>(a, b);\n    auto c3 = convolution<MOD3>(a,\
+    \ b);\n\n    std::vector<long long> c(n + m - 1);\n    for (int i = 0; i < n +\
+    \ m - 1; i++) {\n        unsigned long long x = 0;\n        x += (c1[i] * i1)\
+    \ % MOD1 * M2M3;\n        x += (c2[i] * i2) % MOD2 * M1M3;\n        x += (c3[i]\
+    \ * i3) % MOD3 * M1M2;\n        // B = 2^63, -B <= x, r(real value) < B\n    \
+    \    // (x, x - M, x - 2M, or x - 3M) = r (mod 2B)\n        // r = c1[i] (mod\
+    \ MOD1)\n        // focus on MOD1\n        // r = x, x - M', x - 2M', x - 3M'\
+    \ (M' = M % 2^64) (mod 2B)\n        // r = x,\n        //     x - M' + (0 or 2B),\n\
+    \        //     x - 2M' + (0, 2B or 4B),\n        //     x - 3M' + (0, 2B, 4B\
+    \ or 6B) (without mod!)\n        // (r - x) = 0, (0)\n        //           - M'\
+    \ + (0 or 2B), (1)\n        //           -2M' + (0 or 2B or 4B), (2)\n       \
+    \ //           -3M' + (0 or 2B or 4B or 6B) (3) (mod MOD1)\n        // we checked\
+    \ that\n        //   ((1) mod MOD1) mod 5 = 2\n        //   ((2) mod MOD1) mod\
+    \ 5 = 3\n        //   ((3) mod MOD1) mod 5 = 4\n        long long diff =\n   \
+    \         c1[i] - internal::safe_mod((long long)(x), (long long)(MOD1));\n   \
+    \     if (diff < 0) diff += MOD1;\n        static constexpr unsigned long long\
+    \ offset[5] = {\n            0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n        x\
+    \ -= offset[diff % 5];\n        c[i] = x;\n    }\n\n    return c;\n}\n\n}  //\
+    \ namespace atcoder\n\n#endif  // ATCODER_CONVOLUTION_HPP\n"
   dependsOn:
-  - string/rolling_hash.hpp
-  - math/modint2305843009213693951.hpp
-  - math/pow_table.hpp
-  - string/wildcard_matching.hpp
-  - atcoder/convolution.hpp
   - atcoder/internal_bit.hpp
   - atcoder/modint.hpp
   - atcoder/internal_math.hpp
   - atcoder/internal_type_traits.hpp
-  isVerificationFile: true
-  path: test/yukicoder/2231.test.cpp
-  requiredBy: []
+  isVerificationFile: false
+  path: atcoder/convolution.hpp
+  requiredBy:
+  - string/wildcard_matching.hpp
   timestamp: '2023-03-05 19:19:13+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/yukicoder/2231.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/2231.test.cpp
+  - test/library-checker/convolution_mod.test.cpp
+  - test/aoj/0378.test.cpp
+documentation_of: atcoder/convolution.hpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/2231.test.cpp
-- /verify/test/yukicoder/2231.test.cpp.html
-title: test/yukicoder/2231.test.cpp
+- /library/atcoder/convolution.hpp
+- /library/atcoder/convolution.hpp.html
+title: atcoder/convolution.hpp
 ---

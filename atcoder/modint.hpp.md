@@ -1,113 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: atcoder/internal_bit.hpp
-    title: atcoder/internal_bit.hpp
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
+  _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: atcoder/lazysegtree.hpp
-    title: atcoder/lazysegtree.hpp
+    path: atcoder/convolution.hpp
+    title: atcoder/convolution.hpp
   - icon: ':heavy_check_mark:'
-    path: atcoder/modint.hpp
-    title: atcoder/modint.hpp
+    path: graph/chromatic_number.hpp
+    title: "\u5F69\u8272\u6570"
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  - icon: ':heavy_check_mark:'
+    path: string/wildcard_matching.hpp
+    title: Wildcard Matching
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/0378.test.cpp
+    title: test/aoj/0378.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/bitwise_and_convolution.test.cpp
+    title: test/library-checker/bitwise_and_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/bitwise_or_convolution.test.cpp
+    title: test/library-checker/bitwise_or_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/chromatic_number.test.cpp
+    title: test/library-checker/chromatic_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/convolution_mod.test.cpp
+    title: test/library-checker/convolution_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/point_set_range_composite.test.cpp
+    title: test/library-checker/point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/range_affine_point_get.test.cpp
+    title: test/library-checker/range_affine_point_get.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/range_affine_range_sum.test.cpp
+    title: test/library-checker/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/117.test.cpp
+    title: test/yukicoder/117.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2231.test.cpp
+    title: test/yukicoder/2231.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
-    links:
-    - https://judge.yosupo.jp/problem/range_affine_range_sum
-  bundledCode: "#line 1 \"test/library-checker/range_affine_range_sum.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\n#include\
-    \ <iostream>\n\n#line 1 \"atcoder/lazysegtree.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <cassert>\n#line 7 \"atcoder/lazysegtree.hpp\"\n#include <vector>\n\n\
-    #line 1 \"atcoder/internal_bit.hpp\"\n\n\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
-    #endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n// @param n `0 <= n`\n\
-    // @return minimum non-negative `x` s.t. `n <= 2**x`\nint ceil_pow2(int n) {\n\
-    \    int x = 0;\n    while ((1U << x) < (unsigned int)(n)) x++;\n    return x;\n\
-    }\n\n// @param n `1 <= n`\n// @return minimum non-negative `x` s.t. `(n & (1 <<\
-    \ x)) != 0`\nconstexpr int bsf_constexpr(unsigned int n) {\n    int x = 0;\n \
-    \   while (!(n & (1 << x))) x++;\n    return x;\n}\n\n// @param n `1 <= n`\n//\
-    \ @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`\nint bsf(unsigned\
-    \ int n) {\n#ifdef _MSC_VER\n    unsigned long index;\n    _BitScanForward(&index,\
-    \ n);\n    return index;\n#else\n    return __builtin_ctz(n);\n#endif\n}\n\n}\
-    \  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 10 \"atcoder/lazysegtree.hpp\"\
-    \n\nnamespace atcoder {\n\ntemplate <class S,\n          S (*op)(S, S),\n    \
-    \      S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n        \
-    \  F (*composition)(F, F),\n          F (*id)()>\nstruct lazy_segtree {\n  public:\n\
-    \    lazy_segtree() : lazy_segtree(0) {}\n    explicit lazy_segtree(int n) : lazy_segtree(std::vector<S>(n,\
-    \ e())) {}\n    explicit lazy_segtree(const std::vector<S>& v) : _n(int(v.size()))\
-    \ {\n        log = internal::ceil_pow2(_n);\n        size = 1 << log;\n      \
-    \  d = std::vector<S>(2 * size, e());\n        lz = std::vector<F>(size, id());\n\
-    \        for (int i = 0; i < _n; i++) d[size + i] = v[i];\n        for (int i\
-    \ = size - 1; i >= 1; i--) {\n            update(i);\n        }\n    }\n\n   \
-    \ void set(int p, S x) {\n        assert(0 <= p && p < _n);\n        p += size;\n\
-    \        for (int i = log; i >= 1; i--) push(p >> i);\n        d[p] = x;\n   \
-    \     for (int i = 1; i <= log; i++) update(p >> i);\n    }\n\n    S get(int p)\
-    \ {\n        assert(0 <= p && p < _n);\n        p += size;\n        for (int i\
-    \ = log; i >= 1; i--) push(p >> i);\n        return d[p];\n    }\n\n    S prod(int\
-    \ l, int r) {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l ==\
-    \ r) return e();\n\n        l += size;\n        r += size;\n\n        for (int\
-    \ i = log; i >= 1; i--) {\n            if (((l >> i) << i) != l) push(l >> i);\n\
-    \            if (((r >> i) << i) != r) push((r - 1) >> i);\n        }\n\n    \
-    \    S sml = e(), smr = e();\n        while (l < r) {\n            if (l & 1)\
-    \ sml = op(sml, d[l++]);\n            if (r & 1) smr = op(d[--r], smr);\n    \
-    \        l >>= 1;\n            r >>= 1;\n        }\n\n        return op(sml, smr);\n\
-    \    }\n\n    S all_prod() { return d[1]; }\n\n    void apply(int p, F f) {\n\
-    \        assert(0 <= p && p < _n);\n        p += size;\n        for (int i = log;\
-    \ i >= 1; i--) push(p >> i);\n        d[p] = mapping(f, d[p]);\n        for (int\
-    \ i = 1; i <= log; i++) update(p >> i);\n    }\n    void apply(int l, int r, F\
-    \ f) {\n        assert(0 <= l && l <= r && r <= _n);\n        if (l == r) return;\n\
-    \n        l += size;\n        r += size;\n\n        for (int i = log; i >= 1;\
-    \ i--) {\n            if (((l >> i) << i) != l) push(l >> i);\n            if\
-    \ (((r >> i) << i) != r) push((r - 1) >> i);\n        }\n\n        {\n       \
-    \     int l2 = l, r2 = r;\n            while (l < r) {\n                if (l\
-    \ & 1) all_apply(l++, f);\n                if (r & 1) all_apply(--r, f);\n   \
-    \             l >>= 1;\n                r >>= 1;\n            }\n            l\
-    \ = l2;\n            r = r2;\n        }\n\n        for (int i = 1; i <= log; i++)\
-    \ {\n            if (((l >> i) << i) != l) update(l >> i);\n            if (((r\
-    \ >> i) << i) != r) update((r - 1) >> i);\n        }\n    }\n\n    template <bool\
-    \ (*g)(S)> int max_right(int l) {\n        return max_right(l, [](S x) { return\
-    \ g(x); });\n    }\n    template <class G> int max_right(int l, G g) {\n     \
-    \   assert(0 <= l && l <= _n);\n        assert(g(e()));\n        if (l == _n)\
-    \ return _n;\n        l += size;\n        for (int i = log; i >= 1; i--) push(l\
-    \ >> i);\n        S sm = e();\n        do {\n            while (l % 2 == 0) l\
-    \ >>= 1;\n            if (!g(op(sm, d[l]))) {\n                while (l < size)\
-    \ {\n                    push(l);\n                    l = (2 * l);\n        \
-    \            if (g(op(sm, d[l]))) {\n                        sm = op(sm, d[l]);\n\
-    \                        l++;\n                    }\n                }\n    \
-    \            return l - size;\n            }\n            sm = op(sm, d[l]);\n\
-    \            l++;\n        } while ((l & -l) != l);\n        return _n;\n    }\n\
-    \n    template <bool (*g)(S)> int min_left(int r) {\n        return min_left(r,\
-    \ [](S x) { return g(x); });\n    }\n    template <class G> int min_left(int r,\
-    \ G g) {\n        assert(0 <= r && r <= _n);\n        assert(g(e()));\n      \
-    \  if (r == 0) return 0;\n        r += size;\n        for (int i = log; i >= 1;\
-    \ i--) push((r - 1) >> i);\n        S sm = e();\n        do {\n            r--;\n\
-    \            while (r > 1 && (r % 2)) r >>= 1;\n            if (!g(op(d[r], sm)))\
-    \ {\n                while (r < size) {\n                    push(r);\n      \
-    \              r = (2 * r + 1);\n                    if (g(op(d[r], sm))) {\n\
-    \                        sm = op(d[r], sm);\n                        r--;\n  \
-    \                  }\n                }\n                return r + 1 - size;\n\
-    \            }\n            sm = op(d[r], sm);\n        } while ((r & -r) != r);\n\
-    \        return 0;\n    }\n\n  private:\n    int _n, size, log;\n    std::vector<S>\
-    \ d;\n    std::vector<F> lz;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2\
-    \ * k + 1]); }\n    void all_apply(int k, F f) {\n        d[k] = mapping(f, d[k]);\n\
-    \        if (k < size) lz[k] = composition(f, lz[k]);\n    }\n    void push(int\
-    \ k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n\
-    \        lz[k] = id();\n    }\n};\n\n}  // namespace atcoder\n\n\n#line 2 \"math/modint.hpp\"\
-    \n\n#line 1 \"atcoder/modint.hpp\"\n\n\n\n#line 5 \"atcoder/modint.hpp\"\n#include\
+    links: []
+  bundledCode: "#line 1 \"atcoder/modint.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <numeric>\n#include <type_traits>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
     #endif\n\n#line 1 \"atcoder/internal_math.hpp\"\n\n\n\n#include <utility>\n\n\
     #ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace atcoder {\n\nnamespace\
@@ -313,60 +262,124 @@ data:
     \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 4 \"math/modint.hpp\"\
-    \nnamespace atcoder {\ntemplate <typename T, typename std::enable_if_t<internal::is_modint<T>::value,\n\
-    \                                                std::nullptr_t> = nullptr>\n\
-    std::istream& operator>>(std::istream& is, T& v) {\n    long long x;\n    is >>\
-    \ x;\n    v = x;\n    return is;\n}\ntemplate <typename T, typename std::enable_if_t<internal::is_modint<T>::value,\n\
-    \                                                std::nullptr_t> = nullptr>\n\
-    std::ostream& operator<<(std::ostream& os, const T& v) {\n    os << v.val();\n\
-    \    return os;\n}\n}  // namespace atcoder\nusing namespace atcoder;\n#line 6\
-    \ \"test/library-checker/range_affine_range_sum.test.cpp\"\nusing mint = modint998244353;\n\
-    struct S {\n    mint val;\n    int size;\n};\nS op(S a, S b) {\n    return {a.val\
-    \ + b.val, a.size + b.size};\n}\nS e() {\n    return {0, 0};\n}\nstruct F {\n\
-    \    mint b, c;\n};\nF id() {\n    return {1, 0};\n}\nS mapping(F f, S x) {\n\
-    \    return {f.b * x.val + f.c * x.size, x.size};\n}\nF composition(F f, F g)\
-    \ {\n    return {f.b * g.b, f.b * g.c + f.c};\n}\n\nint main() {\n    int n, q;\n\
-    \    std::cin >> n >> q;\n    std::vector<S> a(n);\n    for (int i = 0; i < n;\
-    \ i++) {\n        std::cin >> a[i].val;\n        a[i].size = 1;\n    }\n    atcoder::lazy_segtree<S,\
-    \ op, e, F, mapping, composition, id> segt(a);\n    while (q--) {\n        int\
-    \ t;\n        std::cin >> t;\n        if (t == 0) {\n            int l, r, b,\
-    \ c;\n            std::cin >> l >> r >> b >> c;\n            segt.apply(l, r,\
-    \ {b, c});\n        }\n        if (t == 1) {\n            int l, r;\n        \
-    \    std::cin >> l >> r;\n            std::cout << segt.prod(l, r).val << '\\\
-    n';\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n#include <iostream>\n\n#include \"atcoder/lazysegtree.hpp\"\n#include \"math/modint.hpp\"\
-    \nusing mint = modint998244353;\nstruct S {\n    mint val;\n    int size;\n};\n\
-    S op(S a, S b) {\n    return {a.val + b.val, a.size + b.size};\n}\nS e() {\n \
-    \   return {0, 0};\n}\nstruct F {\n    mint b, c;\n};\nF id() {\n    return {1,\
-    \ 0};\n}\nS mapping(F f, S x) {\n    return {f.b * x.val + f.c * x.size, x.size};\n\
-    }\nF composition(F f, F g) {\n    return {f.b * g.b, f.b * g.c + f.c};\n}\n\n\
-    int main() {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<S> a(n);\n\
-    \    for (int i = 0; i < n; i++) {\n        std::cin >> a[i].val;\n        a[i].size\
-    \ = 1;\n    }\n    atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>\
-    \ segt(a);\n    while (q--) {\n        int t;\n        std::cin >> t;\n      \
-    \  if (t == 0) {\n            int l, r, b, c;\n            std::cin >> l >> r\
-    \ >> b >> c;\n            segt.apply(l, r, {b, c});\n        }\n        if (t\
-    \ == 1) {\n            int l, r;\n            std::cin >> l >> r;\n          \
-    \  std::cout << segt.prod(l, r).val << '\\n';\n        }\n    }\n}"
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n"
+  code: "#ifndef ATCODER_MODINT_HPP\n#define ATCODER_MODINT_HPP 1\n\n#include <cassert>\n\
+    #include <numeric>\n#include <type_traits>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
+    #endif\n\n#include \"atcoder/internal_math\"\n#include \"atcoder/internal_type_traits\"\
+    \n\nnamespace atcoder {\n\nnamespace internal {\n\nstruct modint_base {};\nstruct\
+    \ static_modint_base : modint_base {};\n\ntemplate <class T> using is_modint =\
+    \ std::is_base_of<modint_base, T>;\ntemplate <class T> using is_modint_t = std::enable_if_t<is_modint<T>::value>;\n\
+    \n}  // namespace internal\n\ntemplate <int m, std::enable_if_t<(1 <= m)>* = nullptr>\n\
+    struct static_modint : internal::static_modint_base {\n    using mint = static_modint;\n\
+    \n  public:\n    static constexpr int mod() { return m; }\n    static mint raw(int\
+    \ v) {\n        mint x;\n        x._v = v;\n        return x;\n    }\n\n    static_modint()\
+    \ : _v(0) {}\n    template <class T, internal::is_signed_int_t<T>* = nullptr>\n\
+    \    static_modint(T v) {\n        long long x = (long long)(v % (long long)(umod()));\n\
+    \        if (x < 0) x += umod();\n        _v = (unsigned int)(x);\n    }\n   \
+    \ template <class T, internal::is_unsigned_int_t<T>* = nullptr>\n    static_modint(T\
+    \ v) {\n        _v = (unsigned int)(v % umod());\n    }\n\n    unsigned int val()\
+    \ const { return _v; }\n\n    mint& operator++() {\n        _v++;\n        if\
+    \ (_v == umod()) _v = 0;\n        return *this;\n    }\n    mint& operator--()\
+    \ {\n        if (_v == 0) _v = umod();\n        _v--;\n        return *this;\n\
+    \    }\n    mint operator++(int) {\n        mint result = *this;\n        ++*this;\n\
+    \        return result;\n    }\n    mint operator--(int) {\n        mint result\
+    \ = *this;\n        --*this;\n        return result;\n    }\n\n    mint& operator+=(const\
+    \ mint& rhs) {\n        _v += rhs._v;\n        if (_v >= umod()) _v -= umod();\n\
+    \        return *this;\n    }\n    mint& operator-=(const mint& rhs) {\n     \
+    \   _v -= rhs._v;\n        if (_v >= umod()) _v += umod();\n        return *this;\n\
+    \    }\n    mint& operator*=(const mint& rhs) {\n        unsigned long long z\
+    \ = _v;\n        z *= rhs._v;\n        _v = (unsigned int)(z % umod());\n    \
+    \    return *this;\n    }\n    mint& operator/=(const mint& rhs) { return *this\
+    \ = *this * rhs.inv(); }\n\n    mint operator+() const { return *this; }\n   \
+    \ mint operator-() const { return mint() - *this; }\n\n    mint pow(long long\
+    \ n) const {\n        assert(0 <= n);\n        mint x = *this, r = 1;\n      \
+    \  while (n) {\n            if (n & 1) r *= x;\n            x *= x;\n        \
+    \    n >>= 1;\n        }\n        return r;\n    }\n    mint inv() const {\n \
+    \       if (prime) {\n            assert(_v);\n            return pow(umod() -\
+    \ 2);\n        } else {\n            auto eg = internal::inv_gcd(_v, m);\n   \
+    \         assert(eg.first == 1);\n            return eg.second;\n        }\n \
+    \   }\n\n    friend mint operator+(const mint& lhs, const mint& rhs) {\n     \
+    \   return mint(lhs) += rhs;\n    }\n    friend mint operator-(const mint& lhs,\
+    \ const mint& rhs) {\n        return mint(lhs) -= rhs;\n    }\n    friend mint\
+    \ operator*(const mint& lhs, const mint& rhs) {\n        return mint(lhs) *= rhs;\n\
+    \    }\n    friend mint operator/(const mint& lhs, const mint& rhs) {\n      \
+    \  return mint(lhs) /= rhs;\n    }\n    friend bool operator==(const mint& lhs,\
+    \ const mint& rhs) {\n        return lhs._v == rhs._v;\n    }\n    friend bool\
+    \ operator!=(const mint& lhs, const mint& rhs) {\n        return lhs._v != rhs._v;\n\
+    \    }\n\n  private:\n    unsigned int _v;\n    static constexpr unsigned int\
+    \ umod() { return m; }\n    static constexpr bool prime = internal::is_prime<m>;\n\
+    };\n\ntemplate <int id> struct dynamic_modint : internal::modint_base {\n    using\
+    \ mint = dynamic_modint;\n\n  public:\n    static int mod() { return (int)(bt.umod());\
+    \ }\n    static void set_mod(int m) {\n        assert(1 <= m);\n        bt = internal::barrett(m);\n\
+    \    }\n    static mint raw(int v) {\n        mint x;\n        x._v = v;\n   \
+    \     return x;\n    }\n\n    dynamic_modint() : _v(0) {}\n    template <class\
+    \ T, internal::is_signed_int_t<T>* = nullptr>\n    dynamic_modint(T v) {\n   \
+    \     long long x = (long long)(v % (long long)(mod()));\n        if (x < 0) x\
+    \ += mod();\n        _v = (unsigned int)(x);\n    }\n    template <class T, internal::is_unsigned_int_t<T>*\
+    \ = nullptr>\n    dynamic_modint(T v) {\n        _v = (unsigned int)(v % mod());\n\
+    \    }\n\n    unsigned int val() const { return _v; }\n\n    mint& operator++()\
+    \ {\n        _v++;\n        if (_v == umod()) _v = 0;\n        return *this;\n\
+    \    }\n    mint& operator--() {\n        if (_v == 0) _v = umod();\n        _v--;\n\
+    \        return *this;\n    }\n    mint operator++(int) {\n        mint result\
+    \ = *this;\n        ++*this;\n        return result;\n    }\n    mint operator--(int)\
+    \ {\n        mint result = *this;\n        --*this;\n        return result;\n\
+    \    }\n\n    mint& operator+=(const mint& rhs) {\n        _v += rhs._v;\n   \
+    \     if (_v >= umod()) _v -= umod();\n        return *this;\n    }\n    mint&\
+    \ operator-=(const mint& rhs) {\n        _v += mod() - rhs._v;\n        if (_v\
+    \ >= umod()) _v -= umod();\n        return *this;\n    }\n    mint& operator*=(const\
+    \ mint& rhs) {\n        _v = bt.mul(_v, rhs._v);\n        return *this;\n    }\n\
+    \    mint& operator/=(const mint& rhs) { return *this = *this * rhs.inv(); }\n\
+    \n    mint operator+() const { return *this; }\n    mint operator-() const { return\
+    \ mint() - *this; }\n\n    mint pow(long long n) const {\n        assert(0 <=\
+    \ n);\n        mint x = *this, r = 1;\n        while (n) {\n            if (n\
+    \ & 1) r *= x;\n            x *= x;\n            n >>= 1;\n        }\n       \
+    \ return r;\n    }\n    mint inv() const {\n        auto eg = internal::inv_gcd(_v,\
+    \ mod());\n        assert(eg.first == 1);\n        return eg.second;\n    }\n\n\
+    \    friend mint operator+(const mint& lhs, const mint& rhs) {\n        return\
+    \ mint(lhs) += rhs;\n    }\n    friend mint operator-(const mint& lhs, const mint&\
+    \ rhs) {\n        return mint(lhs) -= rhs;\n    }\n    friend mint operator*(const\
+    \ mint& lhs, const mint& rhs) {\n        return mint(lhs) *= rhs;\n    }\n   \
+    \ friend mint operator/(const mint& lhs, const mint& rhs) {\n        return mint(lhs)\
+    \ /= rhs;\n    }\n    friend bool operator==(const mint& lhs, const mint& rhs)\
+    \ {\n        return lhs._v == rhs._v;\n    }\n    friend bool operator!=(const\
+    \ mint& lhs, const mint& rhs) {\n        return lhs._v != rhs._v;\n    }\n\n \
+    \ private:\n    unsigned int _v;\n    static internal::barrett bt;\n    static\
+    \ unsigned int umod() { return bt.umod(); }\n};\ntemplate <int id> internal::barrett\
+    \ dynamic_modint<id>::bt(998244353);\n\nusing modint998244353 = static_modint<998244353>;\n\
+    using modint1000000007 = static_modint<1000000007>;\nusing modint = dynamic_modint<-1>;\n\
+    \nnamespace internal {\n\ntemplate <class T>\nusing is_static_modint = std::is_base_of<internal::static_modint_base,\
+    \ T>;\n\ntemplate <class T>\nusing is_static_modint_t = std::enable_if_t<is_static_modint<T>::value>;\n\
+    \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
+    \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
+    \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n#endif  // ATCODER_MODINT_HPP\n"
   dependsOn:
-  - atcoder/lazysegtree.hpp
-  - atcoder/internal_bit.hpp
-  - math/modint.hpp
-  - atcoder/modint.hpp
   - atcoder/internal_math.hpp
   - atcoder/internal_type_traits.hpp
-  isVerificationFile: true
-  path: test/library-checker/range_affine_range_sum.test.cpp
-  requiredBy: []
+  isVerificationFile: false
+  path: atcoder/modint.hpp
+  requiredBy:
+  - math/modint.hpp
+  - graph/chromatic_number.hpp
+  - string/wildcard_matching.hpp
+  - atcoder/convolution.hpp
   timestamp: '2023-03-05 19:19:13+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/library-checker/range_affine_range_sum.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/117.test.cpp
+  - test/yukicoder/2231.test.cpp
+  - test/library-checker/convolution_mod.test.cpp
+  - test/library-checker/range_affine_point_get.test.cpp
+  - test/library-checker/chromatic_number.test.cpp
+  - test/library-checker/bitwise_or_convolution.test.cpp
+  - test/library-checker/bitwise_and_convolution.test.cpp
+  - test/library-checker/point_set_range_composite.test.cpp
+  - test/library-checker/range_affine_range_sum.test.cpp
+  - test/aoj/0378.test.cpp
+documentation_of: atcoder/modint.hpp
 layout: document
 redirect_from:
-- /verify/test/library-checker/range_affine_range_sum.test.cpp
-- /verify/test/library-checker/range_affine_range_sum.test.cpp.html
-title: test/library-checker/range_affine_range_sum.test.cpp
+- /library/atcoder/modint.hpp
+- /library/atcoder/modint.hpp.html
+title: atcoder/modint.hpp
 ---

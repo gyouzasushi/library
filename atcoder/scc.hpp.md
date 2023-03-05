@@ -7,23 +7,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.hpp
     title: atcoder/internal_scc.hpp
-  - icon: ':heavy_check_mark:'
-    path: atcoder/scc.hpp
-    title: atcoder/scc.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/scc.test.cpp
+    title: test/library-checker/scc.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/scc
-    links:
-    - https://judge.yosupo.jp/problem/scc
-  bundledCode: "#line 1 \"test/library-checker/scc.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/scc\"\n#line 1 \"atcoder/scc.hpp\"\n\n\n\n#include\
-    \ <algorithm>\n#include <cassert>\n#include <vector>\n\n#line 1 \"atcoder/internal_scc.hpp\"\
-    \n\n\n\n#line 5 \"atcoder/internal_scc.hpp\"\n#include <utility>\n#line 7 \"atcoder/internal_scc.hpp\"\
+    links: []
+  bundledCode: "#line 1 \"atcoder/scc.hpp\"\n\n\n\n#include <algorithm>\n#include\
+    \ <cassert>\n#include <vector>\n\n#line 1 \"atcoder/internal_scc.hpp\"\n\n\n\n\
+    #line 5 \"atcoder/internal_scc.hpp\"\n#include <utility>\n#line 7 \"atcoder/internal_scc.hpp\"\
     \n\n#line 1 \"atcoder/internal_csr.hpp\"\n\n\n\n#line 7 \"atcoder/internal_csr.hpp\"\
     \n\nnamespace atcoder {\nnamespace internal {\n\ntemplate <class E> struct csr\
     \ {\n    std::vector<int> start;\n    std::vector<E> elist;\n    explicit csr(int\
@@ -68,35 +64,30 @@ data:
     \ <= from && from < n);\n        assert(0 <= to && to < n);\n        internal.add_edge(from,\
     \ to);\n    }\n\n    std::vector<std::vector<int>> scc() { return internal.scc();\
     \ }\n\n  private:\n    internal::scc_graph internal;\n};\n\n}  // namespace atcoder\n\
-    \n\n#line 3 \"test/library-checker/scc.test.cpp\"\n\n#include <iostream>\n\nint\
-    \ main() {\n    int n, m;\n    std::cin >> n >> m;\n    atcoder::scc_graph g(n);\n\
-    \    for (int i = 0; i < m; i++) {\n        int u, v;\n        std::cin >> u >>\
-    \ v;\n        g.add_edge(u, v);\n    }\n    auto scc = g.scc();\n    std::cout\
-    \ << scc.size() << '\\n';\n    for (auto &v : scc) {\n        int k = v.size();\n\
-    \        std::cout << k << ' ';\n        for (int i = 0; i < k; i++) {\n     \
-    \       std::cout << v[i] << \" \\n\"[i == k - 1];\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\n#include \"atcoder/scc.hpp\"\
-    \n\n#include <iostream>\n\nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\
-    \    atcoder::scc_graph g(n);\n    for (int i = 0; i < m; i++) {\n        int\
-    \ u, v;\n        std::cin >> u >> v;\n        g.add_edge(u, v);\n    }\n    auto\
-    \ scc = g.scc();\n    std::cout << scc.size() << '\\n';\n    for (auto &v : scc)\
-    \ {\n        int k = v.size();\n        std::cout << k << ' ';\n        for (int\
-    \ i = 0; i < k; i++) {\n            std::cout << v[i] << \" \\n\"[i == k - 1];\n\
-    \        }\n    }\n}"
+    \n\n"
+  code: "#ifndef ATCODER_SCC_HPP\n#define ATCODER_SCC_HPP 1\n\n#include <algorithm>\n\
+    #include <cassert>\n#include <vector>\n\n#include \"atcoder/internal_scc\"\n\n\
+    namespace atcoder {\n\nstruct scc_graph {\n  public:\n    scc_graph() : internal(0)\
+    \ {}\n    explicit scc_graph(int n) : internal(n) {}\n\n    void add_edge(int\
+    \ from, int to) {\n        int n = internal.num_vertices();\n        assert(0\
+    \ <= from && from < n);\n        assert(0 <= to && to < n);\n        internal.add_edge(from,\
+    \ to);\n    }\n\n    std::vector<std::vector<int>> scc() { return internal.scc();\
+    \ }\n\n  private:\n    internal::scc_graph internal;\n};\n\n}  // namespace atcoder\n\
+    \n#endif  // ATCODER_SCC_HPP\n"
   dependsOn:
-  - atcoder/scc.hpp
   - atcoder/internal_scc.hpp
   - atcoder/internal_csr.hpp
-  isVerificationFile: true
-  path: test/library-checker/scc.test.cpp
+  isVerificationFile: false
+  path: atcoder/scc.hpp
   requiredBy: []
   timestamp: '2023-03-05 19:19:13+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/library-checker/scc.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library-checker/scc.test.cpp
+documentation_of: atcoder/scc.hpp
 layout: document
 redirect_from:
-- /verify/test/library-checker/scc.test.cpp
-- /verify/test/library-checker/scc.test.cpp.html
-title: test/library-checker/scc.test.cpp
+- /library/atcoder/scc.hpp
+- /library/atcoder/scc.hpp.html
+title: atcoder/scc.hpp
 ---

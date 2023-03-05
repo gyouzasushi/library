@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/117.test.cpp
+    title: test/yukicoder/117.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/binomial_coefficient.hpp\"\n#include <vector>\ntemplate\
@@ -49,8 +52,9 @@ data:
   path: math/binomial_coefficient.hpp
   requiredBy: []
   timestamp: '2023-03-05 15:52:49+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/117.test.cpp
 documentation_of: math/binomial_coefficient.hpp
 layout: document
 redirect_from:

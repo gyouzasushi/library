@@ -6,6 +6,62 @@ data:
     - icon: ':heavy_check_mark:'
       path: algorithm/longest_increasing_subsequence.hpp
       title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(LIS)"
+  - name: atcoder
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: atcoder/convolution.hpp
+      title: atcoder/convolution.hpp
+    - icon: ':warning:'
+      path: atcoder/dsu.hpp
+      title: atcoder/dsu.hpp
+    - icon: ':heavy_check_mark:'
+      path: atcoder/fenwicktree.hpp
+      title: atcoder/fenwicktree.hpp
+    - icon: ':question:'
+      path: atcoder/internal_bit.hpp
+      title: atcoder/internal_bit.hpp
+    - icon: ':heavy_check_mark:'
+      path: atcoder/internal_csr.hpp
+      title: atcoder/internal_csr.hpp
+    - icon: ':heavy_check_mark:'
+      path: atcoder/internal_math.hpp
+      title: atcoder/internal_math.hpp
+    - icon: ':heavy_check_mark:'
+      path: atcoder/internal_queue.hpp
+      title: atcoder/internal_queue.hpp
+    - icon: ':heavy_check_mark:'
+      path: atcoder/internal_scc.hpp
+      title: atcoder/internal_scc.hpp
+    - icon: ':heavy_check_mark:'
+      path: atcoder/internal_type_traits.hpp
+      title: atcoder/internal_type_traits.hpp
+    - icon: ':heavy_check_mark:'
+      path: atcoder/lazysegtree.hpp
+      title: atcoder/lazysegtree.hpp
+    - icon: ':warning:'
+      path: atcoder/math.hpp
+      title: atcoder/math.hpp
+    - icon: ':heavy_check_mark:'
+      path: atcoder/maxflow.hpp
+      title: atcoder/maxflow.hpp
+    - icon: ':warning:'
+      path: atcoder/mincostflow.hpp
+      title: atcoder/mincostflow.hpp
+    - icon: ':heavy_check_mark:'
+      path: atcoder/modint.hpp
+      title: atcoder/modint.hpp
+    - icon: ':heavy_check_mark:'
+      path: atcoder/scc.hpp
+      title: atcoder/scc.hpp
+    - icon: ':question:'
+      path: atcoder/segtree.hpp
+      title: atcoder/segtree.hpp
+    - icon: ':warning:'
+      path: atcoder/string.hpp
+      title: atcoder/string.hpp
+    - icon: ':warning:'
+      path: atcoder/twosat.hpp
+      title: atcoder/twosat.hpp
   - name: datastructure
     pages:
     - icon: ':heavy_check_mark:'
@@ -14,7 +70,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/cumulative_sum.hpp
       title: "\u7D2F\u7A4D\u548C"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/dual_segtree.hpp
       title: datastructure/dual_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -35,7 +91,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/static_range_minimum.hpp
       title: datastructure/static_range_minimum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: datastructure/unionfind.hpp
       title: datastructure/unionfind.hpp
   - name: geometry
@@ -48,7 +104,7 @@ data:
     - icon: ':warning:'
       path: graph/bfs_of_complement.hpp
       title: graph/bfs_of_complement.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.hpp
       title: "\u5F69\u8272\u6570"
     - icon: ':heavy_check_mark:'
@@ -60,7 +116,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lowest_common_ancestor.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/manhattan_mst.hpp
       title: Manhattan MST
     - icon: ':warning:'
@@ -72,13 +128,13 @@ data:
         \u5206\u6728\u306E\u5206\u985E"
   - name: math
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/binomial_coefficient.hpp
       title: math/binomial_coefficient.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/bitwise_and_convolution.hpp
       title: Bitwise And Convolution
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/bitwise_or_convolution.hpp
       title: Bitwise Or Convolution
     - icon: ':heavy_check_mark:'
@@ -87,13 +143,13 @@ data:
     - icon: ':warning:'
       path: math/matrix.hpp
       title: math/matrix.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: modint
     - icon: ':heavy_check_mark:'
       path: math/modint2305843009213693951.hpp
       title: math/modint2305843009213693951.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/pow_sum_table.hpp
       title: math/pow_sum_table.hpp
     - icon: ':heavy_check_mark:'
@@ -102,28 +158,28 @@ data:
     - icon: ':warning:'
       path: math/semiring_matrix.hpp
       title: math/semiring_matrix.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/zeta_mobius_transform.hpp
       title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB"
   - name: string
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: string/range_update_range_hash.hpp
       title: Range Update Range Hash
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: Rolling-Hash
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: string/wildcard_matching.hpp
       title: Wildcard Matching
   verificationCategories:
   - name: test/aoj
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/0355.test.cpp
       title: test/aoj/0355.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/0378.test.cpp
       title: test/aoj/0378.test.cpp
     - icon: ':heavy_check_mark:'
@@ -209,22 +265,22 @@ data:
       title: test/aoj/DPL_1_D.test.cpp
   - name: test/library-checker
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/bipartitematching.test.cpp
       title: test/library-checker/bipartitematching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/bitwise_and_convolution.test.cpp
       title: test/library-checker/bitwise_and_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/bitwise_or_convolution.test.cpp
       title: test/library-checker/bitwise_or_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/cartesian_tree.test.cpp
       title: test/library-checker/cartesian_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/chromatic_number.test.cpp
       title: test/library-checker/chromatic_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/convolution_mod.test.cpp
       title: test/library-checker/convolution_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -242,25 +298,25 @@ data:
     - icon: ':x:'
       path: test/library-checker/manhattanmst.test.cpp
       title: test/library-checker/manhattanmst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/point_add_range_sum.test.cpp
       title: test/library-checker/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/point_set_range_composite.test.cpp
       title: test/library-checker/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/point_set_range_sum.test.cpp
       title: test/library-checker/point_set_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_point_get.test.cpp
       title: test/library-checker/range_affine_point_get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_range_sum.test.cpp
       title: test/library-checker/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
       title: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/scc.test.cpp
       title: test/library-checker/scc.test.cpp
     - icon: ':heavy_check_mark:'
@@ -286,13 +342,13 @@ data:
       title: test/library-checker/zalgorithm_rolling_hash.test.cpp
   - name: test/yukicoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/117.test.cpp
       title: test/yukicoder/117.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1601.test.cpp
       title: test/yukicoder/1601.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2231.test.cpp
       title: test/yukicoder/2231.test.cpp
 layout: toppage

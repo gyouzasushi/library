@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: string/range_update_range_hash.hpp
+    title: Range Update Range Hash
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/0355.test.cpp
+    title: test/aoj/0355.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/pow_sum_table.hpp\"\ntemplate <typename mint>\nstruct\
@@ -32,10 +38,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/pow_sum_table.hpp
-  requiredBy: []
+  requiredBy:
+  - string/range_update_range_hash.hpp
   timestamp: '2022-09-10 18:25:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/0355.test.cpp
 documentation_of: math/pow_sum_table.hpp
 layout: document
 redirect_from:
