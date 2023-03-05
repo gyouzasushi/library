@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 #include <iostream>
 
-#include "../../datastructure/fenwick_tree.hpp"
+#include "atcoder/fenwicktree.hpp"
 int main() {
     int n, q;
     std::cin >> n >> q;
-    FenwickTree<long long> ft(n);
+    atcoder::fenwick_tree<long long> ft(n);
     for (int i = 0; i < n; i++) {
         long long a;
         std::cin >> a;

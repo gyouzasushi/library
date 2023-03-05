@@ -1,10 +1,10 @@
 #include <vector>
 template <class F, F (*composition)(F, F), F (*id)()>
-struct DualSegmentTree {
+struct dual_segtree {
 public:
-    DualSegmentTree() {
+    dual_segtree() {
     }
-    DualSegmentTree(int n, bool is_commutative = false)
+    dual_segtree(int n, bool is_commutative = false)
         : is_commutative(is_commutative) {
         size = 1;
         height = 0;

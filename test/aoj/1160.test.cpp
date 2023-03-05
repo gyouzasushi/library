@@ -15,7 +15,7 @@ int main() {
                 std::cin >> c[y][x];
             }
         }
-        UnionFind uf(h * w);
+        unionfind uf(h * w);
         for (grid u : grid::grids()) {
             if (c[u.y][u.x] != 1) continue;
             for (grid v : u.neighbors_8()) {

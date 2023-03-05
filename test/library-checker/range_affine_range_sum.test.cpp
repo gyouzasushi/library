@@ -1,9 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 #include <iostream>
 
-#include "../../datastructure/lazy_segment_tree.hpp"
-#include "../../math/modint.hpp"
-
+#include "atcoder/lazysegtree.hpp"
+#include "math/modint.hpp"
 using mint = modint998244353;
 struct S {
     mint val;
@@ -36,7 +35,7 @@ int main() {
         std::cin >> a[i].val;
         a[i].size = 1;
     }
-    LazySegmentTree<S, op, e, F, mapping, composition, id> segt(a);
+    atcoder::lazy_segtree<S, op, e, F, mapping, composition, id> segt(a);
     while (q--) {
         int t;
         std::cin >> t;

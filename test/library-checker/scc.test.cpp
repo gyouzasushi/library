@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/scc"
-#include <iostream>
+#include "atcoder/scc.hpp"
 
-#include "graph/strongly_connected_components.hpp"
+#include <iostream>
 
 int main() {
     int n, m;
     std::cin >> n >> m;
-    scc_graph g(n);
+    atcoder::scc_graph g(n);
     for (int i = 0; i < m; i++) {
         int u, v;
         std::cin >> u >> v;

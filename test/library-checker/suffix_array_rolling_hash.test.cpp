@@ -6,7 +6,7 @@ int main() {
     std::string s;
     std::cin >> s;
     int n = s.size();
-    auto rh = RollingHash<>::from(s);
+    auto rh = rolling_hash<>::from(s);
     std::vector<int> a(n);
     std::iota(a.begin(), a.end(), 0);
     std::sort(a.begin(), a.end(),

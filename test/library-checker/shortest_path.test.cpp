@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <iostream>
 
-#include "../../graph/dijkstra.hpp"
+#include "graph/dijkstra.hpp"
 int main() {
     int n, m, s, t;
     std::cin >> n >> m >> s >> t;

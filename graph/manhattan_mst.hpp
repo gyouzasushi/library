@@ -7,7 +7,7 @@
 #include <numeric>
 #include <vector>
 
-#include "datastructure/segment_tree.hpp"
+#include "atcoder/segtree.hpp"
 template <typename T>
 struct manhattan_mst_S {
     T val;
@@ -46,8 +46,8 @@ std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,
                     y_id[i] = std::lower_bound(_y.begin(), _y.end(), y[i]) -
                               _y.begin();
                 }
-                SegmentTree<manhattan_mst_S<T>, manhattan_mst_op<T>,
-                            manhattan_mst_e<T>>
+                atcoder::segtree<manhattan_mst_S<T>, manhattan_mst_op<T>,
+                                 manhattan_mst_e<T>>
                     segt(n);
                 for (int i : id) {
                     manhattan_mst_S<T> p = segt.prod(y_id[i], n);

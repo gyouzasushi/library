@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 #include <iostream>
 
-#include "../../datastructure/segment_tree.hpp"
-#include "../../math/modint.hpp"
+#include "atcoder/segtree.hpp"
+#include "math/modint.hpp"
 
 using mint = modint998244353;
 struct S {
@@ -29,7 +29,7 @@ int main() {
         std::cin >> a >> b;
         f[i] = {a, b};
     }
-    SegmentTree<S, op, e> segt(f);
+    atcoder::segtree<S, op, e> segt(f);
     while (q--) {
         int t;
         std::cin >> t;

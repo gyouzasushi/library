@@ -1,10 +1,10 @@
 #pragma once
 #include <algorithm>
 #include <vector>
-struct UnionFind {
+struct unionfind {
     int n;
     std::vector<int> data;
-    UnionFind(int _n) : n(_n), data(_n, -1) {
+    unionfind(int _n) : n(_n), data(_n, -1) {
     }
     int root(int x) {
         return (data[x] < 0) ? x : data[x] = root(data[x]);

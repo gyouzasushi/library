@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 
-#include "../../math/factorize.hpp"
+#include "math/factorize.hpp"
 
 #include <iostream>
 

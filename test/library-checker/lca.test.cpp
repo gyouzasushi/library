@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 #include <iostream>
 
-#include "../../graph/lowest_common_ancestor.hpp"
+#include "graph/lowest_common_ancestor.hpp"
 int main() {
     int n, q;
     std::cin >> n >> q;
-    LowestCommonAncestor lca(n);
+    lowest_common_ancestor lca(n);
     for (int i = 1; i < n; i++) {
         int p;
         std::cin >> p;

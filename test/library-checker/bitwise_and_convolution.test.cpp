@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "../../math/modint.hpp"
+#include "math/modint.hpp"
 
 using mint = modint998244353;
 int main() {

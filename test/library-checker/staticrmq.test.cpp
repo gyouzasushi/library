@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 #include <iostream>
 
-#include "../../datastructure/sparse_table.hpp"
+#include "datastructure/sparse_table.hpp"
 using S = int;
 S op(S a, S b) {
     return std::min(a, b);

@@ -1,14 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 #include <iostream>
 
-#include "../../string/rolling_hash.hpp"
+#include "string/rolling_hash.hpp"
 int main() {
     std::string s;
     std::cin >> s;
     int n = s.size();
 
-    auto rh = RollingHash<>::from(s);
-    auto rh_rev = RollingHash<>::from(std::string(s.rbegin(), s.rend()));
+    auto rh = rolling_hash<>::from(s);
+    auto rh_rev = rolling_hash<>::from(std::string(s.rbegin(), s.rend()));
 
     std::vector<int> ans(2 * n - 1);
     for (int i = 0, j = 0; i < n; i++, j += 2) {

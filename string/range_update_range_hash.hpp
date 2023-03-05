@@ -3,16 +3,16 @@
 #include <array>
 #include <random>
 
-#include "../datastructure/lazy_segment_tree.hpp"
-#include "../math/modint2305843009213693951.hpp"
-#include "../math/pow_sum_table.hpp"
-#include "../math/pow_table.hpp"
+#include "atcoder/lazysegtree.hpp"
+#include "math/modint2305843009213693951.hpp"
+#include "math/pow_sum_table.hpp"
+#include "math/pow_table.hpp"
 template <int base_num = 1, typename mint = modint2305843009213693951>
-struct RangeUpdateRangeHash {
+struct range_update_range_hash {
 public:
-    RangeUpdateRangeHash() {
+    range_update_range_hash() {
     }
-    RangeUpdateRangeHash(const std::vector<int>& a) : n(a.size()) {
+    range_update_range_hash(const std::vector<int>& a) : n(a.size()) {
         std::vector<S> v(n);
         for (int i = 0; i < n; i++) {
             for (int base_id = 0; base_id < base_num; base_id++) {
@@ -21,13 +21,13 @@ public:
             v[i].size = 1;
             v[i].is_e = false;
         }
-        segt = LazySegmentTree<S, op, e, F, mapping, composition, id>(v);
+        segt = atcoder::lazy_segtree<S, op, e, F, mapping, composition, id>(v);
     }
     template <typename Iterable>
-    static RangeUpdateRangeHash from(const Iterable& s) {
+    static range_update_range_hash from(const Iterable& s) {
         std::vector<int> a;
         for (auto&& e : s) a.push_back(int(e));
-        return RangeUpdateRangeHash(a);
+        return range_update_range_hash(a);
     }
 
     template <typename T>
@@ -141,5 +141,5 @@ private:
     static F id() {
         return {0, true};
     }
-    LazySegmentTree<S, op, e, F, mapping, composition, id> segt;
+    atcoder::lazy_segtree<S, op, e, F, mapping, composition, id> segt;
 };

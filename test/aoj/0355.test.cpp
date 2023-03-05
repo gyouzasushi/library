@@ -1,12 +1,12 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/0355"
 #include <iostream>
 
-#include "../../string/range_update_range_hash.hpp"
+#include "string/range_update_range_hash.hpp"
 int main() {
     int n;
     std::string u;
     std::cin >> n >> u;
-    auto rh = RangeUpdateRangeHash<>::from(u);
+    auto rh = range_update_range_hash<>::from(u);
     int q;
     std::cin >> q;
     while (q--) {

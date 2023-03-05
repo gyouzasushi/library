@@ -8,11 +8,11 @@
 #include "../math/modint2305843009213693951.hpp"
 #include "../math/pow_table.hpp"
 template <int base_num = 1, typename mint = modint2305843009213693951>
-struct RollingHash {
+struct rolling_hash {
 public:
-    RollingHash() {
+    rolling_hash() {
     }
-    RollingHash(const std::vector<int>& a) : n(a.size()) {
+    rolling_hash(const std::vector<int>& a) : n(a.size()) {
         for (int base_id = 0; base_id < base_num; base_id++) {
             hashes[base_id].resize(n + 1);
             hashes[base_id][0] = 0;
@@ -23,10 +23,10 @@ public:
         }
     }
     template <typename Iterable>
-    static RollingHash from(const Iterable& s) {
+    static rolling_hash from(const Iterable& s) {
         std::vector<int> a;
         for (auto&& e : s) a.push_back(int(e));
-        return RollingHash(a);
+        return rolling_hash(a);
     }
     std::array<mint, base_num> operator()(int l, int r) {
         assert(0 <= l && l <= r && r <= n);
@@ -66,8 +66,8 @@ public:
                    ? -1
                    : 1;
     }
-    static int lcp(RollingHash<base_num, mint>& rh1, int l1, int r1,
-                   RollingHash<base_num, mint>& rh2, int l2, int r2) {
+    static int lcp(rolling_hash<base_num, mint>& rh1, int l1, int r1,
+                   rolling_hash<base_num, mint>& rh2, int l2, int r2) {
         int len = std::min(r1 - l1, r2 - l2);
         int ok = 0, ng = len + 1;
         while (ng - ok > 1) {
@@ -77,8 +77,8 @@ public:
         }
         return ok;
     }
-    static int cmp(RollingHash<base_num, mint>& rh1, int l1, int r1,
-                   RollingHash<base_num, mint>& rh2, int l2, int r2) {
+    static int cmp(rolling_hash<base_num, mint>& rh1, int l1, int r1,
+                   rolling_hash<base_num, mint>& rh2, int l2, int r2) {
         int x = std::min({lcp(rh1, l1, r1, rh2, l2, r2), r1 - l1, r2 - l2});
         if (l1 + x == r1 && l2 + x != r2) return -1;
         if (l1 + x == r1 && l2 + x == r2) return 0;

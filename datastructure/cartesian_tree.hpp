@@ -4,7 +4,7 @@
 #include <stack>
 #include <vector>
 template <typename T>
-std::vector<int> CartesianTree(std::vector<T> &a) {
+std::vector<int> cartesian_tree(std::vector<T> &a) {
     int n = int(a.size());
     std::vector<int> p(n);
     std::iota(p.begin(), p.end(), 0);

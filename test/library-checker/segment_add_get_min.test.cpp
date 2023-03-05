@@ -5,7 +5,7 @@
 int main() {
     int n, q;
     std::cin >> n >> q;
-    DynamicLiChaoTree lct;
+    dynamic_li_chao_tree lct;
     while (n--) {
         long long l, r, a, b;
         std::cin >> l >> r >> a >> b;

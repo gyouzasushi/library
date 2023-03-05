@@ -1,5 +1,5 @@
 #pragma once
-#include "math/convolution.hpp"
+#include "atcoder/convolution.hpp"
 std::vector<bool> wildcard_matching(std::string s, std::string t) {
     int n = s.size(), m = t.size();
     assert(m > 0);
@@ -18,7 +18,7 @@ std::vector<bool> wildcard_matching(std::string s, std::string t) {
     }
     auto f = [](const std::vector<long long> &a, std::vector<long long> &b) {
         std::reverse(b.begin(), b.end());
-        std::vector<long long> c = convolution_ll(a, b);
+        std::vector<long long> c = atcoder::convolution_ll(a, b);
         return std::vector<long long>(c.begin() + b.size() - 1, c.end());
     };
     std::vector<long long> c1 = f(a3, b1);
@@ -49,7 +49,7 @@ std::vector<bool> wildcard_matching_lower(std::string s, std::string t) {
     }
     auto f = [](const std::vector<long long> &a, std::vector<long long> &b) {
         std::reverse(b.begin(), b.end());
-        std::vector c = convolution(a, b);
+        std::vector c = atcoder::convolution(a, b);
         return std::vector<long long>(c.begin() + b.size() - 1, c.end());
     };
     std::vector<long long> c1 = f(a3, b1);
@@ -80,7 +80,7 @@ std::vector<bool> wildcard_matching_upper(std::string s, std::string t) {
     }
     auto f = [](const std::vector<long long> &a, std::vector<long long> &b) {
         std::reverse(b.begin(), b.end());
-        std::vector c = convolution(a, b);
+        std::vector c = atcoder::convolution(a, b);
         return std::vector<long long>(c.begin() + b.size() - 1, c.end());
     };
     std::vector<long long> c1 = f(a3, b1);

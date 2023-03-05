@@ -1,9 +1,9 @@
 #include <algorithm>
 #include <limits>
-struct DynamicLiChaoTree {
+struct dynamic_li_chao_tree {
 public:
-    DynamicLiChaoTree(long long min_index = -1'000'000'000,
-                      long long max_index = 1'000'000'000)
+    dynamic_li_chao_tree(long long min_index = -1'000'000'000,
+                         long long max_index = 1'000'000'000)
         : min_index(min_index), max_index(max_index + 1), root(nullptr) {
     }
     void add_line(long long a, long long b) {

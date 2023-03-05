@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
 #include <iostream>
 
-#include "datastructure/dual_segment_tree.hpp"
+#include "datastructure/dual_segtree.hpp"
 #include "math/modint.hpp"
 using mint = modint998244353;
 struct F {
@@ -21,7 +21,7 @@ int main() {
     std::cin >> n >> q;
     std::vector<mint> a(n);
     for (int i = 0; i < n; i++) std::cin >> a[i];
-    DualSegmentTree<F, compostition, id> segt(n);
+    dual_segtree<F, compostition, id> segt(n);
     while (q--) {
         int t;
         std::cin >> t;

@@ -1,12 +1,12 @@
 #pragma once
-#include<vector>
+#include <vector>
 template <typename T>
-struct CumulativeSum {
+struct cumulative_sum {
     int n;
     std::vector<T> cumsum;
-    CumulativeSum() {
+    cumulative_sum() {
     }
-    CumulativeSum(std::vector<T>& d) : n(d.size()), cumsum(n + 1) {
+    cumulative_sum(std::vector<T>& d) : n(d.size()), cumsum(n + 1) {
         for (int i = 0; i < n; i++) {
             cumsum[i + 1] = cumsum[i] + d[i];
         }

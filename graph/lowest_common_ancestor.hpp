@@ -3,11 +3,11 @@
 #include <vector>
 
 #include "../datastructure/plus_minus_one_range_minimum.hpp"
-struct LowestCommonAncestor {
+struct lowest_common_ancestor {
 public:
-    LowestCommonAncestor() {
+    lowest_common_ancestor() {
     }
-    LowestCommonAncestor(int n, int root = 0)
+    lowest_common_ancestor(int n, int root = 0)
         : _n(n), _root(root), g(n), id(n), vs(2 * n - 1), dep(2 * n - 1) {
     }
     void add_edge(int from, int to) {
