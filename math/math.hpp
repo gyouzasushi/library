@@ -1,3 +1,5 @@
+#include <cassert>
+#include <vector>
 namespace math {
 namespace internal {
 constexpr long long safe_mod(long long x, long long m) {
@@ -40,7 +42,7 @@ constexpr long long pow_mod_constexpr(long long x, long long n, int m) {
     }
     return r;
 }
-
+#include <initializer_list>
 constexpr bool is_prime_constexpr(int n) {
     if (n <= 1) return false;
     if (n == 2 || n == 7 || n == 61) return true;
@@ -122,7 +124,6 @@ constexpr int primitive_root_constexpr(int m) {
 template <int m>
 constexpr int primitive_root = primitive_root_constexpr(m);
 }  // namespace internal
-
 long long pow_mod(long long x, long long n, int m) {
     assert(0 <= n && 1 <= m);
     if (m == 1) return 0;

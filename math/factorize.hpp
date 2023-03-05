@@ -1,6 +1,7 @@
 #pragma once
 #include <cmath>
 #include <numeric>
+namespace internal {
 long long modmul(long long x, long long y, long long mod) {
     using i128 = __int128_t;
     return (long long)(i128(x) * i128(y) % i128(mod));
@@ -14,10 +15,11 @@ long long modpow(long long a, long long n, long long mod) {
     }
     return ret;
 }
+}  // namespace internal
 long long rho(long long n) {
     long long z = 0;
     auto f = [&](long long x) -> long long {
-        long long ret = modmul(x, x, n) + z;
+        long long ret = internal::modmul(x, x, n) + z;
         if (ret == n) return 0;
         return ret;
     };
@@ -39,12 +41,12 @@ bool miller_rabin(long long n) {
     long long d = n - 1, s = 0;
     while (~d & 1) d >>= 1, s++;
     auto check = [&](long long a) -> bool {
-        long long x = modpow(a, d, n);
+        long long x = internal::modpow(a, d, n);
         if (x == 1) return 1;
         long long y = n - 1;
         for (int i = 0; i < s; i++) {
             if (x == y) return true;
-            x = modmul(x, x, n);
+            x = internal::modmul(x, x, n);
         }
         return false;
     };
