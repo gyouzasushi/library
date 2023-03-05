@@ -7,7 +7,7 @@ documentation_of: string/range_update_range_hash.hpp
 - 区間更新に対応した Rolling-Hash。
   
 ### 使い方
-- `RangeUpdateRangeSum<base_num, mint>::from(s)`: 文字列 `s` を初期値として構築する。`base_num` 個の基数を用いて、`mint` でハッシュを計算する。デフォルトは、`base_num = 1, mint = modint2305843009213693951`。
+- `range_update_range_hash<base_num, mint>::from(s)`: 文字列 `s` を初期値として構築する。`base_num` 個の基数を用いて、`mint` でハッシュを計算する。デフォルトは、`base_num = 1, mint = modint2305843009213693951`。
 - `prod(l, r)`: `s[l..r]` のハッシュ値を求める。
 - `all_prod()`: `s` のハッシュ値を求める。
 - `apply(l, r, x)`: `s[l..r]` を `x` で置き換える。
