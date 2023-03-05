@@ -169,7 +169,7 @@ data:
       title: Range Update Range Hash
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
-      title: Rolling-Hash
+      title: Rolling Hash
     - icon: ':heavy_check_mark:'
       path: string/wildcard_matching.hpp
       title: Wildcard Matching

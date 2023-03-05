@@ -195,7 +195,7 @@ data:
   - test/library-checker/enumerate_palindromes.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document
-title: Rolling-Hash
+title: Rolling Hash
 ---
 
 ### 概要

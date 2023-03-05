@@ -7,7 +7,7 @@ data:
     title: Range Update Range Hash
   - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
-    title: Rolling-Hash
+    title: Rolling Hash
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0355.test.cpp

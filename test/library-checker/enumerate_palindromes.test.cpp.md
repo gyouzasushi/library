@@ -9,7 +9,7 @@ data:
     title: math/pow_table.hpp
   - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
-    title: Rolling-Hash
+    title: Rolling Hash
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
