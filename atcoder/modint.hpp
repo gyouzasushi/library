@@ -19,8 +19,10 @@ namespace internal {
 struct modint_base {};
 struct static_modint_base : modint_base {};
 
-template <class T> using is_modint = std::is_base_of<modint_base, T>;
-template <class T> using is_modint_t = std::enable_if_t<is_modint<T>::value>;
+template <class T>
+using is_modint = std::is_base_of<modint_base, T>;
+template <class T>
+using is_modint_t = std::enable_if_t<is_modint<T>::value>;
 
 }  // namespace internal
 
@@ -28,15 +30,18 @@ template <int m, std::enable_if_t<(1 <= m)>* = nullptr>
 struct static_modint : internal::static_modint_base {
     using mint = static_modint;
 
-  public:
-    static constexpr int mod() { return m; }
+public:
+    static constexpr int mod() {
+        return m;
+    }
     static mint raw(int v) {
         mint x;
         x._v = v;
         return x;
     }
 
-    static_modint() : _v(0) {}
+    static_modint() : _v(0) {
+    }
     template <class T, internal::is_signed_int_t<T>* = nullptr>
     static_modint(T v) {
         long long x = (long long)(v % (long long)(umod()));
@@ -48,7 +53,9 @@ struct static_modint : internal::static_modint_base {
         _v = (unsigned int)(v % umod());
     }
 
-    unsigned int val() const { return _v; }
+    unsigned int val() const {
+        return _v;
+    }
 
     mint& operator++() {
         _v++;
@@ -87,10 +94,16 @@ struct static_modint : internal::static_modint_base {
         _v = (unsigned int)(z % umod());
         return *this;
     }
-    mint& operator/=(const mint& rhs) { return *this = *this * rhs.inv(); }
+    mint& operator/=(const mint& rhs) {
+        return *this = *this * rhs.inv();
+    }
 
-    mint operator+() const { return *this; }
-    mint operator-() const { return mint() - *this; }
+    mint operator+() const {
+        return *this;
+    }
+    mint operator-() const {
+        return mint() - *this;
+    }
 
     mint pow(long long n) const {
         assert(0 <= n);
@@ -132,17 +145,22 @@ struct static_modint : internal::static_modint_base {
         return lhs._v != rhs._v;
     }
 
-  private:
+private:
     unsigned int _v;
-    static constexpr unsigned int umod() { return m; }
+    static constexpr unsigned int umod() {
+        return m;
+    }
     static constexpr bool prime = internal::is_prime<m>;
 };
 
-template <int id> struct dynamic_modint : internal::modint_base {
+template <int id>
+struct dynamic_modint : internal::modint_base {
     using mint = dynamic_modint;
 
-  public:
-    static int mod() { return (int)(bt.umod()); }
+public:
+    static int mod() {
+        return (int)(bt.umod());
+    }
     static void set_mod(int m) {
         assert(1 <= m);
         bt = internal::barrett(m);
@@ -153,7 +171,8 @@ template <int id> struct dynamic_modint : internal::modint_base {
         return x;
     }
 
-    dynamic_modint() : _v(0) {}
+    dynamic_modint() : _v(0) {
+    }
     template <class T, internal::is_signed_int_t<T>* = nullptr>
     dynamic_modint(T v) {
         long long x = (long long)(v % (long long)(mod()));
@@ -165,7 +184,9 @@ template <int id> struct dynamic_modint : internal::modint_base {
         _v = (unsigned int)(v % mod());
     }
 
-    unsigned int val() const { return _v; }
+    unsigned int val() const {
+        return _v;
+    }
 
     mint& operator++() {
         _v++;
@@ -202,10 +223,16 @@ template <int id> struct dynamic_modint : internal::modint_base {
         _v = bt.mul(_v, rhs._v);
         return *this;
     }
-    mint& operator/=(const mint& rhs) { return *this = *this * rhs.inv(); }
+    mint& operator/=(const mint& rhs) {
+        return *this = *this * rhs.inv();
+    }
 
-    mint operator+() const { return *this; }
-    mint operator-() const { return mint() - *this; }
+    mint operator+() const {
+        return *this;
+    }
+    mint operator-() const {
+        return mint() - *this;
+    }
 
     mint pow(long long n) const {
         assert(0 <= n);
@@ -242,12 +269,15 @@ template <int id> struct dynamic_modint : internal::modint_base {
         return lhs._v != rhs._v;
     }
 
-  private:
+private:
     unsigned int _v;
     static internal::barrett bt;
-    static unsigned int umod() { return bt.umod(); }
+    static unsigned int umod() {
+        return bt.umod();
+    }
 };
-template <int id> internal::barrett dynamic_modint<id>::bt(998244353);
+template <int id>
+internal::barrett dynamic_modint<id>::bt(998244353);
 
 using modint998244353 = static_modint<998244353>;
 using modint1000000007 = static_modint<1000000007>;
@@ -261,7 +291,8 @@ using is_static_modint = std::is_base_of<internal::static_modint_base, T>;
 template <class T>
 using is_static_modint_t = std::enable_if_t<is_static_modint<T>::value>;
 
-template <class> struct is_dynamic_modint : public std::false_type {};
+template <class>
+struct is_dynamic_modint : public std::false_type {};
 template <int id>
 struct is_dynamic_modint<dynamic_modint<id>> : public std::true_type {};
 

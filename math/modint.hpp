@@ -1,6 +1,6 @@
+#pragma once
+#include <atcoder/modint.hpp>
 #include <iostream>
-
-#include "atcoder/modint.hpp"
 namespace atcoder {
 template <typename T, typename std::enable_if_t<internal::is_modint<T>::value,
                                                 std::nullptr_t> = nullptr>
@@ -17,4 +17,3 @@ std::ostream& operator<<(std::ostream& os, const T& v) {
     return os;
 }
 }  // namespace atcoder
-using namespace atcoder;

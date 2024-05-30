@@ -14,6 +14,9 @@ struct cumulative_sum {
     T sum(int l, int r) {
         // 0-indexed
         // [l, r)
+        assert(0 <= l);
+        assert(l <= r);
+        assert(r <= n);
         return cumsum[r] - cumsum[l];
     }
 };
