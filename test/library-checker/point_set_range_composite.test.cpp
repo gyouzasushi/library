@@ -1,10 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
+#include <atcoder/modint>
+#include <atcoder/segtree>
 #include <iostream>
-
-#include "atcoder/segtree.hpp"
-#include "math/modint.hpp"
-
-using mint = modint998244353;
+using mint = atcoder::modint998244353;
 struct S {
     mint a, b;
     bool e;
@@ -25,9 +23,9 @@ int main() {
     std::cin >> n >> q;
     std::vector<S> f(n);
     for (int i = 0; i < n; i++) {
-        mint a, b;
+        int a, b;
         std::cin >> a >> b;
-        f[i] = {a, b};
+        f[i] = {mint::raw(a), mint::raw(b)};
     }
     atcoder::segtree<S, op, e> segt(f);
     while (q--) {
@@ -41,7 +39,7 @@ int main() {
         if (t == 1) {
             int l, r, x;
             std::cin >> l >> r >> x;
-            std::cout << segt.prod(l, r).val(x) << '\n';
+            std::cout << segt.prod(l, r).val(x).val() << '\n';
         }
     }
 }

@@ -1,10 +1,10 @@
 #define PROBLEM "https://yukicoder.me/problems/no/117"
+#include <atcoder/modint>
 #include <cstdio>
 
 #include "math/binomial_coefficient.hpp"
-#include "math/modint.hpp"
 int main() {
-    using binom = binomial_coefficient<modint1000000007>;
+    using binom = binomial_coefficient<atcoder::modint1000000007>;
     int tt;
     scanf("%d", &tt);
     while (tt--) {
