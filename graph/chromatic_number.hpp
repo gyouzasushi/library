@@ -1,9 +1,8 @@
 #pragma once
 #include <cassert>
-#include <type_traits>
 #include <vector>
 
-#include "../math/modint.hpp"
+#include "atcoder/modint.hpp"
 int chromatic_number(std::vector<std::vector<bool>> g) {
     int n = g.size();
     std::vector<int> bit(n);
@@ -14,7 +13,7 @@ int chromatic_number(std::vector<std::vector<bool>> g) {
         }
     }
     int ret = n;
-    using mint = modint;
+    using mint = atcoder::modint;
     for (int mod : {1e9 + 7, 1e9 + 11, 1e9 + 21}) {
         mint::set_mod(mod);
         std::vector<mint> dp(1 << n), prod(1 << n, 1);
