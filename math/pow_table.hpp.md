@@ -49,16 +49,16 @@ data:
   isVerificationFile: false
   path: math/pow_table.hpp
   requiredBy:
-  - string/range_update_range_hash.hpp
   - string/rolling_hash.hpp
+  - string/range_update_range_hash.hpp
   timestamp: '2022-09-10 18:25:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2231.test.cpp
   - test/library-checker/zalgorithm_rolling_hash.test.cpp
   - test/library-checker/suffix_array_rolling_hash.test.cpp
   - test/library-checker/enumerate_palindromes.test.cpp
   - test/aoj/0355.test.cpp
+  - test/yukicoder/2231.test.cpp
 documentation_of: math/pow_table.hpp
 layout: document
 redirect_from:

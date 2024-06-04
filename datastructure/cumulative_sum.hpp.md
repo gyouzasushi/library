@@ -16,19 +16,21 @@ data:
     \ cumsum;\n    cumulative_sum() {\n    }\n    cumulative_sum(std::vector<T>& d)\
     \ : n(d.size()), cumsum(n + 1) {\n        for (int i = 0; i < n; i++) {\n    \
     \        cumsum[i + 1] = cumsum[i] + d[i];\n        }\n    }\n    T sum(int l,\
-    \ int r) {\n        // 0-indexed\n        // [l, r)\n        return cumsum[r]\
-    \ - cumsum[l];\n    }\n};\n"
+    \ int r) {\n        // 0-indexed\n        // [l, r)\n        assert(0 <= l);\n\
+    \        assert(l <= r);\n        assert(r <= n);\n        return cumsum[r] -\
+    \ cumsum[l];\n    }\n};\n"
   code: "#pragma once\n#include <vector>\ntemplate <typename T>\nstruct cumulative_sum\
     \ {\n    int n;\n    std::vector<T> cumsum;\n    cumulative_sum() {\n    }\n \
     \   cumulative_sum(std::vector<T>& d) : n(d.size()), cumsum(n + 1) {\n       \
     \ for (int i = 0; i < n; i++) {\n            cumsum[i + 1] = cumsum[i] + d[i];\n\
     \        }\n    }\n    T sum(int l, int r) {\n        // 0-indexed\n        //\
-    \ [l, r)\n        return cumsum[r] - cumsum[l];\n    }\n};"
+    \ [l, r)\n        assert(0 <= l);\n        assert(l <= r);\n        assert(r <=\
+    \ n);\n        return cumsum[r] - cumsum[l];\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: datastructure/cumulative_sum.hpp
   requiredBy: []
-  timestamp: '2023-03-05 19:05:08+09:00'
+  timestamp: '2024-05-30 15:02:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/static_range_sum.test.cpp

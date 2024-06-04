@@ -54,6 +54,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: "Dijkstra \u6CD5"
+    - icon: ':warning:'
+      path: graph/functional_graph.hpp
+      title: graph/functional_graph.hpp
     - icon: ':heavy_check_mark:'
       path: graph/grid.hpp
       title: "\u30B0\u30EA\u30C3\u30C9"
@@ -70,6 +73,9 @@ data:
       path: graph/subtree_classify.hpp
       title: "\u6839\u4ED8\u304D\u6728\u306E\u540C\u578B\u6027\u306B\u3088\u308B\u90E8\
         \u5206\u6728\u306E\u5206\u985E"
+    - icon: ':warning:'
+      path: graph/topological_sort.hpp
+      title: graph/topological_sort.hpp
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
@@ -87,7 +93,7 @@ data:
     - icon: ':warning:'
       path: math/matrix.hpp
       title: math/matrix.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: math/modint.hpp
       title: modint
     - icon: ':heavy_check_mark:'
@@ -210,6 +216,9 @@ data:
   - name: test/library-checker
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/binomial_coefficient.test.cpp
+      title: test/library-checker/binomial_coefficient.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/bipartitematching.test.cpp
       title: test/library-checker/bipartitematching.test.cpp
     - icon: ':heavy_check_mark:'
@@ -224,9 +233,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/chromatic_number.test.cpp
       title: test/library-checker/chromatic_number.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/library-checker/convolution_mod.test.cpp
-      title: test/library-checker/convolution_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/enumerate_palindromes.test.cpp
       title: test/library-checker/enumerate_palindromes.test.cpp
@@ -254,9 +260,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_point_get.test.cpp
       title: test/library-checker/range_affine_point_get.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/library-checker/range_affine_range_sum.test.cpp
-      title: test/library-checker/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
       title: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
