@@ -20,7 +20,7 @@ public:
             check[u]++;
             path.push_back(u);
             for (int v : graph[u]) {
-                if (v == p) continue;
+                // if (v == p) continue;
                 if (check[v] == 0) {
                     int ret = dfs(dfs, v, u);
                     if (ret != -1) return ret;
@@ -32,8 +32,8 @@ public:
             check[u]++;
             return -1;
         };
-        std::vector<int>::iterator it =
-            std::find(path.begin(), path.end(), dfs(dfs, 0, -1));
+        int p = dfs(dfs, 0, -1);
+        std::vector<int>::iterator it = std::find(path.begin(), path.end(), p);
         return std::vector(it, path.end());
     }
     std::vector<std::vector<std::pair<int, int>>> tree() {

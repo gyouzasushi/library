@@ -25,7 +25,7 @@ std::vector<int> topological_sort(const std::vector<std::vector<int>> &g) {
             }
         }
     }
-    if (ret.size() != int(n)) {
+    if (int(ret.size()) != n) {
         return {};
     }
     return ret;
