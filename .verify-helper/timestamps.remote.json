@@ -3,7 +3,7 @@
 "test/aoj/0378.test.cpp": "2024-05-30 15:02:19 +0900",
 "test/aoj/0558.test.cpp": "2023-01-18 16:13:28 +0900",
 "test/aoj/1160.test.cpp": "2023-03-05 19:05:08 +0900",
-"test/aoj/2880.test.cpp": "2023-02-27 21:57:14 +0900",
+"test/aoj/2880.test.cpp": "2024-06-06 13:54:23 +0900",
 "test/aoj/CGL_1_A.test.cpp": "2022-09-01 22:39:09 +0900",
 "test/aoj/CGL_1_B.test.cpp": "2022-09-01 22:39:09 +0900",
 "test/aoj/CGL_1_C.test.cpp": "2022-09-01 22:39:09 +0900",
@@ -53,6 +53,6 @@
 "test/library-checker/unionfind.test.cpp": "2023-03-05 19:05:08 +0900",
 "test/library-checker/zalgorithm_rolling_hash.test.cpp": "2023-03-05 19:05:08 +0900",
 "test/yukicoder/117.test.cpp": "2024-06-04 14:30:20 +0900",
-"test/yukicoder/1601.test.cpp": "2023-02-27 21:57:14 +0900",
+"test/yukicoder/1601.test.cpp": "2024-06-06 13:54:23 +0900",
 "test/yukicoder/2231.test.cpp": "2024-05-30 15:02:19 +0900"
 }
