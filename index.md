@@ -23,7 +23,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/plus_minus_one_range_minimum.hpp
       title: datastructure/plus_minus_one_range_minimum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: datastructure/range_map.hpp
       title: Range Map
     - icon: ':heavy_check_mark:'
