@@ -1,208 +1,72 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
 #include <map>
-#include <optional>
 #include <vector>
-template <typename T, typename U>
+template <typename T, typename S>
 struct range_map {
 public:
-    range_map(bool merge_adjacent_segment = true)
-        : merge_adjacent_segment(merge_adjacent_segment) {
+    range_map(bool merge_adjacent = true) : _merge_adjacent(merge_adjacent) {
     }
-    void clear() {
-        mp.clear();
+    typename std::map<T, std::pair<T, S>>::const_iterator get(T p) const {
+        auto it = values.upper_bound(p);
+        if (it == values.begin()) return values.end();
+        if (std::prev(it)->second.first < p) return values.end();
+        return std::prev(it);
     }
-    size_t size() {
-        return mp.size();
+    typename std::map<T, std::pair<T, S>>::const_iterator get(
+        std::pair<T, T> range) const {
+        auto [l, r] = range;
+        auto it = get(l);
+        if (it == values.end()) return values.end();
+        if (it->second.first < r) return values.end();
+        return it;
     }
-    std::optional<std::pair<T, T>> contains(T l, T r) {
-        assert(l <= r);
-        auto it = mp.upper_bound(l);
-        if (it == mp.begin()) return std::nullopt;
-        it--;
-        if (it->first > l) return std::nullopt;
-        if (r > it->second.first) return std::nullopt;
-        return std::make_pair(it->first, it->second.first);
+    void set(std::pair<T, T> range, S x) {
+        set(range, x, [](T, T, S) {}, [](T, T, S) {});
     }
-    std::optional<std::pair<T, T>> contains(T p) {
-        return is_covered(p, p);
-    }
-    void insert(T l, T r, U x) {
-        assert(l <= r);
-        auto it_l = mp.upper_bound(l);
-        auto it_r = mp.upper_bound(r + int(merge_adjacent_segment));
-        if (it_l != mp.begin()) {
-            if (std::prev(it_l)->second.first >=
-                l - int(merge_adjacent_segment)) {
-                it_l--;
-            }
-        };
-        bool has_value_0 = false, has_value_1 = false;
-        T l_0, l_1, r_1, r_2;
-        U x_0, x_1, x_2;
-        if (it_l != mp.end()) {
-            has_value_0 = true;
-            l_0 = it_l->first;
-            x_0 = it_l->second.second;
+    template <class op_insert, class op_erase>
+    void set(std::pair<T, T> range, S x, const op_insert &f,
+             const op_erase &g) {
+        auto [l, r] = range;
+        auto it_l = values.upper_bound(l);
+        if (it_l != values.begin() &&
+            l - T(_merge_adjacent) <= std::prev(it_l)->second.first) {
+            it_l--;
         }
-        {
-            l_1 = l, r_1 = r;
-            x_1 = x;
-        }
-        if (it_r != mp.begin()) {
-            has_value_1 = true;
-            r_2 = std::prev(it_r)->second.first;
-            x_2 = std::prev(it_r)->second.second;
-        }
-        for (auto it = it_l; it != it_r; it = mp.erase(it)) {
-        }
-        if (has_value_0 && x_0 == x_1) {
-            l_1 = std::min(l_0, l_1);
-        } else if (has_value_0 && l_0 < l_1) {
-            mp[l_0] = {l_1 - 1, x_0};
-        }
-        if (has_value_1 && x_1 == x_2) {
-            r_1 = std::max(r_1, r_2);
-        } else if (has_value_1 && r_1 < r_2) {
-            mp[r_1 + 1] = {r_2, x_2};
-        }
-        mp[l_1] = {r_1, x_1};
-    }
-    template <class op_erase, class op_insert>
-    void insert(T l, T r, U x, const op_erase &f, const op_insert &g) {
-        assert(l <= r);
-        auto it_l = mp.upper_bound(l);
-        auto it_r = mp.upper_bound(r + int(merge_adjacent_segment));
-        if (it_l != mp.begin()) {
-            if (std::prev(it_l)->second.first >=
-                l - int(merge_adjacent_segment)) {
-                it_l--;
-            }
-        };
-        bool has_value_0 = false, has_value_1 = false;
-        T l_0, l_1, r_1, r_2;
-        U x_0, x_1, x_2;
-        if (it_l != mp.end()) {
-            has_value_0 = true;
-            l_0 = it_l->first;
-            x_0 = it_l->second.second;
-        }
-        {
-            l_1 = l, r_1 = r;
-            x_1 = x;
-        }
-        if (it_r != mp.begin()) {
-            has_value_1 = true;
-            r_2 = std::prev(it_r)->second.first;
-            x_2 = std::prev(it_r)->second.second;
-        }
-        for (auto it = it_l; it != it_r; it = mp.erase(it)) {
-            f(it->first, it->second.first, it->second.second);
-        }
-        if (has_value_0 && x_0 == x_1) {
-            l_1 = std::min(l_0, l_1);
-        } else if (has_value_0 && l_0 < l_1) {
-            mp[l_0] = {l_1 - 1, x_0};
-            g(l_0, l_1 - 1, x_0);
-        }
-        if (has_value_1 && x_1 == x_2) {
-            r_1 = std::max(r_1, r_2);
-        } else if (has_value_1 && r_1 < r_2) {
-            mp[r_1 + 1] = {r_2, x_2};
-            g(r_1 + 1, r_2, x_2);
-        }
-        mp[l_1] = {r_1, x_1};
-        g(l_1, r_1, x_1);
-    }
-    void erase(T l, T r) {
-        assert(l <= r);
-        auto it_l = mp.upper_bound(l);
-        auto it_r = mp.upper_bound(r);
-        if (it_l != mp.begin()) {
-            if (std::prev(it_l)->second.first >= l) {
-                it_l--;
+        auto it_r = values.upper_bound(r + T(_merge_adjacent));
+        std::vector<std::tuple<T, T, S>> restore;
+        restore.reserve(3);
+        if (it_l->first < l) {
+            if (it_l->second.second != x) {
+                restore.emplace_back(it_l->first, l - 1, it_l->second.second);
+            } else {
+                l = it_l->first;
             }
         }
-        bool has_value_0 = false, has_value_1 = false;
-        T l_0, l_1, r_1, r_2;
-        U x_0, x_2;
-        if (it_l != mp.end()) {
-            has_value_0 = true;
-            l_0 = it_l->first;
-            x_0 = it_l->second.second;
-        }
-        {
-            l_1 = l;
-            r_1 = r;
-        }
-        if (it_r != mp.begin()) {
-            has_value_1 = true;
-            r_2 = std::prev(it_r)->second.first;
-            x_2 = std::prev(it_r)->second.second;
-        }
-        for (auto it = it_l; it != it_r; it = mp.erase(it)) {
-        }
-        if (has_value_0 && l_0 < l_1) {
-            mp[l_0] = {l_1 - 1, x_0};
-        }
-        if (has_value_1 && r_1 < r_2) {
-            mp[r_1 + 1] = {r_2, x_2};
-        }
-    }
-    template <class op_erase, class op_insert>
-    void erase(T l, T r, const op_erase &f, const op_insert &g) {
-        assert(l <= r);
-        auto it_l = mp.upper_bound(l);
-        auto it_r = mp.upper_bound(r);
-        if (it_l != mp.begin()) {
-            if (std::prev(it_l)->second.first >= l) {
-                it_l--;
+        if (it_l != it_r && r < std::prev(it_r)->second.first) {
+            if (std::prev(it_r)->second.second != x) {
+                restore.emplace_back(r + 1, std::prev(it_r)->second.first,
+                                     std::prev(it_r)->second.second);
+            } else {
+                r = std::prev(it_r)->second.first;
             }
         }
-        bool has_value_0 = false, has_value_1 = false;
-        T l_0, l_1, r_1, r_2;
-        U x_0, x_2;
-        if (it_l != mp.end()) {
-            has_value_0 = true;
-            l_0 = it_l->first;
-            x_0 = it_l->second.second;
+        restore.emplace_back(l, r, x);
+        for (auto it = it_l; it != it_r; it = values.erase(it)) {
+            g(it->first, it->second.first, it->second.second);
         }
-        {
-            l_1 = l;
-            r_1 = r;
-        }
-        if (it_r != mp.begin()) {
-            has_value_1 = true;
-            r_2 = std::prev(it_r)->second.first;
-            x_2 = std::prev(it_r)->second.second;
-        }
-        for (auto it = it_l; it != it_r; it = mp.erase(it)) {
-            f(it->first, it->second.first, it->second.second);
-        }
-        if (has_value_0 && l_0 < l_1) {
-            mp[l_0] = {l_1 - 1, x_0};
-            g(l_0, l_1 - 1, x_0);
-        }
-        if (has_value_1 && r_1 < r_2) {
-            mp[r_1 + 1] = {r_2, x_2};
-            g(r_1 + 1, r_2, x_2);
+        for (auto [l, r, x] : restore) {
+            values[l] = {r, x};
+            f(l, r, x);
         }
     }
-    std::vector<std::tuple<T, T, U>> ranges() {
-        std::vector<std::tuple<T, T, U>> ret;
-        for (auto it = mp.begin(); it != mp.end(); it++) {
-            ret.emplace_back(it->first, it->second.first, it->second.second);
-        }
-        return ret;
+    typename std::map<std::pair<T, T>, S>::const_iterator begin() const {
+        return values.begin();
     }
-    const U &operator[](std::pair<T, T> p) const {
-        std::optional<std::pair<T, T>> _p = contains(p);
-        assert(_p.has_value());
-        return mp[_p.first].second;
+    typename std::map<std::pair<T, T>, S>::const_iterator end() const {
+        return values.end();
     }
 
 protected:
-    bool merge_adjacent_segment;
-    std::map<T, std::pair<T, U>> mp;
+    std::map<T, std::pair<T, S>> values;
+    bool _merge_adjacent;
 };

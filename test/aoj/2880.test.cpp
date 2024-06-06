@@ -27,7 +27,7 @@ int main() {
             st.insert(l, r);
         } else {
             if (l < r) {
-                ans[id - m] = st.contains(l, r).has_value();
+                ans[id - m] = st.get(l, r) != st.end();
             } else {
                 ans[id - m] = true;
             }

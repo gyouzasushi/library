@@ -13,10 +13,9 @@ int main() {
         long long a, b;
         std::cin >> a >> b;
         st.insert(
-            a, b, [](long long l, long long r, bool x) {},
-            [&](long long l, long long r, bool x) {
-                ans = std::max(ans, r - l + 1);
-            });
+            a, b,
+            [&](long long l, long long r) { ans = std::max(ans, r - l + 1); },
+            [](long long, long long) {});
         std::cout << ans << '\n';
     }
 }
