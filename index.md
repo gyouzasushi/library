@@ -45,9 +45,9 @@ data:
       title: geomerty
   - name: graph
     pages:
-    - icon: ':warning:'
-      path: graph/bfs_of_complement.hpp
-      title: graph/bfs_of_complement.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/bfs_tree_of_complement.hpp
+      title: graph/bfs_tree_of_complement.hpp
     - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.hpp
       title: "\u5F69\u8272\u6570"
@@ -236,6 +236,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/chromatic_number.test.cpp
       title: test/library-checker/chromatic_number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/connected_components_of_complement_graph.test.cpp
+      title: test/library-checker/connected_components_of_complement_graph.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/enumerate_palindromes.test.cpp
       title: test/library-checker/enumerate_palindromes.test.cpp
