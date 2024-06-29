@@ -219,6 +219,9 @@ data:
       path: test/library-checker/binomial_coefficient.test.cpp
       title: test/library-checker/binomial_coefficient.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/binomial_coefficient_prime_mod.test.cpp
+      title: test/library-checker/binomial_coefficient_prime_mod.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/bipartitematching.test.cpp
       title: test/library-checker/bipartitematching.test.cpp
     - icon: ':heavy_check_mark:'

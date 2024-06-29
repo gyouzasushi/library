@@ -10,6 +10,9 @@ data:
     path: test/library-checker/binomial_coefficient.test.cpp
     title: test/library-checker/binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library-checker/binomial_coefficient_prime_mod.test.cpp
+    title: test/library-checker/binomial_coefficient_prime_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/factorize.test.cpp
     title: test/library-checker/factorize.test.cpp
   - icon: ':heavy_check_mark:'
@@ -83,6 +86,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/117.test.cpp
+  - test/library-checker/binomial_coefficient_prime_mod.test.cpp
   - test/library-checker/factorize.test.cpp
   - test/library-checker/binomial_coefficient.test.cpp
 documentation_of: math/factorize.hpp
