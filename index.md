@@ -291,6 +291,9 @@ data:
       path: test/library-checker/unionfind.test.cpp
       title: test/library-checker/unionfind.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/wildcard_pattern_matching.test.cpp
+      title: test/library-checker/wildcard_pattern_matching.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/zalgorithm_rolling_hash.test.cpp
       title: test/library-checker/zalgorithm_rolling_hash.test.cpp
   - name: test/yukicoder

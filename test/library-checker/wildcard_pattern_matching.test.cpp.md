@@ -1,23 +1,22 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: string/wildcard_matching.hpp
+    title: Wildcard Matching
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/0378.test.cpp
-    title: test/aoj/0378.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library-checker/wildcard_pattern_matching.test.cpp
-    title: test/library-checker/wildcard_pattern_matching.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2231.test.cpp
-    title: test/yukicoder/2231.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#include <algorithm>\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/wildcard_pattern_matching
+    links:
+    - https://judge.yosupo.jp/problem/wildcard_pattern_matching
+  bundledCode: "#line 1 \"test/library-checker/wildcard_pattern_matching.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/wildcard_pattern_matching\"\
+    \n#include <iostream>\n\n#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <array>\n#include <cassert>\n#include <type_traits>\n#include <vector>\n\
     \n#line 1 \"atcoder/internal_bit.hpp\"\n\n\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
     #endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n// @param n `0 <= n`\n\
@@ -430,73 +429,29 @@ data:
     \    };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
     \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
     \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
-    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n"
-  code: "#pragma once\n#include \"atcoder/convolution.hpp\"\nstd::vector<bool> wildcard_matching(std::string\
-    \ s, std::string t) {\n    int n = s.size(), m = t.size();\n    assert(m > 0);\n\
-    \    assert(n >= m);\n    std::vector<long long> a1(n), a2(n), a3(n);\n    for\
-    \ (int i = 0; i < n; i++) {\n        a1[i] = s[i] == '?' ? 0 : 1;\n        a2[i]\
-    \ = a1[i] * (s[i] == '?' ? 0 : (long long)s[i]);\n        a3[i] = a2[i] * (s[i]\
-    \ == '?' ? 0 : (long long)s[i]);\n    }\n    std::vector<long long> b1(m), b2(m),\
-    \ b3(m);\n    for (int i = 0; i < m; i++) {\n        b1[i] = t[i] == '?' ? 0 :\
-    \ 1;\n        b2[i] = b1[i] * (t[i] == '?' ? 0 : (long long)t[i]);\n        b3[i]\
-    \ = b2[i] * (t[i] == '?' ? 0 : (long long)t[i]);\n    }\n    auto f = [](const\
-    \ std::vector<long long> &a, std::vector<long long> &b) {\n        std::reverse(b.begin(),\
-    \ b.end());\n        std::vector<long long> c = atcoder::convolution_ll(a, b);\n\
-    \        return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n \
-    \   };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
-    \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
-    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
-    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n\nstd::vector<bool>\
-    \ wildcard_matching_lower(std::string s, std::string t) {\n    int n = s.size(),\
-    \ m = t.size();\n    assert(m > 0);\n    assert(n >= m);\n    std::vector<long\
-    \ long> a1(n), a2(n), a3(n);\n    for (int i = 0; i < n; i++) {\n        a1[i]\
-    \ = s[i] == '?' ? 0 : 1;\n        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i]\
-    \ - 'a' + 1));\n        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] -\
-    \ 'a' + 1));\n    }\n    std::vector<long long> b1(m), b2(m), b3(m);\n    for\
-    \ (int i = 0; i < m; i++) {\n        b1[i] = t[i] == '?' ? 0 : 1;\n        b2[i]\
-    \ = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'a' + 1));\n        b3[i] =\
-    \ b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'a' + 1));\n    }\n    auto f\
-    \ = [](const std::vector<long long> &a, std::vector<long long> &b) {\n       \
-    \ std::reverse(b.begin(), b.end());\n        std::vector c = atcoder::convolution(a,\
-    \ b);\n        return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n\
-    \    };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
-    \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
-    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
-    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n\nstd::vector<bool>\
-    \ wildcard_matching_upper(std::string s, std::string t) {\n    int n = s.size(),\
-    \ m = t.size();\n    assert(m > 0);\n    assert(n >= m);\n    std::vector<long\
-    \ long> a1(n), a2(n), a3(n);\n    for (int i = 0; i < n; i++) {\n        a1[i]\
-    \ = s[i] == '?' ? 0 : 1;\n        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i]\
-    \ - 'A' + 1));\n        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] -\
-    \ 'A' + 1));\n    }\n    std::vector<long long> b1(m), b2(m), b3(m);\n    for\
-    \ (int i = 0; i < m; i++) {\n        b1[i] = t[i] == '?' ? 0 : 1;\n        b2[i]\
-    \ = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));\n        b3[i] =\
-    \ b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));\n    }\n    auto f\
-    \ = [](const std::vector<long long> &a, std::vector<long long> &b) {\n       \
-    \ std::reverse(b.begin(), b.end());\n        std::vector c = atcoder::convolution(a,\
-    \ b);\n        return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n\
-    \    };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
-    \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
-    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
-    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}"
-  dependsOn: []
-  isVerificationFile: false
-  path: string/wildcard_matching.hpp
+    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n#line 5 \"test/library-checker/wildcard_pattern_matching.test.cpp\"\
+    \nint main() {\n    std::string s, t;\n    std::cin >> s >> t;\n    for (char\
+    \ &c : s) {\n        if (c == '*') c = '?';\n    }\n    for (char &c : t) {\n\
+    \        if (c == '*') c = '?';\n    }\n    for (int ans : wildcard_matching_lower(s,\
+    \ t)) {\n        std::cout << ans;\n    }\n    std::cout << '\\n';\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/wildcard_pattern_matching\"\
+    \n#include <iostream>\n\n#include \"string/wildcard_matching.hpp\"\nint main()\
+    \ {\n    std::string s, t;\n    std::cin >> s >> t;\n    for (char &c : s) {\n\
+    \        if (c == '*') c = '?';\n    }\n    for (char &c : t) {\n        if (c\
+    \ == '*') c = '?';\n    }\n    for (int ans : wildcard_matching_lower(s, t)) {\n\
+    \        std::cout << ans;\n    }\n    std::cout << '\\n';\n}"
+  dependsOn:
+  - string/wildcard_matching.hpp
+  isVerificationFile: true
+  path: test/library-checker/wildcard_pattern_matching.test.cpp
   requiredBy: []
-  timestamp: '2024-05-30 15:02:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/2231.test.cpp
-  - test/aoj/0378.test.cpp
-  - test/library-checker/wildcard_pattern_matching.test.cpp
-documentation_of: string/wildcard_matching.hpp
+  timestamp: '2024-06-29 12:26:41+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/library-checker/wildcard_pattern_matching.test.cpp
 layout: document
-title: Wildcard Matching
+redirect_from:
+- /verify/test/library-checker/wildcard_pattern_matching.test.cpp
+- /verify/test/library-checker/wildcard_pattern_matching.test.cpp.html
+title: test/library-checker/wildcard_pattern_matching.test.cpp
 ---
-
-### 概要
-- 2つのワイルドカード付き文字列をスライドさせて、各箇所について一致するかどうかを調べる。
-- 定数倍高速化の余地あり → 畳み込んだ後の配列の要素は $N\sigma^2$ 程度の大きさになるが、これが収まる限りで $\mathrm{mod}$ を小さくとることで `convolution` の回数を減らすことができる。
-  
-### 使い方
-- `wildcard_matching(s, t)`:長さ $\|s\| - \|t\| + 1$ の配列 `ret` を返す。`ret[i]` は、'?' をワイルドカードとして `s.substr(i, t.size())` と `t` がマッチするかを表す。
