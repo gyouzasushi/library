@@ -90,7 +90,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/factorize.hpp
       title: math/factorize.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: math/matrix.hpp
     - icon: ':warning:'
@@ -248,6 +248,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/manhattanmst.test.cpp
       title: test/library-checker/manhattanmst.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/matrix_product.test.cpp
+      title: test/library-checker/matrix_product.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/point_add_range_sum.test.cpp
       title: test/library-checker/point_add_range_sum.test.cpp
