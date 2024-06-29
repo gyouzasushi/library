@@ -13,7 +13,7 @@ struct factorial_table {
     static void ensure(int n) {
         int sz = facts.size();
         if (sz > n) return;
-        if (n < sz << 1) n = sz << 1;
+        if (n < sz << 1) n = std::min(mint::mod() - 1, sz << 1);
         facts.resize(n + 1);
         ifacts.resize(n + 1);
         for (int i = sz; i <= n; i++) facts[i] = facts[i - 1] * i;
@@ -44,8 +44,7 @@ struct binomial_coefficient {
     }
 };
 
-#include <atcoder/math.hpp>
-
+#include "atcoder/math.hpp"
 #include "math/factorize.hpp"
 struct binomial_coefficient_arbitrary_mod {
     static void set_mod(int mod) {
