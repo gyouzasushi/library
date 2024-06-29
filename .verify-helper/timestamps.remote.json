@@ -35,6 +35,7 @@
 "test/library-checker/bitwise_or_convolution.test.cpp": "2024-06-04 13:53:45 +0900",
 "test/library-checker/cartesian_tree.test.cpp": "2023-03-05 19:05:08 +0900",
 "test/library-checker/chromatic_number.test.cpp": "2024-06-04 14:00:22 +0900",
+"test/library-checker/connected_components_of_complement_graph.test.cpp": "2024-06-29 13:06:37 +0900",
 "test/library-checker/enumerate_palindromes.test.cpp": "2023-03-05 19:05:08 +0900",
 "test/library-checker/factorize.test.cpp": "2024-05-30 15:02:19 +0900",
 "test/library-checker/lca.test.cpp": "2023-03-05 19:05:08 +0900",
