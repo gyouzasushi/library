@@ -83,8 +83,8 @@ data:
   timestamp: '2024-06-06 13:54:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2880.test.cpp
   - test/yukicoder/1601.test.cpp
+  - test/aoj/2880.test.cpp
 documentation_of: datastructure/range_set.hpp
 layout: document
 title: Range Set

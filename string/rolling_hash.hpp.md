@@ -189,10 +189,10 @@ data:
   timestamp: '2023-03-05 19:05:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/2231.test.cpp
+  - test/library-checker/enumerate_palindromes.test.cpp
   - test/library-checker/zalgorithm_rolling_hash.test.cpp
   - test/library-checker/suffix_array_rolling_hash.test.cpp
-  - test/library-checker/enumerate_palindromes.test.cpp
-  - test/yukicoder/2231.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document
 title: Rolling Hash

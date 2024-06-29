@@ -168,8 +168,8 @@ data:
   timestamp: '2024-05-30 15:02:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library-checker/binomial_coefficient.test.cpp
   - test/yukicoder/117.test.cpp
+  - test/library-checker/binomial_coefficient.test.cpp
 documentation_of: math/binomial_coefficient.hpp
 layout: document
 redirect_from:

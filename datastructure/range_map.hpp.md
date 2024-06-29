@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/1601_2.test.cpp
+    title: test/yukicoder/1601_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/range_map.hpp\"\n#include <map>\n#include\
@@ -77,8 +80,9 @@ data:
   path: datastructure/range_map.hpp
   requiredBy: []
   timestamp: '2024-06-06 13:54:23+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/1601_2.test.cpp
 documentation_of: datastructure/range_map.hpp
 layout: document
 title: Range Map
