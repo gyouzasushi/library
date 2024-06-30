@@ -35,7 +35,7 @@ public:
         auto it_r = values.upper_bound(r + T(_merge_adjacent));
         std::vector<std::tuple<T, T, S>> restore;
         restore.reserve(3);
-        if (it_l->first < l) {
+        if (it_l != values.end() && it_l->first < l) {
             if (it_l->second.second != x) {
                 restore.emplace_back(it_l->first, l - 1, it_l->second.second);
             } else {
