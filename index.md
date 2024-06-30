@@ -23,7 +23,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/plus_minus_one_range_minimum.hpp
       title: datastructure/plus_minus_one_range_minimum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/range_map.hpp
       title: Range Map
     - icon: ':heavy_check_mark:'
@@ -307,7 +307,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1601.test.cpp
       title: test/yukicoder/1601.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1601_2.test.cpp
       title: test/yukicoder/1601_2.test.cpp
     - icon: ':heavy_check_mark:'

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601_2.test.cpp
     title: test/yukicoder/1601_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/range_map.hpp\"\n#include <map>\n#include\
@@ -28,11 +28,12 @@ data:
     \        if (it_l != values.begin() &&\n            l - T(_merge_adjacent) <=\
     \ std::prev(it_l)->second.first) {\n            it_l--;\n        }\n        auto\
     \ it_r = values.upper_bound(r + T(_merge_adjacent));\n        std::vector<std::tuple<T,\
-    \ T, S>> restore;\n        restore.reserve(3);\n        if (it_l->first < l) {\n\
-    \            if (it_l->second.second != x) {\n                restore.emplace_back(it_l->first,\
-    \ l - 1, it_l->second.second);\n            } else {\n                l = it_l->first;\n\
-    \            }\n        }\n        if (it_l != it_r && r < std::prev(it_r)->second.first)\
-    \ {\n            if (std::prev(it_r)->second.second != x) {\n                restore.emplace_back(r\
+    \ T, S>> restore;\n        restore.reserve(3);\n        if (it_l != values.end()\
+    \ && it_l->first < l) {\n            if (it_l->second.second != x) {\n       \
+    \         restore.emplace_back(it_l->first, l - 1, it_l->second.second);\n   \
+    \         } else {\n                l = it_l->first;\n            }\n        }\n\
+    \        if (it_l != it_r && r < std::prev(it_r)->second.first) {\n          \
+    \  if (std::prev(it_r)->second.second != x) {\n                restore.emplace_back(r\
     \ + 1, std::prev(it_r)->second.first,\n                                     std::prev(it_r)->second.second);\n\
     \            } else {\n                r = std::prev(it_r)->second.first;\n  \
     \          }\n        }\n        restore.emplace_back(l, r, x);\n        for (auto\
@@ -60,11 +61,11 @@ data:
     \ (it_l != values.begin() &&\n            l - T(_merge_adjacent) <= std::prev(it_l)->second.first)\
     \ {\n            it_l--;\n        }\n        auto it_r = values.upper_bound(r\
     \ + T(_merge_adjacent));\n        std::vector<std::tuple<T, T, S>> restore;\n\
-    \        restore.reserve(3);\n        if (it_l->first < l) {\n            if (it_l->second.second\
-    \ != x) {\n                restore.emplace_back(it_l->first, l - 1, it_l->second.second);\n\
-    \            } else {\n                l = it_l->first;\n            }\n     \
-    \   }\n        if (it_l != it_r && r < std::prev(it_r)->second.first) {\n    \
-    \        if (std::prev(it_r)->second.second != x) {\n                restore.emplace_back(r\
+    \        restore.reserve(3);\n        if (it_l != values.end() && it_l->first\
+    \ < l) {\n            if (it_l->second.second != x) {\n                restore.emplace_back(it_l->first,\
+    \ l - 1, it_l->second.second);\n            } else {\n                l = it_l->first;\n\
+    \            }\n        }\n        if (it_l != it_r && r < std::prev(it_r)->second.first)\
+    \ {\n            if (std::prev(it_r)->second.second != x) {\n                restore.emplace_back(r\
     \ + 1, std::prev(it_r)->second.first,\n                                     std::prev(it_r)->second.second);\n\
     \            } else {\n                r = std::prev(it_r)->second.first;\n  \
     \          }\n        }\n        restore.emplace_back(l, r, x);\n        for (auto\
@@ -79,8 +80,8 @@ data:
   isVerificationFile: false
   path: datastructure/range_map.hpp
   requiredBy: []
-  timestamp: '2024-06-06 13:54:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-06-30 18:54:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1601_2.test.cpp
 documentation_of: datastructure/range_map.hpp
