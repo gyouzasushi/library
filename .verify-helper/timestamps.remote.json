@@ -58,5 +58,6 @@
 "test/library-checker/zalgorithm_rolling_hash.test.cpp": "2023-03-05 19:05:08 +0900",
 "test/yukicoder/117.test.cpp": "2024-06-29 12:12:47 +0900",
 "test/yukicoder/1601.test.cpp": "2024-06-06 13:54:23 +0900",
+"test/yukicoder/1601_2.test.cpp": "2024-06-30 18:54:38 +0900",
 "test/yukicoder/2231.test.cpp": "2024-05-30 15:02:19 +0900"
 }
