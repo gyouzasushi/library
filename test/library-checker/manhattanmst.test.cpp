@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/manhattanmst"
+
+#include <atcoder/dsu>
 #include <iostream>
 
-#include "datastructure/unionfind.hpp"
 #include "graph/manhattan_mst.hpp"
 int main() {
     int n;
@@ -11,11 +12,12 @@ int main() {
         std::cin >> x[i] >> y[i];
     }
 
-    unionfind uf(n);
+    atcoder::dsu uf(n);
     long long sum = 0;
     std::vector<std::pair<int, int>> ans;
     for (auto [u, v, w] : manhattan_mst(x, y)) {
-        if (uf.unite(u, v)) {
+        if (!uf.same(u, v)) {
+            uf.merge(u, v);
             sum += w;
             ans.emplace_back(u, v);
         }

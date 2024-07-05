@@ -8,20 +8,21 @@
 #include <vector>
 
 #include "atcoder/segtree.hpp"
+namespace manhattan_mst_internal {
 template <typename T>
-struct manhattan_mst_S {
+struct S {
     T val;
     int id;
 };
 template <typename T>
-manhattan_mst_S<T> manhattan_mst_op(manhattan_mst_S<T> a,
-                                    manhattan_mst_S<T> b) {
+S<T> op(S<T> a, S<T> b) {
     return a.val < b.val ? a : b;
 }
 template <typename T>
-manhattan_mst_S<T> manhattan_mst_e() {
+S<T> e() {
     return {std::numeric_limits<T>::max(), -1};
 }
+}  // namespace manhattan_mst_internal
 template <typename T>
 std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,
                                                    std::vector<T> y) {
@@ -46,11 +47,12 @@ std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,
                     y_id[i] = std::lower_bound(_y.begin(), _y.end(), y[i]) -
                               _y.begin();
                 }
-                atcoder::segtree<manhattan_mst_S<T>, manhattan_mst_op<T>,
-                                 manhattan_mst_e<T>>
+                atcoder::segtree<manhattan_mst_internal::S<T>,
+                                 manhattan_mst_internal::op<T>,
+                                 manhattan_mst_internal::e<T>>
                     segt(n);
                 for (int i : id) {
-                    manhattan_mst_S<T> p = segt.prod(y_id[i], n);
+                    manhattan_mst_internal::S<T> p = segt.prod(y_id[i], n);
                     if (p.id != -1) {
                         ret.emplace_back(i, p.id, p.val - (x[i] + y[i]));
                     }
