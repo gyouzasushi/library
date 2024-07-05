@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/matrix_product.test.cpp
     title: test/library-checker/matrix_product.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/pow_of_matrix.test.cpp
+    title: test/library-checker/pow_of_matrix.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -65,6 +68,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/matrix_product.test.cpp
+  - test/library-checker/pow_of_matrix.test.cpp
 documentation_of: math/matrix.hpp
 layout: document
 redirect_from:
