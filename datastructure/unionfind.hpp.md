@@ -7,9 +7,6 @@ data:
     path: test/aoj/1160.test.cpp
     title: test/aoj/1160.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library-checker/manhattanmst.test.cpp
-    title: test/library-checker/manhattanmst.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library-checker/unionfind.test.cpp
     title: test/library-checker/unionfind.test.cpp
   _isVerificationFailed: false
@@ -59,7 +56,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1160.test.cpp
-  - test/library-checker/manhattanmst.test.cpp
   - test/library-checker/unionfind.test.cpp
 documentation_of: datastructure/unionfind.hpp
 layout: document

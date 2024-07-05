@@ -63,70 +63,71 @@ data:
     \   sm = op(d[r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
     \    }\n\n  private:\n    int _n, size, log;\n    std::vector<S> d;\n\n    void\
     \ update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }\n};\n\n}  // namespace\
-    \ atcoder\n\n\n#line 11 \"graph/manhattan_mst.hpp\"\ntemplate <typename T>\nstruct\
-    \ manhattan_mst_S {\n    T val;\n    int id;\n};\ntemplate <typename T>\nmanhattan_mst_S<T>\
-    \ manhattan_mst_op(manhattan_mst_S<T> a,\n                                   \
-    \ manhattan_mst_S<T> b) {\n    return a.val < b.val ? a : b;\n}\ntemplate <typename\
-    \ T>\nmanhattan_mst_S<T> manhattan_mst_e() {\n    return {std::numeric_limits<T>::max(),\
-    \ -1};\n}\ntemplate <typename T>\nstd::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T>\
-    \ x,\n                                                   std::vector<T> y) {\n\
-    \    int n = x.size();\n    assert(int(x.size()) == n && int(y.size()) == n);\n\
-    \    std::vector<int> id(n);\n    std::iota(id.begin(), id.end(), 0);\n    std::vector<int>\
-    \ y_id(n);\n    std::vector<std::tuple<int, int, T>> ret;\n    for (int a = 0;\
-    \ a < 2; a++) {\n        for (int b = 0; b < 2; b++) {\n            for (int c\
-    \ = 0; c < 2; c++) {\n                sort(id.begin(), id.end(), [&](int i, int\
-    \ j) {\n                    if (y[i] - x[i] == y[j] - x[j] && y[i] == y[j])\n\
-    \                        return i < j;\n                    if (y[i] - x[i] ==\
-    \ y[j] - x[j]) return y[i] > y[j];\n                    return y[i] - x[i] < y[j]\
-    \ - x[j];\n                });\n                std::vector<T> _y = y;\n     \
-    \           std::sort(_y.begin(), _y.end());\n                for (int i = 0;\
-    \ i < n; i++) {\n                    y_id[i] = std::lower_bound(_y.begin(), _y.end(),\
-    \ y[i]) -\n                              _y.begin();\n                }\n    \
-    \            atcoder::segtree<manhattan_mst_S<T>, manhattan_mst_op<T>,\n     \
-    \                            manhattan_mst_e<T>>\n                    segt(n);\n\
-    \                for (int i : id) {\n                    manhattan_mst_S<T> p\
-    \ = segt.prod(y_id[i], n);\n                    if (p.id != -1) {\n          \
-    \              ret.emplace_back(i, p.id, p.val - (x[i] + y[i]));\n           \
-    \         }\n                    segt.set(y_id[i], {x[i] + y[i], i});\n      \
-    \          }\n                std::swap(x, y);\n            }\n            for\
+    \ atcoder\n\n\n#line 11 \"graph/manhattan_mst.hpp\"\nnamespace manhattan_mst_internal\
+    \ {\ntemplate <typename T>\nstruct S {\n    T val;\n    int id;\n};\ntemplate\
+    \ <typename T>\nS<T> op(S<T> a, S<T> b) {\n    return a.val < b.val ? a : b;\n\
+    }\ntemplate <typename T>\nS<T> e() {\n    return {std::numeric_limits<T>::max(),\
+    \ -1};\n}\n}  // namespace manhattan_mst_internal\ntemplate <typename T>\nstd::vector<std::tuple<int,\
+    \ int, T>> manhattan_mst(std::vector<T> x,\n                                 \
+    \                  std::vector<T> y) {\n    int n = x.size();\n    assert(int(x.size())\
+    \ == n && int(y.size()) == n);\n    std::vector<int> id(n);\n    std::iota(id.begin(),\
+    \ id.end(), 0);\n    std::vector<int> y_id(n);\n    std::vector<std::tuple<int,\
+    \ int, T>> ret;\n    for (int a = 0; a < 2; a++) {\n        for (int b = 0; b\
+    \ < 2; b++) {\n            for (int c = 0; c < 2; c++) {\n                sort(id.begin(),\
+    \ id.end(), [&](int i, int j) {\n                    if (y[i] - x[i] == y[j] -\
+    \ x[j] && y[i] == y[j])\n                        return i < j;\n             \
+    \       if (y[i] - x[i] == y[j] - x[j]) return y[i] > y[j];\n                \
+    \    return y[i] - x[i] < y[j] - x[j];\n                });\n                std::vector<T>\
+    \ _y = y;\n                std::sort(_y.begin(), _y.end());\n                for\
+    \ (int i = 0; i < n; i++) {\n                    y_id[i] = std::lower_bound(_y.begin(),\
+    \ _y.end(), y[i]) -\n                              _y.begin();\n             \
+    \   }\n                atcoder::segtree<manhattan_mst_internal::S<T>,\n      \
+    \                           manhattan_mst_internal::op<T>,\n                 \
+    \                manhattan_mst_internal::e<T>>\n                    segt(n);\n\
+    \                for (int i : id) {\n                    manhattan_mst_internal::S<T>\
+    \ p = segt.prod(y_id[i], n);\n                    if (p.id != -1) {\n        \
+    \                ret.emplace_back(i, p.id, p.val - (x[i] + y[i]));\n         \
+    \           }\n                    segt.set(y_id[i], {x[i] + y[i], i});\n    \
+    \            }\n                std::swap(x, y);\n            }\n            for\
     \ (T &x : x) x = -x;\n        }\n        for (T &y : y) y = -y;\n    }\n    sort(ret.begin(),\
     \ ret.end(),\n         [](auto a, auto b) { return std::get<2>(a) < std::get<2>(b);\
     \ });\n    return ret;\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\
     #include <limits>\n#include <map>\n#include <numeric>\n#include <vector>\n\n#include\
-    \ \"atcoder/segtree.hpp\"\ntemplate <typename T>\nstruct manhattan_mst_S {\n \
-    \   T val;\n    int id;\n};\ntemplate <typename T>\nmanhattan_mst_S<T> manhattan_mst_op(manhattan_mst_S<T>\
-    \ a,\n                                    manhattan_mst_S<T> b) {\n    return\
-    \ a.val < b.val ? a : b;\n}\ntemplate <typename T>\nmanhattan_mst_S<T> manhattan_mst_e()\
-    \ {\n    return {std::numeric_limits<T>::max(), -1};\n}\ntemplate <typename T>\n\
-    std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,\n       \
-    \                                            std::vector<T> y) {\n    int n =\
-    \ x.size();\n    assert(int(x.size()) == n && int(y.size()) == n);\n    std::vector<int>\
-    \ id(n);\n    std::iota(id.begin(), id.end(), 0);\n    std::vector<int> y_id(n);\n\
-    \    std::vector<std::tuple<int, int, T>> ret;\n    for (int a = 0; a < 2; a++)\
-    \ {\n        for (int b = 0; b < 2; b++) {\n            for (int c = 0; c < 2;\
-    \ c++) {\n                sort(id.begin(), id.end(), [&](int i, int j) {\n   \
-    \                 if (y[i] - x[i] == y[j] - x[j] && y[i] == y[j])\n          \
-    \              return i < j;\n                    if (y[i] - x[i] == y[j] - x[j])\
-    \ return y[i] > y[j];\n                    return y[i] - x[i] < y[j] - x[j];\n\
-    \                });\n                std::vector<T> _y = y;\n               \
-    \ std::sort(_y.begin(), _y.end());\n                for (int i = 0; i < n; i++)\
-    \ {\n                    y_id[i] = std::lower_bound(_y.begin(), _y.end(), y[i])\
-    \ -\n                              _y.begin();\n                }\n          \
-    \      atcoder::segtree<manhattan_mst_S<T>, manhattan_mst_op<T>,\n           \
-    \                      manhattan_mst_e<T>>\n                    segt(n);\n   \
-    \             for (int i : id) {\n                    manhattan_mst_S<T> p = segt.prod(y_id[i],\
-    \ n);\n                    if (p.id != -1) {\n                        ret.emplace_back(i,\
-    \ p.id, p.val - (x[i] + y[i]));\n                    }\n                    segt.set(y_id[i],\
-    \ {x[i] + y[i], i});\n                }\n                std::swap(x, y);\n  \
-    \          }\n            for (T &x : x) x = -x;\n        }\n        for (T &y\
-    \ : y) y = -y;\n    }\n    sort(ret.begin(), ret.end(),\n         [](auto a, auto\
-    \ b) { return std::get<2>(a) < std::get<2>(b); });\n    return ret;\n}"
+    \ \"atcoder/segtree.hpp\"\nnamespace manhattan_mst_internal {\ntemplate <typename\
+    \ T>\nstruct S {\n    T val;\n    int id;\n};\ntemplate <typename T>\nS<T> op(S<T>\
+    \ a, S<T> b) {\n    return a.val < b.val ? a : b;\n}\ntemplate <typename T>\n\
+    S<T> e() {\n    return {std::numeric_limits<T>::max(), -1};\n}\n}  // namespace\
+    \ manhattan_mst_internal\ntemplate <typename T>\nstd::vector<std::tuple<int, int,\
+    \ T>> manhattan_mst(std::vector<T> x,\n                                      \
+    \             std::vector<T> y) {\n    int n = x.size();\n    assert(int(x.size())\
+    \ == n && int(y.size()) == n);\n    std::vector<int> id(n);\n    std::iota(id.begin(),\
+    \ id.end(), 0);\n    std::vector<int> y_id(n);\n    std::vector<std::tuple<int,\
+    \ int, T>> ret;\n    for (int a = 0; a < 2; a++) {\n        for (int b = 0; b\
+    \ < 2; b++) {\n            for (int c = 0; c < 2; c++) {\n                sort(id.begin(),\
+    \ id.end(), [&](int i, int j) {\n                    if (y[i] - x[i] == y[j] -\
+    \ x[j] && y[i] == y[j])\n                        return i < j;\n             \
+    \       if (y[i] - x[i] == y[j] - x[j]) return y[i] > y[j];\n                \
+    \    return y[i] - x[i] < y[j] - x[j];\n                });\n                std::vector<T>\
+    \ _y = y;\n                std::sort(_y.begin(), _y.end());\n                for\
+    \ (int i = 0; i < n; i++) {\n                    y_id[i] = std::lower_bound(_y.begin(),\
+    \ _y.end(), y[i]) -\n                              _y.begin();\n             \
+    \   }\n                atcoder::segtree<manhattan_mst_internal::S<T>,\n      \
+    \                           manhattan_mst_internal::op<T>,\n                 \
+    \                manhattan_mst_internal::e<T>>\n                    segt(n);\n\
+    \                for (int i : id) {\n                    manhattan_mst_internal::S<T>\
+    \ p = segt.prod(y_id[i], n);\n                    if (p.id != -1) {\n        \
+    \                ret.emplace_back(i, p.id, p.val - (x[i] + y[i]));\n         \
+    \           }\n                    segt.set(y_id[i], {x[i] + y[i], i});\n    \
+    \            }\n                std::swap(x, y);\n            }\n            for\
+    \ (T &x : x) x = -x;\n        }\n        for (T &y : y) y = -y;\n    }\n    sort(ret.begin(),\
+    \ ret.end(),\n         [](auto a, auto b) { return std::get<2>(a) < std::get<2>(b);\
+    \ });\n    return ret;\n}"
   dependsOn: []
   isVerificationFile: false
   path: graph/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2023-03-05 19:19:13+09:00'
+  timestamp: '2024-07-05 09:06:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/manhattanmst.test.cpp
