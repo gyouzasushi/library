@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/matrix_product.test.cpp
     title: test/library-checker/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/pow_of_matrix.test.cpp
     title: test/library-checker/pow_of_matrix.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/matrix.hpp\"\n#include <vector>\ntemplate <typename\
@@ -65,10 +65,10 @@ data:
   path: math/matrix.hpp
   requiredBy: []
   timestamp: '2024-06-29 11:24:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library-checker/matrix_product.test.cpp
   - test/library-checker/pow_of_matrix.test.cpp
+  - test/library-checker/matrix_product.test.cpp
 documentation_of: math/matrix.hpp
 layout: document
 redirect_from:

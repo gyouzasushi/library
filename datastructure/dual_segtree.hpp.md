@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/range_affine_point_get.test.cpp
     title: test/library-checker/range_affine_point_get.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"datastructure/dual_segtree.hpp\"\n#include <vector>\ntemplate\
@@ -55,7 +55,7 @@ data:
   path: datastructure/dual_segtree.hpp
   requiredBy: []
   timestamp: '2023-03-05 19:05:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library-checker/range_affine_point_get.test.cpp
 documentation_of: datastructure/dual_segtree.hpp

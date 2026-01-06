@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/binomial_coefficient.hpp
     title: math/binomial_coefficient.hpp
   _extendedVerifiedWith:
@@ -12,15 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/binomial_coefficient_prime_mod.test.cpp
     title: test/library-checker/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/factorize.test.cpp
     title: test/library-checker/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/117.test.cpp
     title: test/yukicoder/117.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/factorize.hpp\"\n#include <cmath>\n#include <numeric>\n\
@@ -83,12 +83,12 @@ data:
   requiredBy:
   - math/binomial_coefficient.hpp
   timestamp: '2024-05-30 15:02:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/117.test.cpp
+  - test/library-checker/binomial_coefficient.test.cpp
   - test/library-checker/binomial_coefficient_prime_mod.test.cpp
   - test/library-checker/factorize.test.cpp
-  - test/library-checker/binomial_coefficient.test.cpp
+  - test/yukicoder/117.test.cpp
 documentation_of: math/factorize.hpp
 layout: document
 redirect_from:

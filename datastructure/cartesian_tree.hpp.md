@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/cartesian_tree.test.cpp
     title: test/library-checker/cartesian_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/cartesian_tree.hpp\"\n#include <numeric>\n\
@@ -33,7 +33,7 @@ data:
   path: datastructure/cartesian_tree.hpp
   requiredBy: []
   timestamp: '2023-03-05 19:05:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library-checker/cartesian_tree.test.cpp
 documentation_of: datastructure/cartesian_tree.hpp

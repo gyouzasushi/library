@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint2305843009213693951.hpp
     title: math/modint2305843009213693951.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/pow_table.hpp
     title: math/pow_table.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/enumerate_palindromes.test.cpp
     title: test/library-checker/enumerate_palindromes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/suffix_array_rolling_hash.test.cpp
     title: test/library-checker/suffix_array_rolling_hash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/zalgorithm_rolling_hash.test.cpp
     title: test/library-checker/zalgorithm_rolling_hash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/rolling_hash.hpp\"\n#include <algorithm>\n#include\
@@ -187,12 +187,12 @@ data:
   path: string/rolling_hash.hpp
   requiredBy: []
   timestamp: '2023-03-05 19:05:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2231.test.cpp
-  - test/library-checker/enumerate_palindromes.test.cpp
   - test/library-checker/zalgorithm_rolling_hash.test.cpp
   - test/library-checker/suffix_array_rolling_hash.test.cpp
+  - test/library-checker/enumerate_palindromes.test.cpp
+  - test/yukicoder/2231.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document
 title: Rolling Hash

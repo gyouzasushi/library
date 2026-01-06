@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2880.test.cpp
     title: test/aoj/2880.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/range_set.hpp\"\n\n#include <map>\ntemplate\
@@ -81,10 +81,10 @@ data:
   path: datastructure/range_set.hpp
   requiredBy: []
   timestamp: '2024-06-06 13:54:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1601.test.cpp
   - test/aoj/2880.test.cpp
+  - test/yukicoder/1601.test.cpp
 documentation_of: datastructure/range_set.hpp
 layout: document
 title: Range Set

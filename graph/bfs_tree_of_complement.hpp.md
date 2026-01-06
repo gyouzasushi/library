@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/connected_components_of_complement_graph.test.cpp
     title: test/library-checker/connected_components_of_complement_graph.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/bfs_tree_of_complement.hpp\"\n#include <algorithm>\n\
@@ -46,7 +46,7 @@ data:
   path: graph/bfs_tree_of_complement.hpp
   requiredBy: []
   timestamp: '2024-06-29 13:06:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library-checker/connected_components_of_complement_graph.test.cpp
 documentation_of: graph/bfs_tree_of_complement.hpp
