@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/bostan_mori.test.cpp
     title: test/library-checker/bostan_mori.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/bostan_mori.hpp\"\n\n#include <cassert>\n#include <ranges>\n\
@@ -413,7 +413,7 @@ data:
   path: math/bostan_mori.hpp
   requiredBy: []
   timestamp: '2026-01-06 22:24:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/bostan_mori.test.cpp
 documentation_of: math/bostan_mori.hpp

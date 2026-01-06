@@ -15,10 +15,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/enumerate_palindromes.test.cpp
     title: test/library-checker/enumerate_palindromes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/suffix_array_rolling_hash.test.cpp
     title: test/library-checker/suffix_array_rolling_hash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/zalgorithm_rolling_hash.test.cpp
     title: test/library-checker/zalgorithm_rolling_hash.test.cpp
   - icon: ':x:'

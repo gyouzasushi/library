@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0378.test.cpp
     title: test/aoj/0378.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/wildcard_pattern_matching.test.cpp
     title: test/library-checker/wildcard_pattern_matching.test.cpp
   - icon: ':x:'

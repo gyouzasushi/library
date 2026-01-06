@@ -11,13 +11,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/cartesian_tree.hpp
       title: Cartesian Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/cumulative_sum.hpp
       title: "\u7D2F\u7A4D\u548C"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/dual_segtree.hpp
       title: Dual Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/dynamic_li_chao_tree.hpp
       title: Dynamic Li Chao Tree
     - icon: ':heavy_check_mark:'
@@ -26,16 +26,16 @@ data:
     - icon: ':x:'
       path: datastructure/range_map.hpp
       title: Range Map
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/range_set.hpp
       title: Range Set
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/sparse_table.hpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
       path: datastructure/static_range_minimum.hpp
       title: datastructure/static_range_minimum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/unionfind.hpp
       title: datastructure/unionfind.hpp
   - name: geometry
@@ -51,7 +51,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.hpp
       title: "\u5F69\u8272\u6570"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: "Dijkstra \u6CD5"
     - icon: ':warning:'
@@ -69,7 +69,7 @@ data:
     - icon: ':warning:'
       path: graph/rerooting.hpp
       title: graph/rerooting.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/subtree_classify.hpp
       title: "\u6839\u4ED8\u304D\u6728\u306E\u540C\u578B\u6027\u306B\u3088\u308B\u90E8\
         \u5206\u6728\u306E\u5206\u985E"
@@ -78,7 +78,7 @@ data:
       title: graph/topological_sort.hpp
   - name: math
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/binomial_coefficient.hpp
       title: math/binomial_coefficient.hpp
     - icon: ':heavy_check_mark:'
@@ -87,10 +87,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/bitwise_or_convolution.hpp
       title: Bitwise Or Convolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/bostan_mori.hpp
       title: math/bostan_mori.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/factorize.hpp
       title: math/factorize.hpp
     - icon: ':heavy_check_mark:'
@@ -233,7 +233,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/bitwise_or_convolution.test.cpp
       title: test/library-checker/bitwise_or_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/bostan_mori.test.cpp
       title: test/library-checker/bostan_mori.test.cpp
     - icon: ':heavy_check_mark:'
@@ -275,45 +275,45 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/pow_of_matrix.test.cpp
       title: test/library-checker/pow_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_point_get.test.cpp
       title: test/library-checker/range_affine_point_get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
       title: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/scc.test.cpp
       title: test/library-checker/scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/segment_add_get_min.test.cpp
       title: test/library-checker/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/shortest_path.test.cpp
       title: test/library-checker/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_sum.test.cpp
       title: test/library-checker/static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/staticrmq.test.cpp
       title: test/library-checker/staticrmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/suffix_array_rolling_hash.test.cpp
       title: test/library-checker/suffix_array_rolling_hash.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/unionfind.test.cpp
       title: test/library-checker/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/wildcard_pattern_matching.test.cpp
       title: test/library-checker/wildcard_pattern_matching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/zalgorithm_rolling_hash.test.cpp
       title: test/library-checker/zalgorithm_rolling_hash.test.cpp
   - name: test/yukicoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/117.test.cpp
       title: test/yukicoder/117.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1601.test.cpp
       title: test/yukicoder/1601.test.cpp
     - icon: ':x:'

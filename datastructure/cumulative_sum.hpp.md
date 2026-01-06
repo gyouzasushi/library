@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/static_range_sum.test.cpp
     title: test/library-checker/static_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/cumulative_sum.hpp\"\n#include <vector>\n\
@@ -31,7 +31,7 @@ data:
   path: datastructure/cumulative_sum.hpp
   requiredBy: []
   timestamp: '2024-05-30 15:02:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/static_range_sum.test.cpp
 documentation_of: datastructure/cumulative_sum.hpp

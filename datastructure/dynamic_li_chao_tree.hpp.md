@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/line_add_get_min.test.cpp
     title: test/library-checker/line_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/segment_add_get_min.test.cpp
     title: test/library-checker/segment_add_get_min.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"datastructure/dynamic_li_chao_tree.hpp\"\n#include <algorithm>\n\
@@ -98,7 +98,7 @@ data:
   path: datastructure/dynamic_li_chao_tree.hpp
   requiredBy: []
   timestamp: '2023-03-05 19:05:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/line_add_get_min.test.cpp
   - test/library-checker/segment_add_get_min.test.cpp
