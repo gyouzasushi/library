@@ -3,12 +3,12 @@ data:
   libraryCategories:
   - name: algorithm
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algorithm/longest_increasing_subsequence.hpp
       title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(LIS)"
   - name: datastructure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/cartesian_tree.hpp
       title: Cartesian Tree
     - icon: ':x:'
@@ -17,10 +17,10 @@ data:
     - icon: ':x:'
       path: datastructure/dual_segtree.hpp
       title: Dual Segment Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: datastructure/dynamic_li_chao_tree.hpp
       title: Dynamic Li Chao Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/plus_minus_one_range_minimum.hpp
       title: datastructure/plus_minus_one_range_minimum.hpp
     - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     - icon: ':x:'
       path: datastructure/sparse_table.hpp
       title: Sparse Table
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/static_range_minimum.hpp
       title: datastructure/static_range_minimum.hpp
     - icon: ':question:'
@@ -45,10 +45,10 @@ data:
       title: geomerty
   - name: graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/bfs_tree_of_complement.hpp
       title: graph/bfs_tree_of_complement.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.hpp
       title: "\u5F69\u8272\u6570"
     - icon: ':x:'
@@ -60,10 +60,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/grid.hpp
       title: "\u30B0\u30EA\u30C3\u30C9"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/lowest_common_ancestor.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/manhattan_mst.hpp
       title: Manhattan MST
     - icon: ':warning:'
@@ -81,10 +81,10 @@ data:
     - icon: ':question:'
       path: math/binomial_coefficient.hpp
       title: math/binomial_coefficient.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/bitwise_and_convolution.hpp
       title: Bitwise And Convolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/bitwise_or_convolution.hpp
       title: Bitwise Or Convolution
     - icon: ':x:'
@@ -93,7 +93,7 @@ data:
     - icon: ':question:'
       path: math/factorize.hpp
       title: math/factorize.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: math/matrix.hpp
     - icon: ':warning:'
@@ -111,7 +111,7 @@ data:
     - icon: ':warning:'
       path: math/semiring_matrix.hpp
       title: math/semiring_matrix.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/zeta_mobius_transform.hpp
       title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB"
@@ -120,7 +120,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/range_update_range_hash.hpp
       title: Range Update Range Hash
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/rolling_hash.hpp
       title: Rolling Hash
     - icon: ':question:'
@@ -213,7 +213,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_I.test.cpp
       title: test/aoj/CGL_7_I.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_D.test.cpp
       title: test/aoj/DPL_1_D.test.cpp
   - name: test/library-checker
@@ -227,52 +227,52 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/bipartitematching.test.cpp
       title: test/library-checker/bipartitematching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/bitwise_and_convolution.test.cpp
       title: test/library-checker/bitwise_and_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/bitwise_or_convolution.test.cpp
       title: test/library-checker/bitwise_or_convolution.test.cpp
     - icon: ':x:'
       path: test/library-checker/bostan_mori.test.cpp
       title: test/library-checker/bostan_mori.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/cartesian_tree.test.cpp
       title: test/library-checker/cartesian_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/chromatic_number.test.cpp
       title: test/library-checker/chromatic_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/connected_components_of_complement_graph.test.cpp
       title: test/library-checker/connected_components_of_complement_graph.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/enumerate_palindromes.test.cpp
       title: test/library-checker/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/factorize.test.cpp
       title: test/library-checker/factorize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/lca.test.cpp
       title: test/library-checker/lca.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/line_add_get_min.test.cpp
       title: test/library-checker/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/manhattanmst.test.cpp
       title: test/library-checker/manhattanmst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/matrix_product.test.cpp
       title: test/library-checker/matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/point_add_range_sum.test.cpp
       title: test/library-checker/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/point_set_range_composite.test.cpp
       title: test/library-checker/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/point_set_range_sum.test.cpp
       title: test/library-checker/point_set_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/pow_of_matrix.test.cpp
       title: test/library-checker/pow_of_matrix.test.cpp
     - icon: ':x:'

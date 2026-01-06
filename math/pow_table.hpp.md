@@ -5,14 +5,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/range_update_range_hash.hpp
     title: Range Update Range Hash
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/rolling_hash.hpp
     title: Rolling Hash
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0355.test.cpp
     title: test/aoj/0355.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/enumerate_palindromes.test.cpp
     title: test/library-checker/enumerate_palindromes.test.cpp
   - icon: ':x:'

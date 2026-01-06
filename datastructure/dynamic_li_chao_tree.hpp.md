@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/line_add_get_min.test.cpp
     title: test/library-checker/line_add_get_min.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/library-checker/segment_add_get_min.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"datastructure/dynamic_li_chao_tree.hpp\"\n#include <algorithm>\n\
@@ -98,7 +98,7 @@ data:
   path: datastructure/dynamic_li_chao_tree.hpp
   requiredBy: []
   timestamp: '2023-03-05 19:05:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library-checker/line_add_get_min.test.cpp
   - test/library-checker/segment_add_get_min.test.cpp

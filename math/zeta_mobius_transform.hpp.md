@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/bitwise_and_convolution.hpp
     title: Bitwise And Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/bitwise_or_convolution.hpp
     title: Bitwise Or Convolution
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/bitwise_and_convolution.test.cpp
     title: test/library-checker/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/bitwise_or_convolution.test.cpp
     title: test/library-checker/bitwise_or_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/zeta_mobius_transform.hpp\"\n#include <cassert>\n#include\
@@ -60,7 +60,7 @@ data:
   - math/bitwise_or_convolution.hpp
   - math/bitwise_and_convolution.hpp
   timestamp: '2022-09-17 18:19:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/bitwise_and_convolution.test.cpp
   - test/library-checker/bitwise_or_convolution.test.cpp

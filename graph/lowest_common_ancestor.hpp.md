@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/plus_minus_one_range_minimum.hpp
     title: datastructure/plus_minus_one_range_minimum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/static_range_minimum.hpp
     title: datastructure/static_range_minimum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/lca.test.cpp
     title: test/library-checker/lca.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/lowest_common_ancestor.hpp\"\n#include <cassert>\n\
@@ -109,7 +109,7 @@ data:
   path: graph/lowest_common_ancestor.hpp
   requiredBy: []
   timestamp: '2023-03-05 19:05:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/lca.test.cpp
 documentation_of: graph/lowest_common_ancestor.hpp

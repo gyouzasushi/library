@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/plus_minus_one_range_minimum.hpp
     title: datastructure/plus_minus_one_range_minimum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/static_range_minimum.hpp
     title: datastructure/static_range_minimum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowest_common_ancestor.hpp
     title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -106,7 +106,7 @@ data:
   path: test/library-checker/lca.test.cpp
   requiredBy: []
   timestamp: '2023-03-05 19:05:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/lca.test.cpp
 layout: document

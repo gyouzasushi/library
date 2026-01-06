@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/binomial_coefficient_prime_mod.test.cpp
     title: test/library-checker/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/factorize.test.cpp
     title: test/library-checker/factorize.test.cpp
   - icon: ':x:'

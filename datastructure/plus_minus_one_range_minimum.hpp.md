@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/static_range_minimum.hpp
     title: datastructure/static_range_minimum.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/lowest_common_ancestor.hpp
     title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/lca.test.cpp
     title: test/library-checker/lca.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/plus_minus_one_range_minimum.hpp\"\n#include\
@@ -101,7 +101,7 @@ data:
   requiredBy:
   - graph/lowest_common_ancestor.hpp
   timestamp: '2022-09-01 13:39:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/lca.test.cpp
 documentation_of: datastructure/plus_minus_one_range_minimum.hpp

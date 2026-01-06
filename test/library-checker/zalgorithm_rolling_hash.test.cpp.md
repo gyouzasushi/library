@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: math/pow_table.hpp
     title: math/pow_table.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/rolling_hash.hpp
     title: Rolling Hash
   _extendedRequiredBy: []

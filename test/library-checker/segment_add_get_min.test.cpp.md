@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: datastructure/dynamic_li_chao_tree.hpp
     title: Dynamic Li Chao Tree
   _extendedRequiredBy: []
