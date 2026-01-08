@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint2305843009213693951.hpp
     title: math/modint2305843009213693951.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/pow_table.hpp
     title: math/pow_table.hpp
   _extendedRequiredBy: []
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/zalgorithm_rolling_hash.test.cpp
     title: test/library-checker/zalgorithm_rolling_hash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/rolling_hash.hpp\"\n#include <algorithm>\n#include\
@@ -187,7 +187,7 @@ data:
   path: string/rolling_hash.hpp
   requiredBy: []
   timestamp: '2023-03-05 19:05:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/zalgorithm_rolling_hash.test.cpp
   - test/library-checker/suffix_array_rolling_hash.test.cpp

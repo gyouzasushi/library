@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/wildcard_pattern_matching.test.cpp
     title: test/library-checker/wildcard_pattern_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -484,7 +484,7 @@ data:
   path: string/wildcard_matching.hpp
   requiredBy: []
   timestamp: '2024-05-30 15:02:19+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/0378.test.cpp
   - test/library-checker/wildcard_pattern_matching.test.cpp

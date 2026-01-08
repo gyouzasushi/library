@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint2305843009213693951.hpp
     title: math/modint2305843009213693951.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/pow_table.hpp
     title: math/pow_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: Rolling Hash
   _extendedRequiredBy: []

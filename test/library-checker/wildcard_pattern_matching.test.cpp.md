@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/wildcard_matching.hpp
     title: Wildcard Matching
   _extendedRequiredBy: []

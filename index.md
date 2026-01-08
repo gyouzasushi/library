@@ -23,7 +23,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/plus_minus_one_range_minimum.hpp
       title: datastructure/plus_minus_one_range_minimum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/range_map.hpp
       title: Range Map
     - icon: ':heavy_check_mark:'
@@ -99,13 +99,13 @@ data:
     - icon: ':warning:'
       path: math/modint.hpp
       title: modint
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint2305843009213693951.hpp
       title: math/modint2305843009213693951.hpp
     - icon: ':heavy_check_mark:'
       path: math/pow_sum_table.hpp
       title: math/pow_sum_table.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/pow_table.hpp
       title: math/pow_table.hpp
     - icon: ':warning:'
@@ -120,10 +120,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/range_update_range_hash.hpp
       title: Range Update Range Hash
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: Rolling Hash
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/wildcard_matching.hpp
       title: Wildcard Matching
   verificationCategories:
@@ -316,10 +316,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1601.test.cpp
       title: test/yukicoder/1601.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1601_2.test.cpp
       title: test/yukicoder/1601_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2231.test.cpp
       title: test/yukicoder/2231.test.cpp
 layout: toppage

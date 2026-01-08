@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/range_update_range_hash.hpp
     title: Range Update Range Hash
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: Rolling Hash
   _extendedVerifiedWith:
@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/zalgorithm_rolling_hash.test.cpp
     title: test/library-checker/zalgorithm_rolling_hash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/pow_table.hpp\"\n#include <vector>\ntemplate <typename\
@@ -52,7 +52,7 @@ data:
   - string/range_update_range_hash.hpp
   - string/rolling_hash.hpp
   timestamp: '2022-09-10 18:25:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/0355.test.cpp
   - test/library-checker/zalgorithm_rolling_hash.test.cpp
