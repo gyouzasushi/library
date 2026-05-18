@@ -44,7 +44,11 @@ struct binomial_coefficient {
     }
 };
 
+#if __has_include(<atcoder/math.hpp>)
+#include <atcoder/math.hpp>
+#else
 #include "atcoder/math.hpp"
+#endif
 #include "math/factorize.hpp"
 struct binomial_coefficient_arbitrary_mod {
     static void set_mod(int mod) {
