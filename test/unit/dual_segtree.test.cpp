@@ -13,13 +13,14 @@ F composition(F f, F g) {
 F id() {
     return {1, 0};
 }
-void stress(bool is_commutative, std::mt19937 &rng) {
+template <bool is_commutative>
+void stress(std::mt19937 &rng) {
     const int N = 30;
     const int Q = 2000;
-    dual_segtree<F, composition, id> seg(N, is_commutative);
+    dual_segtree<F, composition, id, is_commutative> seg(N);
     std::vector<F> naive(N, id());
     auto gen = [&]() -> F {
-        if (is_commutative) {
+        if constexpr (is_commutative) {
             return {1, (long long)(rng() % 10)};
         } else {
             return {(long long)(rng() % 5), (long long)(rng() % 5)};
@@ -47,8 +48,8 @@ void stress(bool is_commutative, std::mt19937 &rng) {
 int main() {
     std::mt19937 rng(7959);
     for (int trial = 0; trial < 20; trial++) {
-        stress(false, rng);
-        stress(true, rng);
+        stress<false>(rng);
+        stress<true>(rng);
     }
     std::cout << "Hello World" << std::endl;
     return 0;

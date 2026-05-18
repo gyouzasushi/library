@@ -7,7 +7,7 @@ documentation_of: datastructure/dual_segtree.hpp
 - 区間更新・一点取得ができるデータ構造。
 
 ### 使い方
-- `dual_segtree<F, composition, id>(n, is_commutative = false)`: 長さ `n` の数列 `a` を作る。`F` は作用の型。`composition` は $f \circ g$ を計算する関数。`id` は $id$ を返す関数。$\cdot$ が可換である場合は `commutative = true` にするとよい。
+- `dual_segtree<F, composition, id, is_commutative = false>(n)`: 長さ `n` の数列 `a` を作る。`F` は作用の型。`composition` は $f \circ g$ を計算する関数。`id` は $id$ を返す関数。$\cdot$ が可換である場合は `is_commutative = true` にすると定数倍が改善される。
 - `apply(l, r, x)`: `a_l, ..., a_r` に `x` を作用させる。
 - `set(p, x)`: `a_p` を `x` に上書きする。
 - `get(p)`: `a_p` を求める。
