@@ -57,6 +57,7 @@ struct binomial_coefficient_arbitrary_mod {
         factors = factorize(m);
         f.assign(factors.size(), {});
         inv_f.assign(factors.size(), {});
+        max_size = 0;
     }
     static long long C(long long n, long long k) {
         if (m == 1 || n < 0 || n < k || k < 0) return 0;
