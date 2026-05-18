@@ -11,6 +11,11 @@ public:
         while (size < n) size <<= 1, height++;
         lz.assign(2 * size, id());
     }
+    void set(int p, const F &x) {
+        p += size;
+        thrust(p);
+        lz[p] = x;
+    }
     void apply(int l, int r, const F &f) {
         l += size;
         r += size - 1;
