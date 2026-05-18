@@ -2,9 +2,9 @@
 #include <iostream>
 
 #include "atcoder/modint"
-#include "math/binomial_coefficient.hpp"
+#include "math/combinatorics.hpp"
 using mint = atcoder::modint;
-using binom = binomial_coefficient<mint>;
+using binom = combinatorics<mint>;
 mint lucas(int n, int k) {
     if (n < 0 || n < k || k < 0) return 0;
     int m = mint::mod();

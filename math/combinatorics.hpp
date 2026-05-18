@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 template <typename mint>
-struct factorial_table {
+struct combinatorics {
     static mint val(int i) {
         ensure(i);
         return facts[i];
@@ -9,6 +9,19 @@ struct factorial_table {
     static mint inv(int i) {
         ensure(i);
         return ifacts[i];
+    }
+    static mint C(int n, int k) {
+        if (n < 0 || n < k || k < 0) return 0;
+        return val(n) * inv(n - k) * inv(k);
+    }
+    static mint P(int n, int k) {
+        if (n < 0 || n < k || k < 0) return 0;
+        return val(n) * inv(n - k);
+    }
+    static mint H(int n, int k) {
+        if (n < 0 || k < 0) return 0;
+        if (k == 0) return 1;
+        return C(n + k - 1, k);
     }
     static void ensure(int n) {
         int sz = facts.size();
@@ -25,22 +38,3 @@ private:
     static inline std::vector<mint> facts{1};
     static inline std::vector<mint> ifacts{1};
 };
-
-template <typename mint>
-struct binomial_coefficient {
-    using facts = factorial_table<mint>;
-    static mint C(int n, int k) {
-        if (n < 0 || n < k || k < 0) return 0;
-        return facts::val(n) * facts::inv(n - k) * facts::inv(k);
-    }
-    static mint P(int n, int k) {
-        if (n < 0 || n < k || k < 0) return 0;
-        return facts::val(n) * facts::inv(n - k);
-    }
-    static mint H(int n, int k) {
-        if (n < 0 || k < 0) return 0;
-        if (k == 0) return 1;
-        return C(n + k - 1, k);
-    }
-};
-
