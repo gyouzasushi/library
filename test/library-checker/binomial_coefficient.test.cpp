@@ -5,7 +5,7 @@
 int main() {
     int t, m;
     std::cin >> t >> m;
-    using binom = binomial_coefficient_arbitrary_mod;
+    using binom = binomial_coefficient_arbitrary_mod<>;
     binom::set_mod(m);
     while (t--) {
         long long n, k;
