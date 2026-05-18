@@ -17,26 +17,26 @@ data:
   bundledCode: "#line 1 \"test/library-checker/range_affine_point_get.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\n#include\
     \ <atcoder/modint>\n#include <iostream>\n\n#line 1 \"datastructure/dual_segtree.hpp\"\
-    \n#include <vector>\ntemplate <class F, F (*composition)(F, F), F (*id)()>\nstruct\
-    \ dual_segtree {\npublic:\n    dual_segtree() {\n    }\n    dual_segtree(int n,\
-    \ bool is_commutative = false)\n        : is_commutative(is_commutative) {\n \
-    \       size = 1;\n        height = 0;\n        while (size < n) size <<= 1, height++;\n\
-    \        lz.assign(2 * size, id());\n    }\n    void set(int p, const F &x) {\n\
-    \        p += size;\n        thrust(p);\n        lz[p] = x;\n    }\n    void apply(int\
-    \ l, int r, const F &f) {\n        l += size;\n        r += size - 1;\n      \
-    \  if (!is_commutative) thrust(l);\n        if (!is_commutative) thrust(r);\n\
-    \        r++;\n        while (l < r) {\n            if (l & 1) lz[l] = composition(f,\
-    \ lz[l]), ++l;\n            if (r & 1) --r, lz[r] = composition(f, lz[r]);\n \
-    \           l >>= 1, r >>= 1;\n        }\n    }\n    F get(int p) {\n        if\
+    \n#include <vector>\ntemplate <class F, F (*composition)(F, F), F (*id)(), bool\
+    \ is_commutative = false>\nstruct dual_segtree {\npublic:\n    dual_segtree()\
+    \ {\n    }\n    dual_segtree(int n) {\n        size = 1;\n        height = 0;\n\
+    \        while (size < n) size <<= 1, height++;\n        lz.assign(2 * size, id());\n\
+    \    }\n    void set(int p, const F &x) {\n        p += size;\n        thrust(p);\n\
+    \        lz[p] = x;\n    }\n    void apply(int l, int r, const F &f) {\n     \
+    \   l += size;\n        r += size - 1;\n        if constexpr (!is_commutative)\
+    \ {\n            thrust(l);\n            thrust(r);\n        }\n        r++;\n\
+    \        while (l < r) {\n            if (l & 1) lz[l] = composition(f, lz[l]),\
+    \ ++l;\n            if (r & 1) --r, lz[r] = composition(f, lz[r]);\n         \
+    \   l >>= 1, r >>= 1;\n        }\n    }\n    F get(int p) {\n        if constexpr\
     \ (is_commutative) {\n            F ret = id();\n            p += size;\n    \
     \        while (p > 0) {\n                ret = composition(lz[p], ret);\n   \
     \             p >>= 1;\n            }\n            return ret;\n        } else\
     \ {\n            thrust(p += size);\n            return lz[p];\n        }\n  \
-    \  }\n\nprivate:\n    int size, height;\n    std::vector<F> lz;\n    bool is_commutative;\n\
-    \    inline void propagate(int k) {\n        lz[2 * k + 0] = composition(lz[k],\
-    \ lz[2 * k + 0]);\n        lz[2 * k + 1] = composition(lz[k], lz[2 * k + 1]);\n\
-    \        lz[k] = id();\n    }\n    inline void thrust(int k) {\n        for (int\
-    \ i = height; i > 0; i--) propagate(k >> i);\n    }\n};\n#line 6 \"test/library-checker/range_affine_point_get.test.cpp\"\
+    \  }\n\nprivate:\n    int size, height;\n    std::vector<F> lz;\n    inline void\
+    \ propagate(int k) {\n        lz[2 * k + 0] = composition(lz[k], lz[2 * k + 0]);\n\
+    \        lz[2 * k + 1] = composition(lz[k], lz[2 * k + 1]);\n        lz[k] = id();\n\
+    \    }\n    inline void thrust(int k) {\n        for (int i = height; i > 0; i--)\
+    \ propagate(k >> i);\n    }\n};\n#line 6 \"test/library-checker/range_affine_point_get.test.cpp\"\
     \nusing mint = atcoder::modint998244353;\nstruct F {\n    mint b, c;\n    mint\
     \ val(mint x) {\n        return b * x + c;\n    }\n};\nF compostition(F f, F g)\
     \ {\n    return {f.b * g.b, f.b * g.c + f.c};\n}\nF id() {\n    return {1, 0};\n\
@@ -68,7 +68,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/range_affine_point_get.test.cpp
   requiredBy: []
-  timestamp: '2026-05-18 09:49:03+09:00'
+  timestamp: '2026-05-18 10:25:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/range_affine_point_get.test.cpp

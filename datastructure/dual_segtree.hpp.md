@@ -15,51 +15,51 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"datastructure/dual_segtree.hpp\"\n#include <vector>\ntemplate\
-    \ <class F, F (*composition)(F, F), F (*id)()>\nstruct dual_segtree {\npublic:\n\
-    \    dual_segtree() {\n    }\n    dual_segtree(int n, bool is_commutative = false)\n\
-    \        : is_commutative(is_commutative) {\n        size = 1;\n        height\
-    \ = 0;\n        while (size < n) size <<= 1, height++;\n        lz.assign(2 *\
-    \ size, id());\n    }\n    void set(int p, const F &x) {\n        p += size;\n\
-    \        thrust(p);\n        lz[p] = x;\n    }\n    void apply(int l, int r, const\
-    \ F &f) {\n        l += size;\n        r += size - 1;\n        if (!is_commutative)\
-    \ thrust(l);\n        if (!is_commutative) thrust(r);\n        r++;\n        while\
-    \ (l < r) {\n            if (l & 1) lz[l] = composition(f, lz[l]), ++l;\n    \
-    \        if (r & 1) --r, lz[r] = composition(f, lz[r]);\n            l >>= 1,\
-    \ r >>= 1;\n        }\n    }\n    F get(int p) {\n        if (is_commutative)\
-    \ {\n            F ret = id();\n            p += size;\n            while (p >\
-    \ 0) {\n                ret = composition(lz[p], ret);\n                p >>=\
-    \ 1;\n            }\n            return ret;\n        } else {\n            thrust(p\
-    \ += size);\n            return lz[p];\n        }\n    }\n\nprivate:\n    int\
-    \ size, height;\n    std::vector<F> lz;\n    bool is_commutative;\n    inline\
-    \ void propagate(int k) {\n        lz[2 * k + 0] = composition(lz[k], lz[2 * k\
-    \ + 0]);\n        lz[2 * k + 1] = composition(lz[k], lz[2 * k + 1]);\n       \
-    \ lz[k] = id();\n    }\n    inline void thrust(int k) {\n        for (int i =\
-    \ height; i > 0; i--) propagate(k >> i);\n    }\n};\n"
-  code: "#include <vector>\ntemplate <class F, F (*composition)(F, F), F (*id)()>\n\
+    \ <class F, F (*composition)(F, F), F (*id)(), bool is_commutative = false>\n\
     struct dual_segtree {\npublic:\n    dual_segtree() {\n    }\n    dual_segtree(int\
-    \ n, bool is_commutative = false)\n        : is_commutative(is_commutative) {\n\
-    \        size = 1;\n        height = 0;\n        while (size < n) size <<= 1,\
-    \ height++;\n        lz.assign(2 * size, id());\n    }\n    void set(int p, const\
-    \ F &x) {\n        p += size;\n        thrust(p);\n        lz[p] = x;\n    }\n\
-    \    void apply(int l, int r, const F &f) {\n        l += size;\n        r +=\
-    \ size - 1;\n        if (!is_commutative) thrust(l);\n        if (!is_commutative)\
-    \ thrust(r);\n        r++;\n        while (l < r) {\n            if (l & 1) lz[l]\
-    \ = composition(f, lz[l]), ++l;\n            if (r & 1) --r, lz[r] = composition(f,\
-    \ lz[r]);\n            l >>= 1, r >>= 1;\n        }\n    }\n    F get(int p) {\n\
-    \        if (is_commutative) {\n            F ret = id();\n            p += size;\n\
-    \            while (p > 0) {\n                ret = composition(lz[p], ret);\n\
-    \                p >>= 1;\n            }\n            return ret;\n        } else\
+    \ n) {\n        size = 1;\n        height = 0;\n        while (size < n) size\
+    \ <<= 1, height++;\n        lz.assign(2 * size, id());\n    }\n    void set(int\
+    \ p, const F &x) {\n        p += size;\n        thrust(p);\n        lz[p] = x;\n\
+    \    }\n    void apply(int l, int r, const F &f) {\n        l += size;\n     \
+    \   r += size - 1;\n        if constexpr (!is_commutative) {\n            thrust(l);\n\
+    \            thrust(r);\n        }\n        r++;\n        while (l < r) {\n  \
+    \          if (l & 1) lz[l] = composition(f, lz[l]), ++l;\n            if (r &\
+    \ 1) --r, lz[r] = composition(f, lz[r]);\n            l >>= 1, r >>= 1;\n    \
+    \    }\n    }\n    F get(int p) {\n        if constexpr (is_commutative) {\n \
+    \           F ret = id();\n            p += size;\n            while (p > 0) {\n\
+    \                ret = composition(lz[p], ret);\n                p >>= 1;\n  \
+    \          }\n            return ret;\n        } else {\n            thrust(p\
+    \ += size);\n            return lz[p];\n        }\n    }\n\nprivate:\n    int\
+    \ size, height;\n    std::vector<F> lz;\n    inline void propagate(int k) {\n\
+    \        lz[2 * k + 0] = composition(lz[k], lz[2 * k + 0]);\n        lz[2 * k\
+    \ + 1] = composition(lz[k], lz[2 * k + 1]);\n        lz[k] = id();\n    }\n  \
+    \  inline void thrust(int k) {\n        for (int i = height; i > 0; i--) propagate(k\
+    \ >> i);\n    }\n};\n"
+  code: "#include <vector>\ntemplate <class F, F (*composition)(F, F), F (*id)(),\
+    \ bool is_commutative = false>\nstruct dual_segtree {\npublic:\n    dual_segtree()\
+    \ {\n    }\n    dual_segtree(int n) {\n        size = 1;\n        height = 0;\n\
+    \        while (size < n) size <<= 1, height++;\n        lz.assign(2 * size, id());\n\
+    \    }\n    void set(int p, const F &x) {\n        p += size;\n        thrust(p);\n\
+    \        lz[p] = x;\n    }\n    void apply(int l, int r, const F &f) {\n     \
+    \   l += size;\n        r += size - 1;\n        if constexpr (!is_commutative)\
+    \ {\n            thrust(l);\n            thrust(r);\n        }\n        r++;\n\
+    \        while (l < r) {\n            if (l & 1) lz[l] = composition(f, lz[l]),\
+    \ ++l;\n            if (r & 1) --r, lz[r] = composition(f, lz[r]);\n         \
+    \   l >>= 1, r >>= 1;\n        }\n    }\n    F get(int p) {\n        if constexpr\
+    \ (is_commutative) {\n            F ret = id();\n            p += size;\n    \
+    \        while (p > 0) {\n                ret = composition(lz[p], ret);\n   \
+    \             p >>= 1;\n            }\n            return ret;\n        } else\
     \ {\n            thrust(p += size);\n            return lz[p];\n        }\n  \
-    \  }\n\nprivate:\n    int size, height;\n    std::vector<F> lz;\n    bool is_commutative;\n\
-    \    inline void propagate(int k) {\n        lz[2 * k + 0] = composition(lz[k],\
-    \ lz[2 * k + 0]);\n        lz[2 * k + 1] = composition(lz[k], lz[2 * k + 1]);\n\
-    \        lz[k] = id();\n    }\n    inline void thrust(int k) {\n        for (int\
-    \ i = height; i > 0; i--) propagate(k >> i);\n    }\n};"
+    \  }\n\nprivate:\n    int size, height;\n    std::vector<F> lz;\n    inline void\
+    \ propagate(int k) {\n        lz[2 * k + 0] = composition(lz[k], lz[2 * k + 0]);\n\
+    \        lz[2 * k + 1] = composition(lz[k], lz[2 * k + 1]);\n        lz[k] = id();\n\
+    \    }\n    inline void thrust(int k) {\n        for (int i = height; i > 0; i--)\
+    \ propagate(k >> i);\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: datastructure/dual_segtree.hpp
   requiredBy: []
-  timestamp: '2026-05-18 09:49:03+09:00'
+  timestamp: '2026-05-18 10:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/dual_segtree.test.cpp
@@ -73,7 +73,7 @@ title: Dual Segment Tree
 - 区間更新・一点取得ができるデータ構造。
 
 ### 使い方
-- `dual_segtree<F, composition, id>(n, is_commutative = false)`: 長さ `n` の数列 `a` を作る。`F` は作用の型。`composition` は $f \circ g$ を計算する関数。`id` は $id$ を返す関数。$\cdot$ が可換である場合は `commutative = true` にするとよい。
+- `dual_segtree<F, composition, id, is_commutative = false>(n)`: 長さ `n` の数列 `a` を作る。`F` は作用の型。`composition` は $f \circ g$ を計算する関数。`id` は $id$ を返す関数。$\cdot$ が可換である場合は `is_commutative = true` にすると定数倍が改善される。
 - `apply(l, r, x)`: `a_l, ..., a_r` に `x` を作用させる。
 - `set(p, x)`: `a_p` を `x` に上書きする。
 - `get(p)`: `a_p` を求める。
