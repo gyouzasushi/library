@@ -33,6 +33,9 @@ data:
       path: datastructure/sparse_table.hpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
+      path: datastructure/sqrt_tree.hpp
+      title: Sqrt Tree
+    - icon: ':heavy_check_mark:'
       path: datastructure/static_range_minimum.hpp
       title: datastructure/static_range_minimum.hpp
     - icon: ':heavy_check_mark:'
@@ -299,6 +302,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/staticrmq.test.cpp
       title: test/library-checker/staticrmq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/staticrmq_sqrt_tree.test.cpp
+      title: test/library-checker/staticrmq_sqrt_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/suffix_array_rolling_hash.test.cpp
       title: test/library-checker/suffix_array_rolling_hash.test.cpp
