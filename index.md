@@ -308,6 +308,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/zalgorithm_rolling_hash.test.cpp
       title: test/library-checker/zalgorithm_rolling_hash.test.cpp
+  - name: test/unit
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/unit/dual_segtree.test.cpp
+      title: test/unit/dual_segtree.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'

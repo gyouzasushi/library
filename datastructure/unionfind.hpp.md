@@ -55,8 +55,8 @@ data:
   timestamp: '2023-03-05 19:05:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/1160.test.cpp
   - test/library-checker/unionfind.test.cpp
+  - test/aoj/1160.test.cpp
 documentation_of: datastructure/unionfind.hpp
 layout: document
 redirect_from:

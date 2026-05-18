@@ -486,9 +486,9 @@ data:
   timestamp: '2024-05-30 15:02:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/0378.test.cpp
-  - test/library-checker/wildcard_pattern_matching.test.cpp
   - test/yukicoder/2231.test.cpp
+  - test/library-checker/wildcard_pattern_matching.test.cpp
+  - test/aoj/0378.test.cpp
 documentation_of: string/wildcard_matching.hpp
 layout: document
 title: Wildcard Matching
