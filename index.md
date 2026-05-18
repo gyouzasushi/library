@@ -79,8 +79,8 @@ data:
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
-      path: math/binomial_coefficient.hpp
-      title: math/binomial_coefficient.hpp
+      path: math/binomial_coefficient_arbitrary_mod.hpp
+      title: Binomial Coefficient (Arbitrary Mod)
     - icon: ':heavy_check_mark:'
       path: math/bitwise_and_convolution.hpp
       title: Bitwise And Convolution
@@ -90,6 +90,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/bostan_mori.hpp
       title: math/bostan_mori.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/combinatorics.hpp
+      title: Combinatorics
     - icon: ':heavy_check_mark:'
       path: math/factorize.hpp
       title: math/factorize.hpp

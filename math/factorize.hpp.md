@@ -3,21 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: math/binomial_coefficient.hpp
-    title: math/binomial_coefficient.hpp
+    path: math/binomial_coefficient_arbitrary_mod.hpp
+    title: Binomial Coefficient (Arbitrary Mod)
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/binomial_coefficient.test.cpp
     title: test/library-checker/binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library-checker/binomial_coefficient_prime_mod.test.cpp
-    title: test/library-checker/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library-checker/factorize.test.cpp
     title: test/library-checker/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/117.test.cpp
-    title: test/yukicoder/117.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -81,12 +75,10 @@ data:
   isVerificationFile: false
   path: math/factorize.hpp
   requiredBy:
-  - math/binomial_coefficient.hpp
+  - math/binomial_coefficient_arbitrary_mod.hpp
   timestamp: '2024-05-30 15:02:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/117.test.cpp
-  - test/library-checker/binomial_coefficient_prime_mod.test.cpp
   - test/library-checker/factorize.test.cpp
   - test/library-checker/binomial_coefficient.test.cpp
 documentation_of: math/factorize.hpp
