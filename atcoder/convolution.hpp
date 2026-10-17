@@ -18,7 +18,7 @@ template <class mint,
           int g = internal::primitive_root<mint::mod()>,
           internal::is_static_modint_t<mint>* = nullptr>
 struct fft_info {
-    static constexpr int rank2 = bsf_constexpr(mint::mod() - 1);
+    static constexpr int rank2 = countr_zero_constexpr(mint::mod() - 1);
     std::array<mint, rank2 + 1> root;   // root[i]^(2^i) == 1
     std::array<mint, rank2 + 1> iroot;  // root[i] * iroot[i] == 1
 
@@ -60,7 +60,7 @@ struct fft_info {
 template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 void butterfly(std::vector<mint>& a) {
     int n = int(a.size());
-    int h = internal::ceil_pow2(n);
+    int h = internal::countr_zero((unsigned int)n);
 
     static const fft_info<mint> info;
 
@@ -78,7 +78,7 @@ void butterfly(std::vector<mint>& a) {
                     a[i + offset + p] = l - r;
                 }
                 if (s + 1 != (1 << len))
-                    rot *= info.rate2[bsf(~(unsigned int)(s))];
+                    rot *= info.rate2[countr_zero(~(unsigned int)(s))];
             }
             len++;
         } else {
@@ -104,7 +104,7 @@ void butterfly(std::vector<mint>& a) {
                     a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);
                 }
                 if (s + 1 != (1 << len))
-                    rot *= info.rate3[bsf(~(unsigned int)(s))];
+                    rot *= info.rate3[countr_zero(~(unsigned int)(s))];
             }
             len += 2;
         }
@@ -114,7 +114,7 @@ void butterfly(std::vector<mint>& a) {
 template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 void butterfly_inv(std::vector<mint>& a) {
     int n = int(a.size());
-    int h = internal::ceil_pow2(n);
+    int h = internal::countr_zero((unsigned int)n);
 
     static const fft_info<mint> info;
 
@@ -130,12 +130,12 @@ void butterfly_inv(std::vector<mint>& a) {
                     auto r = a[i + offset + p];
                     a[i + offset] = l + r;
                     a[i + offset + p] =
-                        (unsigned long long)(mint::mod() + l.val() - r.val()) *
+                        (unsigned long long)((unsigned int)(l.val() - r.val()) + mint::mod()) *
                         irot.val();
                     ;
                 }
                 if (s + 1 != (1 << (len - 1)))
-                    irot *= info.irate2[bsf(~(unsigned int)(s))];
+                    irot *= info.irate2[countr_zero(~(unsigned int)(s))];
             }
             len--;
         } else {
@@ -167,7 +167,7 @@ void butterfly_inv(std::vector<mint>& a) {
                         irot3.val();
                 }
                 if (s + 1 != (1 << (len - 2)))
-                    irot *= info.irate3[bsf(~(unsigned int)(s))];
+                    irot *= info.irate3[countr_zero(~(unsigned int)(s))];
             }
             len -= 2;
         }
@@ -198,7 +198,7 @@ std::vector<mint> convolution_naive(const std::vector<mint>& a,
 template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution_fft(std::vector<mint> a, std::vector<mint> b) {
     int n = int(a.size()), m = int(b.size());
-    int z = 1 << internal::ceil_pow2(n + m - 1);
+    int z = (int)internal::bit_ceil((unsigned int)(n + m - 1));
     a.resize(z);
     internal::butterfly(a);
     b.resize(z);
@@ -219,15 +219,22 @@ template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution(std::vector<mint>&& a, std::vector<mint>&& b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
-    if (std::min(n, m) <= 60) return convolution_naive(a, b);
-    return internal::convolution_fft(a, b);
-}
 
+    int z = (int)internal::bit_ceil((unsigned int)(n + m - 1));
+    assert((mint::mod() - 1) % z == 0);
+
+    if (std::min(n, m) <= 60) return convolution_naive(std::move(a), std::move(b));
+    return internal::convolution_fft(std::move(a), std::move(b));
+}
 template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution(const std::vector<mint>& a,
                               const std::vector<mint>& b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
+
+    int z = (int)internal::bit_ceil((unsigned int)(n + m - 1));
+    assert((mint::mod() - 1) % z == 0);
+
     if (std::min(n, m) <= 60) return convolution_naive(a, b);
     return internal::convolution_fft(a, b);
 }
@@ -240,6 +247,10 @@ std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
     if (!n || !m) return {};
 
     using mint = static_modint<mod>;
+
+    int z = (int)internal::bit_ceil((unsigned int)(n + m - 1));
+    assert((mint::mod() - 1) % z == 0);
+
     std::vector<mint> a2(n), b2(m);
     for (int i = 0; i < n; i++) {
         a2[i] = mint(a[i]);
@@ -247,7 +258,7 @@ std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
     for (int i = 0; i < m; i++) {
         b2[i] = mint(b[i]);
     }
-    auto c2 = convolution(move(a2), move(b2));
+    auto c2 = convolution(std::move(a2), std::move(b2));
     std::vector<T> c(n + m - 1);
     for (int i = 0; i < n + m - 1; i++) {
         c[i] = c2[i].val();
@@ -274,6 +285,12 @@ std::vector<long long> convolution_ll(const std::vector<long long>& a,
         internal::inv_gcd(MOD1 * MOD3, MOD2).second;
     static constexpr unsigned long long i3 =
         internal::inv_gcd(MOD1 * MOD2, MOD3).second;
+        
+    static constexpr int MAX_AB_BIT = 24;
+    static_assert(MOD1 % (1ull << MAX_AB_BIT) == 1, "MOD1 isn't enough to support an array length of 2^24.");
+    static_assert(MOD2 % (1ull << MAX_AB_BIT) == 1, "MOD2 isn't enough to support an array length of 2^24.");
+    static_assert(MOD3 % (1ull << MAX_AB_BIT) == 1, "MOD3 isn't enough to support an array length of 2^24.");
+    assert(n + m - 1 <= (1 << MAX_AB_BIT));
 
     auto c1 = convolution<MOD1>(a, b);
     auto c2 = convolution<MOD2>(a, b);
