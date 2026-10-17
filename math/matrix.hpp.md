@@ -67,8 +67,8 @@ data:
   timestamp: '2024-06-29 11:24:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library-checker/pow_of_matrix.test.cpp
   - test/library-checker/matrix_product.test.cpp
+  - test/library-checker/pow_of_matrix.test.cpp
 documentation_of: math/matrix.hpp
 layout: document
 redirect_from:

@@ -28,7 +28,7 @@ data:
   isVerificationFile: false
   path: math/modint.hpp
   requiredBy: []
-  timestamp: '2024-05-30 15:02:19+09:00'
+  timestamp: '2026-10-17 13:59:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/modint.hpp

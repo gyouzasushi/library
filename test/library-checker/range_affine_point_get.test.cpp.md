@@ -68,7 +68,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/range_affine_point_get.test.cpp
   requiredBy: []
-  timestamp: '2026-05-18 10:25:36+09:00'
+  timestamp: '2026-10-17 13:59:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/range_affine_point_get.test.cpp

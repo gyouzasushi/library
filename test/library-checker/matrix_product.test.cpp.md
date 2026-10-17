@@ -64,7 +64,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2024-06-29 11:24:38+09:00'
+  timestamp: '2026-10-17 13:59:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/matrix_product.test.cpp

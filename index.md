@@ -64,6 +64,9 @@ data:
       path: graph/grid.hpp
       title: "\u30B0\u30EA\u30C3\u30C9"
     - icon: ':heavy_check_mark:'
+      path: graph/heavy_light_decomposition.hpp
+      title: "HL\u5206\u89E3 (Heavy-Light Decomposition)"
+    - icon: ':heavy_check_mark:'
       path: graph/lowest_common_ancestor.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
     - icon: ':heavy_check_mark:'
@@ -222,6 +225,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_D.test.cpp
       title: test/aoj/DPL_1_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_5_E.test.cpp
+      title: test/aoj/GRL_5_E.test.cpp
   - name: test/library-checker
     pages:
     - icon: ':heavy_check_mark:'
@@ -258,8 +264,14 @@ data:
       path: test/library-checker/factorize.test.cpp
       title: test/library-checker/factorize.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/jump_on_tree.test.cpp
+      title: test/library-checker/jump_on_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/lca.test.cpp
       title: test/library-checker/lca.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/lca_heavy_light_decomposition.test.cpp
+      title: test/library-checker/lca_heavy_light_decomposition.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/line_add_get_min.test.cpp
       title: test/library-checker/line_add_get_min.test.cpp
@@ -312,6 +324,15 @@ data:
       path: test/library-checker/unionfind.test.cpp
       title: test/library-checker/unionfind.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/vertex_add_path_sum.test.cpp
+      title: test/library-checker/vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/vertex_add_subtree_sum.test.cpp
+      title: test/library-checker/vertex_add_subtree_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/vertex_set_path_composite.test.cpp
+      title: test/library-checker/vertex_set_path_composite.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/wildcard_pattern_matching.test.cpp
       title: test/library-checker/wildcard_pattern_matching.test.cpp
     - icon: ':heavy_check_mark:'
@@ -322,6 +343,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/dual_segtree.test.cpp
       title: test/unit/dual_segtree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/heavy_light_decomposition.test.cpp
+      title: test/unit/heavy_light_decomposition.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'
