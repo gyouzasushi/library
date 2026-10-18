@@ -11,7 +11,7 @@ public:
         : _n(n),
           _root(root),
           g(n),
-          sz(n),
+          sub(n),
           dep(n),
           par(n),
           heavy(n, -1),
@@ -44,10 +44,10 @@ public:
         }
         for (int i = _n - 1; i >= 0; i--) {
             int v = order[i], p = par[v];
-            sz[v]++;
+            sub[v]++;
             if (p == -1) continue;
-            sz[p] += sz[v];
-            if (heavy[p] == -1 || sz[v] > sz[heavy[p]]) heavy[p] = v;
+            sub[p] += sub[v];
+            if (heavy[p] == -1 || sub[v] > sub[heavy[p]]) heavy[p] = v;
         }
         int t = 0;
         head[_root] = _root;
@@ -57,7 +57,7 @@ public:
             st.pop_back();
             in[v] = t++;
             rev[in[v]] = v;
-            out[v] = in[v] + sz[v];
+            out[v] = in[v] + sub[v];
             for (int c : g[v]) {
                 if (c == par[v] || c == heavy[v]) continue;
                 head[c] = c;
@@ -151,7 +151,7 @@ public:
 private:
     int _n, _root;
     std::vector<std::vector<int>> g;
-    std::vector<int> sz, dep, par, heavy, head, in, out, rev;
+    std::vector<int> sub, dep, par, heavy, head, in, out, rev;
     template <typename F>
     void for_each(int u, int v, bool edge, const F& f) const {
         while (head[u] != head[v]) {
