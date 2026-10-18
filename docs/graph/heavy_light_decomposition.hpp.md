@@ -14,6 +14,7 @@ documentation_of: graph/heavy_light_decomposition.hpp
 - `index(v)`: 頂点 `v` の番号を返す。
 - `vertex(i)`: 番号 `i` の頂点を返す。
 - `subtree(v)`: 頂点 `v` の部分木に対応する番号の区間 $[l, r)$ を返す。
+- `edge_index(i)`: `i` 番目に `add_edge` した辺の番号を返す。辺の番号は子側の頂点の番号で、辺に値を持たせるときの格納位置になる。
 - `depth(v)`: 頂点 `v` の深さを返す。
 - `parent(v)`: 頂点 `v` の親を返す。根なら `-1`。
 - `head_of(v)`: 頂点 `v` を含む heavy path の最も浅い頂点を返す。

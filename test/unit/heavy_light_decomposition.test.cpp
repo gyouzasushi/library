@@ -29,6 +29,13 @@ void stress(std::mt19937 &rng) {
         }
     };
     dfs(dfs, root, -1);
+    for (int i = 0; i + 1 < N; i++) {
+        // i 番目の辺は (i + 1, p) で p < i + 1
+        int v = i + 1, p = -1;
+        for (int x : g[v]) if (x < v) p = x;
+        int child = par[v] == p ? v : p;
+        assert(hld.edge_index(i) == hld.index(child));
+    }
     auto naive_path = [&](int u, int v) {
         std::vector<int> a, b;
         while (u != v) {

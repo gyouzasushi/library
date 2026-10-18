@@ -25,6 +25,7 @@ public:
         assert(0 <= v && v < _n);
         g[u].push_back(v);
         g[v].push_back(u);
+        edges.emplace_back(u, v);
     }
     void build() {
         par[_root] = -1;
@@ -78,6 +79,11 @@ public:
     }
     std::pair<int, int> subtree(int v) const {
         return {in[v], out[v]};
+    }
+    int edge_index(int i) const {
+        assert(0 <= i && i < (int)edges.size());
+        auto [u, v] = edges[i];
+        return in[par[u] == v ? u : v];
     }
     int depth(int v) const {
         return dep[v];
@@ -151,6 +157,7 @@ public:
 private:
     int _n, _root;
     std::vector<std::vector<int>> g;
+    std::vector<std::pair<int, int>> edges;
     std::vector<int> sub, dep, par, heavy, head, in, out, rev;
     template <typename F>
     void for_each(int u, int v, bool edge, const F& f) const {
