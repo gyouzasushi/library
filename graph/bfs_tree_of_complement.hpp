@@ -32,6 +32,7 @@ std::vector<std::vector<int>> bfs_tree_of_complement(
                 }
             }
             s = std::move(t);
+            t.clear();
             for (int v : g[u]) {
                 banned[v] = false;
             }
