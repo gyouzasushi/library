@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: datastructure/segtree.hpp
+    title: Segment Tree (monoid wrapper)
+  - icon: ':heavy_check_mark:'
+    path: monoid/affine.hpp
+    title: 'Monoid: Affine'
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -13,38 +19,44 @@ data:
     - https://judge.yosupo.jp/problem/point_set_range_composite
   bundledCode: "#line 1 \"test/library-checker/point_set_range_composite.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n#include <atcoder/modint>\n#include <atcoder/segtree>\n#include <iostream>\n\
-    using mint = atcoder::modint998244353;\nstruct S {\n    mint a, b;\n    bool e;\n\
-    \    mint val(int x) {\n        return a * x + b;\n    }\n};\nS op(S f, S g) {\n\
-    \    if (f.e) return g;\n    if (g.e) return f;\n    return {g.a * f.a, g.a *\
-    \ f.b + g.b};\n}\nS e() {\n    return {0, 0, true};\n}\nint main() {\n    int\
-    \ n, q;\n    std::cin >> n >> q;\n    std::vector<S> f(n);\n    for (int i = 0;\
-    \ i < n; i++) {\n        int a, b;\n        std::cin >> a >> b;\n        f[i]\
-    \ = {mint::raw(a), mint::raw(b)};\n    }\n    atcoder::segtree<S, op, e> segt(f);\n\
+    \n#include <atcoder/modint>\n#include <iostream>\n#include <vector>\n\n#line 2\
+    \ \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\ntemplate <class M>\n\
+    using segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"monoid/affine.hpp\"\
+    \ntemplate <class T>\nstruct monoid_affine {\n    struct S {\n        T a, b;\n\
+    \    };\n    static S op(S f, S g) {\n        return {g.a * f.a, g.a * f.b + g.b};\n\
+    \    }\n    static S e() {\n        return {T(1), T(0)};\n    }\n    static T\
+    \ eval(S f, T x) {\n        return f.a * x + f.b;\n    }\n    static constexpr\
+    \ bool commutative = false;\n};\n#line 8 \"test/library-checker/point_set_range_composite.test.cpp\"\
+    \nusing mint = atcoder::modint998244353;\nusing M = monoid_affine<mint>;\nint\
+    \ main() {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<M::S> f(n);\n\
+    \    for (int i = 0; i < n; i++) {\n        int a, b;\n        std::cin >> a >>\
+    \ b;\n        f[i] = {mint::raw(a), mint::raw(b)};\n    }\n    segtree<M> seg(f);\n\
     \    while (q--) {\n        int t;\n        std::cin >> t;\n        if (t == 0)\
     \ {\n            int p, c, d;\n            std::cin >> p >> c >> d;\n        \
-    \    segt.set(p, {c, d});\n        }\n        if (t == 1) {\n            int l,\
-    \ r, x;\n            std::cin >> l >> r >> x;\n            std::cout << segt.prod(l,\
-    \ r).val(x).val() << '\\n';\n        }\n    }\n}\n"
+    \    seg.set(p, {mint::raw(c), mint::raw(d)});\n        }\n        if (t == 1)\
+    \ {\n            int l, r, x;\n            std::cin >> l >> r >> x;\n        \
+    \    std::cout << M::eval(seg.prod(l, r), mint::raw(x)).val() << '\\n';\n    \
+    \    }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n#include <atcoder/modint>\n#include <atcoder/segtree>\n#include <iostream>\n\
-    using mint = atcoder::modint998244353;\nstruct S {\n    mint a, b;\n    bool e;\n\
-    \    mint val(int x) {\n        return a * x + b;\n    }\n};\nS op(S f, S g) {\n\
-    \    if (f.e) return g;\n    if (g.e) return f;\n    return {g.a * f.a, g.a *\
-    \ f.b + g.b};\n}\nS e() {\n    return {0, 0, true};\n}\nint main() {\n    int\
-    \ n, q;\n    std::cin >> n >> q;\n    std::vector<S> f(n);\n    for (int i = 0;\
-    \ i < n; i++) {\n        int a, b;\n        std::cin >> a >> b;\n        f[i]\
-    \ = {mint::raw(a), mint::raw(b)};\n    }\n    atcoder::segtree<S, op, e> segt(f);\n\
-    \    while (q--) {\n        int t;\n        std::cin >> t;\n        if (t == 0)\
-    \ {\n            int p, c, d;\n            std::cin >> p >> c >> d;\n        \
-    \    segt.set(p, {c, d});\n        }\n        if (t == 1) {\n            int l,\
-    \ r, x;\n            std::cin >> l >> r >> x;\n            std::cout << segt.prod(l,\
-    \ r).val(x).val() << '\\n';\n        }\n    }\n}"
-  dependsOn: []
+    \n#include <atcoder/modint>\n#include <iostream>\n#include <vector>\n\n#include\
+    \ \"datastructure/segtree.hpp\"\n#include \"monoid/affine.hpp\"\nusing mint =\
+    \ atcoder::modint998244353;\nusing M = monoid_affine<mint>;\nint main() {\n  \
+    \  int n, q;\n    std::cin >> n >> q;\n    std::vector<M::S> f(n);\n    for (int\
+    \ i = 0; i < n; i++) {\n        int a, b;\n        std::cin >> a >> b;\n     \
+    \   f[i] = {mint::raw(a), mint::raw(b)};\n    }\n    segtree<M> seg(f);\n    while\
+    \ (q--) {\n        int t;\n        std::cin >> t;\n        if (t == 0) {\n   \
+    \         int p, c, d;\n            std::cin >> p >> c >> d;\n            seg.set(p,\
+    \ {mint::raw(c), mint::raw(d)});\n        }\n        if (t == 1) {\n         \
+    \   int l, r, x;\n            std::cin >> l >> r >> x;\n            std::cout\
+    \ << M::eval(seg.prod(l, r), mint::raw(x)).val() << '\\n';\n        }\n    }\n\
+    }\n"
+  dependsOn:
+  - datastructure/segtree.hpp
+  - monoid/affine.hpp
   isVerificationFile: true
   path: test/library-checker/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 13:59:29+09:00'
+  timestamp: '2026-10-19 02:48:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/point_set_range_composite.test.cpp

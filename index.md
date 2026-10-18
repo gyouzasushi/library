@@ -1,6 +1,11 @@
 ---
 data:
   libraryCategories:
+  - name: acted_monoid
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: acted_monoid/range_add_range_sum.hpp
+      title: 'Acted Monoid: Range Add Range Sum'
   - name: algorithm
     pages:
     - icon: ':heavy_check_mark:'
@@ -21,6 +26,9 @@ data:
       path: datastructure/dynamic_li_chao_tree.hpp
       title: Dynamic Li Chao Tree
     - icon: ':heavy_check_mark:'
+      path: datastructure/lazy_segtree.hpp
+      title: Lazy Segment Tree (acted monoid wrapper)
+    - icon: ':heavy_check_mark:'
       path: datastructure/plus_minus_one_range_minimum.hpp
       title: datastructure/plus_minus_one_range_minimum.hpp
     - icon: ':heavy_check_mark:'
@@ -29,6 +37,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/range_set.hpp
       title: Range Set
+    - icon: ':heavy_check_mark:'
+      path: datastructure/segtree.hpp
+      title: Segment Tree (monoid wrapper)
     - icon: ':heavy_check_mark:'
       path: datastructure/sparse_table.hpp
       title: Sparse Table
@@ -124,6 +135,26 @@ data:
       path: math/zeta_mobius_transform.hpp
       title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB"
+  - name: monoid
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: monoid/add.hpp
+      title: 'Monoid: Add'
+    - icon: ':heavy_check_mark:'
+      path: monoid/affine.hpp
+      title: 'Monoid: Affine'
+    - icon: ':heavy_check_mark:'
+      path: monoid/gcd.hpp
+      title: 'Monoid: GCD'
+    - icon: ':heavy_check_mark:'
+      path: monoid/max.hpp
+      title: 'Monoid: Max'
+    - icon: ':heavy_check_mark:'
+      path: monoid/min.hpp
+      title: 'Monoid: Min'
+    - icon: ':heavy_check_mark:'
+      path: monoid/xor.hpp
+      title: 'Monoid: XOR'
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
@@ -225,6 +256,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_D.test.cpp
       title: test/aoj/DPL_1_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_2_A.test.cpp
+      title: test/aoj/DSL_2_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL_2_G.test.cpp
+      title: test/aoj/DSL_2_G.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_5_E.test.cpp
       title: test/aoj/GRL_5_E.test.cpp
@@ -346,6 +383,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/heavy_light_decomposition.test.cpp
       title: test/unit/heavy_light_decomposition.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/monoid.test.cpp
+      title: test/unit/monoid.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'
