@@ -83,9 +83,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/manhattan_mst.hpp
       title: Manhattan MST
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/rerooting.hpp
-      title: graph/rerooting.hpp
+      title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting)"
     - icon: ':heavy_check_mark:'
       path: graph/subtree_classify.hpp
       title: "\u6839\u4ED8\u304D\u6728\u306E\u540C\u578B\u6027\u306B\u3088\u308B\u90E8\
@@ -358,6 +358,9 @@ data:
       path: test/library-checker/suffix_array_rolling_hash.test.cpp
       title: test/library-checker/suffix_array_rolling_hash.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/tree_path_composite_sum.test.cpp
+      title: test/library-checker/tree_path_composite_sum.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/unionfind.test.cpp
       title: test/library-checker/unionfind.test.cpp
     - icon: ':heavy_check_mark:'
@@ -386,6 +389,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/monoid.test.cpp
       title: test/unit/monoid.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/rerooting.test.cpp
+      title: test/unit/rerooting.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'
