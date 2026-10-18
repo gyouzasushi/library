@@ -1,78 +1,124 @@
 #pragma once
 #include <cassert>
+#include <functional>
+#include <type_traits>
+#include <utility>
+#include <variant>
 #include <vector>
-template <class S, S (*op)(S, S), S (*e)(), S (*put_edge)(S, int, int),
-          S (*put_vertex)(S, int), S (*leaf)(int)>
+template <class R>
 struct rerooting {
 public:
+    using T = typename R::T;
+    using M = typename R::M;
+    using E = typename R::E;
+    using V = typename R::V;
+    static_assert(std::is_invocable_r_v<M, decltype(R::put_edge), const T&, const E&, int, int>,
+                  "R::put_edge must work as M(const T&, const E&, int u, int v)");
+    static_assert(std::is_invocable_r_v<M, decltype(R::merge), const M&, const M&>,
+                  "R::merge must work as M(const M&, const M&)");
+    static_assert(std::is_invocable_r_v<M, decltype(R::e)>, "R::e must work as M()");
+    static_assert(std::is_invocable_r_v<T, decltype(R::put_vertex), const M&, const V&, int>,
+                  "R::put_vertex must work as T(const M&, const V&, int v)");
+
     rerooting() {
     }
-    rerooting(int n) : _n(n), g(n), dp(n) {
+    explicit rerooting(int n) : rerooting(std::vector<V>(n)) {
     }
-    void add_edge(int u, int v) {
+    explicit rerooting(std::vector<V> a) : _n(int(a.size())), vdata(std::move(a)), g(_n) {
+    }
+    int add_edge(int u, int v, E w = E()) {
         assert(0 <= u && u < _n);
         assert(0 <= v && v < _n);
-        g[u].push_back(v);
-        g[v].push_back(u);
+        int i = int(edges.size());
+        edges.emplace_back(u, v);
+        edata.push_back(std::move(w));
+        g[u].push_back(i);
+        g[v].push_back(i);
+        return i;
     }
-    std::vector<S> solve() {
-        for (int i = 0; i < _n; i++) {
-            int deg = int(g[i].size());
-            dp[i].resize(deg);
+    void solve() {
+        assert(int(edges.size()) == _n - 1);
+        dp.assign(_n, T());
+        agg.assign(_n, R::e());
+        _sub.assign(2 * (_n - 1), T());
+        std::vector<int> order, par(_n, -1), pe(_n, -1);
+        order.reserve(_n);
+        order.push_back(0);
+        for (int k = 0; k < _n; k++) {
+            int v = order[k];
+            for (int i : g[v]) {
+                int to = other(i, v);
+                if (to == par[v]) continue;
+                par[to] = v;
+                pe[to] = i;
+                order.push_back(to);
+            }
         }
-        auto dfs1 = [&](auto dfs1, int u, int p) -> S {
-            S ret = e();
-            int deg = int(g[u].size());
-            bool upd = false;
-            for (int i = 0; i < deg; i++) {
-                int v = g[u][i];
-                if (v == p) continue;
-                dp[u][i] = dfs1(dfs1, v, u);
-                ret = op(ret, put_edge(dp[u][i], u, v));
-                upd = true;
+        // bottom-up: sub(par[v] -> v)
+        for (int k = _n - 1; k > 0; k--) {
+            int v = order[k];
+            M acc = R::e();
+            for (int i : g[v]) {
+                int to = other(i, v);
+                if (to == par[v]) continue;
+                acc = R::merge(acc, R::put_edge(_sub[dir(i, v)], edata[i], v, to));
             }
-            if (!upd) return leaf(u);
-            return put_vertex(ret, u);
-        };
-        auto dfs2 = [&](auto dfs2, int u, int p, const S& top) -> void {
-            int deg = int(g[u].size());
-            std::vector<S> cum_left(deg + 1, e()), cum_right(deg + 1, e());
-            for (int i = 0; i < deg; i++) {
-                int v = g[u][i];
-                if (v == p) dp[u][i] = top;
-                cum_left[i + 1] = op(cum_left[i], put_edge(dp[u][i], u, v));
-            }
-            for (int i = deg; i > 0; i--) {
-                int v = g[u][i - 1];
-                if (v == p) dp[u][i - 1] = top;
-                cum_right[i - 1] =
-                    op(cum_right[i], put_edge(dp[u][i - 1], u, v));
-            }
-            for (int i = 0; i < deg; i++) {
-                int v = g[u][i];
-                if (v == p) continue;
-                dfs2(dfs2, v, u,
-                     deg == 1
-                         ? leaf(u)
-                         : put_vertex(op(cum_left[i], cum_right[i + 1]), u));
-            }
-        };
-        dfs1(dfs1, 0, -1);
-        dfs2(dfs2, 0, -1, e());
-        std::vector<S> ret(_n, e());
-        for (int u = 0; u < _n; u++) {
-            int deg = int(g[u].size());
-            for (int i = 0; i < deg; i++) {
-                int v = g[u][i];
-                ret[u] = op(ret[u], put_edge(dp[u][i], u, v));
-            }
-            ret[u] = put_vertex(ret[u], u);
+            _sub[dir(pe[v], par[v])] = R::put_vertex(acc, vdata[v], v);
         }
-        return ret;
+        // top-down: sub(v -> par[v]) is ready when v is visited
+        std::vector<M> pre, suf;
+        for (int v : order) {
+            int deg = int(g[v].size());
+            pre.assign(deg + 1, R::e());
+            suf.assign(deg + 1, R::e());
+            for (int j = 0; j < deg; j++) {
+                int i = g[v][j], to = other(i, v);
+                pre[j + 1] = R::merge(pre[j], R::put_edge(_sub[dir(i, v)], edata[i], v, to));
+            }
+            for (int j = deg; j > 0; j--) {
+                int i = g[v][j - 1], to = other(i, v);
+                suf[j - 1] = R::merge(R::put_edge(_sub[dir(i, v)], edata[i], v, to), suf[j]);
+            }
+            agg[v] = pre[deg];
+            dp[v] = R::put_vertex(agg[v], vdata[v], v);
+            for (int j = 0; j < deg; j++) {
+                int i = g[v][j], to = other(i, v);
+                if (to == par[v]) continue;
+                _sub[dir(i, to)] = R::put_vertex(R::merge(pre[j], suf[j + 1]), vdata[v], v);
+            }
+        }
+    }
+    // dp[v]: 全体を v を根として見たときの値
+    std::vector<T> dp;
+    // agg[v]: dp[v] を作る直前の、v の全隣接をまとめた値
+    std::vector<M> agg;
+    // sub(u, v): 辺 (u, v) を切ったときの v 側の部分木を v を根として見た値
+    const T& sub(int u, int v) const {
+        for (int i : g[u]) {
+            if (other(i, u) == v) return _sub[dir(i, u)];
+        }
+        assert(false);
+        return dp[u];
+    }
+    // sub_by_edge(i, v): 辺 i を切ったときの v 側の部分木を v を根として見た値
+    const T& sub_by_edge(int i, int v) const {
+        assert(0 <= i && i < int(edges.size()));
+        assert(edges[i].first == v || edges[i].second == v);
+        return _sub[dir(i, other(i, v))];
     }
 
 private:
     int _n;
+    std::vector<V> vdata;
     std::vector<std::vector<int>> g;
-    std::vector<std::vector<S>> dp;
+    std::vector<std::pair<int, int>> edges;
+    std::vector<E> edata;
+    std::vector<T> _sub;
+    int other(int i, int v) const {
+        return edges[i].first ^ edges[i].second ^ v;
+    }
+    // dir(i, u): 辺 i を u から見て反対側の部分木の値の格納位置
+    int dir(int i, int u) const {
+        return 2 * i + (edges[i].first == u ? 0 : 1);
+    }
 };
