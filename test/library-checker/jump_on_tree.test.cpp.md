@@ -20,7 +20,7 @@ data:
     #include <utility>\n#include <vector>\nstruct heavy_light_decomposition {\npublic:\n\
     \    heavy_light_decomposition() {\n    }\n    heavy_light_decomposition(int n,\
     \ int root = 0)\n        : _n(n),\n          _root(root),\n          g(n),\n \
-    \         sz(n),\n          dep(n),\n          par(n),\n          heavy(n, -1),\n\
+    \         sub(n),\n          dep(n),\n          par(n),\n          heavy(n, -1),\n\
     \          head(n),\n          in(n),\n          out(n),\n          rev(n) {\n\
     \    }\n    void add_edge(int u, int v) {\n        assert(0 <= u && u < _n);\n\
     \        assert(0 <= v && v < _n);\n        g[u].push_back(v);\n        g[v].push_back(u);\n\
@@ -31,12 +31,12 @@ data:
     \       if (c == par[v]) continue;\n                par[c] = v;\n            \
     \    dep[c] = dep[v] + 1;\n                st.push_back(c);\n            }\n \
     \       }\n        for (int i = _n - 1; i >= 0; i--) {\n            int v = order[i],\
-    \ p = par[v];\n            sz[v]++;\n            if (p == -1) continue;\n    \
-    \        sz[p] += sz[v];\n            if (heavy[p] == -1 || sz[v] > sz[heavy[p]])\
+    \ p = par[v];\n            sub[v]++;\n            if (p == -1) continue;\n   \
+    \         sub[p] += sub[v];\n            if (heavy[p] == -1 || sub[v] > sub[heavy[p]])\
     \ heavy[p] = v;\n        }\n        int t = 0;\n        head[_root] = _root;\n\
     \        st = {_root};\n        while (!st.empty()) {\n            int v = st.back();\n\
     \            st.pop_back();\n            in[v] = t++;\n            rev[in[v]]\
-    \ = v;\n            out[v] = in[v] + sz[v];\n            for (int c : g[v]) {\n\
+    \ = v;\n            out[v] = in[v] + sub[v];\n            for (int c : g[v]) {\n\
     \                if (c == par[v] || c == heavy[v]) continue;\n               \
     \ head[c] = c;\n                st.push_back(c);\n            }\n            if\
     \ (heavy[v] != -1) {\n                head[heavy[v]] = head[v];\n            \
@@ -71,7 +71,7 @@ data:
     \ const F& f) const {\n        f(in[v], out[v]);\n    }\n    template <typename\
     \ F>\n    void for_each_edge_in_subtree(int v, const F& f) const {\n        if\
     \ (in[v] + 1 < out[v]) f(in[v] + 1, out[v]);\n    }\n\nprivate:\n    int _n, _root;\n\
-    \    std::vector<std::vector<int>> g;\n    std::vector<int> sz, dep, par, heavy,\
+    \    std::vector<std::vector<int>> g;\n    std::vector<int> sub, dep, par, heavy,\
     \ head, in, out, rev;\n    template <typename F>\n    void for_each(int u, int\
     \ v, bool edge, const F& f) const {\n        while (head[u] != head[v]) {\n  \
     \          if (dep[head[u]] < dep[head[v]]) std::swap(u, v);\n            f(in[head[u]],\
@@ -105,7 +105,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/jump_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 14:39:43+09:00'
+  timestamp: '2026-10-19 01:40:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/jump_on_tree.test.cpp
