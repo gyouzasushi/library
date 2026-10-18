@@ -61,7 +61,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: graph/bfs_tree_of_complement.hpp
-      title: graph/bfs_tree_of_complement.hpp
+      title: "\u88DC\u30B0\u30E9\u30D5\u306E BFS \u68EE"
     - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.hpp
       title: "\u5F69\u8272\u6570"

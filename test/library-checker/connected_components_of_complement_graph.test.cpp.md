@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: graph/bfs_tree_of_complement.hpp
-    title: graph/bfs_tree_of_complement.hpp
+    title: "\u88DC\u30B0\u30E9\u30D5\u306E BFS \u68EE"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -29,8 +29,8 @@ data:
     \        if (banned[v]) {\n                    t.push_back(v);\n             \
     \   } else if (!seen[v]) {\n                    ret[u].push_back(v);\n       \
     \             q.push(v);\n                }\n            }\n            s = std::move(t);\n\
-    \            for (int v : g[u]) {\n                banned[v] = false;\n      \
-    \      }\n        }\n    }\n    return ret;\n}\n#line 6 \"test/library-checker/connected_components_of_complement_graph.test.cpp\"\
+    \            t.clear();\n            for (int v : g[u]) {\n                banned[v]\
+    \ = false;\n            }\n        }\n    }\n    return ret;\n}\n#line 6 \"test/library-checker/connected_components_of_complement_graph.test.cpp\"\
     \nint main() {\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<std::vector<int>>\
     \ g(n);\n    for (int i = 0; i < m; i++) {\n        int u, v;\n        std::cin\
     \ >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\
@@ -62,7 +62,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/connected_components_of_complement_graph.test.cpp
   requiredBy: []
-  timestamp: '2024-06-29 13:06:37+09:00'
+  timestamp: '2026-10-19 07:07:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/connected_components_of_complement_graph.test.cpp
