@@ -42,12 +42,10 @@ data:
     \ + d.second);\n    }\n    cell operator-(std::pair<int, int> d) const {\n   \
     \     return cell(y - d.first, x - d.second);\n    }\n    bool operator==(const\
     \ cell& o) const {\n        return y == o.y && x == o.x;\n    }\n    bool operator!=(const\
-    \ cell& o) const {\n        return !(*this == o);\n    }\n\n    // \u7BC4\u56F2\
-    \u5185\u306E\u8FD1\u508D\u3092\u3001\u30D2\u30FC\u30D7\u3092\u4F7F\u308F\u305A\
-    \u306B range-for \u3067\u56DE\u3059\u305F\u3081\u306E\u30D3\u30E5\u30FC\n    template\
-    \ <int K>\n    struct neighbor_view {\n        std::array<cell, K> a;\n      \
-    \  int n;\n        const cell* begin() const {\n            return a.data();\n\
-    \        }\n        const cell* end() const {\n            return a.data() + n;\n\
+    \ cell& o) const {\n        return !(*this == o);\n    }\n\n    template <int\
+    \ K>\n    struct neighbor_view {\n        std::array<cell, K> a;\n        int\
+    \ n;\n        const cell* begin() const {\n            return a.data();\n    \
+    \    }\n        const cell* end() const {\n            return a.data() + n;\n\
     \        }\n        int size() const {\n            return n;\n        }\n   \
     \ };\n    neighbor_view<4> neighbors() const {\n        return collect<4>(delta);\n\
     \    }\n    neighbor_view<8> neighbors_8() const {\n        return collect<8>(delta_8);\n\
@@ -85,9 +83,7 @@ data:
     \  cell operator-(std::pair<int, int> d) const {\n        return cell(y - d.first,\
     \ x - d.second);\n    }\n    bool operator==(const cell& o) const {\n        return\
     \ y == o.y && x == o.x;\n    }\n    bool operator!=(const cell& o) const {\n \
-    \       return !(*this == o);\n    }\n\n    // \u7BC4\u56F2\u5185\u306E\u8FD1\u508D\
-    \u3092\u3001\u30D2\u30FC\u30D7\u3092\u4F7F\u308F\u305A\u306B range-for \u3067\u56DE\
-    \u3059\u305F\u3081\u306E\u30D3\u30E5\u30FC\n    template <int K>\n    struct neighbor_view\
+    \       return !(*this == o);\n    }\n\n    template <int K>\n    struct neighbor_view\
     \ {\n        std::array<cell, K> a;\n        int n;\n        const cell* begin()\
     \ const {\n            return a.data();\n        }\n        const cell* end()\
     \ const {\n            return a.data() + n;\n        }\n        int size() const\
@@ -103,7 +99,7 @@ data:
   isVerificationFile: false
   path: graph/cell.hpp
   requiredBy: []
-  timestamp: '2026-10-19 19:44:52+09:00'
+  timestamp: '2026-10-19 19:51:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1160.test.cpp
@@ -114,7 +110,7 @@ title: "\u30B0\u30EA\u30C3\u30C9\u306E\u30DE\u30B9"
 ---
 
 ### 概要
-- グリッドのマスを表す構造体。範囲を 1 度設定すると、マスと辞書順の番号を相互に変換し、範囲内の近傍を列挙できる。
+- グリッドのマスを表す構造体。
 
 ### 使い方
 - `cell::set_bound(height, width)`: 範囲を `[0, height)` $\times$ `[0, width)` にする。
