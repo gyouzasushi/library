@@ -20,14 +20,14 @@ int main() {
         if (a.day == b.day) return a.id > b.id;
         return a.day < b.day;
     });
-    range_set<int> st(false);
+    range_set<int> st;
     std::vector<bool> ans(q);
     for (auto [_, id, l, r] : query) {
         if (id < m) {
             st.insert(l, r);
         } else {
             if (l < r) {
-                ans[id - m] = st.get(l, r) != st.end();
+                ans[id - m] = st.covers(l, r);
             } else {
                 ans[id - m] = true;
             }

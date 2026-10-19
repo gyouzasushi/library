@@ -4,14 +4,21 @@ documentation_of: datastructure/range_set.hpp
 ---
 
 ### 概要
-- 区間を set で管理するテクニック。
-- すべて閉区間。
-  
+- 互いに交わらない半開区間の集合。接する区間は 1 つにまとめる。
+
 ### 使い方
-- `range_set(merge_adjacent_segment = true)`: コンストラクタ。区間 `[l, m]` と `[m + 1, r]` を `[l, r]` にマージしない場合は、`merge_adjacent_segment` を `false` にする。
-- `get(p)`: `p` を含む区間のイテレータ（存在しない場合は `end()`）を返す。
-- `get(l, r)`: 区間 `[l, r]` を完全に含む区間のイテレータ（存在しない場合は `end()`）を返す。
-- `insert(l, r)`: 区間 `[l, r]` を挿入。
-- `insert(l, r, f, g)`: 区間 `[l, r]` を挿入。そのとき、区間が追加されるたびに `f` を、区間が削除されるたびに `g` を実行する。`f`, `g` はともに `(T l, T r) -> void`。
-- `erase(l, r)`: 区間 `[l, r]` を削除。
-- `erase(l, r, f, g)`: 区間 `[l, r]` を削除。そのとき、区間が追加されるたびに `f` を、区間が削除されるたびに `g` を実行する。`f`, `g` はともに `(T l, T r) -> void`。
+- `find(p)`: `p` を含む区間のイテレータ。無ければ `end()`。イテレータは `(l, r)` の pair を指す。
+- `contains(p)`: `p` を含むか。
+- `covers(l, r)`: `[l, r)` が 1 つの区間に含まれるか。
+- `mex(x)`: `x` 以上で含まれない最小の値。整数向け。
+- `insert(l, r)`: `[l, r)` を追加する。
+- `insert(l, r, f, g)`: 追加のとき、新しくできた区間ごとに `f(l, r)` を、消えた区間ごとに `g(l, r)` を呼ぶ。
+- `erase(l, r)`: `[l, r)` を削除する。
+- `erase(l, r, f, g)`: 削除のとき、新しくできた区間ごとに `f(l, r)` を、消えた区間ごとに `g(l, r)` を呼ぶ。
+- `size()`: 区間の個数。
+- range-for で区間を昇順に列挙できる。
+- 整数の集合として使うときは、整数 `a` 以上 `b` 以下を `[a, b + 1)` で表す。
+
+### 計算量
+- `insert`, `erase`: 償却 $\mathcal{O}(\log N)$
+- `find`, `contains`, `covers`, `mex`: $\mathcal{O}(\log N)$

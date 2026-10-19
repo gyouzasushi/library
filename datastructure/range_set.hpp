@@ -1,38 +1,48 @@
 #pragma once
-
+#include <cassert>
 #include <map>
-template <typename T>
+template <class T>
 struct range_set {
 public:
-    range_set(bool merge_adjacent = true) : _merge_adjacent(merge_adjacent) {
+    using iterator = typename std::map<T, T>::const_iterator;
+    range_set() {
     }
-    typename std::map<T, T>::const_iterator get(T p) const {
+    // p を含む区間。無ければ end()
+    iterator find(T p) const {
         auto it = ranges.upper_bound(p);
         if (it == ranges.begin()) return ranges.end();
-        if (std::prev(it)->second < p) return ranges.end();
-        return std::prev(it);
-    }
-    typename std::map<T, T>::const_iterator get(T l, T r) const {
-        auto it = get(l);
-        if (it == ranges.end()) return ranges.end();
-        if (it->second < r) return ranges.end();
+        it--;
+        if (it->second <= p) return ranges.end();
         return it;
+    }
+    bool contains(T p) const {
+        return find(p) != ranges.end();
+    }
+    // [l, r) が 1 つの区間に含まれるか
+    bool covers(T l, T r) const {
+        assert(l < r);
+        auto it = find(l);
+        return it != ranges.end() && r <= it->second;
+    }
+    // x 以上で含まれない最小の値（整数向け）
+    T mex(T x) const {
+        auto it = find(x);
+        return it == ranges.end() ? x : it->second;
     }
     void insert(T l, T r) {
         insert(l, r, [](T, T) {}, [](T, T) {});
     }
-    template <class op_insert, class op_erase>
-    void insert(T l, T r, const op_insert &f, const op_erase &g) {
-        auto it_l = ranges.upper_bound(l);
-        auto it_r = ranges.upper_bound(r + T(_merge_adjacent));
-        if (it_l != ranges.begin() &&
-            l - T(_merge_adjacent) <= std::prev(it_l)->second) {
-            it_l--;
-        }
-        for (auto it = it_l; it != it_r; it = ranges.erase(it)) {
+    // f: 追加された区間ごとに呼ぶ, g: 削除された区間ごとに呼ぶ
+    template <class F, class G>
+    void insert(T l, T r, const F& f, const G& g) {
+        assert(l < r);
+        auto it = ranges.upper_bound(l);
+        if (it != ranges.begin() && l <= std::prev(it)->second) it--;
+        while (it != ranges.end() && it->first <= r) {
             l = std::min(l, it->first);
             r = std::max(r, it->second);
             g(it->first, it->second);
+            it = ranges.erase(it);
         }
         ranges[l] = r;
         f(l, r);
@@ -40,35 +50,35 @@ public:
     void erase(T l, T r) {
         erase(l, r, [](T, T) {}, [](T, T) {});
     }
-    template <class op_insert, class op_erase>
-    void erase(T l, T r, const op_insert &f, const op_erase &g) {
-        auto it_l = ranges.upper_bound(l);
-        auto it_r = ranges.upper_bound(r);
-        if (it_l != ranges.begin() && l <= std::prev(it_l)->second) {
-            it_l--;
-        }
-        T nl = std::min(l, it_l->first);
-        T nr = std::max(r, std::prev(it_r)->second);
-        for (auto it = it_l; it != it_r; it = ranges.erase(it)) {
-            g(it->first, it->second);
-        }
-        if (nl < l) {
-            ranges[nl] = l - 1;
-            f(nl, l - 1);
-        }
-        if (r < nr) {
-            ranges[r + 1] = nr;
-            f(r + 1, nr);
+    template <class F, class G>
+    void erase(T l, T r, const F& f, const G& g) {
+        assert(l < r);
+        auto it = ranges.upper_bound(l);
+        if (it != ranges.begin() && l < std::prev(it)->second) it--;
+        while (it != ranges.end() && it->first < r) {
+            T a = it->first, b = it->second;
+            g(a, b);
+            it = ranges.erase(it);
+            if (a < l) {
+                ranges[a] = l;
+                f(a, l);
+            }
+            if (r < b) {
+                ranges[r] = b;
+                f(r, b);
+            }
         }
     }
-    typename std::map<T, T>::const_iterator begin() const {
+    int size() const {
+        return int(ranges.size());
+    }
+    iterator begin() const {
         return ranges.begin();
     }
-    typename std::map<T, T>::const_iterator end() const {
+    iterator end() const {
         return ranges.end();
     }
 
 private:
     std::map<T, T> ranges;
-    bool _merge_adjacent;
 };
