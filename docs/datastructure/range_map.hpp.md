@@ -4,17 +4,18 @@ documentation_of: datastructure/range_map.hpp
 ---
 
 ### 概要
-- 区間代入の差分を run ごとに受け取る構造。値を「値が等しい極大な半開区間（run）の列」で持つ。
+- 区間ごとに値を持つ map。
 
 ### 使い方
-- `range_map<T, S>()`: 空で始める。`S` には `==` が必要。
+- `range_map<T, S>`: 座標の型 `T`、値の型 `S`。`S` は `==` で比較できる必要がある。
 - `assign(l, r, x)`: $[l, r)$ の値を `x` にする。
-- `assign(l, r, x, f, g)`: 代入で消えた run ごとに `g(l, r, x)` を、できた run ごとに `f(l, r, x)` を呼ぶ。隣接する run の値が等しくなれば 1 つにまとまり、まとめる前の run は `g`、まとめた後の run は `f` に渡る。
-- `erase(l, r)`, `erase(l, r, f, g)`: $[l, r)$ の値を消す。コールバックは `assign` と同じ。
-- `find(p)`: `p` を含む run のイテレータ。無ければ `end()`。`it->l`, `it->r`, `it->x`。
-- `contains(p)`: `p` に値があるか。
-- `size()`: run の個数。
-- range-for で `for (auto [l, r, x] : mp)` と列挙できる。
+- `assign(l, r, x, f, g)`: $[l, r)$ の値を `x` にする。削除された区間ごとに `g(l, r, x)`、追加された区間ごとに `f(l, r, x)` を呼ぶ。隣り合う区間の値が等しければ 1 つの区間にまとまる。
+- `erase(l, r)`: $[l, r)$ の値を削除する。
+- `erase(l, r, f, g)`: $[l, r)$ の値を削除する。コールバックは `assign` と同じ。
+- `find(p)`: `p` を含む区間のイテレータ。存在しなければ `end()`。
+- `contains(p)`: `p` を含む区間が存在するか。
+- `size()`: 区間の個数。
+- range-for で区間を昇順に列挙する。各要素は `l`, `r`, `x` を持つ。
 
 ### 計算量
 - `assign`, `erase`: 償却 $\mathcal{O}(\log N)$。コールバックの呼び出し回数は全体で $\mathcal{O}(N + Q)$。
