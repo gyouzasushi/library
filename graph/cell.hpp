@@ -74,7 +74,6 @@ public:
         return !(*this == o);
     }
 
-    // 範囲内の近傍を、ヒープを使わずに range-for で回すためのビュー
     template <int K>
     struct neighbor_view {
         std::array<cell, K> a;

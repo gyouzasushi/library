@@ -4,7 +4,7 @@ documentation_of: graph/cell.hpp
 ---
 
 ### 概要
-- グリッドのマスを表す構造体。範囲を 1 度設定すると、マスと辞書順の番号を相互に変換し、範囲内の近傍を列挙できる。
+- グリッドのマスを表す構造体。
 
 ### 使い方
 - `cell::set_bound(height, width)`: 範囲を `[0, height)` $\times$ `[0, width)` にする。
