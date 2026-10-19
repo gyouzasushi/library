@@ -15,48 +15,56 @@ data:
     links:
     - https://judge.yosupo.jp/problem/shortest_path
   bundledCode: "#line 1 \"test/library-checker/shortest_path.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/shortest_path\"\n#include <algorithm>\n#include\
-    \ <iostream>\n\n#line 2 \"graph/dijkstra.hpp\"\n#include <limits>\n#include <queue>\n\
-    #include <vector>\ntemplate <typename T>\nstd::pair<std::vector<T>, std::vector<int>>\
-    \ dijkstra(\n    int s, const std::vector<std::vector<std::pair<int, T>>> &g)\
-    \ {\n    std::priority_queue<std::pair<T, int>, std::vector<std::pair<T, int>>,\n\
-    \                        std::greater<std::pair<T, int>>>\n        que;\n    int\
-    \ n = int(g.size());\n    std::vector<T> d(n, std::numeric_limits<T>::max());\n\
-    \    std::vector<int> from(n, -1);\n    d[s] = 0;\n    que.emplace(0, s);\n  \
-    \  while (!que.empty()) {\n        auto [dist, pos] = que.top();\n        que.pop();\n\
-    \        if (d[pos] < dist) continue;\n        for (auto [to, cost] : g[pos])\
-    \ {\n            if (d[pos] + cost < d[to]) {\n                d[to] = d[pos]\
-    \ + cost;\n                from[to] = pos;\n                que.emplace(d[to],\
-    \ to);\n            }\n        }\n    }\n    return {d, from};\n}\n#line 6 \"\
-    test/library-checker/shortest_path.test.cpp\"\nint main() {\n    int n, m, s,\
-    \ t;\n    std::cin >> n >> m >> s >> t;\n    std::vector<std::vector<std::pair<int,\
-    \ long long>>> g(n);\n    for (int i = 0; i < m; i++) {\n        int a, b;\n \
-    \       long long c;\n        std::cin >> a >> b >> c;\n        g[a].emplace_back(b,\
-    \ c);\n    }\n\n    auto [dist, from] = dijkstra(s, g);\n    if (dist[t] == std::numeric_limits<long\
-    \ long>::max()) {\n        std::cout << -1 << '\\n';\n        return 0;\n    }\n\
-    \n    int pos = t;\n    std::vector<int> path;\n    while (pos != -1) {\n    \
-    \    path.push_back(pos);\n        pos = from[pos];\n    };\n    std::reverse(path.begin(),\
-    \ path.end());\n\n    std::cout << dist[t] << ' ' << path.size() - 1 << '\\n';\n\
-    \    for (int i = 0; i + 1 < int(path.size()); i++) {\n        std::cout << path[i]\
-    \ << ' ' << path[i + 1] << '\\n';\n    }\n}\n"
+    \ \"https://judge.yosupo.jp/problem/shortest_path\"\n#include <iostream>\n\n#line\
+    \ 2 \"graph/dijkstra.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
+    \ <limits>\n#include <queue>\n#include <vector>\ntemplate <class T> struct dijkstra\
+    \ {\npublic:\n    dijkstra() : dijkstra(0) {\n    }\n    explicit dijkstra(int\
+    \ n) : _n(n), g(n), _dist(n, inf), _prev(n, -1) {\n    }\n    void add_edge(int\
+    \ from, int to, T w) {\n        assert(0 <= from && from < _n);\n        assert(0\
+    \ <= to && to < _n);\n        g[from].emplace_back(to, w);\n    }\n    void solve(int\
+    \ s) {\n        assert(0 <= s && s < _n);\n        _dist.assign(_n, inf);\n  \
+    \      _prev.assign(_n, -1);\n        std::priority_queue<std::pair<T, int>, std::vector<std::pair<T,\
+    \ int>>,\n                            std::greater<std::pair<T, int>>>\n     \
+    \       que;\n        _dist[s] = 0;\n        que.emplace(0, s);\n        while\
+    \ (!que.empty()) {\n            auto [d, u] = que.top();\n            que.pop();\n\
+    \            if (_dist[u] < d) continue;\n            for (auto [v, w] : g[u])\
+    \ {\n                if (_dist[u] + w < _dist[v]) {\n                    _dist[v]\
+    \ = _dist[u] + w;\n                    _prev[v] = u;\n                    que.emplace(_dist[v],\
+    \ v);\n                }\n            }\n        }\n    }\n    T dist(int v) const\
+    \ {\n        assert(0 <= v && v < _n);\n        return _dist[v];\n    }\n    int\
+    \ prev(int v) const {\n        assert(0 <= v && v < _n);\n        return _prev[v];\n\
+    \    }\n    bool reachable(int v) const {\n        assert(0 <= v && v < _n);\n\
+    \        return _dist[v] != inf;\n    }\n    std::vector<int> path(int t) const\
+    \ {\n        assert(0 <= t && t < _n);\n        if (_dist[t] == inf) return {};\n\
+    \        std::vector<int> res;\n        for (int v = t; v != -1; v = _prev[v])\
+    \ res.push_back(v);\n        std::reverse(res.begin(), res.end());\n        return\
+    \ res;\n    }\n\nprivate:\n    static constexpr T inf = std::numeric_limits<T>::max();\n\
+    \    int _n;\n    std::vector<std::vector<std::pair<int, T>>> g;\n    std::vector<T>\
+    \ _dist;\n    std::vector<int> _prev;\n};\n#line 5 \"test/library-checker/shortest_path.test.cpp\"\
+    \nint main() {\n    int n, m, s, t;\n    std::cin >> n >> m >> s >> t;\n    dijkstra<long\
+    \ long> d(n);\n    for (int i = 0; i < m; i++) {\n        int a, b;\n        long\
+    \ long c;\n        std::cin >> a >> b >> c;\n        d.add_edge(a, b, c);\n  \
+    \  }\n    d.solve(s);\n    if (!d.reachable(t)) {\n        std::cout << -1 <<\
+    \ '\\n';\n        return 0;\n    }\n    std::vector<int> path = d.path(t);\n \
+    \   std::cout << d.dist(t) << ' ' << path.size() - 1 << '\\n';\n    for (int i\
+    \ = 0; i + 1 < int(path.size()); i++) {\n        std::cout << path[i] << ' ' <<\
+    \ path[i + 1] << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
-    \ <algorithm>\n#include <iostream>\n\n#include \"graph/dijkstra.hpp\"\nint main()\
-    \ {\n    int n, m, s, t;\n    std::cin >> n >> m >> s >> t;\n    std::vector<std::vector<std::pair<int,\
-    \ long long>>> g(n);\n    for (int i = 0; i < m; i++) {\n        int a, b;\n \
-    \       long long c;\n        std::cin >> a >> b >> c;\n        g[a].emplace_back(b,\
-    \ c);\n    }\n\n    auto [dist, from] = dijkstra(s, g);\n    if (dist[t] == std::numeric_limits<long\
-    \ long>::max()) {\n        std::cout << -1 << '\\n';\n        return 0;\n    }\n\
-    \n    int pos = t;\n    std::vector<int> path;\n    while (pos != -1) {\n    \
-    \    path.push_back(pos);\n        pos = from[pos];\n    };\n    std::reverse(path.begin(),\
-    \ path.end());\n\n    std::cout << dist[t] << ' ' << path.size() - 1 << '\\n';\n\
-    \    for (int i = 0; i + 1 < int(path.size()); i++) {\n        std::cout << path[i]\
-    \ << ' ' << path[i + 1] << '\\n';\n    }\n}"
+    \ <iostream>\n\n#include \"graph/dijkstra.hpp\"\nint main() {\n    int n, m, s,\
+    \ t;\n    std::cin >> n >> m >> s >> t;\n    dijkstra<long long> d(n);\n    for\
+    \ (int i = 0; i < m; i++) {\n        int a, b;\n        long long c;\n       \
+    \ std::cin >> a >> b >> c;\n        d.add_edge(a, b, c);\n    }\n    d.solve(s);\n\
+    \    if (!d.reachable(t)) {\n        std::cout << -1 << '\\n';\n        return\
+    \ 0;\n    }\n    std::vector<int> path = d.path(t);\n    std::cout << d.dist(t)\
+    \ << ' ' << path.size() - 1 << '\\n';\n    for (int i = 0; i + 1 < int(path.size());\
+    \ i++) {\n        std::cout << path[i] << ' ' << path[i + 1] << '\\n';\n    }\n\
+    }\n"
   dependsOn:
   - graph/dijkstra.hpp
   isVerificationFile: true
   path: test/library-checker/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2023-03-05 19:05:08+09:00'
+  timestamp: '2026-10-20 08:03:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/shortest_path.test.cpp
