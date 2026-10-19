@@ -63,6 +63,9 @@ data:
       path: graph/bfs_tree_of_complement.hpp
       title: "\u88DC\u30B0\u30E9\u30D5\u306E BFS \u68EE"
     - icon: ':heavy_check_mark:'
+      path: graph/cell.hpp
+      title: "\u30B0\u30EA\u30C3\u30C9\u306E\u30DE\u30B9"
+    - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.hpp
       title: "\u5F69\u8272\u6570"
     - icon: ':heavy_check_mark:'
@@ -71,9 +74,6 @@ data:
     - icon: ':warning:'
       path: graph/functional_graph.hpp
       title: graph/functional_graph.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/grid.hpp
-      title: "\u30B0\u30EA\u30C3\u30C9"
     - icon: ':heavy_check_mark:'
       path: graph/heavy_light_decomposition.hpp
       title: "HL\u5206\u89E3 (Heavy-Light Decomposition)"
