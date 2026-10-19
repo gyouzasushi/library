@@ -12,11 +12,9 @@ int main() {
     while (q--) {
         long long a, b;
         std::cin >> a >> b;
-        mp.set(
-            {a, b}, true,
-            [&](long long l, long long r, bool) {
-                ans = std::max(ans, r - l + 1);
-            },
+        mp.assign(
+            a, b + 1, true,
+            [&](long long l, long long r, bool) { ans = std::max(ans, r - l); },
             [](long long, long long, bool) {});
         std::cout << ans << '\n';
     }

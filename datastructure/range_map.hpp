@@ -1,72 +1,144 @@
 #pragma once
-#include <map>
-#include <vector>
-template <typename T, typename S>
+#include <cassert>
+#include <iterator>
+#include <optional>
+#include <set>
+template <class T, class S>
 struct range_map {
 public:
-    range_map(bool merge_adjacent = true) : _merge_adjacent(merge_adjacent) {
+    struct run {
+        T l, r;
+        S x;
+    };
+
+private:
+    struct cmp {
+        using is_transparent = void;
+        bool operator()(const run& a, const run& b) const {
+            return a.l < b.l;
+        }
+        bool operator()(const run& a, const T& b) const {
+            return a.l < b;
+        }
+        bool operator()(const T& a, const run& b) const {
+            return a < b.l;
+        }
+    };
+
+public:
+    using iterator = typename std::set<run, cmp>::const_iterator;
+    range_map() {
     }
-    typename std::map<T, std::pair<T, S>>::const_iterator get(T p) const {
-        auto it = values.upper_bound(p);
-        if (it == values.begin()) return values.end();
-        if (std::prev(it)->second.first < p) return values.end();
-        return std::prev(it);
-    }
-    typename std::map<T, std::pair<T, S>>::const_iterator get(
-        std::pair<T, T> range) const {
-        auto [l, r] = range;
-        auto it = get(l);
-        if (it == values.end()) return values.end();
-        if (it->second.first < r) return values.end();
+    // p を含む run。無ければ end()
+    iterator find(T p) const {
+        auto it = runs.upper_bound(p);
+        if (it == runs.begin()) return runs.end();
+        it--;
+        if (it->r <= p) return runs.end();
         return it;
     }
-    void set(std::pair<T, T> range, S x) {
-        set(range, x, [](T, T, S) {}, [](T, T, S) {});
+    bool contains(T p) const {
+        return find(p) != runs.end();
     }
-    template <class op_insert, class op_erase>
-    void set(std::pair<T, T> range, S x, const op_insert &f,
-             const op_erase &g) {
-        auto [l, r] = range;
-        auto it_l = values.upper_bound(l);
-        if (it_l != values.begin() &&
-            l - T(_merge_adjacent) <= std::prev(it_l)->second.first) {
-            it_l--;
+    void assign(T l, T r, S x) {
+        assign(l, r, x, [](T, T, const S&) {}, [](T, T, const S&) {});
+    }
+    // f: できた run ごとに呼ぶ, g: 消えた run ごとに呼ぶ
+    template <class F, class G>
+    void assign(T l, T r, S x, const F& f, const G& g) {
+        assert(l < r);
+        {
+            auto it = find(l);
+            if (it != runs.end() && r <= it->r && it->x == x) return;
         }
-        auto it_r = values.upper_bound(r + T(_merge_adjacent));
-        std::vector<std::tuple<T, T, S>> restore;
-        restore.reserve(3);
-        if (it_l != values.end() && it_l->first < l) {
-            if (it_l->second.second != x) {
-                restore.emplace_back(it_l->first, l - 1, it_l->second.second);
-            } else {
-                l = it_l->first;
+        T nl = l, nr = r;
+        std::optional<run> left, right;
+        auto first = runs.upper_bound(l);
+        if (first != runs.begin()) {
+            auto p = std::prev(first);
+            if (l < p->r) {
+                first = p;
+                if (p->l < l) {
+                    if (p->x == x) {
+                        nl = p->l;
+                    } else {
+                        left = run{p->l, l, p->x};
+                    }
+                }
+            } else if (p->r == l && p->x == x) {
+                first = p;
+                nl = p->l;
             }
         }
-        if (it_l != it_r && r < std::prev(it_r)->second.first) {
-            if (std::prev(it_r)->second.second != x) {
-                restore.emplace_back(r + 1, std::prev(it_r)->second.first,
-                                     std::prev(it_r)->second.second);
-            } else {
-                r = std::prev(it_r)->second.first;
+        if (first != runs.end() && first != runs.begin() && first->l == l) {
+            auto p = std::prev(first);
+            if (p->r == l && p->x == x) {
+                first = p;
+                nl = p->l;
             }
         }
-        restore.emplace_back(l, r, x);
-        for (auto it = it_l; it != it_r; it = values.erase(it)) {
-            g(it->first, it->second.first, it->second.second);
+        auto last = runs.lower_bound(r);
+        if (last != runs.begin()) {
+            auto q = std::prev(last);
+            if (r < q->r) {
+                if (q->x == x) {
+                    nr = q->r;
+                } else {
+                    right = run{r, q->r, q->x};
+                }
+            }
         }
-        for (auto [l, r, x] : restore) {
-            values[l] = {r, x};
-            f(l, r, x);
+        if (last != runs.end() && last->l == r && last->x == x) {
+            nr = last->r;
+            last++;
+        }
+        for (auto it = first; it != last;) {
+            g(it->l, it->r, it->x);
+            it = runs.erase(it);
+        }
+        if (left) {
+            runs.insert(*left);
+            f(left->l, left->r, left->x);
+        }
+        runs.insert({nl, nr, x});
+        f(nl, nr, x);
+        if (right) {
+            runs.insert(*right);
+            f(right->l, right->r, right->x);
         }
     }
-    typename std::map<std::pair<T, T>, S>::const_iterator begin() const {
-        return values.begin();
+    void erase(T l, T r) {
+        erase(l, r, [](T, T, const S&) {}, [](T, T, const S&) {});
     }
-    typename std::map<std::pair<T, T>, S>::const_iterator end() const {
-        return values.end();
+    template <class F, class G>
+    void erase(T l, T r, const F& f, const G& g) {
+        assert(l < r);
+        auto it = runs.upper_bound(l);
+        if (it != runs.begin() && l < std::prev(it)->r) it--;
+        while (it != runs.end() && it->l < r) {
+            run cur = *it;
+            g(cur.l, cur.r, cur.x);
+            it = runs.erase(it);
+            if (cur.l < l) {
+                runs.insert({cur.l, l, cur.x});
+                f(cur.l, l, cur.x);
+            }
+            if (r < cur.r) {
+                runs.insert({r, cur.r, cur.x});
+                f(r, cur.r, cur.x);
+            }
+        }
+    }
+    int size() const {
+        return int(runs.size());
+    }
+    iterator begin() const {
+        return runs.begin();
+    }
+    iterator end() const {
+        return runs.end();
     }
 
-protected:
-    std::map<T, std::pair<T, S>> values;
-    bool _merge_adjacent;
+private:
+    std::set<run, cmp> runs;
 };
