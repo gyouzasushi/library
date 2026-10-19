@@ -71,10 +71,11 @@
 "test/unit/dual_segtree.test.cpp": "2026-05-18 10:25:36 +0900",
 "test/unit/heavy_light_decomposition.test.cpp": "2026-10-19 02:29:38 +0900",
 "test/unit/monoid.test.cpp": "2026-10-19 02:48:39 +0900",
+"test/unit/range_map.test.cpp": "2026-10-19 22:21:29 +0900",
 "test/unit/range_set.test.cpp": "2026-10-19 20:56:31 +0900",
 "test/unit/rerooting.test.cpp": "2026-10-19 03:10:52 +0900",
 "test/yukicoder/117.test.cpp": "2026-10-17 13:59:29 +0900",
 "test/yukicoder/1601.test.cpp": "2026-10-19 20:56:31 +0900",
-"test/yukicoder/1601_2.test.cpp": "2024-06-30 18:54:38 +0900",
+"test/yukicoder/1601_2.test.cpp": "2026-10-19 22:21:29 +0900",
 "test/yukicoder/2231.test.cpp": "2026-10-17 13:59:29 +0900"
 }
