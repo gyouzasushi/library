@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/unit/range_map.test.cpp
+    title: test/unit/range_map.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601_2.test.cpp
     title: test/yukicoder/1601_2.test.cpp
   _isVerificationFailed: false
@@ -11,78 +14,124 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"datastructure/range_map.hpp\"\n#include <map>\n#include\
-    \ <vector>\ntemplate <typename T, typename S>\nstruct range_map {\npublic:\n \
-    \   range_map(bool merge_adjacent = true) : _merge_adjacent(merge_adjacent) {\n\
-    \    }\n    typename std::map<T, std::pair<T, S>>::const_iterator get(T p) const\
-    \ {\n        auto it = values.upper_bound(p);\n        if (it == values.begin())\
-    \ return values.end();\n        if (std::prev(it)->second.first < p) return values.end();\n\
-    \        return std::prev(it);\n    }\n    typename std::map<T, std::pair<T, S>>::const_iterator\
-    \ get(\n        std::pair<T, T> range) const {\n        auto [l, r] = range;\n\
-    \        auto it = get(l);\n        if (it == values.end()) return values.end();\n\
-    \        if (it->second.first < r) return values.end();\n        return it;\n\
-    \    }\n    void set(std::pair<T, T> range, S x) {\n        set(range, x, [](T,\
-    \ T, S) {}, [](T, T, S) {});\n    }\n    template <class op_insert, class op_erase>\n\
-    \    void set(std::pair<T, T> range, S x, const op_insert &f,\n             const\
-    \ op_erase &g) {\n        auto [l, r] = range;\n        auto it_l = values.upper_bound(l);\n\
-    \        if (it_l != values.begin() &&\n            l - T(_merge_adjacent) <=\
-    \ std::prev(it_l)->second.first) {\n            it_l--;\n        }\n        auto\
-    \ it_r = values.upper_bound(r + T(_merge_adjacent));\n        std::vector<std::tuple<T,\
-    \ T, S>> restore;\n        restore.reserve(3);\n        if (it_l != values.end()\
-    \ && it_l->first < l) {\n            if (it_l->second.second != x) {\n       \
-    \         restore.emplace_back(it_l->first, l - 1, it_l->second.second);\n   \
-    \         } else {\n                l = it_l->first;\n            }\n        }\n\
-    \        if (it_l != it_r && r < std::prev(it_r)->second.first) {\n          \
-    \  if (std::prev(it_r)->second.second != x) {\n                restore.emplace_back(r\
-    \ + 1, std::prev(it_r)->second.first,\n                                     std::prev(it_r)->second.second);\n\
-    \            } else {\n                r = std::prev(it_r)->second.first;\n  \
-    \          }\n        }\n        restore.emplace_back(l, r, x);\n        for (auto\
-    \ it = it_l; it != it_r; it = values.erase(it)) {\n            g(it->first, it->second.first,\
-    \ it->second.second);\n        }\n        for (auto [l, r, x] : restore) {\n \
-    \           values[l] = {r, x};\n            f(l, r, x);\n        }\n    }\n \
-    \   typename std::map<std::pair<T, T>, S>::const_iterator begin() const {\n  \
-    \      return values.begin();\n    }\n    typename std::map<std::pair<T, T>, S>::const_iterator\
-    \ end() const {\n        return values.end();\n    }\n\nprotected:\n    std::map<T,\
-    \ std::pair<T, S>> values;\n    bool _merge_adjacent;\n};\n"
-  code: "#pragma once\n#include <map>\n#include <vector>\ntemplate <typename T, typename\
-    \ S>\nstruct range_map {\npublic:\n    range_map(bool merge_adjacent = true) :\
-    \ _merge_adjacent(merge_adjacent) {\n    }\n    typename std::map<T, std::pair<T,\
-    \ S>>::const_iterator get(T p) const {\n        auto it = values.upper_bound(p);\n\
-    \        if (it == values.begin()) return values.end();\n        if (std::prev(it)->second.first\
-    \ < p) return values.end();\n        return std::prev(it);\n    }\n    typename\
-    \ std::map<T, std::pair<T, S>>::const_iterator get(\n        std::pair<T, T> range)\
-    \ const {\n        auto [l, r] = range;\n        auto it = get(l);\n        if\
-    \ (it == values.end()) return values.end();\n        if (it->second.first < r)\
-    \ return values.end();\n        return it;\n    }\n    void set(std::pair<T, T>\
-    \ range, S x) {\n        set(range, x, [](T, T, S) {}, [](T, T, S) {});\n    }\n\
-    \    template <class op_insert, class op_erase>\n    void set(std::pair<T, T>\
-    \ range, S x, const op_insert &f,\n             const op_erase &g) {\n       \
-    \ auto [l, r] = range;\n        auto it_l = values.upper_bound(l);\n        if\
-    \ (it_l != values.begin() &&\n            l - T(_merge_adjacent) <= std::prev(it_l)->second.first)\
-    \ {\n            it_l--;\n        }\n        auto it_r = values.upper_bound(r\
-    \ + T(_merge_adjacent));\n        std::vector<std::tuple<T, T, S>> restore;\n\
-    \        restore.reserve(3);\n        if (it_l != values.end() && it_l->first\
-    \ < l) {\n            if (it_l->second.second != x) {\n                restore.emplace_back(it_l->first,\
-    \ l - 1, it_l->second.second);\n            } else {\n                l = it_l->first;\n\
-    \            }\n        }\n        if (it_l != it_r && r < std::prev(it_r)->second.first)\
-    \ {\n            if (std::prev(it_r)->second.second != x) {\n                restore.emplace_back(r\
-    \ + 1, std::prev(it_r)->second.first,\n                                     std::prev(it_r)->second.second);\n\
-    \            } else {\n                r = std::prev(it_r)->second.first;\n  \
-    \          }\n        }\n        restore.emplace_back(l, r, x);\n        for (auto\
-    \ it = it_l; it != it_r; it = values.erase(it)) {\n            g(it->first, it->second.first,\
-    \ it->second.second);\n        }\n        for (auto [l, r, x] : restore) {\n \
-    \           values[l] = {r, x};\n            f(l, r, x);\n        }\n    }\n \
-    \   typename std::map<std::pair<T, T>, S>::const_iterator begin() const {\n  \
-    \      return values.begin();\n    }\n    typename std::map<std::pair<T, T>, S>::const_iterator\
-    \ end() const {\n        return values.end();\n    }\n\nprotected:\n    std::map<T,\
-    \ std::pair<T, S>> values;\n    bool _merge_adjacent;\n};\n"
+  bundledCode: "#line 2 \"datastructure/range_map.hpp\"\n#include <cassert>\n#include\
+    \ <iterator>\n#include <optional>\n#include <set>\ntemplate <class T, class S>\n\
+    struct range_map {\npublic:\n    struct run {\n        T l, r;\n        S x;\n\
+    \    };\n\nprivate:\n    struct cmp {\n        using is_transparent = void;\n\
+    \        bool operator()(const run& a, const run& b) const {\n            return\
+    \ a.l < b.l;\n        }\n        bool operator()(const run& a, const T& b) const\
+    \ {\n            return a.l < b;\n        }\n        bool operator()(const T&\
+    \ a, const run& b) const {\n            return a < b.l;\n        }\n    };\n\n\
+    public:\n    using iterator = typename std::set<run, cmp>::const_iterator;\n \
+    \   range_map() {\n    }\n    // p \u3092\u542B\u3080 run\u3002\u7121\u3051\u308C\
+    \u3070 end()\n    iterator find(T p) const {\n        auto it = runs.upper_bound(p);\n\
+    \        if (it == runs.begin()) return runs.end();\n        it--;\n        if\
+    \ (it->r <= p) return runs.end();\n        return it;\n    }\n    bool contains(T\
+    \ p) const {\n        return find(p) != runs.end();\n    }\n    void assign(T\
+    \ l, T r, S x) {\n        assign(l, r, x, [](T, T, const S&) {}, [](T, T, const\
+    \ S&) {});\n    }\n    // f: \u3067\u304D\u305F run \u3054\u3068\u306B\u547C\u3076\
+    , g: \u6D88\u3048\u305F run \u3054\u3068\u306B\u547C\u3076\n    template <class\
+    \ F, class G>\n    void assign(T l, T r, S x, const F& f, const G& g) {\n    \
+    \    assert(l < r);\n        {\n            auto it = find(l);\n            if\
+    \ (it != runs.end() && r <= it->r && it->x == x) return;\n        }\n        T\
+    \ nl = l, nr = r;\n        std::optional<run> left, right;\n        auto first\
+    \ = runs.upper_bound(l);\n        if (first != runs.begin()) {\n            auto\
+    \ p = std::prev(first);\n            if (l < p->r) {\n                first =\
+    \ p;\n                if (p->l < l) {\n                    if (p->x == x) {\n\
+    \                        nl = p->l;\n                    } else {\n          \
+    \              left = run{p->l, l, p->x};\n                    }\n           \
+    \     }\n            } else if (p->r == l && p->x == x) {\n                first\
+    \ = p;\n                nl = p->l;\n            }\n        }\n        if (first\
+    \ != runs.end() && first != runs.begin() && first->l == l) {\n            auto\
+    \ p = std::prev(first);\n            if (p->r == l && p->x == x) {\n         \
+    \       first = p;\n                nl = p->l;\n            }\n        }\n   \
+    \     auto last = runs.lower_bound(r);\n        if (last != runs.begin()) {\n\
+    \            auto q = std::prev(last);\n            if (r < q->r) {\n        \
+    \        if (q->x == x) {\n                    nr = q->r;\n                } else\
+    \ {\n                    right = run{r, q->r, q->x};\n                }\n    \
+    \        }\n        }\n        if (last != runs.end() && last->l == r && last->x\
+    \ == x) {\n            nr = last->r;\n            last++;\n        }\n       \
+    \ for (auto it = first; it != last;) {\n            g(it->l, it->r, it->x);\n\
+    \            it = runs.erase(it);\n        }\n        if (left) {\n          \
+    \  runs.insert(*left);\n            f(left->l, left->r, left->x);\n        }\n\
+    \        runs.insert({nl, nr, x});\n        f(nl, nr, x);\n        if (right)\
+    \ {\n            runs.insert(*right);\n            f(right->l, right->r, right->x);\n\
+    \        }\n    }\n    void erase(T l, T r) {\n        erase(l, r, [](T, T, const\
+    \ S&) {}, [](T, T, const S&) {});\n    }\n    template <class F, class G>\n  \
+    \  void erase(T l, T r, const F& f, const G& g) {\n        assert(l < r);\n  \
+    \      auto it = runs.upper_bound(l);\n        if (it != runs.begin() && l < std::prev(it)->r)\
+    \ it--;\n        while (it != runs.end() && it->l < r) {\n            run cur\
+    \ = *it;\n            g(cur.l, cur.r, cur.x);\n            it = runs.erase(it);\n\
+    \            if (cur.l < l) {\n                runs.insert({cur.l, l, cur.x});\n\
+    \                f(cur.l, l, cur.x);\n            }\n            if (r < cur.r)\
+    \ {\n                runs.insert({r, cur.r, cur.x});\n                f(r, cur.r,\
+    \ cur.x);\n            }\n        }\n    }\n    int size() const {\n        return\
+    \ int(runs.size());\n    }\n    iterator begin() const {\n        return runs.begin();\n\
+    \    }\n    iterator end() const {\n        return runs.end();\n    }\n\nprivate:\n\
+    \    std::set<run, cmp> runs;\n};\n"
+  code: "#pragma once\n#include <cassert>\n#include <iterator>\n#include <optional>\n\
+    #include <set>\ntemplate <class T, class S>\nstruct range_map {\npublic:\n   \
+    \ struct run {\n        T l, r;\n        S x;\n    };\n\nprivate:\n    struct\
+    \ cmp {\n        using is_transparent = void;\n        bool operator()(const run&\
+    \ a, const run& b) const {\n            return a.l < b.l;\n        }\n       \
+    \ bool operator()(const run& a, const T& b) const {\n            return a.l <\
+    \ b;\n        }\n        bool operator()(const T& a, const run& b) const {\n \
+    \           return a < b.l;\n        }\n    };\n\npublic:\n    using iterator\
+    \ = typename std::set<run, cmp>::const_iterator;\n    range_map() {\n    }\n \
+    \   // p \u3092\u542B\u3080 run\u3002\u7121\u3051\u308C\u3070 end()\n    iterator\
+    \ find(T p) const {\n        auto it = runs.upper_bound(p);\n        if (it ==\
+    \ runs.begin()) return runs.end();\n        it--;\n        if (it->r <= p) return\
+    \ runs.end();\n        return it;\n    }\n    bool contains(T p) const {\n   \
+    \     return find(p) != runs.end();\n    }\n    void assign(T l, T r, S x) {\n\
+    \        assign(l, r, x, [](T, T, const S&) {}, [](T, T, const S&) {});\n    }\n\
+    \    // f: \u3067\u304D\u305F run \u3054\u3068\u306B\u547C\u3076, g: \u6D88\u3048\
+    \u305F run \u3054\u3068\u306B\u547C\u3076\n    template <class F, class G>\n \
+    \   void assign(T l, T r, S x, const F& f, const G& g) {\n        assert(l < r);\n\
+    \        {\n            auto it = find(l);\n            if (it != runs.end() &&\
+    \ r <= it->r && it->x == x) return;\n        }\n        T nl = l, nr = r;\n  \
+    \      std::optional<run> left, right;\n        auto first = runs.upper_bound(l);\n\
+    \        if (first != runs.begin()) {\n            auto p = std::prev(first);\n\
+    \            if (l < p->r) {\n                first = p;\n                if (p->l\
+    \ < l) {\n                    if (p->x == x) {\n                        nl = p->l;\n\
+    \                    } else {\n                        left = run{p->l, l, p->x};\n\
+    \                    }\n                }\n            } else if (p->r == l &&\
+    \ p->x == x) {\n                first = p;\n                nl = p->l;\n     \
+    \       }\n        }\n        if (first != runs.end() && first != runs.begin()\
+    \ && first->l == l) {\n            auto p = std::prev(first);\n            if\
+    \ (p->r == l && p->x == x) {\n                first = p;\n                nl =\
+    \ p->l;\n            }\n        }\n        auto last = runs.lower_bound(r);\n\
+    \        if (last != runs.begin()) {\n            auto q = std::prev(last);\n\
+    \            if (r < q->r) {\n                if (q->x == x) {\n             \
+    \       nr = q->r;\n                } else {\n                    right = run{r,\
+    \ q->r, q->x};\n                }\n            }\n        }\n        if (last\
+    \ != runs.end() && last->l == r && last->x == x) {\n            nr = last->r;\n\
+    \            last++;\n        }\n        for (auto it = first; it != last;) {\n\
+    \            g(it->l, it->r, it->x);\n            it = runs.erase(it);\n     \
+    \   }\n        if (left) {\n            runs.insert(*left);\n            f(left->l,\
+    \ left->r, left->x);\n        }\n        runs.insert({nl, nr, x});\n        f(nl,\
+    \ nr, x);\n        if (right) {\n            runs.insert(*right);\n          \
+    \  f(right->l, right->r, right->x);\n        }\n    }\n    void erase(T l, T r)\
+    \ {\n        erase(l, r, [](T, T, const S&) {}, [](T, T, const S&) {});\n    }\n\
+    \    template <class F, class G>\n    void erase(T l, T r, const F& f, const G&\
+    \ g) {\n        assert(l < r);\n        auto it = runs.upper_bound(l);\n     \
+    \   if (it != runs.begin() && l < std::prev(it)->r) it--;\n        while (it !=\
+    \ runs.end() && it->l < r) {\n            run cur = *it;\n            g(cur.l,\
+    \ cur.r, cur.x);\n            it = runs.erase(it);\n            if (cur.l < l)\
+    \ {\n                runs.insert({cur.l, l, cur.x});\n                f(cur.l,\
+    \ l, cur.x);\n            }\n            if (r < cur.r) {\n                runs.insert({r,\
+    \ cur.r, cur.x});\n                f(r, cur.r, cur.x);\n            }\n      \
+    \  }\n    }\n    int size() const {\n        return int(runs.size());\n    }\n\
+    \    iterator begin() const {\n        return runs.begin();\n    }\n    iterator\
+    \ end() const {\n        return runs.end();\n    }\n\nprivate:\n    std::set<run,\
+    \ cmp> runs;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: datastructure/range_map.hpp
   requiredBy: []
-  timestamp: '2024-06-30 18:54:38+09:00'
+  timestamp: '2026-10-19 22:21:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unit/range_map.test.cpp
   - test/yukicoder/1601_2.test.cpp
 documentation_of: datastructure/range_map.hpp
 layout: document
@@ -90,18 +139,25 @@ title: Range Map
 ---
 
 ### 概要
-- 各区間に値を持たせることができる、区間を set で管理するテクニック。
-- すべて閉区間。
-  
+- 区間代入の差分を run ごとに受け取る構造。値を「値が等しい極大な半開区間（run）の列」で持つ。
+
 ### 使い方
-- `range_map(merge_adjacent_segment = true)`: コンストラクタ。区間 `[l, m]` と `[m + 1, r]` を `[l, r]` にマージしない場合は、`merge_adjacent_segment` を `false` にする。
-- `get(p)`: `p` を含む区間のイテレータ（存在しない場合は `end()`）を返す。
-- `get({l, r})`: 区間 `[l, r]` を完全に含む区間のイテレータ（存在しない場合は `end()`）を返す。
-- `set({l, r}, x)`: 区間 `[l, r]` に値 `x` を持たせる。
-- `set({l, r}, x, f, g)`: 区間 `[l, r]` に値 `x` を持たせる。そのとき、区間が追加されるたびに `f` を、区間が削除されるたびに `g` を実行する。`f`, `g` はともに `(T l, T r, U x) -> void`。
+- `range_map<T, S>()`: 空で始める。`S` には `==` が必要。
+- `assign(l, r, x)`: $[l, r)$ の値を `x` にする。
+- `assign(l, r, x, f, g)`: 代入で消えた run ごとに `g(l, r, x)` を、できた run ごとに `f(l, r, x)` を呼ぶ。隣接する run の値が等しくなれば 1 つにまとまり、まとめる前の run は `g`、まとめた後の run は `f` に渡る。
+- `erase(l, r)`, `erase(l, r, f, g)`: $[l, r)$ の値を消す。コールバックは `assign` と同じ。
+- `find(p)`: `p` を含む run のイテレータ。無ければ `end()`。`it->l`, `it->r`, `it->x`。
+- `contains(p)`: `p` に値があるか。
+- `size()`: run の個数。
+- range-for で `for (auto [l, r, x] : mp)` と列挙できる。
+
+### 計算量
+- `assign`, `erase`: 償却 $\mathcal{O}(\log N)$。コールバックの呼び出し回数は全体で $\mathcal{O}(N + Q)$。
+- `find`, `contains`: $\mathcal{O}(\log N)$
 
 ### 問題例
-ABC255 Ex - Range Harvest Query（[問題](https://atcoder.jp/contests/abc255/tasks/abc255_h)）（[提出](https://atcoder.jp/contests/abc255/submissions/55041993)）
+ABC255 Ex - Range Harvest Query（[問題](https://atcoder.jp/contests/abc255/tasks/abc255_h)）
+
 ```cpp
 #include <atcoder/modint>
 #include <iostream>
@@ -113,58 +169,55 @@ int main() {
     int q;
     std::cin >> n >> q;
     range_map<long long, long long> mp;
-    mp.set({0, n}, 0);
+    mp.assign(1, n + 1, 0);
+    auto sum = [](long long l, long long r) { return mint(r - l) * (l + r - 1) / 2; };
     while (q--) {
         long long d, l, r;
         std::cin >> d >> l >> r;
         mint ans = 0;
-        mp.set(
-            {l, r}, d,
-            [&](long long l, long long r, long long x) {
-                ans -= mint(r - l + 1) * (r + l) / 2 * (d - x);
-            },
-            [&](long long l, long long r, long long x) {
-                ans += mint(r - l + 1) * (r + l) / 2 * (d - x);
-            });
+        mp.assign(
+            l, r + 1, d,
+            [&](long long l, long long r, long long x) { ans -= sum(l, r) * (d - x); },
+            [&](long long l, long long r, long long x) { ans += sum(l, r) * (d - x); });
         std::cout << ans.val() << '\n';
     }
 }
 ```
-<br>
 
-第六回PAST M - 等しい数（[問題](https://atcoder.jp/contests/past202104-open/tasks/past202104_m)）（[提出](https://atcoder.jp/contests/past202104-open/submissions/55042059)）
+第六回PAST M - 等しい数（[問題](https://atcoder.jp/contests/past202104-open/tasks/past202104_m)）
 
 ```cpp
 #include <iostream>
+#include <map>
 
 #include "datastructure/range_map.hpp"
 int main() {
     int n;
     std::cin >> n;
-    range_map<int, long long> mp;
+    range_map<int, int> mp;
     long long ans = 0;
     std::map<int, long long> cnt;
-    auto f = [&](long long l, long long r, long long x) {
+    auto f = [&](int l, int r, int x) {
         ans -= cnt[x] * (cnt[x] - 1) / 2;
-        cnt[x] += r - l + 1;
+        cnt[x] += r - l;
         ans += cnt[x] * (cnt[x] - 1) / 2;
     };
-    auto g = [&](long long l, long long r, long long x) {
+    auto g = [&](int l, int r, int x) {
         ans -= cnt[x] * (cnt[x] - 1) / 2;
-        cnt[x] -= r - l + 1;
+        cnt[x] -= r - l;
         ans += cnt[x] * (cnt[x] - 1) / 2;
     };
     for (int i = 1; i <= n; i++) {
         int a;
         std::cin >> a;
-        mp.set({i, i}, a, f, g);
+        mp.assign(i, i + 1, a, f, g);
     }
     int q;
     std::cin >> q;
     while (q--) {
         int l, r, x;
         std::cin >> l >> r >> x;
-        mp.set({l, r}, x, f, g);
+        mp.assign(l, r + 1, x, f, g);
         std::cout << ans << '\n';
     }
 }

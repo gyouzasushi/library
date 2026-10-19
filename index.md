@@ -390,6 +390,9 @@ data:
       path: test/unit/monoid.test.cpp
       title: test/unit/monoid.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/unit/range_map.test.cpp
+      title: test/unit/range_map.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/unit/range_set.test.cpp
       title: test/unit/range_set.test.cpp
     - icon: ':heavy_check_mark:'
