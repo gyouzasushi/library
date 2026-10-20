@@ -1,22 +1,28 @@
 #pragma once
+#include <cassert>
 #include <vector>
 template <typename mint>
 struct combinatorics {
-    static mint val(int i) {
-        ensure(i);
-        return facts[i];
+    static mint fact(int n) {
+        ensure(n);
+        return facts[n];
     }
-    static mint inv(int i) {
-        ensure(i);
-        return ifacts[i];
+    static mint fact_inv(int n) {
+        ensure(n);
+        return ifacts[n];
+    }
+    static mint inv(int n) {
+        assert(1 <= n);
+        ensure(n);
+        return ifacts[n] * facts[n - 1];
     }
     static mint C(int n, int k) {
         if (n < 0 || n < k || k < 0) return 0;
-        return val(n) * inv(n - k) * inv(k);
+        return fact(n) * fact_inv(n - k) * fact_inv(k);
     }
     static mint P(int n, int k) {
         if (n < 0 || n < k || k < 0) return 0;
-        return val(n) * inv(n - k);
+        return fact(n) * fact_inv(n - k);
     }
     static mint H(int n, int k) {
         if (n < 0 || k < 0) return 0;
@@ -24,6 +30,7 @@ struct combinatorics {
         return C(n + k - 1, k);
     }
     static void ensure(int n) {
+        assert(n < mint::mod());
         int sz = facts.size();
         if (sz > n) return;
         if (n < sz << 1) n = std::min(mint::mod() - 1, sz << 1);

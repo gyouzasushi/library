@@ -9,12 +9,13 @@ documentation_of: math/combinatorics.hpp
 
 ### 使い方
 - `combinatorics<mint>`: 型 `mint` 上で動く。全 static。
-- `val(i)`: $i!$ を返す。
-- `inv(i)`: $1 / i!$ を返す。
+- `fact(n)`: $n!$ を返す。
+- `fact_inv(n)`: $1 / n!$ を返す。
+- `inv(n)`: $1 / n$ を返す。
 - `C(n, k)`: $\binom{n}{k}$ を返す。
 - `P(n, k)`: ${}_nP_k = n! / (n-k)!$ を返す。
 - `H(n, k)`: ${}_nH_k = \binom{n+k-1}{k}$（重複組合せ）を返す。
-- `ensure(n)`: 階乗テーブルを少なくとも $n$ まで構築する。
+- `ensure(n)`: 階乗テーブルを少なくとも $n$ まで構築する。$n$ は `mint::mod()` 未満。
 
 ### 呼び出しを短縮するイディオム
 `combinatorics<mint>::C(n, k)` が長いと感じる場合、関数参照に束ねると call site が短くなる。
