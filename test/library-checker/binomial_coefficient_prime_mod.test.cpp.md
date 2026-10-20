@@ -222,23 +222,26 @@ data:
     \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 2 \"math/combinatorics.hpp\"\
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 3 \"math/combinatorics.hpp\"\
     \n#include <vector>\ntemplate <typename mint>\nstruct combinatorics {\n    static\
-    \ mint val(int i) {\n        ensure(i);\n        return facts[i];\n    }\n   \
-    \ static mint inv(int i) {\n        ensure(i);\n        return ifacts[i];\n  \
-    \  }\n    static mint C(int n, int k) {\n        if (n < 0 || n < k || k < 0)\
-    \ return 0;\n        return val(n) * inv(n - k) * inv(k);\n    }\n    static mint\
-    \ P(int n, int k) {\n        if (n < 0 || n < k || k < 0) return 0;\n        return\
-    \ val(n) * inv(n - k);\n    }\n    static mint H(int n, int k) {\n        if (n\
-    \ < 0 || k < 0) return 0;\n        if (k == 0) return 1;\n        return C(n +\
-    \ k - 1, k);\n    }\n    static void ensure(int n) {\n        int sz = facts.size();\n\
-    \        if (sz > n) return;\n        if (n < sz << 1) n = std::min(mint::mod()\
-    \ - 1, sz << 1);\n        facts.resize(n + 1);\n        ifacts.resize(n + 1);\n\
-    \        for (int i = sz; i <= n; i++) facts[i] = facts[i - 1] * i;\n        ifacts[n]\
-    \ = facts[n].inv();\n        for (int i = n; i >= sz; i--) ifacts[i - 1] = ifacts[i]\
-    \ * i;\n    }\n\nprivate:\n    static inline std::vector<mint> facts{1};\n   \
-    \ static inline std::vector<mint> ifacts{1};\n};\n#line 6 \"test/library-checker/binomial_coefficient_prime_mod.test.cpp\"\
-    \nusing mint = atcoder::modint;\nusing binom = combinatorics<mint>;\nmint lucas(int\
+    \ mint fact(int n) {\n        ensure(n);\n        return facts[n];\n    }\n  \
+    \  static mint fact_inv(int n) {\n        ensure(n);\n        return ifacts[n];\n\
+    \    }\n    static mint inv(int n) {\n        assert(1 <= n);\n        ensure(n);\n\
+    \        return ifacts[n] * facts[n - 1];\n    }\n    static mint C(int n, int\
+    \ k) {\n        if (n < 0 || n < k || k < 0) return 0;\n        return fact(n)\
+    \ * fact_inv(n - k) * fact_inv(k);\n    }\n    static mint P(int n, int k) {\n\
+    \        if (n < 0 || n < k || k < 0) return 0;\n        return fact(n) * fact_inv(n\
+    \ - k);\n    }\n    static mint H(int n, int k) {\n        if (n < 0 || k < 0)\
+    \ return 0;\n        if (k == 0) return 1;\n        return C(n + k - 1, k);\n\
+    \    }\n    static void ensure(int n) {\n        assert(n < mint::mod());\n  \
+    \      int sz = facts.size();\n        if (sz > n) return;\n        if (n < sz\
+    \ << 1) n = std::min(mint::mod() - 1, sz << 1);\n        facts.resize(n + 1);\n\
+    \        ifacts.resize(n + 1);\n        for (int i = sz; i <= n; i++) facts[i]\
+    \ = facts[i - 1] * i;\n        ifacts[n] = facts[n].inv();\n        for (int i\
+    \ = n; i >= sz; i--) ifacts[i - 1] = ifacts[i] * i;\n    }\n\nprivate:\n    static\
+    \ inline std::vector<mint> facts{1};\n    static inline std::vector<mint> ifacts{1};\n\
+    };\n#line 6 \"test/library-checker/binomial_coefficient_prime_mod.test.cpp\"\n\
+    using mint = atcoder::modint;\nusing binom = combinatorics<mint>;\nmint lucas(int\
     \ n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    int m = mint::mod();\n\
     \    mint ret = 1;\n    while (n > 0) {\n        ret *= binom::C(n % m, k % m);\n\
     \        n /= m, k /= m;\n    }\n    return ret;\n}\nint main() {\n    int T,\
@@ -259,7 +262,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 13:59:29+09:00'
+  timestamp: '2026-10-20 22:33:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/binomial_coefficient_prime_mod.test.cpp

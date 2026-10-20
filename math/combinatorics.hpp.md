@@ -14,42 +14,47 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/combinatorics.hpp\"\n#include <vector>\ntemplate <typename\
-    \ mint>\nstruct combinatorics {\n    static mint val(int i) {\n        ensure(i);\n\
-    \        return facts[i];\n    }\n    static mint inv(int i) {\n        ensure(i);\n\
-    \        return ifacts[i];\n    }\n    static mint C(int n, int k) {\n       \
-    \ if (n < 0 || n < k || k < 0) return 0;\n        return val(n) * inv(n - k) *\
-    \ inv(k);\n    }\n    static mint P(int n, int k) {\n        if (n < 0 || n <\
-    \ k || k < 0) return 0;\n        return val(n) * inv(n - k);\n    }\n    static\
-    \ mint H(int n, int k) {\n        if (n < 0 || k < 0) return 0;\n        if (k\
-    \ == 0) return 1;\n        return C(n + k - 1, k);\n    }\n    static void ensure(int\
-    \ n) {\n        int sz = facts.size();\n        if (sz > n) return;\n        if\
-    \ (n < sz << 1) n = std::min(mint::mod() - 1, sz << 1);\n        facts.resize(n\
-    \ + 1);\n        ifacts.resize(n + 1);\n        for (int i = sz; i <= n; i++)\
-    \ facts[i] = facts[i - 1] * i;\n        ifacts[n] = facts[n].inv();\n        for\
-    \ (int i = n; i >= sz; i--) ifacts[i - 1] = ifacts[i] * i;\n    }\n\nprivate:\n\
-    \    static inline std::vector<mint> facts{1};\n    static inline std::vector<mint>\
-    \ ifacts{1};\n};\n"
-  code: "#pragma once\n#include <vector>\ntemplate <typename mint>\nstruct combinatorics\
-    \ {\n    static mint val(int i) {\n        ensure(i);\n        return facts[i];\n\
-    \    }\n    static mint inv(int i) {\n        ensure(i);\n        return ifacts[i];\n\
-    \    }\n    static mint C(int n, int k) {\n        if (n < 0 || n < k || k < 0)\
-    \ return 0;\n        return val(n) * inv(n - k) * inv(k);\n    }\n    static mint\
-    \ P(int n, int k) {\n        if (n < 0 || n < k || k < 0) return 0;\n        return\
-    \ val(n) * inv(n - k);\n    }\n    static mint H(int n, int k) {\n        if (n\
-    \ < 0 || k < 0) return 0;\n        if (k == 0) return 1;\n        return C(n +\
-    \ k - 1, k);\n    }\n    static void ensure(int n) {\n        int sz = facts.size();\n\
-    \        if (sz > n) return;\n        if (n < sz << 1) n = std::min(mint::mod()\
-    \ - 1, sz << 1);\n        facts.resize(n + 1);\n        ifacts.resize(n + 1);\n\
+  bundledCode: "#line 2 \"math/combinatorics.hpp\"\n#include <cassert>\n#include <vector>\n\
+    template <typename mint>\nstruct combinatorics {\n    static mint fact(int n)\
+    \ {\n        ensure(n);\n        return facts[n];\n    }\n    static mint fact_inv(int\
+    \ n) {\n        ensure(n);\n        return ifacts[n];\n    }\n    static mint\
+    \ inv(int n) {\n        assert(1 <= n);\n        ensure(n);\n        return ifacts[n]\
+    \ * facts[n - 1];\n    }\n    static mint C(int n, int k) {\n        if (n < 0\
+    \ || n < k || k < 0) return 0;\n        return fact(n) * fact_inv(n - k) * fact_inv(k);\n\
+    \    }\n    static mint P(int n, int k) {\n        if (n < 0 || n < k || k < 0)\
+    \ return 0;\n        return fact(n) * fact_inv(n - k);\n    }\n    static mint\
+    \ H(int n, int k) {\n        if (n < 0 || k < 0) return 0;\n        if (k == 0)\
+    \ return 1;\n        return C(n + k - 1, k);\n    }\n    static void ensure(int\
+    \ n) {\n        assert(n < mint::mod());\n        int sz = facts.size();\n   \
+    \     if (sz > n) return;\n        if (n < sz << 1) n = std::min(mint::mod() -\
+    \ 1, sz << 1);\n        facts.resize(n + 1);\n        ifacts.resize(n + 1);\n\
     \        for (int i = sz; i <= n; i++) facts[i] = facts[i - 1] * i;\n        ifacts[n]\
     \ = facts[n].inv();\n        for (int i = n; i >= sz; i--) ifacts[i - 1] = ifacts[i]\
     \ * i;\n    }\n\nprivate:\n    static inline std::vector<mint> facts{1};\n   \
     \ static inline std::vector<mint> ifacts{1};\n};\n"
+  code: "#pragma once\n#include <cassert>\n#include <vector>\ntemplate <typename mint>\n\
+    struct combinatorics {\n    static mint fact(int n) {\n        ensure(n);\n  \
+    \      return facts[n];\n    }\n    static mint fact_inv(int n) {\n        ensure(n);\n\
+    \        return ifacts[n];\n    }\n    static mint inv(int n) {\n        assert(1\
+    \ <= n);\n        ensure(n);\n        return ifacts[n] * facts[n - 1];\n    }\n\
+    \    static mint C(int n, int k) {\n        if (n < 0 || n < k || k < 0) return\
+    \ 0;\n        return fact(n) * fact_inv(n - k) * fact_inv(k);\n    }\n    static\
+    \ mint P(int n, int k) {\n        if (n < 0 || n < k || k < 0) return 0;\n   \
+    \     return fact(n) * fact_inv(n - k);\n    }\n    static mint H(int n, int k)\
+    \ {\n        if (n < 0 || k < 0) return 0;\n        if (k == 0) return 1;\n  \
+    \      return C(n + k - 1, k);\n    }\n    static void ensure(int n) {\n     \
+    \   assert(n < mint::mod());\n        int sz = facts.size();\n        if (sz >\
+    \ n) return;\n        if (n < sz << 1) n = std::min(mint::mod() - 1, sz << 1);\n\
+    \        facts.resize(n + 1);\n        ifacts.resize(n + 1);\n        for (int\
+    \ i = sz; i <= n; i++) facts[i] = facts[i - 1] * i;\n        ifacts[n] = facts[n].inv();\n\
+    \        for (int i = n; i >= sz; i--) ifacts[i - 1] = ifacts[i] * i;\n    }\n\
+    \nprivate:\n    static inline std::vector<mint> facts{1};\n    static inline std::vector<mint>\
+    \ ifacts{1};\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: math/combinatorics.hpp
   requiredBy: []
-  timestamp: '2026-05-18 11:49:44+09:00'
+  timestamp: '2026-10-20 22:33:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/117.test.cpp
@@ -65,12 +70,13 @@ title: Combinatorics
 
 ### 使い方
 - `combinatorics<mint>`: 型 `mint` 上で動く。全 static。
-- `val(i)`: $i!$ を返す。
-- `inv(i)`: $1 / i!$ を返す。
+- `fact(n)`: $n!$ を返す。
+- `fact_inv(n)`: $1 / n!$ を返す。
+- `inv(n)`: $1 / n$ を返す。
 - `C(n, k)`: $\binom{n}{k}$ を返す。
 - `P(n, k)`: ${}_nP_k = n! / (n-k)!$ を返す。
 - `H(n, k)`: ${}_nH_k = \binom{n+k-1}{k}$（重複組合せ）を返す。
-- `ensure(n)`: 階乗テーブルを少なくとも $n$ まで構築する。
+- `ensure(n)`: 階乗テーブルを少なくとも $n$ まで構築する。$n$ は `mint::mod()` 未満。
 
 ### 呼び出しを短縮するイディオム
 `combinatorics<mint>::C(n, k)` が長いと感じる場合、関数参照に束ねると call site が短くなる。
