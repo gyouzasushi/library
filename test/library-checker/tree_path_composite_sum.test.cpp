@@ -44,6 +44,6 @@ int main() {
     }
     rr.solve();
     for (int i = 0; i < n; i++) {
-        std::cout << rr.dp[i].sum.val() << (i + 1 < n ? ' ' : '\n');
+        std::cout << rr.dp(i).sum.val() << (i + 1 < n ? ' ' : '\n');
     }
 }

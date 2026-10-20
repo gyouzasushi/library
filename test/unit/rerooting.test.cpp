@@ -157,7 +157,7 @@ void stress(std::mt19937& rng) {
             auto dist = dists(v, false);
             ll s = 0;
             for (ll x : dist) s += x;
-            assert(rr.dp[v].cnt == N && rr.dp[v].sum == s);
+            assert(rr.dp(v).cnt == N && rr.dp(v).sum == s);
         }
         for (auto [u, v] : es) {
             auto in = side(u, v);
@@ -185,8 +185,8 @@ void stress(std::mt19937& rng) {
             for (int j = 0; j < N; j++) {
                 if (j != v) best = std::max(best, dist[j] + d[j]);
             }
-            assert(rr.agg[v] == best);
-            assert(rr.dp[v] == std::max(best, d[v]));
+            assert(rr.agg(v) == best);
+            assert(rr.dp(v) == std::max(best, d[v]));
         }
         for (int i = 0; i < N - 1; i++) {
             auto [u, v] = es[i];
@@ -202,8 +202,8 @@ void stress(std::mt19937& rng) {
         for (int v = 0; v < N; v++) {
             auto dist = dists(v, false);
             ll ecc = *std::max_element(dist.begin(), dist.end());
-            assert(rr.dp[v] == ecc);
-            ll a = std::max(rr.agg[v].a, 0LL), b = std::max(rr.agg[v].b, 0LL);
+            assert(rr.dp(v) == ecc);
+            ll a = std::max(rr.agg(v).a, 0LL), b = std::max(rr.agg(v).b, 0LL);
             diam = std::max(diam, a + b);
         }
         ll expect = 0;
@@ -232,7 +232,7 @@ void stress(std::mt19937& rng) {
                 }
             };
             dfs(dfs, v, -1);
-            assert(rr.dp[v] == pre);
+            assert(rr.dp(v) == pre);
         }
     }
 }

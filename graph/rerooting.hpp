@@ -38,8 +38,8 @@ public:
     }
     void solve() {
         assert(int(edges.size()) == _n - 1);
-        dp.assign(_n, T());
-        agg.assign(_n, R::e());
+        _dp.assign(_n, T());
+        _agg.assign(_n, R::e());
         _sub.assign(2 * (_n - 1), T());
         std::vector<int> order, par(_n, -1), pe(_n, -1);
         order.reserve(_n);
@@ -79,8 +79,8 @@ public:
                 int i = g[v][j - 1], to = other(i, v);
                 suf[j - 1] = R::merge(R::put_edge(_sub[dir(i, v)], edata[i], v, to), suf[j]);
             }
-            agg[v] = pre[deg];
-            dp[v] = R::put_vertex(agg[v], vdata[v], v);
+            _agg[v] = pre[deg];
+            _dp[v] = R::put_vertex(_agg[v], vdata[v], v);
             for (int j = 0; j < deg; j++) {
                 int i = g[v][j], to = other(i, v);
                 if (to == par[v]) continue;
@@ -88,17 +88,21 @@ public:
             }
         }
     }
-    // dp[v]: 全体を v を根として見たときの値
-    std::vector<T> dp;
-    // agg[v]: dp[v] を作る直前の、v の全隣接をまとめた値
-    std::vector<M> agg;
+    const T& dp(int v) const {
+        assert(0 <= v && v < _n);
+        return _dp[v];
+    }
+    const M& agg(int v) const {
+        assert(0 <= v && v < _n);
+        return _agg[v];
+    }
     // sub(u, v): 辺 (u, v) を切ったときの v 側の部分木を v を根として見た値
     const T& sub(int u, int v) const {
         for (int i : g[u]) {
             if (other(i, u) == v) return _sub[dir(i, u)];
         }
         assert(false);
-        return dp[u];
+        return _dp[u];
     }
     // sub_by_edge(i, v): 辺 i を切ったときの v 側の部分木を v を根として見た値
     const T& sub_by_edge(int i, int v) const {
@@ -109,6 +113,8 @@ public:
 
 private:
     int _n;
+    std::vector<T> _dp;
+    std::vector<M> _agg;
     std::vector<V> vdata;
     std::vector<std::vector<int>> g;
     std::vector<std::pair<int, int>> edges;

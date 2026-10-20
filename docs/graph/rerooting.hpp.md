@@ -27,15 +27,15 @@ struct R {
 - `rerooting<R>(std::vector<V> a)`: 頂点データ `a` を持たせて初期化する。
 - `add_edge(u, v, w = E())`: 辺を追加し、辺番号（追加順）を返す。
 - `solve()`: 計算する。
-- `dp[v]`: 全体を頂点 `v` を根として見たときの値。
-- `agg[v]`: `dp[v]` を作る直前の、`v` の全隣接をまとめた `M` の値。
+- `dp(v)`: 全体を頂点 `v` を根として見たときの値。
+- `agg(v)`: `dp(v)` を作る直前の、`v` の全隣接をまとめた `M` の値。
 - `sub(u, v)`: 辺 $(u, v)$ を切ったときの `v` 側の部分木を `v` を根として見た値。
 - `sub_by_edge(i, v)`: 辺 `i` を切ったときの `v` 側の部分木を `v` を根として見た値。
 - `merge` の順序は各頂点の隣接を `add_edge` 順に並べたものに従う。
 
 ### 例
 - 距離の総和: `T = M = {cnt, sum}`, `put_edge(x) = {x.cnt, x.sum + x.cnt}`, `merge` は成分ごとの和, `put_vertex(acc) = {acc.cnt + 1, acc.sum}`
-- $\max_{j \ne i} (\mathrm{dist}(i, j) + d_j)$: `T = M = E = V = long long`, `put_edge(x, w) = x + w`, `merge = max`, `e = -∞`, `put_vertex(acc, d) = max(acc, d)`。答えは `agg[i]`
+- $\max_{j \ne i} (\mathrm{dist}(i, j) + d_j)$: `T = M = E = V = long long`, `put_edge(x, w) = x + w`, `merge = max`, `e = -∞`, `put_vertex(acc, d) = max(acc, d)`。答えは `agg(i)`
 - 直径: `T` = 最大深さ, `M` = 深さの上位 2 つ。`T` と `M` が異なる例
 
 ### 計算量
