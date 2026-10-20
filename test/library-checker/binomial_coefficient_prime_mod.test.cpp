@@ -4,13 +4,13 @@
 #include "atcoder/modint"
 #include "math/combinatorics.hpp"
 using mint = atcoder::modint;
-using binom = combinatorics<mint>;
+using cb = combinatorics<mint>;
 mint lucas(int n, int k) {
     if (n < 0 || n < k || k < 0) return 0;
     int m = mint::mod();
     mint ret = 1;
     while (n > 0) {
-        ret *= binom::C(n % m, k % m);
+        ret *= cb::C(n % m, k % m);
         n /= m, k /= m;
     }
     return ret;

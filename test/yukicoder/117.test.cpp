@@ -4,15 +4,15 @@
 
 #include "math/combinatorics.hpp"
 int main() {
-    using binom = combinatorics<atcoder::modint1000000007>;
+    using cb = combinatorics<atcoder::modint1000000007>;
     int tt;
     scanf("%d", &tt);
     while (tt--) {
         char c;
         int n, k;
         scanf("\n%c(%d,%d)", &c, &n, &k);
-        if (c == 'C') printf("%d\n", binom::C(n, k).val());
-        if (c == 'P') printf("%d\n", binom::P(n, k).val());
-        if (c == 'H') printf("%d\n", binom::H(n, k).val());
+        if (c == 'C') printf("%d\n", cb::C(n, k).val());
+        if (c == 'P') printf("%d\n", cb::P(n, k).val());
+        if (c == 'H') printf("%d\n", cb::H(n, k).val());
     }
 }
