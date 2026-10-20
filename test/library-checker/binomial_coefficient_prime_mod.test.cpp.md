@@ -241,18 +241,18 @@ data:
     \ = n; i >= sz; i--) ifacts[i - 1] = ifacts[i] * i;\n    }\n\nprivate:\n    static\
     \ inline std::vector<mint> facts{1};\n    static inline std::vector<mint> ifacts{1};\n\
     };\n#line 6 \"test/library-checker/binomial_coefficient_prime_mod.test.cpp\"\n\
-    using mint = atcoder::modint;\nusing binom = combinatorics<mint>;\nmint lucas(int\
+    using mint = atcoder::modint;\nusing cb = combinatorics<mint>;\nmint lucas(int\
     \ n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    int m = mint::mod();\n\
-    \    mint ret = 1;\n    while (n > 0) {\n        ret *= binom::C(n % m, k % m);\n\
+    \    mint ret = 1;\n    while (n > 0) {\n        ret *= cb::C(n % m, k % m);\n\
     \        n /= m, k /= m;\n    }\n    return ret;\n}\nint main() {\n    int T,\
     \ m;\n    std::cin >> T >> m;\n    mint::set_mod(m);\n    while (T--) {\n    \
     \    int n, k;\n        std::cin >> n >> k;\n        std::cout << lucas(n, k).val()\
     \ << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
     \n#include <iostream>\n\n#include \"atcoder/modint\"\n#include \"math/combinatorics.hpp\"\
-    \nusing mint = atcoder::modint;\nusing binom = combinatorics<mint>;\nmint lucas(int\
+    \nusing mint = atcoder::modint;\nusing cb = combinatorics<mint>;\nmint lucas(int\
     \ n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    int m = mint::mod();\n\
-    \    mint ret = 1;\n    while (n > 0) {\n        ret *= binom::C(n % m, k % m);\n\
+    \    mint ret = 1;\n    while (n > 0) {\n        ret *= cb::C(n % m, k % m);\n\
     \        n /= m, k /= m;\n    }\n    return ret;\n}\nint main() {\n    int T,\
     \ m;\n    std::cin >> T >> m;\n    mint::set_mod(m);\n    while (T--) {\n    \
     \    int n, k;\n        std::cin >> n >> k;\n        std::cout << lucas(n, k).val()\
@@ -262,7 +262,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2026-10-20 22:33:18+09:00'
+  timestamp: '2026-10-20 22:40:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/binomial_coefficient_prime_mod.test.cpp
