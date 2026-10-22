@@ -2,7 +2,7 @@
 #include <cassert>
 #include <vector>
 
-#include "../datastructure/plus_minus_one_range_minimum.hpp"
+#include "datastructure/plus_minus_one_rmq.hpp"
 struct lowest_common_ancestor {
 public:
     lowest_common_ancestor() {
@@ -30,7 +30,7 @@ public:
             }
         };
         dfs(dfs, _root, -1, 0);
-        rmq.init(dep);
+        rmq = plus_minus_one_rmq(dep);
     }
 
     int get(int u, int v) {
@@ -52,5 +52,5 @@ private:
     int _n, _root;
     std::vector<std::vector<int>> g;
     std::vector<int> id, vs, dep;
-    PlusMinusOneRMQ rmq;
+    plus_minus_one_rmq rmq;
 };

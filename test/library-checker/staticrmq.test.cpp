@@ -1,20 +1,18 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 #include <iostream>
+#include <vector>
 
 #include "datastructure/sparse_table.hpp"
-using S = int;
-S op(S a, S b) {
-    return std::min(a, b);
-}
+#include "monoid/min.hpp"
 int main() {
     int n, q;
     std::cin >> n >> q;
-    std::vector<S> a(n);
-    for (int i = 0; i < n; i++) std::cin >> a[i];
-    SparseTable<S, op> s(a);
+    std::vector<int> a(n);
+    for (int& x : a) std::cin >> x;
+    sparse_table<monoid_min<int>> st(a);
     while (q--) {
         int l, r;
         std::cin >> l >> r;
-        std::cout << s.prod(l, r) << '\n';
+        std::cout << st.prod(l, r) << '\n';
     }
 }

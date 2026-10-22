@@ -1,35 +1,31 @@
 #pragma once
+#include <algorithm>
+#include <bit>
 #include <cassert>
 #include <vector>
-template <class S, S (*op)(S, S)>
-struct SparseTable {
-public:
-    SparseTable() {
+template <class M> struct sparse_table {
+    using S = typename M::S;
+    static_assert(std::is_same_v<decltype(M::op(std::declval<S>(), std::declval<S>())), S>);
+    sparse_table() : _n(0) {
     }
-    SparseTable(const std::vector<S>& v)
-        : _n(int(v.size())), d(_n), ceil_log2(_n + 1) {
-        ceil_log2[0] = 0;
-        ceil_log2[1] = 0;
-        for (int i = 2; i <= _n; i++) ceil_log2[i] = ceil_log2[i >> 1] + 1;
-        for (int i = 0; i < _n; i++) {
-            d[i].resize(ceil_log2[_n] + 1);
-            d[i][0] = v[i];
-        }
-        for (int b = 0; b < ceil_log2[_n]; b++) {
-            for (int i = 0; i < _n; i++) {
-                if (i + (1 << (b + 1)) > _n) break;
-                d[i][b + 1] = op(d[i][b], d[i + (1 << b)][b]);
+    explicit sparse_table(const std::vector<S>& a) : _n(int(a.size())) {
+        int log = std::max(1, std::bit_width((unsigned)_n));
+        t.resize(log);
+        t[0] = a;
+        for (int k = 1; k < log; k++) {
+            t[k].resize(_n - (1 << k) + 1);
+            for (int i = 0; i + (1 << k) <= _n; i++) {
+                t[k][i] = M::op(t[k - 1][i], t[k - 1][i + (1 << (k - 1))]);
             }
         }
     }
-    S prod(int l, int r) {
-        assert(r - l > 0);
-        int b = ceil_log2[r - l];
-        return op(d[l][b], d[r - (1 << b)][b]);
+    S prod(int l, int r) const {
+        assert(0 <= l && l < r && r <= _n);
+        int k = std::bit_width((unsigned)(r - l)) - 1;
+        return M::op(t[k][l], t[k][r - (1 << k)]);
     }
 
 private:
     int _n;
-    std::vector<std::vector<S>> d;
-    std::vector<int> ceil_log2;
+    std::vector<std::vector<S>> t;
 };
