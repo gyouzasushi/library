@@ -1,7 +1,8 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/1160"
 #include <iostream>
 
-#include "datastructure/unionfind.hpp"
+#include <atcoder/dsu>
+
 #include "graph/cell.hpp"
 int main() {
     while (true) {
@@ -15,17 +16,17 @@ int main() {
                 std::cin >> c[y][x];
             }
         }
-        unionfind uf(h * w);
+        atcoder::dsu uf(h * w);
         for (cell u : cell::cells()) {
             if (c[u.y][u.x] != 1) continue;
             for (cell v : u.neighbors_8()) {
                 if (c[v.y][v.x] != 1) continue;
-                uf.unite(u, v);
+                uf.merge(u, v);
             }
         }
         int ans = 0;
         for (cell u : cell::cells()) {
-            if (c[u.y][u.x] == 1 && uf.root(u) == int(u)) {
+            if (c[u.y][u.x] == 1 && uf.leader(u) == int(u)) {
                 ans++;
             }
         }

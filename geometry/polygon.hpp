@@ -73,8 +73,8 @@ template <class T> std::pair<int, int> farthest_pair(const std::vector<point<T>>
     std::pair<int, int> ret = {0, 1};
     T best = norm(ch[0] - ch[1]);
     for (int i = 0, j = 1; i < m; i++) {
-        while (sgn(norm(ch[i] - ch[(j + 1) % m]) - norm(ch[i] - ch[j])) > 0) j = (j + 1) % m;
-        if (sgn(norm(ch[i] - ch[j]) - best) > 0) {
+        while (norm(ch[i] - ch[(j + 1) % m]) > norm(ch[i] - ch[j])) j = (j + 1) % m;
+        if (norm(ch[i] - ch[j]) > best) {
             best = norm(ch[i] - ch[j]);
             ret = {i, j};
         }
@@ -102,13 +102,13 @@ template <class T> std::pair<int, int> closest_pair(const std::vector<point<T>>&
         for (int t = l; t < r; t++) {
             int i = id[t];
             T dx = ps[i].x - x;
-            if (sgn(dx * dx - best) >= 0) continue;
+            if (dx * dx >= best) continue;
             for (int u = k - 1; u >= 0; u--) {
                 int j = buf[u];
                 T dy = ps[i].y - ps[j].y;
-                if (sgn(dy * dy - best) >= 0) break;
+                if (dy * dy >= best) break;
                 T d = norm(ps[i] - ps[j]);
-                if (sgn(d - best) < 0) {
+                if (d < best) {
                     best = d;
                     ret = {j, i};
                 }
