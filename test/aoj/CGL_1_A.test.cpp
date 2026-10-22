@@ -1,22 +1,23 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 #define PROBLEM \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_1_A"
 #define ERROR 0.00000001
+#include <iomanip>
+#include <iostream>
+#include <vector>
 
-#include "../../geometry/geometry.hpp"
-
-using namespace geometry;
+#include "geometry/line.hpp"
+using namespace std;
+using namespace geo;
+using P = point<double>;
 int main() {
     cout << fixed << setprecision(20);
-    Line l;
+    line<double> l;
     cin >> l;
     int q;
     cin >> q;
     while (q--) {
-        Point p;
+        P p;
         cin >> p;
-        cout << l.projection(p) << '\n';
+        cout << projection(l, p) << '\n';
     }
 }

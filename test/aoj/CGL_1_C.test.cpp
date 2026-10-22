@@ -1,25 +1,28 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 #define PROBLEM \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_1_C"
-#define ERROR 0.00000001
+#include <iomanip>
+#include <iostream>
+#include <vector>
 
-#include "../../geometry/geometry.hpp"
-using namespace geometry;
+#include "geometry/line.hpp"
+using namespace std;
+using namespace geo;
+using P = point<double>;
 int main() {
-    Point a, b;
+    P a, b;
     cin >> a >> b;
     int q;
     cin >> q;
     while (q--) {
-        Point c;
+        P c;
         cin >> c;
-        int ans = ccw(a, b, c);
-        if (ans == COUNTER_CLOCKWISE) cout << "COUNTER_CLOCKWISE" << '\n';
-        if (ans == CLOCKWISE) cout << "CLOCKWISE" << '\n';
-        if (ans == ONLINE_BACK) cout << "ONLINE_BACK" << '\n';
-        if (ans == ONLINE_FRONT) cout << "ONLINE_FRONT" << '\n';
-        if (ans == ON_SEGMENT) cout << "ON_SEGMENT" << '\n';
+        int s = ccw(a, b, c);
+        if (s > 0) cout << "COUNTER_CLOCKWISE" << '\n';
+        if (s < 0) cout << "CLOCKWISE" << '\n';
+        if (s == 0) {
+            if (sgn(dot(b - a, c - a)) < 0) cout << "ONLINE_BACK" << '\n';
+            else if (sgn(dot(a - b, c - b)) < 0) cout << "ONLINE_FRONT" << '\n';
+            else cout << "ON_SEGMENT" << '\n';
+        }
     }
 }

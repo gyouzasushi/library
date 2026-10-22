@@ -1,20 +1,20 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 #define PROBLEM \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_H"
 #define ERROR 0.00001
+#include <iomanip>
+#include <iostream>
+#include <vector>
 
-#include "../../geometry/geometry.hpp"
-using namespace geometry;
+#include "geometry/circle.hpp"
+using namespace std;
+using namespace geo;
+using P = point<double>;
 int main() {
     cout << fixed << setprecision(20);
     int n;
-    cin >> n;
-    Polygon poly(n);
-    Circle c;
-    c.c = {0, 0};
-    cin >> c.r;
-    for (Point &p : poly) cin >> p;
-    cout << area_of_intersection(c, poly) << '\n';
+    double r;
+    cin >> n >> r;
+    polygon<double> poly(n);
+    for (P& p : poly) cin >> p;
+    cout << area_of_intersection(circle<double>(P(0, 0), r), poly) << '\n';
 }

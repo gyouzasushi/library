@@ -1,16 +1,17 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 #define PROBLEM \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_B"
-#include "../../geometry/geometry.hpp"
+#include <iomanip>
+#include <iostream>
+#include <vector>
 
-using namespace geometry;
+#include "geometry/polygon.hpp"
+using namespace std;
+using namespace geo;
+using P = point<double>;
 int main() {
-    cout << fixed << setprecision(1);
     int n;
     cin >> n;
-    Polygon poly(n);
-    for (auto &p : poly) cin >> p;
-    cout << poly.is_convex() << '\n';
+    polygon<double> poly(n);
+    for (P& p : poly) cin >> p;
+    cout << is_convex(poly) << '\n';
 }
