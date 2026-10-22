@@ -11,7 +11,7 @@ documentation_of: datastructure/plus_minus_one_rmq.hpp
 - `prod(l, r)`: `a[l], ..., a[r - 1]` の最小値の添字を返す。複数あれば最小の添字。
 
 ### 制約
-- $|a_i - a_{i+1}| = 1$
+- $\lvert a_i - a_{i+1} \rvert = 1$
 - $0 \le l < r \le n$
 
 ### 計算量

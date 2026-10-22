@@ -18,7 +18,7 @@ documentation_of: geometry/polygon.hpp
 - `convex_cut(poly, l)`: 凸多角形 `poly` を直線 `l` で切った左側を返す。浮動小数点型のみ。
 
 ### 制約
-- `farthest_pair`, `closest_pair` では $|\mathrm{ps}| \ge 2$
+- `farthest_pair`, `closest_pair` では $\lvert \mathrm{ps} \rvert \ge 2$
 - `convex_cut` では `poly` は反時計回りの凸多角形
 
 ### 計算量
