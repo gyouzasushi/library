@@ -1,33 +1,17 @@
 #pragma once
 #include <algorithm>
 #include <cassert>
-#include <iostream>
-#include <limits>
-#include <map>
 #include <numeric>
+#include <tuple>
 #include <vector>
 
-#include "atcoder/segtree.hpp"
-namespace manhattan_mst_internal {
-template <typename T>
-struct S {
-    T val;
-    int id;
-};
-template <typename T>
-S<T> op(S<T> a, S<T> b) {
-    return a.val < b.val ? a : b;
-}
-template <typename T>
-S<T> e() {
-    return {std::numeric_limits<T>::max(), -1};
-}
-}  // namespace manhattan_mst_internal
+#include "datastructure/segtree.hpp"
+#include "monoid/argmin.hpp"
 template <typename T>
 std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,
                                                    std::vector<T> y) {
     int n = x.size();
-    assert(int(x.size()) == n && int(y.size()) == n);
+    assert(int(y.size()) == n);
     std::vector<int> id(n);
     std::iota(id.begin(), id.end(), 0);
     std::vector<int> y_id(n);
@@ -47,12 +31,9 @@ std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,
                     y_id[i] = std::lower_bound(_y.begin(), _y.end(), y[i]) -
                               _y.begin();
                 }
-                atcoder::segtree<manhattan_mst_internal::S<T>,
-                                 manhattan_mst_internal::op<T>,
-                                 manhattan_mst_internal::e<T>>
-                    segt(n);
+                segtree<monoid_argmin<T>> segt(n);
                 for (int i : id) {
-                    manhattan_mst_internal::S<T> p = segt.prod(y_id[i], n);
+                    auto p = segt.prod(y_id[i], n);
                     if (p.id != -1) {
                         ret.emplace_back(i, p.id, p.val - (x[i] + y[i]));
                     }

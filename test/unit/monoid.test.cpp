@@ -10,6 +10,8 @@
 #include "datastructure/segtree.hpp"
 #include "monoid/add.hpp"
 #include "monoid/affine.hpp"
+#include "monoid/argmax.hpp"
+#include "monoid/argmin.hpp"
 #include "monoid/gcd.hpp"
 #include "monoid/max.hpp"
 #include "monoid/min.hpp"
@@ -32,6 +34,34 @@ void stress_monoid(std::mt19937 &rng, const Naive &naive) {
             S expect = M::e();
             for (int i = l; i < r; i++) expect = naive(expect, a[i]);
             assert(seg.prod(l, r) == expect);
+        }
+    }
+}
+template <class M, class Naive>
+void stress_argmonoid(std::mt19937 &rng, const Naive &better) {
+    using S = typename M::S;
+    const int N = 1 + rng() % 30;
+    std::vector<S> a(N);
+    for (int i = 0; i < N; i++) a[i] = {int(rng() % 5), i};
+    segtree<M> seg(a);
+    for (int it = 0; it < 200; it++) {
+        if (rng() % 2) {
+            int p = rng() % N;
+            a[p] = {int(rng() % 5), p};
+            seg.set(p, a[p]);
+        } else {
+            int l = rng() % (N + 1), r = rng() % (N + 1);
+            if (l > r) std::swap(l, r);
+            S got = seg.prod(l, r);
+            if (l == r) {
+                assert(got.id == -1);
+                continue;
+            }
+            int best = l;
+            for (int i = l + 1; i < r; i++) {
+                if (better(a[i].val, a[best].val)) best = i;
+            }
+            assert(got.id == best && got.val == a[best].val);
         }
     }
 }
@@ -89,6 +119,8 @@ int main() {
         stress_monoid<monoid_max<int>>(rng, [](int a, int b) { return std::max(a, b); });
         stress_monoid<monoid_gcd<int>>(rng, [](int a, int b) { return std::gcd(a, b); });
         stress_monoid<monoid_xor<unsigned>>(rng, [](unsigned a, unsigned b) { return a ^ b; });
+        stress_argmonoid<monoid_argmin<int>>(rng, [](int a, int b) { return a < b; });
+        stress_argmonoid<monoid_argmax<int>>(rng, [](int a, int b) { return a > b; });
         stress_affine(rng);
         stress_range_add_range_sum(rng);
     }

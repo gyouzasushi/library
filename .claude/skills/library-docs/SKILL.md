@@ -6,7 +6,7 @@ description: docs/**/*.hpp.md（ライブラリの日本語ドキュメント）
 # ライブラリ docs の書き方
 
 お手本は ac-library の `document_ja`（dsu.md, fenwicktree.md, segtree.md）。
-ドキュメントには what（何をするか・引数・戻り値・制約・計算量）だけを書く。why や how はコメントに書く。
+ドキュメントには what（何をするか・引数・戻り値・制約・計算量）だけを書く。why や how は書かない。
 
 ## 構成
 
