@@ -5,6 +5,9 @@ data:
     path: datastructure/sparse_table.hpp
     title: Sparse Table
   - icon: ':heavy_check_mark:'
+    path: monoid/concept.hpp
+    title: 'Monoid: Concept'
+  - icon: ':heavy_check_mark:'
     path: monoid/min.hpp
     title: 'Monoid: Min'
   _extendedRequiredBy: []
@@ -21,9 +24,16 @@ data:
     \ \"https://judge.yosupo.jp/problem/staticrmq\"\n#include <iostream>\n#include\
     \ <vector>\n\n#line 2 \"datastructure/sparse_table.hpp\"\n#include <algorithm>\n\
     #include <bit>\n#include <cassert>\n#line 6 \"datastructure/sparse_table.hpp\"\
-    \ntemplate <class M> struct sparse_table {\n    using S = typename M::S;\n   \
-    \ static_assert(std::is_same_v<decltype(M::op(std::declval<S>(), std::declval<S>())),\
-    \ S>);\n    sparse_table() : _n(0) {\n    }\n    explicit sparse_table(const std::vector<S>&\
+    \n\n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\ntemplate <class M>\n\
+    concept semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a,\
+    \ b) } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid\
+    \ = semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
+    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && requires(typename\
+    \ A::S x, typename A::F f, typename A::F g) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    {\
+    \ A::id() } -> std::same_as<typename A::F>;\n};\n#line 8 \"datastructure/sparse_table.hpp\"\
+    \ntemplate <semigroup M> struct sparse_table {\n    using S = typename M::S;\n\
+    \    sparse_table() : _n(0) {\n    }\n    explicit sparse_table(const std::vector<S>&\
     \ a) : _n(int(a.size())) {\n        int log = std::max(1, std::bit_width((unsigned)_n));\n\
     \        t.resize(log);\n        t[0] = a;\n        for (int k = 1; k < log; k++)\
     \ {\n            t[k].resize(_n - (1 << k) + 1);\n            for (int i = 0;\
@@ -48,11 +58,12 @@ data:
     \        std::cout << st.prod(l, r) << '\\n';\n    }\n}\n"
   dependsOn:
   - datastructure/sparse_table.hpp
+  - monoid/concept.hpp
   - monoid/min.hpp
   isVerificationFile: true
   path: test/library-checker/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 23:52:52+09:00'
+  timestamp: '2026-10-23 07:09:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/staticrmq.test.cpp

@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: monoid/concept.hpp
+    title: 'Monoid: Concept'
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -14,31 +17,36 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: '#line 2 "datastructure/lazy_segtree.hpp"
-
-    #include <atcoder/lazysegtree>
-
-    template <class A>
-
-    using lazy_segtree = atcoder::lazy_segtree<typename A::S, A::op, A::e, typename
-    A::F, A::mapping, A::composition, A::id>;
-
-    '
+  bundledCode: "#line 2 \"datastructure/lazy_segtree.hpp\"\n#include <atcoder/lazysegtree>\n\
+    \n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\ntemplate <class M>\nconcept\
+    \ semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b)\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid =\
+    \ semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
+    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && requires(typename\
+    \ A::S x, typename A::F f, typename A::F g) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    {\
+    \ A::id() } -> std::same_as<typename A::F>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
+    \ntemplate <acted_monoid A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
+    \ A::S, A::op, A::e, typename A::F, A::mapping, A::composition, A::id>;\n"
   code: '#pragma once
 
     #include <atcoder/lazysegtree>
 
-    template <class A>
+
+    #include "monoid/concept.hpp"
+
+    template <acted_monoid A>
 
     using lazy_segtree = atcoder::lazy_segtree<typename A::S, A::op, A::e, typename
     A::F, A::mapping, A::composition, A::id>;
 
     '
-  dependsOn: []
+  dependsOn:
+  - monoid/concept.hpp
   isVerificationFile: false
   path: datastructure/lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2026-10-19 02:48:39+09:00'
+  timestamp: '2026-10-23 07:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_G.test.cpp

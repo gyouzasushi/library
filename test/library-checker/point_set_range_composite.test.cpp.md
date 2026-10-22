@@ -7,6 +7,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: monoid/affine.hpp
     title: 'Monoid: Affine'
+  - icon: ':heavy_check_mark:'
+    path: monoid/concept.hpp
+    title: 'Monoid: Concept'
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,8 +23,16 @@ data:
   bundledCode: "#line 1 \"test/library-checker/point_set_range_composite.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n#include <atcoder/modint>\n#include <iostream>\n#include <vector>\n\n#line 2\
-    \ \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\ntemplate <class M>\n\
-    using segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"monoid/affine.hpp\"\
+    \ \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\n\n#line 2 \"monoid/concept.hpp\"\
+    \n#include <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename\
+    \ M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n\
+    };\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class A>\nconcept acted_monoid\
+    \ = monoid<A> && requires(typename A::S x, typename A::F f, typename A::F g) {\n\
+    \    { A::mapping(f, x) } -> std::same_as<typename A::S>;\n    { A::composition(f,\
+    \ g) } -> std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename\
+    \ A::F>;\n};\n#line 5 \"datastructure/segtree.hpp\"\ntemplate <monoid M>\nusing\
+    \ segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"monoid/affine.hpp\"\
     \ntemplate <class T>\nstruct monoid_affine {\n    struct S {\n        T a, b;\n\
     \    };\n    static S op(S f, S g) {\n        return {g.a * f.a, g.a * f.b + g.b};\n\
     \    }\n    static S e() {\n        return {T(1), T(0)};\n    }\n    static T\
@@ -52,11 +63,12 @@ data:
     }\n"
   dependsOn:
   - datastructure/segtree.hpp
+  - monoid/concept.hpp
   - monoid/affine.hpp
   isVerificationFile: true
   path: test/library-checker/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-10-19 02:48:39+09:00'
+  timestamp: '2026-10-23 07:09:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/point_set_range_composite.test.cpp

@@ -412,15 +412,15 @@ data:
   timestamp: '2026-10-22 23:24:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_7_E.test.cpp
+  - test/aoj/CGL_7_H.test.cpp
+  - test/aoj/CGL_7_D.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_7_I.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_7_A.test.cpp
-  - test/aoj/CGL_7_H.test.cpp
-  - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/CGL_7_D.test.cpp
+  - test/aoj/CGL_7_E.test.cpp
   - test/aoj/CGL_7_G.test.cpp
   - test/aoj/CGL_7_F.test.cpp
-  - test/aoj/CGL_7_I.test.cpp
   - test/unit/geometry.test.cpp
 documentation_of: geometry/circle.hpp
 layout: document

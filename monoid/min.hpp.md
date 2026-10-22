@@ -37,9 +37,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_A.test.cpp
-  - test/library-checker/staticrmq.test.cpp
-  - test/unit/monoid.test.cpp
   - test/unit/sparse_table.test.cpp
+  - test/unit/monoid.test.cpp
+  - test/library-checker/staticrmq.test.cpp
 documentation_of: monoid/min.hpp
 layout: document
 title: 'Monoid: Min'

@@ -29,8 +29,8 @@ data:
   timestamp: '2026-10-19 02:48:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/monoid.test.cpp
   - test/unit/sparse_table.test.cpp
+  - test/unit/monoid.test.cpp
 documentation_of: monoid/gcd.hpp
 layout: document
 title: 'Monoid: GCD'

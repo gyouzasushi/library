@@ -5,6 +5,9 @@ data:
     path: datastructure/segtree.hpp
     title: Segment Tree (monoid wrapper)
   - icon: ':heavy_check_mark:'
+    path: monoid/concept.hpp
+    title: 'Monoid: Concept'
+  - icon: ':heavy_check_mark:'
     path: monoid/min.hpp
     title: 'Monoid: Min'
   _extendedRequiredBy: []
@@ -19,10 +22,18 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A
   bundledCode: "#line 1 \"test/aoj/DSL_2_A.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A\"\
     \n#include <iostream>\n\n#line 2 \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\n\
-    template <class M>\nusing segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n\
-    #line 2 \"monoid/min.hpp\"\n#include <algorithm>\n#include <limits>\ntemplate\
-    \ <class T>\nstruct monoid_min {\n    using S = T;\n    static S op(S a, S b)\
-    \ {\n        return std::min(a, b);\n    }\n    static S e() {\n        return\
+    \n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\ntemplate <class M>\nconcept\
+    \ semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b)\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid =\
+    \ semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
+    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && requires(typename\
+    \ A::S x, typename A::F f, typename A::F g) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    {\
+    \ A::id() } -> std::same_as<typename A::F>;\n};\n#line 5 \"datastructure/segtree.hpp\"\
+    \ntemplate <monoid M>\nusing segtree = atcoder::segtree<typename M::S, M::op,\
+    \ M::e>;\n#line 2 \"monoid/min.hpp\"\n#include <algorithm>\n#include <limits>\n\
+    template <class T>\nstruct monoid_min {\n    using S = T;\n    static S op(S a,\
+    \ S b) {\n        return std::min(a, b);\n    }\n    static S e() {\n        return\
     \ std::numeric_limits<T>::max();\n    }\n    static constexpr bool commutative\
     \ = true;\n};\n#line 6 \"test/aoj/DSL_2_A.test.cpp\"\nint main() {\n    int n,\
     \ q;\n    std::cin >> n >> q;\n    segtree<monoid_min<int>> seg(n);\n    while\
@@ -38,11 +49,12 @@ data:
     }\n"
   dependsOn:
   - datastructure/segtree.hpp
+  - monoid/concept.hpp
   - monoid/min.hpp
   isVerificationFile: true
   path: test/aoj/DSL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2026-10-19 02:48:39+09:00'
+  timestamp: '2026-10-23 07:09:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_A.test.cpp

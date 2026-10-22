@@ -7,6 +7,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: datastructure/lazy_segtree.hpp
     title: Lazy Segment Tree (acted monoid wrapper)
+  - icon: ':heavy_check_mark:'
+    path: monoid/concept.hpp
+    title: 'Monoid: Concept'
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -26,7 +29,15 @@ data:
     \ {x.sum + f * x.len, x.len};\n    }\n    static F composition(F f, F g) {\n \
     \       return f + g;\n    }\n    static F id() {\n        return T(0);\n    }\n\
     \    static S from(T v) {\n        return {v, 1};\n    }\n};\n#line 2 \"datastructure/lazy_segtree.hpp\"\
-    \n#include <atcoder/lazysegtree>\ntemplate <class A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
+    \n#include <atcoder/lazysegtree>\n\n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\n\
+    template <class M>\nconcept semigroup = requires(typename M::S a, typename M::S\
+    \ b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n};\ntemplate <class\
+    \ M>\nconcept monoid = semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename\
+    \ M::S>;\n};\ntemplate <class A>\nconcept acted_monoid = monoid<A> && requires(typename\
+    \ A::S x, typename A::F f, typename A::F g) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    {\
+    \ A::id() } -> std::same_as<typename A::F>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
+    \ntemplate <acted_monoid A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
     \ A::S, A::op, A::e, typename A::F, A::mapping, A::composition, A::id>;\n#line\
     \ 7 \"test/aoj/DSL_2_G.test.cpp\"\nint main() {\n    int n, q;\n    std::cin >>\
     \ n >> q;\n    using A = range_add_range_sum<long long>;\n    lazy_segtree<A>\
@@ -49,10 +60,11 @@ data:
   dependsOn:
   - acted_monoid/range_add_range_sum.hpp
   - datastructure/lazy_segtree.hpp
+  - monoid/concept.hpp
   isVerificationFile: true
   path: test/aoj/DSL_2_G.test.cpp
   requiredBy: []
-  timestamp: '2026-10-19 02:48:39+09:00'
+  timestamp: '2026-10-23 07:09:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_G.test.cpp

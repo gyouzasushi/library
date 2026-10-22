@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: monoid/concept.hpp
+    title: 'Monoid: Concept'
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: datastructure/plus_minus_one_rmq.hpp
@@ -24,12 +27,19 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/sparse_table.hpp\"\n#include <algorithm>\n\
-    #include <bit>\n#include <cassert>\n#include <vector>\ntemplate <class M> struct\
-    \ sparse_table {\n    using S = typename M::S;\n    static_assert(std::is_same_v<decltype(M::op(std::declval<S>(),\
-    \ std::declval<S>())), S>);\n    sparse_table() : _n(0) {\n    }\n    explicit\
-    \ sparse_table(const std::vector<S>& a) : _n(int(a.size())) {\n        int log\
-    \ = std::max(1, std::bit_width((unsigned)_n));\n        t.resize(log);\n     \
-    \   t[0] = a;\n        for (int k = 1; k < log; k++) {\n            t[k].resize(_n\
+    #include <bit>\n#include <cassert>\n#include <vector>\n\n#line 2 \"monoid/concept.hpp\"\
+    \n#include <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename\
+    \ M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n\
+    };\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class A>\nconcept acted_monoid\
+    \ = monoid<A> && requires(typename A::S x, typename A::F f, typename A::F g) {\n\
+    \    { A::mapping(f, x) } -> std::same_as<typename A::S>;\n    { A::composition(f,\
+    \ g) } -> std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename\
+    \ A::F>;\n};\n#line 8 \"datastructure/sparse_table.hpp\"\ntemplate <semigroup\
+    \ M> struct sparse_table {\n    using S = typename M::S;\n    sparse_table() :\
+    \ _n(0) {\n    }\n    explicit sparse_table(const std::vector<S>& a) : _n(int(a.size()))\
+    \ {\n        int log = std::max(1, std::bit_width((unsigned)_n));\n        t.resize(log);\n\
+    \        t[0] = a;\n        for (int k = 1; k < log; k++) {\n            t[k].resize(_n\
     \ - (1 << k) + 1);\n            for (int i = 0; i + (1 << k) <= _n; i++) {\n \
     \               t[k][i] = M::op(t[k - 1][i], t[k - 1][i + (1 << (k - 1))]);\n\
     \            }\n        }\n    }\n    S prod(int l, int r) const {\n        assert(0\
@@ -37,30 +47,30 @@ data:
     \ - 1;\n        return M::op(t[k][l], t[k][r - (1 << k)]);\n    }\n\nprivate:\n\
     \    int _n;\n    std::vector<std::vector<S>> t;\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <bit>\n#include <cassert>\n\
-    #include <vector>\ntemplate <class M> struct sparse_table {\n    using S = typename\
-    \ M::S;\n    static_assert(std::is_same_v<decltype(M::op(std::declval<S>(), std::declval<S>())),\
-    \ S>);\n    sparse_table() : _n(0) {\n    }\n    explicit sparse_table(const std::vector<S>&\
-    \ a) : _n(int(a.size())) {\n        int log = std::max(1, std::bit_width((unsigned)_n));\n\
-    \        t.resize(log);\n        t[0] = a;\n        for (int k = 1; k < log; k++)\
-    \ {\n            t[k].resize(_n - (1 << k) + 1);\n            for (int i = 0;\
-    \ i + (1 << k) <= _n; i++) {\n                t[k][i] = M::op(t[k - 1][i], t[k\
-    \ - 1][i + (1 << (k - 1))]);\n            }\n        }\n    }\n    S prod(int\
-    \ l, int r) const {\n        assert(0 <= l && l < r && r <= _n);\n        int\
-    \ k = std::bit_width((unsigned)(r - l)) - 1;\n        return M::op(t[k][l], t[k][r\
-    \ - (1 << k)]);\n    }\n\nprivate:\n    int _n;\n    std::vector<std::vector<S>>\
-    \ t;\n};\n"
-  dependsOn: []
+    #include <vector>\n\n#include \"monoid/concept.hpp\"\ntemplate <semigroup M> struct\
+    \ sparse_table {\n    using S = typename M::S;\n    sparse_table() : _n(0) {\n\
+    \    }\n    explicit sparse_table(const std::vector<S>& a) : _n(int(a.size()))\
+    \ {\n        int log = std::max(1, std::bit_width((unsigned)_n));\n        t.resize(log);\n\
+    \        t[0] = a;\n        for (int k = 1; k < log; k++) {\n            t[k].resize(_n\
+    \ - (1 << k) + 1);\n            for (int i = 0; i + (1 << k) <= _n; i++) {\n \
+    \               t[k][i] = M::op(t[k - 1][i], t[k - 1][i + (1 << (k - 1))]);\n\
+    \            }\n        }\n    }\n    S prod(int l, int r) const {\n        assert(0\
+    \ <= l && l < r && r <= _n);\n        int k = std::bit_width((unsigned)(r - l))\
+    \ - 1;\n        return M::op(t[k][l], t[k][r - (1 << k)]);\n    }\n\nprivate:\n\
+    \    int _n;\n    std::vector<std::vector<S>> t;\n};\n"
+  dependsOn:
+  - monoid/concept.hpp
   isVerificationFile: false
   path: datastructure/sparse_table.hpp
   requiredBy:
   - datastructure/plus_minus_one_rmq.hpp
   - graph/lowest_common_ancestor.hpp
-  timestamp: '2026-10-22 23:52:52+09:00'
+  timestamp: '2026-10-23 07:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library-checker/lca.test.cpp
-  - test/library-checker/staticrmq.test.cpp
   - test/unit/sparse_table.test.cpp
+  - test/library-checker/staticrmq.test.cpp
+  - test/library-checker/lca.test.cpp
 documentation_of: datastructure/sparse_table.hpp
 layout: document
 title: Sparse Table

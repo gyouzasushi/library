@@ -17,46 +17,43 @@ data:
   bundledCode: "#line 1 \"test/unit/rerooting.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <random>\n\
     #include <utility>\n#include <variant>\n#include <vector>\n\n#line 3 \"graph/rerooting.hpp\"\
-    \n#include <functional>\n#include <type_traits>\n#line 8 \"graph/rerooting.hpp\"\
-    \ntemplate <class R>\nstruct rerooting {\npublic:\n    using T = typename R::T;\n\
-    \    using M = typename R::M;\n    using E = typename R::E;\n    using V = typename\
-    \ R::V;\n    static_assert(std::is_invocable_r_v<M, decltype(R::put_edge), const\
-    \ T&, const E&, int, int>,\n                  \"R::put_edge must work as M(const\
-    \ T&, const E&, int u, int v)\");\n    static_assert(std::is_invocable_r_v<M,\
-    \ decltype(R::merge), const M&, const M&>,\n                  \"R::merge must\
-    \ work as M(const M&, const M&)\");\n    static_assert(std::is_invocable_r_v<M,\
-    \ decltype(R::e)>, \"R::e must work as M()\");\n    static_assert(std::is_invocable_r_v<T,\
-    \ decltype(R::put_vertex), const M&, const V&, int>,\n                  \"R::put_vertex\
-    \ must work as T(const M&, const V&, int v)\");\n\n    rerooting() {\n    }\n\
-    \    explicit rerooting(int n) : rerooting(std::vector<V>(n)) {\n    }\n    explicit\
-    \ rerooting(std::vector<V> a) : _n(int(a.size())), vdata(std::move(a)), g(_n)\
-    \ {\n    }\n    int add_edge(int u, int v, E w = E()) {\n        assert(0 <= u\
-    \ && u < _n);\n        assert(0 <= v && v < _n);\n        int i = int(edges.size());\n\
-    \        edges.emplace_back(u, v);\n        edata.push_back(std::move(w));\n \
-    \       g[u].push_back(i);\n        g[v].push_back(i);\n        return i;\n  \
-    \  }\n    void solve() {\n        assert(int(edges.size()) == _n - 1);\n     \
-    \   _dp.assign(_n, T());\n        _agg.assign(_n, R::e());\n        _sub.assign(2\
-    \ * (_n - 1), T());\n        std::vector<int> order, par(_n, -1), pe(_n, -1);\n\
-    \        order.reserve(_n);\n        order.push_back(0);\n        for (int k =\
-    \ 0; k < _n; k++) {\n            int v = order[k];\n            for (int i : g[v])\
-    \ {\n                int to = other(i, v);\n                if (to == par[v])\
-    \ continue;\n                par[to] = v;\n                pe[to] = i;\n     \
-    \           order.push_back(to);\n            }\n        }\n        // bottom-up:\
-    \ sub(par[v] -> v)\n        for (int k = _n - 1; k > 0; k--) {\n            int\
-    \ v = order[k];\n            M acc = R::e();\n            for (int i : g[v]) {\n\
-    \                int to = other(i, v);\n                if (to == par[v]) continue;\n\
-    \                acc = R::merge(acc, R::put_edge(_sub[dir(i, v)], edata[i], v,\
-    \ to));\n            }\n            _sub[dir(pe[v], par[v])] = R::put_vertex(acc,\
-    \ vdata[v], v);\n        }\n        // top-down: sub(v -> par[v]) is ready when\
-    \ v is visited\n        std::vector<M> pre, suf;\n        for (int v : order)\
-    \ {\n            int deg = int(g[v].size());\n            pre.assign(deg + 1,\
-    \ R::e());\n            suf.assign(deg + 1, R::e());\n            for (int j =\
-    \ 0; j < deg; j++) {\n                int i = g[v][j], to = other(i, v);\n   \
-    \             pre[j + 1] = R::merge(pre[j], R::put_edge(_sub[dir(i, v)], edata[i],\
-    \ v, to));\n            }\n            for (int j = deg; j > 0; j--) {\n     \
-    \           int i = g[v][j - 1], to = other(i, v);\n                suf[j - 1]\
-    \ = R::merge(R::put_edge(_sub[dir(i, v)], edata[i], v, to), suf[j]);\n       \
-    \     }\n            _agg[v] = pre[deg];\n            _dp[v] = R::put_vertex(_agg[v],\
+    \n#include <concepts>\n#line 7 \"graph/rerooting.hpp\"\ntemplate <class R>\nconcept\
+    \ rerooting_spec = requires(const typename R::T& t, const typename R::M& m, const\
+    \ typename R::E& e,\n                                  const typename R::V& v,\
+    \ int i) {\n    { R::put_edge(t, e, i, i) } -> std::convertible_to<typename R::M>;\n\
+    \    { R::merge(m, m) } -> std::convertible_to<typename R::M>;\n    { R::e() }\
+    \ -> std::convertible_to<typename R::M>;\n    { R::put_vertex(m, v, i) } -> std::convertible_to<typename\
+    \ R::T>;\n};\ntemplate <rerooting_spec R>\nstruct rerooting {\npublic:\n    using\
+    \ T = typename R::T;\n    using M = typename R::M;\n    using E = typename R::E;\n\
+    \    using V = typename R::V;\n\n    rerooting() {\n    }\n    explicit rerooting(int\
+    \ n) : rerooting(std::vector<V>(n)) {\n    }\n    explicit rerooting(std::vector<V>\
+    \ a) : _n(int(a.size())), vdata(std::move(a)), g(_n) {\n    }\n    int add_edge(int\
+    \ u, int v, E w = E()) {\n        assert(0 <= u && u < _n);\n        assert(0\
+    \ <= v && v < _n);\n        int i = int(edges.size());\n        edges.emplace_back(u,\
+    \ v);\n        edata.push_back(std::move(w));\n        g[u].push_back(i);\n  \
+    \      g[v].push_back(i);\n        return i;\n    }\n    void solve() {\n    \
+    \    assert(int(edges.size()) == _n - 1);\n        _dp.assign(_n, T());\n    \
+    \    _agg.assign(_n, R::e());\n        _sub.assign(2 * (_n - 1), T());\n     \
+    \   std::vector<int> order, par(_n, -1), pe(_n, -1);\n        order.reserve(_n);\n\
+    \        order.push_back(0);\n        for (int k = 0; k < _n; k++) {\n       \
+    \     int v = order[k];\n            for (int i : g[v]) {\n                int\
+    \ to = other(i, v);\n                if (to == par[v]) continue;\n           \
+    \     par[to] = v;\n                pe[to] = i;\n                order.push_back(to);\n\
+    \            }\n        }\n        // bottom-up: sub(par[v] -> v)\n        for\
+    \ (int k = _n - 1; k > 0; k--) {\n            int v = order[k];\n            M\
+    \ acc = R::e();\n            for (int i : g[v]) {\n                int to = other(i,\
+    \ v);\n                if (to == par[v]) continue;\n                acc = R::merge(acc,\
+    \ R::put_edge(_sub[dir(i, v)], edata[i], v, to));\n            }\n           \
+    \ _sub[dir(pe[v], par[v])] = R::put_vertex(acc, vdata[v], v);\n        }\n   \
+    \     // top-down: sub(v -> par[v]) is ready when v is visited\n        std::vector<M>\
+    \ pre, suf;\n        for (int v : order) {\n            int deg = int(g[v].size());\n\
+    \            pre.assign(deg + 1, R::e());\n            suf.assign(deg + 1, R::e());\n\
+    \            for (int j = 0; j < deg; j++) {\n                int i = g[v][j],\
+    \ to = other(i, v);\n                pre[j + 1] = R::merge(pre[j], R::put_edge(_sub[dir(i,\
+    \ v)], edata[i], v, to));\n            }\n            for (int j = deg; j > 0;\
+    \ j--) {\n                int i = g[v][j - 1], to = other(i, v);\n           \
+    \     suf[j - 1] = R::merge(R::put_edge(_sub[dir(i, v)], edata[i], v, to), suf[j]);\n\
+    \            }\n            _agg[v] = pre[deg];\n            _dp[v] = R::put_vertex(_agg[v],\
     \ vdata[v], v);\n            for (int j = 0; j < deg; j++) {\n               \
     \ int i = g[v][j], to = other(i, v);\n                if (to == par[v]) continue;\n\
     \                _sub[dir(i, to)] = R::put_vertex(R::merge(pre[j], suf[j + 1]),\
@@ -286,7 +283,7 @@ data:
   isVerificationFile: true
   path: test/unit/rerooting.test.cpp
   requiredBy: []
-  timestamp: '2026-10-20 21:57:14+09:00'
+  timestamp: '2026-10-23 07:09:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/rerooting.test.cpp

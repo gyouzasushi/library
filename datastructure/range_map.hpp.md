@@ -131,8 +131,8 @@ data:
   timestamp: '2026-10-19 22:21:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1601_2.test.cpp
   - test/unit/range_map.test.cpp
+  - test/yukicoder/1601_2.test.cpp
 documentation_of: datastructure/range_map.hpp
 layout: document
 title: Range Map

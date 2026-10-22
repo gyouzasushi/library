@@ -17,22 +17,20 @@ data:
   bundledCode: "#line 1 \"test/library-checker/tree_path_composite_sum.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\n\
     #include <atcoder/modint>\n#include <iostream>\n#include <utility>\n#include <vector>\n\
-    \n#line 2 \"graph/rerooting.hpp\"\n#include <cassert>\n#include <functional>\n\
-    #include <type_traits>\n#line 6 \"graph/rerooting.hpp\"\n#include <variant>\n\
-    #line 8 \"graph/rerooting.hpp\"\ntemplate <class R>\nstruct rerooting {\npublic:\n\
-    \    using T = typename R::T;\n    using M = typename R::M;\n    using E = typename\
-    \ R::E;\n    using V = typename R::V;\n    static_assert(std::is_invocable_r_v<M,\
-    \ decltype(R::put_edge), const T&, const E&, int, int>,\n                  \"\
-    R::put_edge must work as M(const T&, const E&, int u, int v)\");\n    static_assert(std::is_invocable_r_v<M,\
-    \ decltype(R::merge), const M&, const M&>,\n                  \"R::merge must\
-    \ work as M(const M&, const M&)\");\n    static_assert(std::is_invocable_r_v<M,\
-    \ decltype(R::e)>, \"R::e must work as M()\");\n    static_assert(std::is_invocable_r_v<T,\
-    \ decltype(R::put_vertex), const M&, const V&, int>,\n                  \"R::put_vertex\
-    \ must work as T(const M&, const V&, int v)\");\n\n    rerooting() {\n    }\n\
-    \    explicit rerooting(int n) : rerooting(std::vector<V>(n)) {\n    }\n    explicit\
-    \ rerooting(std::vector<V> a) : _n(int(a.size())), vdata(std::move(a)), g(_n)\
-    \ {\n    }\n    int add_edge(int u, int v, E w = E()) {\n        assert(0 <= u\
-    \ && u < _n);\n        assert(0 <= v && v < _n);\n        int i = int(edges.size());\n\
+    \n#line 2 \"graph/rerooting.hpp\"\n#include <cassert>\n#include <concepts>\n#line\
+    \ 5 \"graph/rerooting.hpp\"\n#include <variant>\n#line 7 \"graph/rerooting.hpp\"\
+    \ntemplate <class R>\nconcept rerooting_spec = requires(const typename R::T& t,\
+    \ const typename R::M& m, const typename R::E& e,\n                          \
+    \        const typename R::V& v, int i) {\n    { R::put_edge(t, e, i, i) } ->\
+    \ std::convertible_to<typename R::M>;\n    { R::merge(m, m) } -> std::convertible_to<typename\
+    \ R::M>;\n    { R::e() } -> std::convertible_to<typename R::M>;\n    { R::put_vertex(m,\
+    \ v, i) } -> std::convertible_to<typename R::T>;\n};\ntemplate <rerooting_spec\
+    \ R>\nstruct rerooting {\npublic:\n    using T = typename R::T;\n    using M =\
+    \ typename R::M;\n    using E = typename R::E;\n    using V = typename R::V;\n\
+    \n    rerooting() {\n    }\n    explicit rerooting(int n) : rerooting(std::vector<V>(n))\
+    \ {\n    }\n    explicit rerooting(std::vector<V> a) : _n(int(a.size())), vdata(std::move(a)),\
+    \ g(_n) {\n    }\n    int add_edge(int u, int v, E w = E()) {\n        assert(0\
+    \ <= u && u < _n);\n        assert(0 <= v && v < _n);\n        int i = int(edges.size());\n\
     \        edges.emplace_back(u, v);\n        edata.push_back(std::move(w));\n \
     \       g[u].push_back(i);\n        g[v].push_back(i);\n        return i;\n  \
     \  }\n    void solve() {\n        assert(int(edges.size()) == _n - 1);\n     \
@@ -118,7 +116,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-10-20 21:57:14+09:00'
+  timestamp: '2026-10-23 07:09:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/tree_path_composite_sum.test.cpp

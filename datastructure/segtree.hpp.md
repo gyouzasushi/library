@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: monoid/concept.hpp
+    title: 'Monoid: Concept'
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
@@ -23,36 +26,42 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: '#line 2 "datastructure/segtree.hpp"
-
-    #include <atcoder/segtree>
-
-    template <class M>
-
-    using segtree = atcoder::segtree<typename M::S, M::op, M::e>;
-
-    '
+  bundledCode: "#line 2 \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\n\
+    \n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\ntemplate <class M>\nconcept\
+    \ semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b)\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid =\
+    \ semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
+    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && requires(typename\
+    \ A::S x, typename A::F f, typename A::F g) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    {\
+    \ A::id() } -> std::same_as<typename A::F>;\n};\n#line 5 \"datastructure/segtree.hpp\"\
+    \ntemplate <monoid M>\nusing segtree = atcoder::segtree<typename M::S, M::op,\
+    \ M::e>;\n"
   code: '#pragma once
 
     #include <atcoder/segtree>
 
-    template <class M>
+
+    #include "monoid/concept.hpp"
+
+    template <monoid M>
 
     using segtree = atcoder::segtree<typename M::S, M::op, M::e>;
 
     '
-  dependsOn: []
+  dependsOn:
+  - monoid/concept.hpp
   isVerificationFile: false
   path: datastructure/segtree.hpp
   requiredBy:
   - graph/manhattan_mst.hpp
-  timestamp: '2026-10-19 02:48:39+09:00'
+  timestamp: '2026-10-23 07:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_A.test.cpp
-  - test/library-checker/manhattanmst.test.cpp
-  - test/library-checker/point_set_range_composite.test.cpp
   - test/unit/monoid.test.cpp
+  - test/library-checker/point_set_range_composite.test.cpp
+  - test/library-checker/manhattanmst.test.cpp
 documentation_of: datastructure/segtree.hpp
 layout: document
 title: Segment Tree (monoid wrapper)

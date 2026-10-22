@@ -102,8 +102,8 @@ data:
   timestamp: '2026-10-19 19:51:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/0558.test.cpp
   - test/aoj/1160.test.cpp
+  - test/aoj/0558.test.cpp
 documentation_of: graph/cell.hpp
 layout: document
 title: "\u30B0\u30EA\u30C3\u30C9\u306E\u30DE\u30B9"

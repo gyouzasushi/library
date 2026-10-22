@@ -153,6 +153,9 @@ data:
       path: monoid/argmin.hpp
       title: 'Monoid: Argmin'
     - icon: ':heavy_check_mark:'
+      path: monoid/concept.hpp
+      title: 'Monoid: Concept'
+    - icon: ':heavy_check_mark:'
       path: monoid/gcd.hpp
       title: 'Monoid: GCD'
     - icon: ':heavy_check_mark:'

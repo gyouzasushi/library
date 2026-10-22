@@ -23,6 +23,9 @@ data:
     path: monoid/argmin.hpp
     title: 'Monoid: Argmin'
   - icon: ':heavy_check_mark:'
+    path: monoid/concept.hpp
+    title: 'Monoid: Concept'
+  - icon: ':heavy_check_mark:'
     path: monoid/gcd.hpp
     title: 'Monoid: GCD'
   - icon: ':heavy_check_mark:'
@@ -54,19 +57,27 @@ data:
     \ {x.sum + f * x.len, x.len};\n    }\n    static F composition(F f, F g) {\n \
     \       return f + g;\n    }\n    static F id() {\n        return T(0);\n    }\n\
     \    static S from(T v) {\n        return {v, 1};\n    }\n};\n#line 2 \"datastructure/lazy_segtree.hpp\"\
-    \n#include <atcoder/lazysegtree>\ntemplate <class A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
+    \n#include <atcoder/lazysegtree>\n\n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\n\
+    template <class M>\nconcept semigroup = requires(typename M::S a, typename M::S\
+    \ b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n};\ntemplate <class\
+    \ M>\nconcept monoid = semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename\
+    \ M::S>;\n};\ntemplate <class A>\nconcept acted_monoid = monoid<A> && requires(typename\
+    \ A::S x, typename A::F f, typename A::F g) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    {\
+    \ A::id() } -> std::same_as<typename A::F>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
+    \ntemplate <acted_monoid A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
     \ A::S, A::op, A::e, typename A::F, A::mapping, A::composition, A::id>;\n#line\
-    \ 2 \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\ntemplate <class\
-    \ M>\nusing segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"\
-    monoid/add.hpp\"\ntemplate <class T>\nstruct monoid_add {\n    using S = T;\n\
-    \    static S op(S a, S b) {\n        return a + b;\n    }\n    static S e() {\n\
-    \        return T(0);\n    }\n    static constexpr bool commutative = true;\n\
-    };\n#line 2 \"monoid/affine.hpp\"\ntemplate <class T>\nstruct monoid_affine {\n\
-    \    struct S {\n        T a, b;\n    };\n    static S op(S f, S g) {\n      \
-    \  return {g.a * f.a, g.a * f.b + g.b};\n    }\n    static S e() {\n        return\
-    \ {T(1), T(0)};\n    }\n    static T eval(S f, T x) {\n        return f.a * x\
-    \ + f.b;\n    }\n    static constexpr bool commutative = false;\n};\n#line 2 \"\
-    monoid/argmax.hpp\"\n#include <limits>\ntemplate <class T>\nstruct monoid_argmax\
+    \ 2 \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\n\n#line 5 \"datastructure/segtree.hpp\"\
+    \ntemplate <monoid M>\nusing segtree = atcoder::segtree<typename M::S, M::op,\
+    \ M::e>;\n#line 2 \"monoid/add.hpp\"\ntemplate <class T>\nstruct monoid_add {\n\
+    \    using S = T;\n    static S op(S a, S b) {\n        return a + b;\n    }\n\
+    \    static S e() {\n        return T(0);\n    }\n    static constexpr bool commutative\
+    \ = true;\n};\n#line 2 \"monoid/affine.hpp\"\ntemplate <class T>\nstruct monoid_affine\
+    \ {\n    struct S {\n        T a, b;\n    };\n    static S op(S f, S g) {\n  \
+    \      return {g.a * f.a, g.a * f.b + g.b};\n    }\n    static S e() {\n     \
+    \   return {T(1), T(0)};\n    }\n    static T eval(S f, T x) {\n        return\
+    \ f.a * x + f.b;\n    }\n    static constexpr bool commutative = false;\n};\n\
+    #line 2 \"monoid/argmax.hpp\"\n#include <limits>\ntemplate <class T>\nstruct monoid_argmax\
     \ {\n    struct S {\n        T val;\n        int id;\n    };\n    static S op(S\
     \ a, S b) {\n        if (a.val != b.val) return a.val > b.val ? a : b;\n     \
     \   return a.id < b.id ? a : b;\n    }\n    static S e() {\n        return {std::numeric_limits<T>::lowest(),\
@@ -203,6 +214,7 @@ data:
   dependsOn:
   - acted_monoid/range_add_range_sum.hpp
   - datastructure/lazy_segtree.hpp
+  - monoid/concept.hpp
   - datastructure/segtree.hpp
   - monoid/add.hpp
   - monoid/affine.hpp
@@ -215,7 +227,7 @@ data:
   isVerificationFile: true
   path: test/unit/monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 18:09:47+09:00'
+  timestamp: '2026-10-23 07:09:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/monoid.test.cpp

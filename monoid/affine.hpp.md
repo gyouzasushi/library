@@ -31,8 +31,8 @@ data:
   timestamp: '2026-10-19 02:48:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library-checker/point_set_range_composite.test.cpp
   - test/unit/monoid.test.cpp
+  - test/library-checker/point_set_range_composite.test.cpp
 documentation_of: monoid/affine.hpp
 layout: document
 title: 'Monoid: Affine'
