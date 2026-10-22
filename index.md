@@ -49,9 +49,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/static_range_minimum.hpp
       title: datastructure/static_range_minimum.hpp
-    - icon: ':heavy_check_mark:'
-      path: datastructure/unionfind.hpp
-      title: datastructure/unionfind.hpp
   - name: geometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -71,9 +68,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: "Dijkstra \u6CD5"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/functional_graph.hpp
-      title: graph/functional_graph.hpp
+      title: Functional Graph
     - icon: ':heavy_check_mark:'
       path: graph/heavy_light_decomposition.hpp
       title: "HL\u5206\u89E3 (Heavy-Light Decomposition)"
@@ -184,7 +181,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/0558.test.cpp
       title: test/aoj/0558.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/1160.test.cpp
       title: test/aoj/1160.test.cpp
     - icon: ':heavy_check_mark:'
@@ -367,9 +364,6 @@ data:
       path: test/library-checker/tree_path_composite_sum.test.cpp
       title: test/library-checker/tree_path_composite_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/library-checker/unionfind.test.cpp
-      title: test/library-checker/unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/library-checker/vertex_add_path_sum.test.cpp
       title: test/library-checker/vertex_add_path_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -389,6 +383,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/dual_segtree.test.cpp
       title: test/unit/dual_segtree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/functional_graph.test.cpp
+      title: test/unit/functional_graph.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/heavy_light_decomposition.test.cpp
       title: test/unit/heavy_light_decomposition.test.cpp
