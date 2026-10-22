@@ -1,24 +1,24 @@
 #pragma once
 #include <cassert>
-#include <functional>
-#include <type_traits>
+#include <concepts>
 #include <utility>
 #include <variant>
 #include <vector>
 template <class R>
+concept rerooting_spec = requires(const typename R::T& t, const typename R::M& m, const typename R::E& e,
+                                  const typename R::V& v, int i) {
+    { R::put_edge(t, e, i, i) } -> std::convertible_to<typename R::M>;
+    { R::merge(m, m) } -> std::convertible_to<typename R::M>;
+    { R::e() } -> std::convertible_to<typename R::M>;
+    { R::put_vertex(m, v, i) } -> std::convertible_to<typename R::T>;
+};
+template <rerooting_spec R>
 struct rerooting {
 public:
     using T = typename R::T;
     using M = typename R::M;
     using E = typename R::E;
     using V = typename R::V;
-    static_assert(std::is_invocable_r_v<M, decltype(R::put_edge), const T&, const E&, int, int>,
-                  "R::put_edge must work as M(const T&, const E&, int u, int v)");
-    static_assert(std::is_invocable_r_v<M, decltype(R::merge), const M&, const M&>,
-                  "R::merge must work as M(const M&, const M&)");
-    static_assert(std::is_invocable_r_v<M, decltype(R::e)>, "R::e must work as M()");
-    static_assert(std::is_invocable_r_v<T, decltype(R::put_vertex), const M&, const V&, int>,
-                  "R::put_vertex must work as T(const M&, const V&, int v)");
 
     rerooting() {
     }

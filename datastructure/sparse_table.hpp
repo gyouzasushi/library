@@ -3,9 +3,10 @@
 #include <bit>
 #include <cassert>
 #include <vector>
-template <class M> struct sparse_table {
+
+#include "monoid/concept.hpp"
+template <semigroup M> struct sparse_table {
     using S = typename M::S;
-    static_assert(std::is_same_v<decltype(M::op(std::declval<S>(), std::declval<S>())), S>);
     sparse_table() : _n(0) {
     }
     explicit sparse_table(const std::vector<S>& a) : _n(int(a.size())) {

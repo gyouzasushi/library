@@ -1,4 +1,6 @@
 #pragma once
 #include <atcoder/segtree>
-template <class M>
+
+#include "monoid/concept.hpp"
+template <monoid M>
 using segtree = atcoder::segtree<typename M::S, M::op, M::e>;
