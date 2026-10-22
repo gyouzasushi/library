@@ -144,6 +144,12 @@ data:
       path: monoid/affine.hpp
       title: 'Monoid: Affine'
     - icon: ':heavy_check_mark:'
+      path: monoid/argmax.hpp
+      title: 'Monoid: Argmax'
+    - icon: ':heavy_check_mark:'
+      path: monoid/argmin.hpp
+      title: 'Monoid: Argmin'
+    - icon: ':heavy_check_mark:'
       path: monoid/gcd.hpp
       title: 'Monoid: GCD'
     - icon: ':heavy_check_mark:'

@@ -32,10 +32,3 @@ documentation_of: monoid/max.hpp
 layout: document
 title: 'Monoid: Max'
 ---
-
-### 概要
-- 最大値モノイド。
-
-### 使い方
-- `S = T`, `op(a, b) = max(a, b)`, `e() = numeric_limits<T>::lowest()`
-- `commutative = true`
