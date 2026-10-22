@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0558.test.cpp
     title: test/aoj/0558.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1160.test.cpp
+    title: test/aoj/1160.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -99,6 +102,7 @@ data:
   timestamp: '2026-10-19 19:51:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/1160.test.cpp
   - test/aoj/0558.test.cpp
 documentation_of: graph/cell.hpp
 layout: document

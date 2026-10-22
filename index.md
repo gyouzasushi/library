@@ -52,8 +52,17 @@ data:
   - name: geometry
     pages:
     - icon: ':heavy_check_mark:'
-      path: geometry/geometry.hpp
-      title: geomerty
+      path: geometry/circle.hpp
+      title: 'Geometry: Circle'
+    - icon: ':heavy_check_mark:'
+      path: geometry/line.hpp
+      title: 'Geometry: Line'
+    - icon: ':heavy_check_mark:'
+      path: geometry/point.hpp
+      title: 'Geometry: Point'
+    - icon: ':heavy_check_mark:'
+      path: geometry/polygon.hpp
+      title: 'Geometry: Polygon'
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -181,7 +190,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/0558.test.cpp
       title: test/aoj/0558.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1160.test.cpp
       title: test/aoj/1160.test.cpp
     - icon: ':heavy_check_mark:'
@@ -295,6 +304,9 @@ data:
       path: test/library-checker/chromatic_number.test.cpp
       title: test/library-checker/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/closest_pair.test.cpp
+      title: test/library-checker/closest_pair.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/connected_components_of_complement_graph.test.cpp
       title: test/library-checker/connected_components_of_complement_graph.test.cpp
     - icon: ':heavy_check_mark:'
@@ -349,6 +361,12 @@ data:
       path: test/library-checker/shortest_path.test.cpp
       title: test/library-checker/shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/sort_points_by_argument.test.cpp
+      title: test/library-checker/sort_points_by_argument.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/static_convex_hull.test.cpp
+      title: test/library-checker/static_convex_hull.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_sum.test.cpp
       title: test/library-checker/static_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -386,6 +404,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/functional_graph.test.cpp
       title: test/unit/functional_graph.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/geometry.test.cpp
+      title: test/unit/geometry.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/heavy_light_decomposition.test.cpp
       title: test/unit/heavy_light_decomposition.test.cpp
