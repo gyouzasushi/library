@@ -493,8 +493,8 @@ data:
   timestamp: '2026-10-17 13:59:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/0378.test.cpp
   - test/yukicoder/2231.test.cpp
+  - test/aoj/0378.test.cpp
   - test/library-checker/wildcard_pattern_matching.test.cpp
 documentation_of: string/wildcard_matching.hpp
 layout: document

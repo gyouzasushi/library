@@ -62,8 +62,8 @@ data:
   timestamp: '2026-05-18 10:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/dual_segtree.test.cpp
   - test/library-checker/range_affine_point_get.test.cpp
+  - test/unit/dual_segtree.test.cpp
 documentation_of: datastructure/dual_segtree.hpp
 layout: document
 title: Dual Segment Tree

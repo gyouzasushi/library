@@ -58,9 +58,9 @@ data:
   timestamp: '2026-10-22 23:52:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/sparse_table.test.cpp
-  - test/library-checker/staticrmq.test.cpp
   - test/library-checker/lca.test.cpp
+  - test/library-checker/staticrmq.test.cpp
+  - test/unit/sparse_table.test.cpp
 documentation_of: datastructure/sparse_table.hpp
 layout: document
 title: Sparse Table

@@ -306,25 +306,25 @@ data:
   timestamp: '2026-10-22 23:24:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_4_C.test.cpp
-  - test/aoj/CGL_7_H.test.cpp
   - test/aoj/CGL_4_A.test.cpp
-  - test/aoj/CGL_4_B.test.cpp
-  - test/aoj/CGL_3_B.test.cpp
-  - test/aoj/CGL_7_D.test.cpp
-  - test/aoj/CGL_5_A.test.cpp
-  - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_7_E.test.cpp
   - test/aoj/CGL_3_A.test.cpp
-  - test/aoj/CGL_7_I.test.cpp
+  - test/aoj/CGL_3_C.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_7_A.test.cpp
-  - test/aoj/CGL_7_E.test.cpp
+  - test/aoj/CGL_7_H.test.cpp
+  - test/aoj/CGL_3_B.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_4_C.test.cpp
+  - test/aoj/CGL_7_D.test.cpp
   - test/aoj/CGL_7_G.test.cpp
   - test/aoj/CGL_7_F.test.cpp
-  - test/aoj/CGL_3_C.test.cpp
-  - test/unit/geometry.test.cpp
-  - test/library-checker/static_convex_hull.test.cpp
+  - test/aoj/CGL_7_I.test.cpp
+  - test/aoj/CGL_4_B.test.cpp
+  - test/aoj/CGL_5_A.test.cpp
   - test/library-checker/closest_pair.test.cpp
+  - test/library-checker/static_convex_hull.test.cpp
+  - test/unit/geometry.test.cpp
 documentation_of: geometry/polygon.hpp
 layout: document
 title: 'Geometry: Polygon'
@@ -345,7 +345,7 @@ title: 'Geometry: Polygon'
 - `convex_cut(poly, l)`: 凸多角形 `poly` を直線 `l` で切った左側を返す。浮動小数点型のみ。
 
 ### 制約
-- `farthest_pair`, `closest_pair` では $|\mathrm{ps}| \ge 2$
+- `farthest_pair`, `closest_pair` では $\lvert \mathrm{ps} \rvert \ge 2$
 - `convex_cut` では `poly` は反時計回りの凸多角形
 
 ### 計算量

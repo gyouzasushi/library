@@ -148,8 +148,8 @@ data:
   timestamp: '2026-10-20 21:57:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/rerooting.test.cpp
   - test/library-checker/tree_path_composite_sum.test.cpp
+  - test/unit/rerooting.test.cpp
 documentation_of: graph/rerooting.hpp
 layout: document
 title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting)"

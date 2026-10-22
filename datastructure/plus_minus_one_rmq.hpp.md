@@ -116,8 +116,8 @@ data:
   timestamp: '2026-10-22 23:52:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/sparse_table.test.cpp
   - test/library-checker/lca.test.cpp
+  - test/unit/sparse_table.test.cpp
 documentation_of: datastructure/plus_minus_one_rmq.hpp
 layout: document
 title: Plus Minus One RMQ
@@ -131,7 +131,7 @@ title: Plus Minus One RMQ
 - `prod(l, r)`: `a[l], ..., a[r - 1]` の最小値の添字を返す。複数あれば最小の添字。
 
 ### 制約
-- $|a_i - a_{i+1}| = 1$
+- $\lvert a_i - a_{i+1} \rvert = 1$
 - $0 \le l < r \le n$
 
 ### 計算量
