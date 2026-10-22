@@ -2,11 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: datastructure/plus_minus_one_range_minimum.hpp
-    title: datastructure/plus_minus_one_range_minimum.hpp
+    path: datastructure/plus_minus_one_rmq.hpp
+    title: Plus Minus One RMQ
   - icon: ':heavy_check_mark:'
-    path: datastructure/static_range_minimum.hpp
-    title: datastructure/static_range_minimum.hpp
+    path: datastructure/sparse_table.hpp
+    title: Sparse Table
+  - icon: ':heavy_check_mark:'
+    path: monoid/argmin.hpp
+    title: 'Monoid: Argmin'
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -18,72 +21,75 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/lowest_common_ancestor.hpp\"\n#include <cassert>\n\
-    #include <vector>\n\n#line 2 \"datastructure/plus_minus_one_range_minimum.hpp\"\
-    \n#include <cmath>\n#line 4 \"datastructure/plus_minus_one_range_minimum.hpp\"\
-    \n\n#line 3 \"datastructure/static_range_minimum.hpp\"\nstruct StaticRMQ {\npublic:\n\
-    \    void init(const std::vector<std::pair<int, int>>& _v) {\n        _n = int(_v.size()),\
-    \ d.resize(_n), ceil_log2.resize(_n + 1);\n        ceil_log2[0] = 0;\n       \
-    \ ceil_log2[1] = 0;\n        for (int i = 2; i <= _n; i++) ceil_log2[i] = ceil_log2[i\
-    \ >> 1] + 1;\n        for (int i = 0; i < _n; i++) {\n            d[i].resize(ceil_log2[_n]\
-    \ + 1);\n            d[i][0] = _v[i];\n        }\n        for (int b = 0; b <\
-    \ ceil_log2[_n]; b++) {\n            for (int i = 0; i < _n; i++) {\n        \
-    \        if (i + (1 << (b + 1)) > _n) break;\n                d[i][b + 1] = std::min(d[i][b],\
-    \ d[i + (1 << b)][b]);\n            }\n        }\n    }\n    std::pair<int, int>\
-    \ prod(int l, int r) {\n        if (!(l < r)) return PINF;\n        int b = ceil_log2[r\
-    \ - l];\n        return std::min(d[l][b], d[r - (1 << b)][b]);\n    }\n\nprivate:\n\
-    \    int _n;\n    std::vector<std::vector<std::pair<int, int>>> d;\n    std::vector<int>\
-    \ ceil_log2;\n    const std::pair<int, int> PINF = {1 << 30, 1 << 30};\n};\n#line\
-    \ 6 \"datastructure/plus_minus_one_range_minimum.hpp\"\nstruct PlusMinusOneRMQ\
-    \ {\npublic:\n    void init(const std::vector<int>& _v) {\n        _n = int(_v.size());\n\
-    \        v = _v;\n        s = std::max(1, int(std::log2(_n) / 2));\n        B\
-    \ = (_n + s - 1) / s;\n        std::vector<std::pair<int, int>> _spt(B);\n   \
-    \     pattern.resize(B);\n        for (int i = 0; i < _n; i += s) {\n        \
-    \    int min_j = i;\n            int bit = 0;\n            for (int j = i; j <\
-    \ std::min(_n, i + s); j++) {\n                if (v[j] < v[min_j]) min_j = j;\n\
-    \                if (j + 1 < std::min(_n, i + s) && v[j] < v[j + 1])\n       \
-    \             bit |= 1 << (j - i);\n            }\n            _spt[i / s] = {v[min_j],\
-    \ min_j};\n            pattern[i / s] = bit;\n        }\n        sparse_table.init(_spt);\n\
-    \n        lookup_table.resize(1 << (s - 1));\n        for (int bit = 0; bit <\
-    \ (1 << (s - 1)); bit++) {\n            lookup_table[bit].resize(s + 1);\n   \
-    \         for (int l = 0; l <= s; l++) {\n                lookup_table[bit][l].resize(s\
-    \ + 1, INF);\n                int min_ = 0;\n                int min_i = l;\n\
-    \                int sum = 0;\n                for (int r = l + 1; r <= s; r++)\
-    \ {\n                    lookup_table[bit][l][r] = min_i;\n                  \
-    \  sum += bit >> (r - 1) & 1 ? 1 : -1;\n                    if (sum < min_) {\n\
-    \                        min_ = sum;\n                        min_i = r;\n   \
-    \                 }\n                }\n            }\n        }\n    }\n    int\
-    \ prod(int l, int r) {\n        int m1 = (l + s - 1) / s;\n        int m2 = r\
-    \ / s;\n        int l1 = s * m1;\n        int r1 = s * m2;\n        if (m2 < m1)\
-    \ {\n            return lookup_table[pattern[m2]][l - r1][r - r1] + r1;\n    \
-    \    }\n        int ret = INF;\n        if (m1 > 0) {\n            ret = argmin(\n\
-    \                ret, lookup_table[pattern[m1 - 1]][s - (l1 - l)][s] + l1 - s);\n\
-    \        }\n        ret = argmin(ret, sparse_table.prod(m1, m2).second);\n   \
-    \     if (m2 < B) {\n            ret = argmin(ret, lookup_table[pattern[m2]][0][r\
-    \ - r1] + r1);\n        }\n        return ret;\n    }\n\nprivate:\n    int _n;\n\
-    \    int s, B;\n    StaticRMQ sparse_table;\n    std::vector<std::vector<std::vector<int>>>\
-    \ lookup_table;\n    std::vector<int> pattern, v;\n    const int INF = 1 << 30;\n\
-    \    int argmin(int i, int j) {\n        if (i >= INF || j >= INF || v[i] == v[j])\
-    \ return std::min(i, j);\n        return v[i] < v[j] ? i : j;\n    }\n};\n#line\
-    \ 6 \"graph/lowest_common_ancestor.hpp\"\nstruct lowest_common_ancestor {\npublic:\n\
-    \    lowest_common_ancestor() {\n    }\n    lowest_common_ancestor(int n, int\
-    \ root = 0)\n        : _n(n), _root(root), g(n), id(n), vs(2 * n - 1), dep(2 *\
-    \ n - 1) {\n    }\n    void add_edge(int from, int to) {\n        assert(0 <=\
-    \ from && from < _n);\n        assert(0 <= to && to < _n);\n        g[from].push_back(to);\n\
+    #include <vector>\n\n#line 2 \"datastructure/plus_minus_one_rmq.hpp\"\n#include\
+    \ <algorithm>\n#include <bit>\n#line 6 \"datastructure/plus_minus_one_rmq.hpp\"\
+    \n\n#line 6 \"datastructure/sparse_table.hpp\"\ntemplate <class M> struct sparse_table\
+    \ {\n    using S = typename M::S;\n    static_assert(std::is_same_v<decltype(M::op(std::declval<S>(),\
+    \ std::declval<S>())), S>);\n    sparse_table() : _n(0) {\n    }\n    explicit\
+    \ sparse_table(const std::vector<S>& a) : _n(int(a.size())) {\n        int log\
+    \ = std::max(1, std::bit_width((unsigned)_n));\n        t.resize(log);\n     \
+    \   t[0] = a;\n        for (int k = 1; k < log; k++) {\n            t[k].resize(_n\
+    \ - (1 << k) + 1);\n            for (int i = 0; i + (1 << k) <= _n; i++) {\n \
+    \               t[k][i] = M::op(t[k - 1][i], t[k - 1][i + (1 << (k - 1))]);\n\
+    \            }\n        }\n    }\n    S prod(int l, int r) const {\n        assert(0\
+    \ <= l && l < r && r <= _n);\n        int k = std::bit_width((unsigned)(r - l))\
+    \ - 1;\n        return M::op(t[k][l], t[k][r - (1 << k)]);\n    }\n\nprivate:\n\
+    \    int _n;\n    std::vector<std::vector<S>> t;\n};\n#line 2 \"monoid/argmin.hpp\"\
+    \n#include <limits>\ntemplate <class T>\nstruct monoid_argmin {\n    struct S\
+    \ {\n        T val;\n        int id;\n    };\n    static S op(S a, S b) {\n  \
+    \      if (a.val != b.val) return a.val < b.val ? a : b;\n        return a.id\
+    \ < b.id ? a : b;\n    }\n    static S e() {\n        return {std::numeric_limits<T>::max(),\
+    \ -1};\n    }\n    static constexpr bool commutative = true;\n};\n#line 9 \"datastructure/plus_minus_one_rmq.hpp\"\
+    \nstruct plus_minus_one_rmq {\npublic:\n    plus_minus_one_rmq() : _n(0), s(1),\
+    \ B(0) {\n    }\n    explicit plus_minus_one_rmq(const std::vector<int>& a) :\
+    \ _n(int(a.size())), v(a) {\n        s = std::max(1, (std::bit_width((unsigned)_n)\
+    \ - 1) / 2);\n        B = (_n + s - 1) / s;\n        std::vector<monoid_argmin<int>::S>\
+    \ blocks(B);\n        pattern.resize(B);\n        for (int i = 0; i < _n; i +=\
+    \ s) {\n            int min_j = i;\n            int bit = 0;\n            int\
+    \ end = std::min(_n, i + s);\n            for (int j = i; j < end; j++) {\n  \
+    \              if (v[j] < v[min_j]) min_j = j;\n                if (j + 1 < end\
+    \ && v[j] < v[j + 1]) bit |= 1 << (j - i);\n            }\n            blocks[i\
+    \ / s] = {v[min_j], min_j};\n            pattern[i / s] = bit;\n        }\n  \
+    \      table = sparse_table<monoid_argmin<int>>(blocks);\n        lookup.resize(1\
+    \ << (s - 1));\n        for (int bit = 0; bit < (1 << (s - 1)); bit++) {\n   \
+    \         lookup[bit].resize(s + 1);\n            for (int l = 0; l <= s; l++)\
+    \ {\n                lookup[bit][l].assign(s + 1, INF);\n                int min_sum\
+    \ = 0, min_i = l, sum = 0;\n                for (int r = l + 1; r <= s; r++) {\n\
+    \                    lookup[bit][l][r] = min_i;\n                    sum += bit\
+    \ >> (r - 1) & 1 ? 1 : -1;\n                    if (sum < min_sum) {\n       \
+    \                 min_sum = sum;\n                        min_i = r;\n       \
+    \             }\n                }\n            }\n        }\n    }\n    int prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l < r && r <= _n);\n        int\
+    \ m1 = (l + s - 1) / s, m2 = r / s;\n        int l1 = s * m1, r1 = s * m2;\n \
+    \       if (m2 < m1) return lookup[pattern[m2]][l - r1][r - r1] + r1;\n      \
+    \  int ret = INF;\n        if (m1 > 0) ret = argmin(ret, lookup[pattern[m1 - 1]][s\
+    \ - (l1 - l)][s] + l1 - s);\n        if (m1 < m2) ret = argmin(ret, table.prod(m1,\
+    \ m2).id);\n        if (m2 < B) ret = argmin(ret, lookup[pattern[m2]][0][r - r1]\
+    \ + r1);\n        return ret;\n    }\n\nprivate:\n    static constexpr int INF\
+    \ = 1 << 30;\n    int _n, s, B;\n    std::vector<int> v, pattern;\n    sparse_table<monoid_argmin<int>>\
+    \ table;\n    std::vector<std::vector<std::vector<int>>> lookup;\n    int argmin(int\
+    \ i, int j) const {\n        if (i >= INF) return j;\n        if (j >= INF) return\
+    \ i;\n        if (v[i] != v[j]) return v[i] < v[j] ? i : j;\n        return std::min(i,\
+    \ j);\n    }\n};\n#line 6 \"graph/lowest_common_ancestor.hpp\"\nstruct lowest_common_ancestor\
+    \ {\npublic:\n    lowest_common_ancestor() {\n    }\n    lowest_common_ancestor(int\
+    \ n, int root = 0)\n        : _n(n), _root(root), g(n), id(n), vs(2 * n - 1),\
+    \ dep(2 * n - 1) {\n    }\n    void add_edge(int from, int to) {\n        assert(0\
+    \ <= from && from < _n);\n        assert(0 <= to && to < _n);\n        g[from].push_back(to);\n\
     \        g[to].push_back(from);\n    }\n    void build() {\n        int k = 0;\n\
     \        auto dfs = [&](auto dfs, int pos, int pre, int d) -> void {\n       \
     \     id[pos] = k;\n            vs[k] = pos;\n            dep[k++] = d;\n    \
     \        for (int nxt : g[pos]) {\n                if (nxt == pre) continue;\n\
     \                dfs(dfs, nxt, pos, d + 1);\n                vs[k] = pos;\n  \
     \              dep[k++] = d;\n            }\n        };\n        dfs(dfs, _root,\
-    \ -1, 0);\n        rmq.init(dep);\n    }\n\n    int get(int u, int v) {\n    \
-    \    int l = std::min(id[u], id[v]);\n        int r = std::max(id[u], id[v]) +\
-    \ 1;\n        return vs[rmq.prod(l, r)];\n    }\n    int get(int u, int v, int\
-    \ r) {\n        return get(r, u) ^ get(u, v) ^ get(v, r);\n    }\n    int depth(int\
-    \ u) {\n        return dep[id[u]];\n    }\n    int dist(int u, int v) {\n    \
-    \    return depth(u) + depth(v) - 2 * depth(get(u, v));\n    }\n\nprivate:\n \
-    \   int _n, _root;\n    std::vector<std::vector<int>> g;\n    std::vector<int>\
-    \ id, vs, dep;\n    PlusMinusOneRMQ rmq;\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <vector>\n\n#include \"../datastructure/plus_minus_one_range_minimum.hpp\"\
+    \ -1, 0);\n        rmq = plus_minus_one_rmq(dep);\n    }\n\n    int get(int u,\
+    \ int v) {\n        int l = std::min(id[u], id[v]);\n        int r = std::max(id[u],\
+    \ id[v]) + 1;\n        return vs[rmq.prod(l, r)];\n    }\n    int get(int u, int\
+    \ v, int r) {\n        return get(r, u) ^ get(u, v) ^ get(v, r);\n    }\n    int\
+    \ depth(int u) {\n        return dep[id[u]];\n    }\n    int dist(int u, int v)\
+    \ {\n        return depth(u) + depth(v) - 2 * depth(get(u, v));\n    }\n\nprivate:\n\
+    \    int _n, _root;\n    std::vector<std::vector<int>> g;\n    std::vector<int>\
+    \ id, vs, dep;\n    plus_minus_one_rmq rmq;\n};\n"
+  code: "#pragma once\n#include <cassert>\n#include <vector>\n\n#include \"datastructure/plus_minus_one_rmq.hpp\"\
     \nstruct lowest_common_ancestor {\npublic:\n    lowest_common_ancestor() {\n \
     \   }\n    lowest_common_ancestor(int n, int root = 0)\n        : _n(n), _root(root),\
     \ g(n), id(n), vs(2 * n - 1), dep(2 * n - 1) {\n    }\n    void add_edge(int from,\
@@ -94,21 +100,22 @@ data:
     \ = pos;\n            dep[k++] = d;\n            for (int nxt : g[pos]) {\n  \
     \              if (nxt == pre) continue;\n                dfs(dfs, nxt, pos, d\
     \ + 1);\n                vs[k] = pos;\n                dep[k++] = d;\n       \
-    \     }\n        };\n        dfs(dfs, _root, -1, 0);\n        rmq.init(dep);\n\
+    \     }\n        };\n        dfs(dfs, _root, -1, 0);\n        rmq = plus_minus_one_rmq(dep);\n\
     \    }\n\n    int get(int u, int v) {\n        int l = std::min(id[u], id[v]);\n\
     \        int r = std::max(id[u], id[v]) + 1;\n        return vs[rmq.prod(l, r)];\n\
     \    }\n    int get(int u, int v, int r) {\n        return get(r, u) ^ get(u,\
     \ v) ^ get(v, r);\n    }\n    int depth(int u) {\n        return dep[id[u]];\n\
     \    }\n    int dist(int u, int v) {\n        return depth(u) + depth(v) - 2 *\
     \ depth(get(u, v));\n    }\n\nprivate:\n    int _n, _root;\n    std::vector<std::vector<int>>\
-    \ g;\n    std::vector<int> id, vs, dep;\n    PlusMinusOneRMQ rmq;\n};"
+    \ g;\n    std::vector<int> id, vs, dep;\n    plus_minus_one_rmq rmq;\n};"
   dependsOn:
-  - datastructure/plus_minus_one_range_minimum.hpp
-  - datastructure/static_range_minimum.hpp
+  - datastructure/plus_minus_one_rmq.hpp
+  - datastructure/sparse_table.hpp
+  - monoid/argmin.hpp
   isVerificationFile: false
   path: graph/lowest_common_ancestor.hpp
   requiredBy: []
-  timestamp: '2023-03-05 19:05:08+09:00'
+  timestamp: '2026-10-22 23:52:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/lca.test.cpp
@@ -121,7 +128,7 @@ title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
 - 最小共通祖先(LCA)他を求める。
   
 ### 使い方
-- `LowestCommonAncestor(n, root = 0)`: $\mathrm n$ 頂点で初期化する。頂点 `root` が根になる。
+- `lowest_common_ancestor(n, root = 0)`: $\mathrm n$ 頂点で初期化する。頂点 `root` が根になる。
 - `add_edge(u, v)`: 頂点 `u` と 頂点 `v` とを結ぶ辺を追加する。
 - `build()`: 構築する。
 - `get(u, v)`: 頂点 `u` と頂点 `v` のLCAを求める。

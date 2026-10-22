@@ -3,15 +3,27 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: datastructure/plus_minus_one_rmq.hpp
+    title: Plus Minus One RMQ
+  - icon: ':heavy_check_mark:'
+    path: graph/lowest_common_ancestor.hpp
+    title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
+  - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
     title: Manhattan MST
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/lca.test.cpp
+    title: test/library-checker/lca.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/manhattanmst.test.cpp
     title: test/library-checker/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/sparse_table.test.cpp
+    title: test/unit/sparse_table.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -32,11 +44,15 @@ data:
   isVerificationFile: false
   path: monoid/argmin.hpp
   requiredBy:
+  - datastructure/plus_minus_one_rmq.hpp
   - graph/manhattan_mst.hpp
+  - graph/lowest_common_ancestor.hpp
   timestamp: '2026-10-22 18:09:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unit/sparse_table.test.cpp
   - test/unit/monoid.test.cpp
+  - test/library-checker/lca.test.cpp
   - test/library-checker/manhattanmst.test.cpp
 documentation_of: monoid/argmin.hpp
 layout: document

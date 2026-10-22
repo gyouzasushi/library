@@ -1,63 +1,82 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: datastructure/plus_minus_one_rmq.hpp
+    title: Plus Minus One RMQ
+  - icon: ':heavy_check_mark:'
+    path: graph/lowest_common_ancestor.hpp
+    title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/lca.test.cpp
+    title: test/library-checker/lca.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/staticrmq.test.cpp
     title: test/library-checker/staticrmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/sparse_table.test.cpp
+    title: test/unit/sparse_table.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"datastructure/sparse_table.hpp\"\n#include <cassert>\n#include\
-    \ <vector>\ntemplate <class S, S (*op)(S, S)>\nstruct SparseTable {\npublic:\n\
-    \    SparseTable() {\n    }\n    SparseTable(const std::vector<S>& v)\n      \
-    \  : _n(int(v.size())), d(_n), ceil_log2(_n + 1) {\n        ceil_log2[0] = 0;\n\
-    \        ceil_log2[1] = 0;\n        for (int i = 2; i <= _n; i++) ceil_log2[i]\
-    \ = ceil_log2[i >> 1] + 1;\n        for (int i = 0; i < _n; i++) {\n         \
-    \   d[i].resize(ceil_log2[_n] + 1);\n            d[i][0] = v[i];\n        }\n\
-    \        for (int b = 0; b < ceil_log2[_n]; b++) {\n            for (int i = 0;\
-    \ i < _n; i++) {\n                if (i + (1 << (b + 1)) > _n) break;\n      \
-    \          d[i][b + 1] = op(d[i][b], d[i + (1 << b)][b]);\n            }\n   \
-    \     }\n    }\n    S prod(int l, int r) {\n        assert(r - l > 0);\n     \
-    \   int b = ceil_log2[r - l];\n        return op(d[l][b], d[r - (1 << b)][b]);\n\
-    \    }\n\nprivate:\n    int _n;\n    std::vector<std::vector<S>> d;\n    std::vector<int>\
-    \ ceil_log2;\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <vector>\ntemplate <class S, S\
-    \ (*op)(S, S)>\nstruct SparseTable {\npublic:\n    SparseTable() {\n    }\n  \
-    \  SparseTable(const std::vector<S>& v)\n        : _n(int(v.size())), d(_n), ceil_log2(_n\
-    \ + 1) {\n        ceil_log2[0] = 0;\n        ceil_log2[1] = 0;\n        for (int\
-    \ i = 2; i <= _n; i++) ceil_log2[i] = ceil_log2[i >> 1] + 1;\n        for (int\
-    \ i = 0; i < _n; i++) {\n            d[i].resize(ceil_log2[_n] + 1);\n       \
-    \     d[i][0] = v[i];\n        }\n        for (int b = 0; b < ceil_log2[_n]; b++)\
-    \ {\n            for (int i = 0; i < _n; i++) {\n                if (i + (1 <<\
-    \ (b + 1)) > _n) break;\n                d[i][b + 1] = op(d[i][b], d[i + (1 <<\
-    \ b)][b]);\n            }\n        }\n    }\n    S prod(int l, int r) {\n    \
-    \    assert(r - l > 0);\n        int b = ceil_log2[r - l];\n        return op(d[l][b],\
-    \ d[r - (1 << b)][b]);\n    }\n\nprivate:\n    int _n;\n    std::vector<std::vector<S>>\
-    \ d;\n    std::vector<int> ceil_log2;\n};\n"
+  bundledCode: "#line 2 \"datastructure/sparse_table.hpp\"\n#include <algorithm>\n\
+    #include <bit>\n#include <cassert>\n#include <vector>\ntemplate <class M> struct\
+    \ sparse_table {\n    using S = typename M::S;\n    static_assert(std::is_same_v<decltype(M::op(std::declval<S>(),\
+    \ std::declval<S>())), S>);\n    sparse_table() : _n(0) {\n    }\n    explicit\
+    \ sparse_table(const std::vector<S>& a) : _n(int(a.size())) {\n        int log\
+    \ = std::max(1, std::bit_width((unsigned)_n));\n        t.resize(log);\n     \
+    \   t[0] = a;\n        for (int k = 1; k < log; k++) {\n            t[k].resize(_n\
+    \ - (1 << k) + 1);\n            for (int i = 0; i + (1 << k) <= _n; i++) {\n \
+    \               t[k][i] = M::op(t[k - 1][i], t[k - 1][i + (1 << (k - 1))]);\n\
+    \            }\n        }\n    }\n    S prod(int l, int r) const {\n        assert(0\
+    \ <= l && l < r && r <= _n);\n        int k = std::bit_width((unsigned)(r - l))\
+    \ - 1;\n        return M::op(t[k][l], t[k][r - (1 << k)]);\n    }\n\nprivate:\n\
+    \    int _n;\n    std::vector<std::vector<S>> t;\n};\n"
+  code: "#pragma once\n#include <algorithm>\n#include <bit>\n#include <cassert>\n\
+    #include <vector>\ntemplate <class M> struct sparse_table {\n    using S = typename\
+    \ M::S;\n    static_assert(std::is_same_v<decltype(M::op(std::declval<S>(), std::declval<S>())),\
+    \ S>);\n    sparse_table() : _n(0) {\n    }\n    explicit sparse_table(const std::vector<S>&\
+    \ a) : _n(int(a.size())) {\n        int log = std::max(1, std::bit_width((unsigned)_n));\n\
+    \        t.resize(log);\n        t[0] = a;\n        for (int k = 1; k < log; k++)\
+    \ {\n            t[k].resize(_n - (1 << k) + 1);\n            for (int i = 0;\
+    \ i + (1 << k) <= _n; i++) {\n                t[k][i] = M::op(t[k - 1][i], t[k\
+    \ - 1][i + (1 << (k - 1))]);\n            }\n        }\n    }\n    S prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l < r && r <= _n);\n        int\
+    \ k = std::bit_width((unsigned)(r - l)) - 1;\n        return M::op(t[k][l], t[k][r\
+    \ - (1 << k)]);\n    }\n\nprivate:\n    int _n;\n    std::vector<std::vector<S>>\
+    \ t;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: datastructure/sparse_table.hpp
-  requiredBy: []
-  timestamp: '2022-09-02 15:22:42+09:00'
+  requiredBy:
+  - datastructure/plus_minus_one_rmq.hpp
+  - graph/lowest_common_ancestor.hpp
+  timestamp: '2026-10-22 23:52:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unit/sparse_table.test.cpp
   - test/library-checker/staticrmq.test.cpp
+  - test/library-checker/lca.test.cpp
 documentation_of: datastructure/sparse_table.hpp
 layout: document
 title: Sparse Table
 ---
 
 ### 概要
-- 演算が冪等な半群に対する区間クエリを高速に処理する。
-  
+- 静的な配列の区間積を求める。
+
 ### 使い方
-- `SparseTable<S, op>(v)`: 半群 `(S, op)`、配列 `v` で初期化する。`op` は冪等な演算である必要がある($\min / \max$, $\gcd / \mathrm{lcm}$, $\mathrm{and} / \mathrm{or}$ など)。
-- `prod(l, r)`: $\mathrm{op} (\mathrm{op} (\cdots \mathrm{op} (\mathrm{v}_{l}, \mathrm{v}_{l+1}),\cdots ), \mathrm{v}_{r-1})$ を求める。
-  
+- `sparse_table<M>(a)`: 配列 `a` で構築する。`M` は `S` と `op` を static メンバとして持つ構造体。`e` は不要。
+- `prod(l, r)`: `op(a[l], ..., a[r - 1])` を返す。
+
+### 制約
+- `op` は結合的かつ冪等
+- $0 \le l < r \le n$
+
 ### 計算量
-- 構築: $\mathcal O(N \log N)$
-- クエリ: $\mathcal O(1)$
+- 構築: $\mathcal{O}(N \log N)$
+- `prod`: $\mathcal{O}(1)$

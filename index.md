@@ -29,8 +29,8 @@ data:
       path: datastructure/lazy_segtree.hpp
       title: Lazy Segment Tree (acted monoid wrapper)
     - icon: ':heavy_check_mark:'
-      path: datastructure/plus_minus_one_range_minimum.hpp
-      title: datastructure/plus_minus_one_range_minimum.hpp
+      path: datastructure/plus_minus_one_rmq.hpp
+      title: Plus Minus One RMQ
     - icon: ':heavy_check_mark:'
       path: datastructure/range_map.hpp
       title: Range Map
@@ -46,9 +46,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/sqrt_tree.hpp
       title: Sqrt Tree
-    - icon: ':heavy_check_mark:'
-      path: datastructure/static_range_minimum.hpp
-      title: datastructure/static_range_minimum.hpp
   - name: geometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -422,6 +419,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/rerooting.test.cpp
       title: test/unit/rerooting.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/sparse_table.test.cpp
+      title: test/unit/sparse_table.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'
