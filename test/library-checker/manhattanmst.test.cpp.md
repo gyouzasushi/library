@@ -32,10 +32,12 @@ data:
     \ = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename\
     \ M::S>;\n};\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n\
     \    { M::e() } -> std::same_as<typename M::S>;\n};\ntemplate <class A>\nconcept\
-    \ acted_monoid = monoid<A> && requires(typename A::S x, typename A::F f, typename\
-    \ A::F g) {\n    { A::mapping(f, x) } -> std::same_as<typename A::S>;\n    { A::composition(f,\
+    \ action = requires(typename A::F f, typename A::F g) {\n    { A::composition(f,\
     \ g) } -> std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename\
-    \ A::F>;\n};\n#line 5 \"datastructure/segtree.hpp\"\ntemplate <monoid M>\nusing\
+    \ A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n};\n\
+    template <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n};\n#line 5 \"datastructure/segtree.hpp\"\ntemplate <monoid M>\nusing\
     \ segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"monoid/argmin.hpp\"\
     \n#include <limits>\ntemplate <class T>\nstruct monoid_argmin {\n    struct S\
     \ {\n        T val;\n        int id;\n    };\n    static S op(S a, S b) {\n  \
@@ -89,7 +91,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/manhattanmst.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 07:09:13+09:00'
+  timestamp: '2026-10-23 12:18:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/manhattanmst.test.cpp

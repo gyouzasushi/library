@@ -27,11 +27,13 @@ data:
     \n#include <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename\
     \ M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n\
     };\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
-    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class A>\nconcept acted_monoid\
-    \ = monoid<A> && requires(typename A::S x, typename A::F f, typename A::F g) {\n\
-    \    { A::mapping(f, x) } -> std::same_as<typename A::S>;\n    { A::composition(f,\
-    \ g) } -> std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename\
-    \ A::F>;\n};\n#line 5 \"datastructure/segtree.hpp\"\ntemplate <monoid M>\nusing\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class A>\nconcept action =\
+    \ requires(typename A::F f, typename A::F g) {\n    { A::composition(f, g) } ->\
+    \ std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename A::F>;\n\
+    \    { A::composition_commutative } -> std::convertible_to<bool>;\n};\ntemplate\
+    \ <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n};\n#line 5 \"datastructure/segtree.hpp\"\ntemplate <monoid M>\nusing\
     \ segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"monoid/affine.hpp\"\
     \ntemplate <class T>\nstruct monoid_affine {\n    struct S {\n        T a, b;\n\
     \    };\n    static S op(S f, S g) {\n        return {g.a * f.a, g.a * f.b + g.b};\n\
@@ -68,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 07:09:13+09:00'
+  timestamp: '2026-10-23 12:18:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/point_set_range_composite.test.cpp

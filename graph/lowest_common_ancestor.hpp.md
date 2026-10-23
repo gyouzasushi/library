@@ -30,11 +30,13 @@ data:
     \n#include <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename\
     \ M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n\
     };\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
-    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class A>\nconcept acted_monoid\
-    \ = monoid<A> && requires(typename A::S x, typename A::F f, typename A::F g) {\n\
-    \    { A::mapping(f, x) } -> std::same_as<typename A::S>;\n    { A::composition(f,\
-    \ g) } -> std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename\
-    \ A::F>;\n};\n#line 8 \"datastructure/sparse_table.hpp\"\ntemplate <semigroup\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class A>\nconcept action =\
+    \ requires(typename A::F f, typename A::F g) {\n    { A::composition(f, g) } ->\
+    \ std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename A::F>;\n\
+    \    { A::composition_commutative } -> std::convertible_to<bool>;\n};\ntemplate\
+    \ <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n};\n#line 8 \"datastructure/sparse_table.hpp\"\ntemplate <semigroup\
     \ M> struct sparse_table {\n    using S = typename M::S;\n    sparse_table() :\
     \ _n(0) {\n    }\n    explicit sparse_table(const std::vector<S>& a) : _n(int(a.size()))\
     \ {\n        int log = std::max(1, std::bit_width((unsigned)_n));\n        t.resize(log);\n\
@@ -126,7 +128,7 @@ data:
   isVerificationFile: false
   path: graph/lowest_common_ancestor.hpp
   requiredBy: []
-  timestamp: '2026-10-23 07:09:13+09:00'
+  timestamp: '2026-10-23 12:18:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/lca.test.cpp

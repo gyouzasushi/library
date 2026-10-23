@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: datastructure/dual_segtree.hpp
+    title: Dual Segment Tree
+  - icon: ':heavy_check_mark:'
     path: datastructure/lazy_segtree.hpp
     title: Lazy Segment Tree (acted monoid wrapper)
   - icon: ':heavy_check_mark:'
@@ -37,8 +40,14 @@ data:
     path: test/library-checker/point_set_range_composite.test.cpp
     title: test/library-checker/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library-checker/range_affine_point_get.test.cpp
+    title: test/library-checker/range_affine_point_get.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/staticrmq.test.cpp
     title: test/library-checker/staticrmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/dual_segtree.test.cpp
+    title: test/unit/dual_segtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
@@ -54,18 +63,22 @@ data:
     \ M>\nconcept semigroup = requires(typename M::S a, typename M::S b) {\n    {\
     \ M::op(a, b) } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept\
     \ monoid = semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename\
-    \ M::S>;\n};\ntemplate <class A>\nconcept acted_monoid = monoid<A> && requires(typename\
-    \ A::S x, typename A::F f, typename A::F g) {\n    { A::mapping(f, x) } -> std::same_as<typename\
-    \ A::S>;\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    {\
-    \ A::id() } -> std::same_as<typename A::F>;\n};\n"
+    \ M::S>;\n};\ntemplate <class A>\nconcept action = requires(typename A::F f, typename\
+    \ A::F g) {\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n  \
+    \  { A::id() } -> std::same_as<typename A::F>;\n    { A::composition_commutative\
+    \ } -> std::convertible_to<bool>;\n};\ntemplate <class A>\nconcept acted_monoid\
+    \ = monoid<A> && action<A> && requires(typename A::S x, typename A::F f) {\n \
+    \   { A::mapping(f, x) } -> std::same_as<typename A::S>;\n};\n"
   code: "#pragma once\n#include <concepts>\ntemplate <class M>\nconcept semigroup\
     \ = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename\
     \ M::S>;\n};\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n\
     \    { M::e() } -> std::same_as<typename M::S>;\n};\ntemplate <class A>\nconcept\
-    \ acted_monoid = monoid<A> && requires(typename A::S x, typename A::F f, typename\
-    \ A::F g) {\n    { A::mapping(f, x) } -> std::same_as<typename A::S>;\n    { A::composition(f,\
+    \ action = requires(typename A::F f, typename A::F g) {\n    { A::composition(f,\
     \ g) } -> std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename\
-    \ A::F>;\n};\n"
+    \ A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n};\n\
+    template <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: monoid/concept.hpp
@@ -74,16 +87,19 @@ data:
   - datastructure/lazy_segtree.hpp
   - datastructure/plus_minus_one_rmq.hpp
   - datastructure/segtree.hpp
+  - datastructure/dual_segtree.hpp
   - graph/manhattan_mst.hpp
   - graph/lowest_common_ancestor.hpp
-  timestamp: '2026-10-23 07:09:13+09:00'
+  timestamp: '2026-10-23 12:18:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_G.test.cpp
   - test/aoj/DSL_2_A.test.cpp
   - test/unit/sparse_table.test.cpp
   - test/unit/monoid.test.cpp
+  - test/unit/dual_segtree.test.cpp
   - test/library-checker/staticrmq.test.cpp
+  - test/library-checker/range_affine_point_get.test.cpp
   - test/library-checker/point_set_range_composite.test.cpp
   - test/library-checker/lca.test.cpp
   - test/library-checker/manhattanmst.test.cpp
@@ -93,9 +109,10 @@ title: 'Monoid: Concept'
 ---
 
 ### 概要
-- `segtree`, `lazy_segtree`, `sparse_table` に渡す構造体の要件。
+- `segtree`, `lazy_segtree`, `dual_segtree`, `sparse_table` に渡す構造体の要件。
 
 ### 使い方
 - `semigroup<M>`: `M::S` と `M::op(S, S) -> S` を持つ。
 - `monoid<M>`: `semigroup<M>` に加えて `M::e() -> S` を持つ。
-- `acted_monoid<A>`: `monoid<A>` に加えて `A::F`, `A::mapping(F, S) -> S`, `A::composition(F, F) -> F`, `A::id() -> F` を持つ。
+- `action<A>`: `A::F`, `A::composition(F, F) -> F`, `A::id() -> F`, `bool A::composition_commutative` を持つ。
+- `acted_monoid<A>`: `monoid<A>` と `action<A>` に加えて `A::mapping(F, S) -> S` を持つ。

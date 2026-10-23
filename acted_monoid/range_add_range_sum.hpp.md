@@ -20,20 +20,22 @@ data:
     \ {a.sum + b.sum, a.len + b.len};\n    }\n    static S e() {\n        return {T(0),\
     \ 0};\n    }\n    static S mapping(F f, S x) {\n        return {x.sum + f * x.len,\
     \ x.len};\n    }\n    static F composition(F f, F g) {\n        return f + g;\n\
-    \    }\n    static F id() {\n        return T(0);\n    }\n    static S from(T\
-    \ v) {\n        return {v, 1};\n    }\n};\n"
+    \    }\n    static F id() {\n        return T(0);\n    }\n    static constexpr\
+    \ bool composition_commutative = true;\n    static S from(T v) {\n        return\
+    \ {v, 1};\n    }\n};\n"
   code: "#pragma once\ntemplate <class T>\nstruct range_add_range_sum {\n    struct\
     \ S {\n        T sum;\n        int len;\n    };\n    using F = T;\n    static\
     \ S op(S a, S b) {\n        return {a.sum + b.sum, a.len + b.len};\n    }\n  \
     \  static S e() {\n        return {T(0), 0};\n    }\n    static S mapping(F f,\
     \ S x) {\n        return {x.sum + f * x.len, x.len};\n    }\n    static F composition(F\
     \ f, F g) {\n        return f + g;\n    }\n    static F id() {\n        return\
-    \ T(0);\n    }\n    static S from(T v) {\n        return {v, 1};\n    }\n};\n"
+    \ T(0);\n    }\n    static constexpr bool composition_commutative = true;\n  \
+    \  static S from(T v) {\n        return {v, 1};\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: acted_monoid/range_add_range_sum.hpp
   requiredBy: []
-  timestamp: '2026-10-19 02:48:39+09:00'
+  timestamp: '2026-10-23 12:18:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_G.test.cpp

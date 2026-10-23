@@ -26,20 +26,22 @@ data:
     \ semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b)\
     \ } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid =\
     \ semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
-    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && requires(typename\
-    \ A::S x, typename A::F f, typename A::F g) {\n    { A::mapping(f, x) } -> std::same_as<typename\
-    \ A::S>;\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    {\
-    \ A::id() } -> std::same_as<typename A::F>;\n};\n#line 5 \"datastructure/segtree.hpp\"\
-    \ntemplate <monoid M>\nusing segtree = atcoder::segtree<typename M::S, M::op,\
-    \ M::e>;\n#line 2 \"monoid/min.hpp\"\n#include <algorithm>\n#include <limits>\n\
-    template <class T>\nstruct monoid_min {\n    using S = T;\n    static S op(S a,\
-    \ S b) {\n        return std::min(a, b);\n    }\n    static S e() {\n        return\
-    \ std::numeric_limits<T>::max();\n    }\n    static constexpr bool commutative\
-    \ = true;\n};\n#line 6 \"test/aoj/DSL_2_A.test.cpp\"\nint main() {\n    int n,\
-    \ q;\n    std::cin >> n >> q;\n    segtree<monoid_min<int>> seg(n);\n    while\
-    \ (q--) {\n        int com, x, y;\n        std::cin >> com >> x >> y;\n      \
-    \  if (com == 0) {\n            seg.set(x, y);\n        } else {\n           \
-    \ std::cout << seg.prod(x, y + 1) << '\\n';\n        }\n    }\n}\n"
+    };\ntemplate <class A>\nconcept action = requires(typename A::F f, typename A::F\
+    \ g) {\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    { A::id()\
+    \ } -> std::same_as<typename A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n\
+    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n};\n#line 5 \"datastructure/segtree.hpp\"\ntemplate <monoid M>\nusing\
+    \ segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"monoid/min.hpp\"\
+    \n#include <algorithm>\n#include <limits>\ntemplate <class T>\nstruct monoid_min\
+    \ {\n    using S = T;\n    static S op(S a, S b) {\n        return std::min(a,\
+    \ b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::max();\n\
+    \    }\n    static constexpr bool commutative = true;\n};\n#line 6 \"test/aoj/DSL_2_A.test.cpp\"\
+    \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    segtree<monoid_min<int>>\
+    \ seg(n);\n    while (q--) {\n        int com, x, y;\n        std::cin >> com\
+    \ >> x >> y;\n        if (com == 0) {\n            seg.set(x, y);\n        } else\
+    \ {\n            std::cout << seg.prod(x, y + 1) << '\\n';\n        }\n    }\n\
+    }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A\"\n#include\
     \ <iostream>\n\n#include \"datastructure/segtree.hpp\"\n#include \"monoid/min.hpp\"\
     \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    segtree<monoid_min<int>>\
@@ -54,7 +56,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 07:09:13+09:00'
+  timestamp: '2026-10-23 12:18:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_A.test.cpp

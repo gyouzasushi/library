@@ -56,15 +56,18 @@ data:
     \  return {T(0), 0};\n    }\n    static S mapping(F f, S x) {\n        return\
     \ {x.sum + f * x.len, x.len};\n    }\n    static F composition(F f, F g) {\n \
     \       return f + g;\n    }\n    static F id() {\n        return T(0);\n    }\n\
-    \    static S from(T v) {\n        return {v, 1};\n    }\n};\n#line 2 \"datastructure/lazy_segtree.hpp\"\
+    \    static constexpr bool composition_commutative = true;\n    static S from(T\
+    \ v) {\n        return {v, 1};\n    }\n};\n#line 2 \"datastructure/lazy_segtree.hpp\"\
     \n#include <atcoder/lazysegtree>\n\n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\n\
     template <class M>\nconcept semigroup = requires(typename M::S a, typename M::S\
     \ b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n};\ntemplate <class\
     \ M>\nconcept monoid = semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename\
-    \ M::S>;\n};\ntemplate <class A>\nconcept acted_monoid = monoid<A> && requires(typename\
-    \ A::S x, typename A::F f, typename A::F g) {\n    { A::mapping(f, x) } -> std::same_as<typename\
-    \ A::S>;\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    {\
-    \ A::id() } -> std::same_as<typename A::F>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
+    \ M::S>;\n};\ntemplate <class A>\nconcept action = requires(typename A::F f, typename\
+    \ A::F g) {\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n  \
+    \  { A::id() } -> std::same_as<typename A::F>;\n    { A::composition_commutative\
+    \ } -> std::convertible_to<bool>;\n};\ntemplate <class A>\nconcept acted_monoid\
+    \ = monoid<A> && action<A> && requires(typename A::S x, typename A::F f) {\n \
+    \   { A::mapping(f, x) } -> std::same_as<typename A::S>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
     \ntemplate <acted_monoid A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
     \ A::S, A::op, A::e, typename A::F, A::mapping, A::composition, A::id>;\n#line\
     \ 2 \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\n\n#line 5 \"datastructure/segtree.hpp\"\
@@ -227,7 +230,7 @@ data:
   isVerificationFile: true
   path: test/unit/monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 07:09:13+09:00'
+  timestamp: '2026-10-23 12:18:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/monoid.test.cpp
