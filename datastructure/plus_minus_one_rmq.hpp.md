@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: datastructure/sparse_table.hpp
-    title: Sparse Table
+    path: algebra/concept.hpp
+    title: 'Algebra: Concept'
   - icon: ':heavy_check_mark:'
-    path: monoid/argmin.hpp
+    path: algebra/monoid_argmin.hpp
     title: 'Monoid: Argmin'
   - icon: ':heavy_check_mark:'
-    path: monoid/concept.hpp
-    title: 'Monoid: Concept'
+    path: datastructure/sparse_table.hpp
+    title: Sparse Table
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/lowest_common_ancestor.hpp
@@ -28,7 +28,7 @@ data:
     links: []
   bundledCode: "#line 2 \"datastructure/plus_minus_one_rmq.hpp\"\n#include <algorithm>\n\
     #include <bit>\n#include <cassert>\n#include <vector>\n\n#line 6 \"datastructure/sparse_table.hpp\"\
-    \n\n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\ntemplate <class M>\n\
+    \n\n#line 2 \"algebra/concept.hpp\"\n#include <concepts>\ntemplate <class M>\n\
     concept semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a,\
     \ b) } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid\
     \ = semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
@@ -47,7 +47,7 @@ data:
     \            }\n        }\n    }\n    S prod(int l, int r) const {\n        assert(0\
     \ <= l && l < r && r <= _n);\n        int k = std::bit_width((unsigned)(r - l))\
     \ - 1;\n        return M::op(t[k][l], t[k][r - (1 << k)]);\n    }\n\nprivate:\n\
-    \    int _n;\n    std::vector<std::vector<S>> t;\n};\n#line 2 \"monoid/argmin.hpp\"\
+    \    int _n;\n    std::vector<std::vector<S>> t;\n};\n#line 2 \"algebra/monoid_argmin.hpp\"\
     \n#include <limits>\ntemplate <class T>\nstruct monoid_argmin {\n    struct S\
     \ {\n        T val;\n        int id;\n    };\n    static S op(S a, S b) {\n  \
     \      if (a.val != b.val) return a.val < b.val ? a : b;\n        return a.id\
@@ -85,7 +85,7 @@ data:
     \ v[j] ? i : j;\n        return std::min(i, j);\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <bit>\n#include <cassert>\n\
     #include <vector>\n\n#include \"datastructure/sparse_table.hpp\"\n#include \"\
-    monoid/argmin.hpp\"\nstruct plus_minus_one_rmq {\npublic:\n    plus_minus_one_rmq()\
+    algebra/monoid_argmin.hpp\"\nstruct plus_minus_one_rmq {\npublic:\n    plus_minus_one_rmq()\
     \ : _n(0), s(1), B(0) {\n    }\n    explicit plus_minus_one_rmq(const std::vector<int>&\
     \ a) : _n(int(a.size())), v(a) {\n        s = std::max(1, (std::bit_width((unsigned)_n)\
     \ - 1) / 2);\n        B = (_n + s - 1) / s;\n        std::vector<monoid_argmin<int>::S>\
@@ -118,13 +118,13 @@ data:
     \ j);\n    }\n};\n"
   dependsOn:
   - datastructure/sparse_table.hpp
-  - monoid/concept.hpp
-  - monoid/argmin.hpp
+  - algebra/concept.hpp
+  - algebra/monoid_argmin.hpp
   isVerificationFile: false
   path: datastructure/plus_minus_one_rmq.hpp
   requiredBy:
   - graph/lowest_common_ancestor.hpp
-  timestamp: '2026-10-23 12:24:20+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/sparse_table.test.cpp

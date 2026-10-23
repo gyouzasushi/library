@@ -2,26 +2,26 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: algebra/concept.hpp
+    title: 'Algebra: Concept'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_argmin.hpp
+    title: 'Monoid: Argmin'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_gcd.hpp
+    title: 'Monoid: GCD'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_max.hpp
+    title: 'Monoid: Max'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_min.hpp
+    title: 'Monoid: Min'
+  - icon: ':heavy_check_mark:'
     path: datastructure/plus_minus_one_rmq.hpp
     title: Plus Minus One RMQ
   - icon: ':heavy_check_mark:'
     path: datastructure/sparse_table.hpp
     title: Sparse Table
-  - icon: ':heavy_check_mark:'
-    path: monoid/argmin.hpp
-    title: 'Monoid: Argmin'
-  - icon: ':heavy_check_mark:'
-    path: monoid/concept.hpp
-    title: 'Monoid: Concept'
-  - icon: ':heavy_check_mark:'
-    path: monoid/gcd.hpp
-    title: 'Monoid: GCD'
-  - icon: ':heavy_check_mark:'
-    path: monoid/max.hpp
-    title: 'Monoid: Max'
-  - icon: ':heavy_check_mark:'
-    path: monoid/min.hpp
-    title: 'Monoid: Min'
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -36,7 +36,7 @@ data:
     \n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <numeric>\n\
     #include <random>\n#include <vector>\n\n#line 3 \"datastructure/plus_minus_one_rmq.hpp\"\
     \n#include <bit>\n#line 6 \"datastructure/plus_minus_one_rmq.hpp\"\n\n#line 6\
-    \ \"datastructure/sparse_table.hpp\"\n\n#line 2 \"monoid/concept.hpp\"\n#include\
+    \ \"datastructure/sparse_table.hpp\"\n\n#line 2 \"algebra/concept.hpp\"\n#include\
     \ <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename M::S a,\
     \ typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n};\n\
     template <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
@@ -56,7 +56,7 @@ data:
     \            }\n        }\n    }\n    S prod(int l, int r) const {\n        assert(0\
     \ <= l && l < r && r <= _n);\n        int k = std::bit_width((unsigned)(r - l))\
     \ - 1;\n        return M::op(t[k][l], t[k][r - (1 << k)]);\n    }\n\nprivate:\n\
-    \    int _n;\n    std::vector<std::vector<S>> t;\n};\n#line 2 \"monoid/argmin.hpp\"\
+    \    int _n;\n    std::vector<std::vector<S>> t;\n};\n#line 2 \"algebra/monoid_argmin.hpp\"\
     \n#include <limits>\ntemplate <class T>\nstruct monoid_argmin {\n    struct S\
     \ {\n        T val;\n        int id;\n    };\n    static S op(S a, S b) {\n  \
     \      if (a.val != b.val) return a.val < b.val ? a : b;\n        return a.id\
@@ -91,13 +91,13 @@ data:
     \ v, pattern;\n    sparse_table<monoid_argmin<int>> table;\n    std::vector<std::vector<std::vector<int>>>\
     \ lookup;\n    int argmin(int i, int j) const {\n        if (i >= INF) return\
     \ j;\n        if (j >= INF) return i;\n        if (v[i] != v[j]) return v[i] <\
-    \ v[j] ? i : j;\n        return std::min(i, j);\n    }\n};\n#line 3 \"monoid/gcd.hpp\"\
+    \ v[j] ? i : j;\n        return std::min(i, j);\n    }\n};\n#line 3 \"algebra/monoid_gcd.hpp\"\
     \ntemplate <class T>\nstruct monoid_gcd {\n    using S = T;\n    static S op(S\
     \ a, S b) {\n        return std::gcd(a, b);\n    }\n    static S e() {\n     \
-    \   return T(0);\n    }\n};\n#line 4 \"monoid/max.hpp\"\ntemplate <class T>\n\
-    struct monoid_max {\n    using S = T;\n    static S op(S a, S b) {\n        return\
-    \ std::max(a, b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::lowest();\n\
-    \    }\n};\n#line 4 \"monoid/min.hpp\"\ntemplate <class T>\nstruct monoid_min\
+    \   return T(0);\n    }\n};\n#line 4 \"algebra/monoid_max.hpp\"\ntemplate <class\
+    \ T>\nstruct monoid_max {\n    using S = T;\n    static S op(S a, S b) {\n   \
+    \     return std::max(a, b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::lowest();\n\
+    \    }\n};\n#line 4 \"algebra/monoid_min.hpp\"\ntemplate <class T>\nstruct monoid_min\
     \ {\n    using S = T;\n    static S op(S a, S b) {\n        return std::min(a,\
     \ b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::max();\n\
     \    }\n};\n#line 15 \"test/unit/sparse_table.test.cpp\"\n// band without identity:\
@@ -134,13 +134,13 @@ data:
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <numeric>\n\
     #include <random>\n#include <vector>\n\n#include \"datastructure/plus_minus_one_rmq.hpp\"\
-    \n#include \"datastructure/sparse_table.hpp\"\n#include \"monoid/argmin.hpp\"\n\
-    #include \"monoid/gcd.hpp\"\n#include \"monoid/max.hpp\"\n#include \"monoid/min.hpp\"\
-    \n// band without identity: keep the left operand\nstruct leftmost {\n    using\
-    \ S = int;\n    static S op(S a, S) {\n        return a;\n    }\n};\ntemplate\
-    \ <class M, class F> void stress(std::mt19937& rng, const F& gen) {\n    using\
-    \ S = typename M::S;\n    int n = 1 + rng() % 40;\n    std::vector<S> a(n);\n\
-    \    for (int i = 0; i < n; i++) a[i] = gen(i);\n    sparse_table<M> st(a);\n\
+    \n#include \"datastructure/sparse_table.hpp\"\n#include \"algebra/monoid_argmin.hpp\"\
+    \n#include \"algebra/monoid_gcd.hpp\"\n#include \"algebra/monoid_max.hpp\"\n#include\
+    \ \"algebra/monoid_min.hpp\"\n// band without identity: keep the left operand\n\
+    struct leftmost {\n    using S = int;\n    static S op(S a, S) {\n        return\
+    \ a;\n    }\n};\ntemplate <class M, class F> void stress(std::mt19937& rng, const\
+    \ F& gen) {\n    using S = typename M::S;\n    int n = 1 + rng() % 40;\n    std::vector<S>\
+    \ a(n);\n    for (int i = 0; i < n; i++) a[i] = gen(i);\n    sparse_table<M> st(a);\n\
     \    for (int l = 0; l < n; l++) {\n        for (int r = l + 1; r <= n; r++) {\n\
     \            S expect = a[l];\n            for (int i = l + 1; i < r; i++) expect\
     \ = M::op(expect, a[i]);\n            assert(st.prod(l, r) == expect);\n     \
@@ -170,15 +170,15 @@ data:
   dependsOn:
   - datastructure/plus_minus_one_rmq.hpp
   - datastructure/sparse_table.hpp
-  - monoid/concept.hpp
-  - monoid/argmin.hpp
-  - monoid/gcd.hpp
-  - monoid/max.hpp
-  - monoid/min.hpp
+  - algebra/concept.hpp
+  - algebra/monoid_argmin.hpp
+  - algebra/monoid_gcd.hpp
+  - algebra/monoid_max.hpp
+  - algebra/monoid_min.hpp
   isVerificationFile: true
   path: test/unit/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 12:24:20+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/sparse_table.test.cpp

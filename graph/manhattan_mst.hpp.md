@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: datastructure/segtree.hpp
-    title: Segment Tree (monoid wrapper)
+    path: algebra/concept.hpp
+    title: 'Algebra: Concept'
   - icon: ':heavy_check_mark:'
-    path: monoid/argmin.hpp
+    path: algebra/monoid_argmin.hpp
     title: 'Monoid: Argmin'
   - icon: ':heavy_check_mark:'
-    path: monoid/concept.hpp
-    title: 'Monoid: Concept'
+    path: datastructure/segtree.hpp
+    title: Segment Tree (monoid wrapper)
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -22,7 +22,7 @@ data:
     links: []
   bundledCode: "#line 2 \"graph/manhattan_mst.hpp\"\n#include <algorithm>\n#include\
     \ <cassert>\n#include <numeric>\n#include <tuple>\n#include <vector>\n\n#line\
-    \ 2 \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\n\n#line 2 \"monoid/concept.hpp\"\
+    \ 2 \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\n\n#line 2 \"algebra/concept.hpp\"\
     \n#include <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename\
     \ M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n\
     };\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
@@ -33,7 +33,7 @@ data:
     \ <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
     \ A::S>;\n};\n#line 5 \"datastructure/segtree.hpp\"\ntemplate <monoid M>\nusing\
-    \ segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"monoid/argmin.hpp\"\
+    \ segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"algebra/monoid_argmin.hpp\"\
     \n#include <limits>\ntemplate <class T>\nstruct monoid_argmin {\n    struct S\
     \ {\n        T val;\n        int id;\n    };\n    static S op(S a, S b) {\n  \
     \      if (a.val != b.val) return a.val < b.val ? a : b;\n        return a.id\
@@ -62,7 +62,7 @@ data:
     \ b) { return std::get<2>(a) < std::get<2>(b); });\n    return ret;\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <numeric>\n\
     #include <tuple>\n#include <vector>\n\n#include \"datastructure/segtree.hpp\"\n\
-    #include \"monoid/argmin.hpp\"\ntemplate <typename T>\nstd::vector<std::tuple<int,\
+    #include \"algebra/monoid_argmin.hpp\"\ntemplate <typename T>\nstd::vector<std::tuple<int,\
     \ int, T>> manhattan_mst(std::vector<T> x,\n                                 \
     \                  std::vector<T> y) {\n    int n = x.size();\n    assert(int(y.size())\
     \ == n);\n    std::vector<int> id(n);\n    std::iota(id.begin(), id.end(), 0);\n\
@@ -86,12 +86,12 @@ data:
     \ b) { return std::get<2>(a) < std::get<2>(b); });\n    return ret;\n}"
   dependsOn:
   - datastructure/segtree.hpp
-  - monoid/concept.hpp
-  - monoid/argmin.hpp
+  - algebra/concept.hpp
+  - algebra/monoid_argmin.hpp
   isVerificationFile: false
   path: graph/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2026-10-23 12:24:20+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/manhattanmst.test.cpp

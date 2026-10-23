@@ -59,7 +59,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"monoid/concept.hpp\"\n#include <concepts>\ntemplate <class\
+  bundledCode: "#line 2 \"algebra/concept.hpp\"\n#include <concepts>\ntemplate <class\
     \ M>\nconcept semigroup = requires(typename M::S a, typename M::S b) {\n    {\
     \ M::op(a, b) } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept\
     \ monoid = semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename\
@@ -81,7 +81,7 @@ data:
     \ A::S>;\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: monoid/concept.hpp
+  path: algebra/concept.hpp
   requiredBy:
   - datastructure/sparse_table.hpp
   - datastructure/lazy_segtree.hpp
@@ -90,7 +90,7 @@ data:
   - datastructure/dual_segtree.hpp
   - graph/manhattan_mst.hpp
   - graph/lowest_common_ancestor.hpp
-  timestamp: '2026-10-23 12:18:24+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_G.test.cpp
@@ -103,9 +103,9 @@ data:
   - test/library-checker/point_set_range_composite.test.cpp
   - test/library-checker/lca.test.cpp
   - test/library-checker/manhattanmst.test.cpp
-documentation_of: monoid/concept.hpp
+documentation_of: algebra/concept.hpp
 layout: document
-title: 'Monoid: Concept'
+title: 'Algebra: Concept'
 ---
 
 ### 概要

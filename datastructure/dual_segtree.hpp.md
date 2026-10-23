@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: monoid/concept.hpp
-    title: 'Monoid: Concept'
+    path: algebra/concept.hpp
+    title: 'Algebra: Concept'
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -18,7 +18,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/dual_segtree.hpp\"\n#include <algorithm>\n\
-    #include <bit>\n#include <cassert>\n#include <vector>\n\n#line 2 \"monoid/concept.hpp\"\
+    #include <bit>\n#include <cassert>\n#include <vector>\n\n#line 2 \"algebra/concept.hpp\"\
     \n#include <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename\
     \ M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n\
     };\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
@@ -52,7 +52,7 @@ data:
     \ d[k] = A::id();\n    }\n    void thrust(int k) {\n        for (int i = log;\
     \ i >= 1; i--) propagate(k >> i);\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <bit>\n#include <cassert>\n\
-    #include <vector>\n\n#include \"monoid/concept.hpp\"\ntemplate <action A>\nstruct\
+    #include <vector>\n\n#include \"algebra/concept.hpp\"\ntemplate <action A>\nstruct\
     \ dual_segtree {\n    using F = typename A::F;\n    dual_segtree() : dual_segtree(0)\
     \ {}\n    explicit dual_segtree(int n) : dual_segtree(std::vector<F>(n, A::id()))\
     \ {}\n    explicit dual_segtree(const std::vector<F>& v) : n(int(v.size())) {\n\
@@ -76,11 +76,11 @@ data:
     \ d[k] = A::id();\n    }\n    void thrust(int k) {\n        for (int i = log;\
     \ i >= 1; i--) propagate(k >> i);\n    }\n};\n"
   dependsOn:
-  - monoid/concept.hpp
+  - algebra/concept.hpp
   isVerificationFile: false
   path: datastructure/dual_segtree.hpp
   requiredBy: []
-  timestamp: '2026-10-23 12:18:24+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/dual_segtree.test.cpp

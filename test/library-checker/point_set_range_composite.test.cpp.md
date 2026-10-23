@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: datastructure/segtree.hpp
-    title: Segment Tree (monoid wrapper)
+    path: algebra/concept.hpp
+    title: 'Algebra: Concept'
   - icon: ':heavy_check_mark:'
-    path: monoid/affine.hpp
+    path: algebra/monoid_affine.hpp
     title: 'Monoid: Affine'
   - icon: ':heavy_check_mark:'
-    path: monoid/concept.hpp
-    title: 'Monoid: Concept'
+    path: datastructure/segtree.hpp
+    title: Segment Tree (monoid wrapper)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -23,7 +23,7 @@ data:
   bundledCode: "#line 1 \"test/library-checker/point_set_range_composite.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n#include <atcoder/modint>\n#include <iostream>\n#include <vector>\n\n#line 2\
-    \ \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\n\n#line 2 \"monoid/concept.hpp\"\
+    \ \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\n\n#line 2 \"algebra/concept.hpp\"\
     \n#include <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename\
     \ M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n\
     };\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
@@ -34,7 +34,7 @@ data:
     \ <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
     \ A::S>;\n};\n#line 5 \"datastructure/segtree.hpp\"\ntemplate <monoid M>\nusing\
-    \ segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"monoid/affine.hpp\"\
+    \ segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"algebra/monoid_affine.hpp\"\
     \ntemplate <class T>\nstruct monoid_affine {\n    struct S {\n        T a, b;\n\
     \    };\n    static S op(S f, S g) {\n        return {g.a * f.a, g.a * f.b + g.b};\n\
     \    }\n    static S e() {\n        return {T(1), T(0)};\n    }\n    static T\
@@ -51,25 +51,25 @@ data:
     \    }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n#include <atcoder/modint>\n#include <iostream>\n#include <vector>\n\n#include\
-    \ \"datastructure/segtree.hpp\"\n#include \"monoid/affine.hpp\"\nusing mint =\
-    \ atcoder::modint998244353;\nusing M = monoid_affine<mint>;\nint main() {\n  \
-    \  int n, q;\n    std::cin >> n >> q;\n    std::vector<M::S> f(n);\n    for (int\
-    \ i = 0; i < n; i++) {\n        int a, b;\n        std::cin >> a >> b;\n     \
-    \   f[i] = {mint::raw(a), mint::raw(b)};\n    }\n    segtree<M> seg(f);\n    while\
-    \ (q--) {\n        int t;\n        std::cin >> t;\n        if (t == 0) {\n   \
-    \         int p, c, d;\n            std::cin >> p >> c >> d;\n            seg.set(p,\
-    \ {mint::raw(c), mint::raw(d)});\n        }\n        if (t == 1) {\n         \
-    \   int l, r, x;\n            std::cin >> l >> r >> x;\n            std::cout\
-    \ << M::eval(seg.prod(l, r), mint::raw(x)).val() << '\\n';\n        }\n    }\n\
-    }\n"
+    \ \"datastructure/segtree.hpp\"\n#include \"algebra/monoid_affine.hpp\"\nusing\
+    \ mint = atcoder::modint998244353;\nusing M = monoid_affine<mint>;\nint main()\
+    \ {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<M::S> f(n);\n   \
+    \ for (int i = 0; i < n; i++) {\n        int a, b;\n        std::cin >> a >> b;\n\
+    \        f[i] = {mint::raw(a), mint::raw(b)};\n    }\n    segtree<M> seg(f);\n\
+    \    while (q--) {\n        int t;\n        std::cin >> t;\n        if (t == 0)\
+    \ {\n            int p, c, d;\n            std::cin >> p >> c >> d;\n        \
+    \    seg.set(p, {mint::raw(c), mint::raw(d)});\n        }\n        if (t == 1)\
+    \ {\n            int l, r, x;\n            std::cin >> l >> r >> x;\n        \
+    \    std::cout << M::eval(seg.prod(l, r), mint::raw(x)).val() << '\\n';\n    \
+    \    }\n    }\n}\n"
   dependsOn:
   - datastructure/segtree.hpp
-  - monoid/concept.hpp
-  - monoid/affine.hpp
+  - algebra/concept.hpp
+  - algebra/monoid_affine.hpp
   isVerificationFile: true
   path: test/library-checker/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 12:24:20+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/point_set_range_composite.test.cpp

@@ -1,10 +1,37 @@
 ---
 data:
   libraryCategories:
-  - name: acted_monoid
+  - name: algebra
     pages:
     - icon: ':heavy_check_mark:'
-      path: acted_monoid/range_add_range_sum.hpp
+      path: algebra/concept.hpp
+      title: 'Algebra: Concept'
+    - icon: ':heavy_check_mark:'
+      path: algebra/monoid_add.hpp
+      title: 'Monoid: Add'
+    - icon: ':heavy_check_mark:'
+      path: algebra/monoid_affine.hpp
+      title: 'Monoid: Affine'
+    - icon: ':heavy_check_mark:'
+      path: algebra/monoid_argmax.hpp
+      title: 'Monoid: Argmax'
+    - icon: ':heavy_check_mark:'
+      path: algebra/monoid_argmin.hpp
+      title: 'Monoid: Argmin'
+    - icon: ':heavy_check_mark:'
+      path: algebra/monoid_gcd.hpp
+      title: 'Monoid: GCD'
+    - icon: ':heavy_check_mark:'
+      path: algebra/monoid_max.hpp
+      title: 'Monoid: Max'
+    - icon: ':heavy_check_mark:'
+      path: algebra/monoid_min.hpp
+      title: 'Monoid: Min'
+    - icon: ':heavy_check_mark:'
+      path: algebra/monoid_xor.hpp
+      title: 'Monoid: XOR'
+    - icon: ':heavy_check_mark:'
+      path: algebra/range_add_range_sum.hpp
       title: 'Acted Monoid: Range Add Range Sum'
   - name: algorithm
     pages:
@@ -135,35 +162,6 @@ data:
       path: math/zeta_mobius_transform.hpp
       title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB"
-  - name: monoid
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: monoid/add.hpp
-      title: 'Monoid: Add'
-    - icon: ':heavy_check_mark:'
-      path: monoid/affine.hpp
-      title: 'Monoid: Affine'
-    - icon: ':heavy_check_mark:'
-      path: monoid/argmax.hpp
-      title: 'Monoid: Argmax'
-    - icon: ':heavy_check_mark:'
-      path: monoid/argmin.hpp
-      title: 'Monoid: Argmin'
-    - icon: ':heavy_check_mark:'
-      path: monoid/concept.hpp
-      title: 'Monoid: Concept'
-    - icon: ':heavy_check_mark:'
-      path: monoid/gcd.hpp
-      title: 'Monoid: GCD'
-    - icon: ':heavy_check_mark:'
-      path: monoid/max.hpp
-      title: 'Monoid: Max'
-    - icon: ':heavy_check_mark:'
-      path: monoid/min.hpp
-      title: 'Monoid: Min'
-    - icon: ':heavy_check_mark:'
-      path: monoid/xor.hpp
-      title: 'Monoid: XOR'
   - name: string
     pages:
     - icon: ':heavy_check_mark:'

@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: algebra/concept.hpp
+    title: 'Algebra: Concept'
+  - icon: ':heavy_check_mark:'
     path: datastructure/dual_segtree.hpp
     title: Dual Segment Tree
-  - icon: ':heavy_check_mark:'
-    path: monoid/concept.hpp
-    title: 'Monoid: Concept'
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,7 +20,7 @@ data:
   bundledCode: "#line 1 \"test/unit/dual_segtree.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <cassert>\n#include <iostream>\n#include <random>\n#include <vector>\n\
     \n#line 2 \"datastructure/dual_segtree.hpp\"\n#include <algorithm>\n#include <bit>\n\
-    #line 6 \"datastructure/dual_segtree.hpp\"\n\n#line 2 \"monoid/concept.hpp\"\n\
+    #line 6 \"datastructure/dual_segtree.hpp\"\n\n#line 2 \"algebra/concept.hpp\"\n\
     #include <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename\
     \ M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n\
     };\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
@@ -111,11 +111,11 @@ data:
     \    return 0;\n}\n"
   dependsOn:
   - datastructure/dual_segtree.hpp
-  - monoid/concept.hpp
+  - algebra/concept.hpp
   isVerificationFile: true
   path: test/unit/dual_segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 12:18:24+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/dual_segtree.test.cpp

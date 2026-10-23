@@ -29,11 +29,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"monoid/argmin.hpp\"\n#include <limits>\ntemplate <class\
-    \ T>\nstruct monoid_argmin {\n    struct S {\n        T val;\n        int id;\n\
-    \    };\n    static S op(S a, S b) {\n        if (a.val != b.val) return a.val\
-    \ < b.val ? a : b;\n        return a.id < b.id ? a : b;\n    }\n    static S e()\
-    \ {\n        return {std::numeric_limits<T>::max(), -1};\n    }\n};\n"
+  bundledCode: "#line 2 \"algebra/monoid_argmin.hpp\"\n#include <limits>\ntemplate\
+    \ <class T>\nstruct monoid_argmin {\n    struct S {\n        T val;\n        int\
+    \ id;\n    };\n    static S op(S a, S b) {\n        if (a.val != b.val) return\
+    \ a.val < b.val ? a : b;\n        return a.id < b.id ? a : b;\n    }\n    static\
+    \ S e() {\n        return {std::numeric_limits<T>::max(), -1};\n    }\n};\n"
   code: "#pragma once\n#include <limits>\ntemplate <class T>\nstruct monoid_argmin\
     \ {\n    struct S {\n        T val;\n        int id;\n    };\n    static S op(S\
     \ a, S b) {\n        if (a.val != b.val) return a.val < b.val ? a : b;\n     \
@@ -41,19 +41,19 @@ data:
     \ -1};\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: monoid/argmin.hpp
+  path: algebra/monoid_argmin.hpp
   requiredBy:
   - datastructure/plus_minus_one_rmq.hpp
   - graph/manhattan_mst.hpp
   - graph/lowest_common_ancestor.hpp
-  timestamp: '2026-10-23 12:24:20+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/sparse_table.test.cpp
   - test/unit/monoid.test.cpp
   - test/library-checker/lca.test.cpp
   - test/library-checker/manhattanmst.test.cpp
-documentation_of: monoid/argmin.hpp
+documentation_of: algebra/monoid_argmin.hpp
 layout: document
 title: 'Monoid: Argmin'
 ---

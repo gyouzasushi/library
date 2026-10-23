@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"monoid/xor.hpp\"\ntemplate <class T>\nstruct monoid_xor\
+  bundledCode: "#line 2 \"algebra/monoid_xor.hpp\"\ntemplate <class T>\nstruct monoid_xor\
     \ {\n    using S = T;\n    static S op(S a, S b) {\n        return a ^ b;\n  \
     \  }\n    static S e() {\n        return T(0);\n    }\n};\n"
   code: "#pragma once\ntemplate <class T>\nstruct monoid_xor {\n    using S = T;\n\
@@ -19,13 +19,13 @@ data:
     \        return T(0);\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: monoid/xor.hpp
+  path: algebra/monoid_xor.hpp
   requiredBy: []
-  timestamp: '2026-10-23 12:24:20+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/monoid.test.cpp
-documentation_of: monoid/xor.hpp
+documentation_of: algebra/monoid_xor.hpp
 layout: document
 title: 'Monoid: XOR'
 ---

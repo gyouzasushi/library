@@ -2,7 +2,34 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: acted_monoid/range_add_range_sum.hpp
+    path: algebra/concept.hpp
+    title: 'Algebra: Concept'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_add.hpp
+    title: 'Monoid: Add'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_affine.hpp
+    title: 'Monoid: Affine'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_argmax.hpp
+    title: 'Monoid: Argmax'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_argmin.hpp
+    title: 'Monoid: Argmin'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_gcd.hpp
+    title: 'Monoid: GCD'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_max.hpp
+    title: 'Monoid: Max'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_min.hpp
+    title: 'Monoid: Min'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_xor.hpp
+    title: 'Monoid: XOR'
+  - icon: ':heavy_check_mark:'
+    path: algebra/range_add_range_sum.hpp
     title: 'Acted Monoid: Range Add Range Sum'
   - icon: ':heavy_check_mark:'
     path: datastructure/lazy_segtree.hpp
@@ -10,33 +37,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: datastructure/segtree.hpp
     title: Segment Tree (monoid wrapper)
-  - icon: ':heavy_check_mark:'
-    path: monoid/add.hpp
-    title: 'Monoid: Add'
-  - icon: ':heavy_check_mark:'
-    path: monoid/affine.hpp
-    title: 'Monoid: Affine'
-  - icon: ':heavy_check_mark:'
-    path: monoid/argmax.hpp
-    title: 'Monoid: Argmax'
-  - icon: ':heavy_check_mark:'
-    path: monoid/argmin.hpp
-    title: 'Monoid: Argmin'
-  - icon: ':heavy_check_mark:'
-    path: monoid/concept.hpp
-    title: 'Monoid: Concept'
-  - icon: ':heavy_check_mark:'
-    path: monoid/gcd.hpp
-    title: 'Monoid: GCD'
-  - icon: ':heavy_check_mark:'
-    path: monoid/max.hpp
-    title: 'Monoid: Max'
-  - icon: ':heavy_check_mark:'
-    path: monoid/min.hpp
-    title: 'Monoid: Min'
-  - icon: ':heavy_check_mark:'
-    path: monoid/xor.hpp
-    title: 'Monoid: XOR'
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -49,54 +49,55 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
   bundledCode: "#line 1 \"test/unit/monoid.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <cassert>\n#include <iostream>\n#include <numeric>\n#include <random>\n\
-    #include <vector>\n\n#line 2 \"acted_monoid/range_add_range_sum.hpp\"\ntemplate\
-    \ <class T>\nstruct range_add_range_sum {\n    struct S {\n        T sum;\n  \
-    \      int len;\n    };\n    using F = T;\n    static S op(S a, S b) {\n     \
-    \   return {a.sum + b.sum, a.len + b.len};\n    }\n    static S e() {\n      \
-    \  return {T(0), 0};\n    }\n    static S mapping(F f, S x) {\n        return\
-    \ {x.sum + f * x.len, x.len};\n    }\n    static F composition(F f, F g) {\n \
-    \       return f + g;\n    }\n    static F id() {\n        return T(0);\n    }\n\
-    \    static constexpr bool composition_commutative = true;\n    static S from(T\
-    \ v) {\n        return {v, 1};\n    }\n};\n#line 2 \"datastructure/lazy_segtree.hpp\"\
-    \n#include <atcoder/lazysegtree>\n\n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\n\
-    template <class M>\nconcept semigroup = requires(typename M::S a, typename M::S\
-    \ b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n};\ntemplate <class\
-    \ M>\nconcept monoid = semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename\
-    \ M::S>;\n};\ntemplate <class A>\nconcept action = requires(typename A::F f, typename\
-    \ A::F g) {\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n  \
-    \  { A::id() } -> std::same_as<typename A::F>;\n    { A::composition_commutative\
-    \ } -> std::convertible_to<bool>;\n};\ntemplate <class A>\nconcept acted_monoid\
-    \ = monoid<A> && action<A> && requires(typename A::S x, typename A::F f) {\n \
-    \   { A::mapping(f, x) } -> std::same_as<typename A::S>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
-    \ntemplate <acted_monoid A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
-    \ A::S, A::op, A::e, typename A::F, A::mapping, A::composition, A::id>;\n#line\
-    \ 2 \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\n\n#line 5 \"datastructure/segtree.hpp\"\
-    \ntemplate <monoid M>\nusing segtree = atcoder::segtree<typename M::S, M::op,\
-    \ M::e>;\n#line 2 \"monoid/add.hpp\"\ntemplate <class T>\nstruct monoid_add {\n\
+    #include <vector>\n\n#line 2 \"algebra/range_add_range_sum.hpp\"\ntemplate <class\
+    \ T>\nstruct range_add_range_sum {\n    struct S {\n        T sum;\n        int\
+    \ len;\n    };\n    using F = T;\n    static S op(S a, S b) {\n        return\
+    \ {a.sum + b.sum, a.len + b.len};\n    }\n    static S e() {\n        return {T(0),\
+    \ 0};\n    }\n    static S mapping(F f, S x) {\n        return {x.sum + f * x.len,\
+    \ x.len};\n    }\n    static F composition(F f, F g) {\n        return f + g;\n\
+    \    }\n    static F id() {\n        return T(0);\n    }\n    static constexpr\
+    \ bool composition_commutative = true;\n    static S from(T v) {\n        return\
+    \ {v, 1};\n    }\n};\n#line 2 \"datastructure/lazy_segtree.hpp\"\n#include <atcoder/lazysegtree>\n\
+    \n#line 2 \"algebra/concept.hpp\"\n#include <concepts>\ntemplate <class M>\nconcept\
+    \ semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b)\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid =\
+    \ semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
+    };\ntemplate <class A>\nconcept action = requires(typename A::F f, typename A::F\
+    \ g) {\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    { A::id()\
+    \ } -> std::same_as<typename A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n\
+    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\ntemplate <acted_monoid\
+    \ A>\nusing lazy_segtree = atcoder::lazy_segtree<typename A::S, A::op, A::e, typename\
+    \ A::F, A::mapping, A::composition, A::id>;\n#line 2 \"datastructure/segtree.hpp\"\
+    \n#include <atcoder/segtree>\n\n#line 5 \"datastructure/segtree.hpp\"\ntemplate\
+    \ <monoid M>\nusing segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n\
+    #line 2 \"algebra/monoid_add.hpp\"\ntemplate <class T>\nstruct monoid_add {\n\
     \    using S = T;\n    static S op(S a, S b) {\n        return a + b;\n    }\n\
-    \    static S e() {\n        return T(0);\n    }\n};\n#line 2 \"monoid/affine.hpp\"\
+    \    static S e() {\n        return T(0);\n    }\n};\n#line 2 \"algebra/monoid_affine.hpp\"\
     \ntemplate <class T>\nstruct monoid_affine {\n    struct S {\n        T a, b;\n\
     \    };\n    static S op(S f, S g) {\n        return {g.a * f.a, g.a * f.b + g.b};\n\
     \    }\n    static S e() {\n        return {T(1), T(0)};\n    }\n    static T\
-    \ eval(S f, T x) {\n        return f.a * x + f.b;\n    }\n};\n#line 2 \"monoid/argmax.hpp\"\
+    \ eval(S f, T x) {\n        return f.a * x + f.b;\n    }\n};\n#line 2 \"algebra/monoid_argmax.hpp\"\
     \n#include <limits>\ntemplate <class T>\nstruct monoid_argmax {\n    struct S\
     \ {\n        T val;\n        int id;\n    };\n    static S op(S a, S b) {\n  \
     \      if (a.val != b.val) return a.val > b.val ? a : b;\n        return a.id\
     \ < b.id ? a : b;\n    }\n    static S e() {\n        return {std::numeric_limits<T>::lowest(),\
-    \ -1};\n    }\n};\n#line 3 \"monoid/argmin.hpp\"\ntemplate <class T>\nstruct monoid_argmin\
-    \ {\n    struct S {\n        T val;\n        int id;\n    };\n    static S op(S\
-    \ a, S b) {\n        if (a.val != b.val) return a.val < b.val ? a : b;\n     \
-    \   return a.id < b.id ? a : b;\n    }\n    static S e() {\n        return {std::numeric_limits<T>::max(),\
-    \ -1};\n    }\n};\n#line 3 \"monoid/gcd.hpp\"\ntemplate <class T>\nstruct monoid_gcd\
-    \ {\n    using S = T;\n    static S op(S a, S b) {\n        return std::gcd(a,\
-    \ b);\n    }\n    static S e() {\n        return T(0);\n    }\n};\n#line 2 \"\
-    monoid/max.hpp\"\n#include <algorithm>\n#line 4 \"monoid/max.hpp\"\ntemplate <class\
-    \ T>\nstruct monoid_max {\n    using S = T;\n    static S op(S a, S b) {\n   \
-    \     return std::max(a, b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::lowest();\n\
-    \    }\n};\n#line 4 \"monoid/min.hpp\"\ntemplate <class T>\nstruct monoid_min\
+    \ -1};\n    }\n};\n#line 3 \"algebra/monoid_argmin.hpp\"\ntemplate <class T>\n\
+    struct monoid_argmin {\n    struct S {\n        T val;\n        int id;\n    };\n\
+    \    static S op(S a, S b) {\n        if (a.val != b.val) return a.val < b.val\
+    \ ? a : b;\n        return a.id < b.id ? a : b;\n    }\n    static S e() {\n \
+    \       return {std::numeric_limits<T>::max(), -1};\n    }\n};\n#line 3 \"algebra/monoid_gcd.hpp\"\
+    \ntemplate <class T>\nstruct monoid_gcd {\n    using S = T;\n    static S op(S\
+    \ a, S b) {\n        return std::gcd(a, b);\n    }\n    static S e() {\n     \
+    \   return T(0);\n    }\n};\n#line 2 \"algebra/monoid_max.hpp\"\n#include <algorithm>\n\
+    #line 4 \"algebra/monoid_max.hpp\"\ntemplate <class T>\nstruct monoid_max {\n\
+    \    using S = T;\n    static S op(S a, S b) {\n        return std::max(a, b);\n\
+    \    }\n    static S e() {\n        return std::numeric_limits<T>::lowest();\n\
+    \    }\n};\n#line 4 \"algebra/monoid_min.hpp\"\ntemplate <class T>\nstruct monoid_min\
     \ {\n    using S = T;\n    static S op(S a, S b) {\n        return std::min(a,\
     \ b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::max();\n\
-    \    }\n};\n#line 2 \"monoid/xor.hpp\"\ntemplate <class T>\nstruct monoid_xor\
+    \    }\n};\n#line 2 \"algebra/monoid_xor.hpp\"\ntemplate <class T>\nstruct monoid_xor\
     \ {\n    using S = T;\n    static S op(S a, S b) {\n        return a ^ b;\n  \
     \  }\n    static S e() {\n        return T(0);\n    }\n};\n#line 19 \"test/unit/monoid.test.cpp\"\
     \ntemplate <class M, class Naive>\nvoid stress_monoid(std::mt19937 &rng, const\
@@ -153,12 +154,13 @@ data:
     \    }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <cassert>\n#include <iostream>\n#include <numeric>\n#include <random>\n\
-    #include <vector>\n\n#include \"acted_monoid/range_add_range_sum.hpp\"\n#include\
-    \ \"datastructure/lazy_segtree.hpp\"\n#include \"datastructure/segtree.hpp\"\n\
-    #include \"monoid/add.hpp\"\n#include \"monoid/affine.hpp\"\n#include \"monoid/argmax.hpp\"\
-    \n#include \"monoid/argmin.hpp\"\n#include \"monoid/gcd.hpp\"\n#include \"monoid/max.hpp\"\
-    \n#include \"monoid/min.hpp\"\n#include \"monoid/xor.hpp\"\ntemplate <class M,\
-    \ class Naive>\nvoid stress_monoid(std::mt19937 &rng, const Naive &naive) {\n\
+    #include <vector>\n\n#include \"algebra/range_add_range_sum.hpp\"\n#include \"\
+    datastructure/lazy_segtree.hpp\"\n#include \"datastructure/segtree.hpp\"\n#include\
+    \ \"algebra/monoid_add.hpp\"\n#include \"algebra/monoid_affine.hpp\"\n#include\
+    \ \"algebra/monoid_argmax.hpp\"\n#include \"algebra/monoid_argmin.hpp\"\n#include\
+    \ \"algebra/monoid_gcd.hpp\"\n#include \"algebra/monoid_max.hpp\"\n#include \"\
+    algebra/monoid_min.hpp\"\n#include \"algebra/monoid_xor.hpp\"\ntemplate <class\
+    \ M, class Naive>\nvoid stress_monoid(std::mt19937 &rng, const Naive &naive) {\n\
     \    using S = typename M::S;\n    const int N = 1 + rng() % 30;\n    std::vector<S>\
     \ a(N);\n    for (auto &x : a) x = S(rng() % 100);\n    segtree<M> seg(a);\n \
     \   for (int it = 0; it < 200; it++) {\n        if (rng() % 2) {\n           \
@@ -210,22 +212,22 @@ data:
     \ [](int a, int b) { return a > b; });\n        stress_affine(rng);\n        stress_range_add_range_sum(rng);\n\
     \    }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
   dependsOn:
-  - acted_monoid/range_add_range_sum.hpp
+  - algebra/range_add_range_sum.hpp
   - datastructure/lazy_segtree.hpp
-  - monoid/concept.hpp
+  - algebra/concept.hpp
   - datastructure/segtree.hpp
-  - monoid/add.hpp
-  - monoid/affine.hpp
-  - monoid/argmax.hpp
-  - monoid/argmin.hpp
-  - monoid/gcd.hpp
-  - monoid/max.hpp
-  - monoid/min.hpp
-  - monoid/xor.hpp
+  - algebra/monoid_add.hpp
+  - algebra/monoid_affine.hpp
+  - algebra/monoid_argmax.hpp
+  - algebra/monoid_argmin.hpp
+  - algebra/monoid_gcd.hpp
+  - algebra/monoid_max.hpp
+  - algebra/monoid_min.hpp
+  - algebra/monoid_xor.hpp
   isVerificationFile: true
   path: test/unit/monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 12:24:20+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/monoid.test.cpp

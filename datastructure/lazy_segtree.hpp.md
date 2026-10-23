@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: monoid/concept.hpp
-    title: 'Monoid: Concept'
+    path: algebra/concept.hpp
+    title: 'Algebra: Concept'
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -18,7 +18,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/lazy_segtree.hpp\"\n#include <atcoder/lazysegtree>\n\
-    \n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\ntemplate <class M>\nconcept\
+    \n#line 2 \"algebra/concept.hpp\"\n#include <concepts>\ntemplate <class M>\nconcept\
     \ semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b)\
     \ } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid =\
     \ semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
@@ -35,7 +35,7 @@ data:
     #include <atcoder/lazysegtree>
 
 
-    #include "monoid/concept.hpp"
+    #include "algebra/concept.hpp"
 
     template <acted_monoid A>
 
@@ -44,11 +44,11 @@ data:
 
     '
   dependsOn:
-  - monoid/concept.hpp
+  - algebra/concept.hpp
   isVerificationFile: false
   path: datastructure/lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2026-10-23 12:18:24+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_G.test.cpp
@@ -62,6 +62,6 @@ title: Lazy Segment Tree (acted monoid wrapper)
 - `atcoder::lazy_segtree` を acted monoid 構造体 1 つで指定するためのエイリアス。
 
 ### 使い方
-- `lazy_segtree<A>`: `A` は `S`, `op`, `e`, `F`, `mapping`, `composition`, `id` を static メンバとして持つ構造体。`acted_monoid/` 以下のものか、同じ形で自作したもの。
+- `lazy_segtree<A>`: `A` は `S`, `op`, `e`, `F`, `mapping`, `composition`, `id` を static メンバとして持つ構造体。`algebra/` 以下のものか、同じ形で自作したもの。
 - `composition(f, g)` は $f \circ g$（`g` が先）で ac-library と同じ。
 - 以降は `atcoder::lazy_segtree` と同じ。

@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: algebra/concept.hpp
+    title: 'Algebra: Concept'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_argmin.hpp
+    title: 'Monoid: Argmin'
+  - icon: ':heavy_check_mark:'
     path: datastructure/plus_minus_one_rmq.hpp
     title: Plus Minus One RMQ
   - icon: ':heavy_check_mark:'
     path: datastructure/sparse_table.hpp
     title: Sparse Table
-  - icon: ':heavy_check_mark:'
-    path: monoid/argmin.hpp
-    title: 'Monoid: Argmin'
-  - icon: ':heavy_check_mark:'
-    path: monoid/concept.hpp
-    title: 'Monoid: Concept'
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -26,7 +26,7 @@ data:
   bundledCode: "#line 2 \"graph/lowest_common_ancestor.hpp\"\n#include <cassert>\n\
     #include <vector>\n\n#line 2 \"datastructure/plus_minus_one_rmq.hpp\"\n#include\
     \ <algorithm>\n#include <bit>\n#line 6 \"datastructure/plus_minus_one_rmq.hpp\"\
-    \n\n#line 6 \"datastructure/sparse_table.hpp\"\n\n#line 2 \"monoid/concept.hpp\"\
+    \n\n#line 6 \"datastructure/sparse_table.hpp\"\n\n#line 2 \"algebra/concept.hpp\"\
     \n#include <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename\
     \ M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n\
     };\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
@@ -46,7 +46,7 @@ data:
     \            }\n        }\n    }\n    S prod(int l, int r) const {\n        assert(0\
     \ <= l && l < r && r <= _n);\n        int k = std::bit_width((unsigned)(r - l))\
     \ - 1;\n        return M::op(t[k][l], t[k][r - (1 << k)]);\n    }\n\nprivate:\n\
-    \    int _n;\n    std::vector<std::vector<S>> t;\n};\n#line 2 \"monoid/argmin.hpp\"\
+    \    int _n;\n    std::vector<std::vector<S>> t;\n};\n#line 2 \"algebra/monoid_argmin.hpp\"\
     \n#include <limits>\ntemplate <class T>\nstruct monoid_argmin {\n    struct S\
     \ {\n        T val;\n        int id;\n    };\n    static S op(S a, S b) {\n  \
     \      if (a.val != b.val) return a.val < b.val ? a : b;\n        return a.id\
@@ -122,12 +122,12 @@ data:
   dependsOn:
   - datastructure/plus_minus_one_rmq.hpp
   - datastructure/sparse_table.hpp
-  - monoid/concept.hpp
-  - monoid/argmin.hpp
+  - algebra/concept.hpp
+  - algebra/monoid_argmin.hpp
   isVerificationFile: false
   path: graph/lowest_common_ancestor.hpp
   requiredBy: []
-  timestamp: '2026-10-23 12:24:20+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/lca.test.cpp

@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: monoid/concept.hpp
-    title: 'Monoid: Concept'
+    path: algebra/concept.hpp
+    title: 'Algebra: Concept'
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
@@ -27,7 +27,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/segtree.hpp\"\n#include <atcoder/segtree>\n\
-    \n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\ntemplate <class M>\nconcept\
+    \n#line 2 \"algebra/concept.hpp\"\n#include <concepts>\ntemplate <class M>\nconcept\
     \ semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b)\
     \ } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid =\
     \ semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
@@ -43,7 +43,7 @@ data:
     #include <atcoder/segtree>
 
 
-    #include "monoid/concept.hpp"
+    #include "algebra/concept.hpp"
 
     template <monoid M>
 
@@ -51,12 +51,12 @@ data:
 
     '
   dependsOn:
-  - monoid/concept.hpp
+  - algebra/concept.hpp
   isVerificationFile: false
   path: datastructure/segtree.hpp
   requiredBy:
   - graph/manhattan_mst.hpp
-  timestamp: '2026-10-23 12:18:24+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_A.test.cpp
@@ -72,5 +72,5 @@ title: Segment Tree (monoid wrapper)
 - `atcoder::segtree` を monoid 構造体 1 つで指定するためのエイリアス。
 
 ### 使い方
-- `segtree<M>`: `M` は `S`, `op`, `e` を static メンバとして持つ構造体。`monoid/` 以下のものか、同じ形で自作したもの。
+- `segtree<M>`: `M` は `S`, `op`, `e` を static メンバとして持つ構造体。`algebra/` 以下のものか、同じ形で自作したもの。
 - 以降は `atcoder::segtree` と同じ。

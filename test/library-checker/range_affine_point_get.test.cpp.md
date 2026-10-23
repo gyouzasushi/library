@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: algebra/concept.hpp
+    title: 'Algebra: Concept'
+  - icon: ':heavy_check_mark:'
     path: datastructure/dual_segtree.hpp
     title: Dual Segment Tree
-  - icon: ':heavy_check_mark:'
-    path: monoid/concept.hpp
-    title: 'Monoid: Concept'
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -21,7 +21,7 @@ data:
     #define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\n#include\
     \ <atcoder/modint>\n#include <iostream>\n#include <vector>\n\n#line 2 \"datastructure/dual_segtree.hpp\"\
     \n#include <algorithm>\n#include <bit>\n#include <cassert>\n#line 6 \"datastructure/dual_segtree.hpp\"\
-    \n\n#line 2 \"monoid/concept.hpp\"\n#include <concepts>\ntemplate <class M>\n\
+    \n\n#line 2 \"algebra/concept.hpp\"\n#include <concepts>\ntemplate <class M>\n\
     concept semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a,\
     \ b) } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid\
     \ = semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
@@ -82,11 +82,11 @@ data:
     }\n"
   dependsOn:
   - datastructure/dual_segtree.hpp
-  - monoid/concept.hpp
+  - algebra/concept.hpp
   isVerificationFile: true
   path: test/library-checker/range_affine_point_get.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 12:18:24+09:00'
+  timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/range_affine_point_get.test.cpp
