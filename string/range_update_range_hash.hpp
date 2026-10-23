@@ -72,8 +72,8 @@ private:
         for (int i = 0; i < base_num; i++) {
             while (true) {
                 uint64_t k = std::uniform_int_distribution<uint64_t>(
-                    1, mint::mod - 1)(rng);
-                if (std::gcd(k, mint::mod - 1) != 1) continue;
+                    1, mint::mod() - 1)(rng);
+                if (std::gcd(k, mint::mod() - 1) != 1) continue;
                 uint64_t b = mint(r).pow(k).val();
                 if (b <= A) continue;
                 bases[i] = b;
