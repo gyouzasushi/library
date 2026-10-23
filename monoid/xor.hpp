@@ -8,5 +8,4 @@ struct monoid_xor {
     static S e() {
         return T(0);
     }
-    static constexpr bool commutative = true;
 };

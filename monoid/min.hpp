@@ -10,5 +10,4 @@ struct monoid_min {
     static S e() {
         return std::numeric_limits<T>::max();
     }
-    static constexpr bool commutative = true;
 };

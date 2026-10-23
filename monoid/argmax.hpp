@@ -13,5 +13,4 @@ struct monoid_argmax {
     static S e() {
         return {std::numeric_limits<T>::lowest(), -1};
     }
-    static constexpr bool commutative = true;
 };

@@ -13,5 +13,4 @@ struct monoid_affine {
     static T eval(S f, T x) {
         return f.a * x + f.b;
     }
-    static constexpr bool commutative = false;
 };

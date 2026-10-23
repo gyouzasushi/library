@@ -9,5 +9,4 @@ struct monoid_gcd {
     static S e() {
         return T(0);
     }
-    static constexpr bool commutative = true;
 };
