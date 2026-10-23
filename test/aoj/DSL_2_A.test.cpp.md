@@ -36,12 +36,11 @@ data:
     \n#include <algorithm>\n#include <limits>\ntemplate <class T>\nstruct monoid_min\
     \ {\n    using S = T;\n    static S op(S a, S b) {\n        return std::min(a,\
     \ b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::max();\n\
-    \    }\n    static constexpr bool commutative = true;\n};\n#line 6 \"test/aoj/DSL_2_A.test.cpp\"\
-    \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    segtree<monoid_min<int>>\
-    \ seg(n);\n    while (q--) {\n        int com, x, y;\n        std::cin >> com\
-    \ >> x >> y;\n        if (com == 0) {\n            seg.set(x, y);\n        } else\
-    \ {\n            std::cout << seg.prod(x, y + 1) << '\\n';\n        }\n    }\n\
-    }\n"
+    \    }\n};\n#line 6 \"test/aoj/DSL_2_A.test.cpp\"\nint main() {\n    int n, q;\n\
+    \    std::cin >> n >> q;\n    segtree<monoid_min<int>> seg(n);\n    while (q--)\
+    \ {\n        int com, x, y;\n        std::cin >> com >> x >> y;\n        if (com\
+    \ == 0) {\n            seg.set(x, y);\n        } else {\n            std::cout\
+    \ << seg.prod(x, y + 1) << '\\n';\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A\"\n#include\
     \ <iostream>\n\n#include \"datastructure/segtree.hpp\"\n#include \"monoid/min.hpp\"\
     \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    segtree<monoid_min<int>>\
@@ -56,7 +55,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 12:18:24+09:00'
+  timestamp: '2026-10-23 12:24:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_A.test.cpp

@@ -38,8 +38,7 @@ data:
     \ntemplate <class T>\nstruct monoid_affine {\n    struct S {\n        T a, b;\n\
     \    };\n    static S op(S f, S g) {\n        return {g.a * f.a, g.a * f.b + g.b};\n\
     \    }\n    static S e() {\n        return {T(1), T(0)};\n    }\n    static T\
-    \ eval(S f, T x) {\n        return f.a * x + f.b;\n    }\n    static constexpr\
-    \ bool commutative = false;\n};\n#line 8 \"test/library-checker/point_set_range_composite.test.cpp\"\
+    \ eval(S f, T x) {\n        return f.a * x + f.b;\n    }\n};\n#line 8 \"test/library-checker/point_set_range_composite.test.cpp\"\
     \nusing mint = atcoder::modint998244353;\nusing M = monoid_affine<mint>;\nint\
     \ main() {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<M::S> f(n);\n\
     \    for (int i = 0; i < n; i++) {\n        int a, b;\n        std::cin >> a >>\
@@ -70,7 +69,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 12:18:24+09:00'
+  timestamp: '2026-10-23 12:24:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/point_set_range_composite.test.cpp

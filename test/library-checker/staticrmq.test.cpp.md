@@ -46,12 +46,12 @@ data:
     \    int _n;\n    std::vector<std::vector<S>> t;\n};\n#line 3 \"monoid/min.hpp\"\
     \n#include <limits>\ntemplate <class T>\nstruct monoid_min {\n    using S = T;\n\
     \    static S op(S a, S b) {\n        return std::min(a, b);\n    }\n    static\
-    \ S e() {\n        return std::numeric_limits<T>::max();\n    }\n    static constexpr\
-    \ bool commutative = true;\n};\n#line 7 \"test/library-checker/staticrmq.test.cpp\"\
-    \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<int> a(n);\n\
-    \    for (int& x : a) std::cin >> x;\n    sparse_table<monoid_min<int>> st(a);\n\
-    \    while (q--) {\n        int l, r;\n        std::cin >> l >> r;\n        std::cout\
-    \ << st.prod(l, r) << '\\n';\n    }\n}\n"
+    \ S e() {\n        return std::numeric_limits<T>::max();\n    }\n};\n#line 7 \"\
+    test/library-checker/staticrmq.test.cpp\"\nint main() {\n    int n, q;\n    std::cin\
+    \ >> n >> q;\n    std::vector<int> a(n);\n    for (int& x : a) std::cin >> x;\n\
+    \    sparse_table<monoid_min<int>> st(a);\n    while (q--) {\n        int l, r;\n\
+    \        std::cin >> l >> r;\n        std::cout << st.prod(l, r) << '\\n';\n \
+    \   }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include <iostream>\n\
     #include <vector>\n\n#include \"datastructure/sparse_table.hpp\"\n#include \"\
     monoid/min.hpp\"\nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<int>\
@@ -65,7 +65,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 12:18:24+09:00'
+  timestamp: '2026-10-23 12:24:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/staticrmq.test.cpp

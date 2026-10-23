@@ -33,13 +33,12 @@ data:
     \ T>\nstruct monoid_argmin {\n    struct S {\n        T val;\n        int id;\n\
     \    };\n    static S op(S a, S b) {\n        if (a.val != b.val) return a.val\
     \ < b.val ? a : b;\n        return a.id < b.id ? a : b;\n    }\n    static S e()\
-    \ {\n        return {std::numeric_limits<T>::max(), -1};\n    }\n    static constexpr\
-    \ bool commutative = true;\n};\n"
+    \ {\n        return {std::numeric_limits<T>::max(), -1};\n    }\n};\n"
   code: "#pragma once\n#include <limits>\ntemplate <class T>\nstruct monoid_argmin\
     \ {\n    struct S {\n        T val;\n        int id;\n    };\n    static S op(S\
     \ a, S b) {\n        if (a.val != b.val) return a.val < b.val ? a : b;\n     \
     \   return a.id < b.id ? a : b;\n    }\n    static S e() {\n        return {std::numeric_limits<T>::max(),\
-    \ -1};\n    }\n    static constexpr bool commutative = true;\n};\n"
+    \ -1};\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: monoid/argmin.hpp
@@ -47,7 +46,7 @@ data:
   - datastructure/plus_minus_one_rmq.hpp
   - graph/manhattan_mst.hpp
   - graph/lowest_common_ancestor.hpp
-  timestamp: '2026-10-22 18:09:47+09:00'
+  timestamp: '2026-10-23 12:24:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/sparse_table.test.cpp

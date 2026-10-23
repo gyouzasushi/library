@@ -74,46 +74,41 @@ data:
     \ntemplate <monoid M>\nusing segtree = atcoder::segtree<typename M::S, M::op,\
     \ M::e>;\n#line 2 \"monoid/add.hpp\"\ntemplate <class T>\nstruct monoid_add {\n\
     \    using S = T;\n    static S op(S a, S b) {\n        return a + b;\n    }\n\
-    \    static S e() {\n        return T(0);\n    }\n    static constexpr bool commutative\
-    \ = true;\n};\n#line 2 \"monoid/affine.hpp\"\ntemplate <class T>\nstruct monoid_affine\
-    \ {\n    struct S {\n        T a, b;\n    };\n    static S op(S f, S g) {\n  \
-    \      return {g.a * f.a, g.a * f.b + g.b};\n    }\n    static S e() {\n     \
-    \   return {T(1), T(0)};\n    }\n    static T eval(S f, T x) {\n        return\
-    \ f.a * x + f.b;\n    }\n    static constexpr bool commutative = false;\n};\n\
-    #line 2 \"monoid/argmax.hpp\"\n#include <limits>\ntemplate <class T>\nstruct monoid_argmax\
+    \    static S e() {\n        return T(0);\n    }\n};\n#line 2 \"monoid/affine.hpp\"\
+    \ntemplate <class T>\nstruct monoid_affine {\n    struct S {\n        T a, b;\n\
+    \    };\n    static S op(S f, S g) {\n        return {g.a * f.a, g.a * f.b + g.b};\n\
+    \    }\n    static S e() {\n        return {T(1), T(0)};\n    }\n    static T\
+    \ eval(S f, T x) {\n        return f.a * x + f.b;\n    }\n};\n#line 2 \"monoid/argmax.hpp\"\
+    \n#include <limits>\ntemplate <class T>\nstruct monoid_argmax {\n    struct S\
+    \ {\n        T val;\n        int id;\n    };\n    static S op(S a, S b) {\n  \
+    \      if (a.val != b.val) return a.val > b.val ? a : b;\n        return a.id\
+    \ < b.id ? a : b;\n    }\n    static S e() {\n        return {std::numeric_limits<T>::lowest(),\
+    \ -1};\n    }\n};\n#line 3 \"monoid/argmin.hpp\"\ntemplate <class T>\nstruct monoid_argmin\
     \ {\n    struct S {\n        T val;\n        int id;\n    };\n    static S op(S\
-    \ a, S b) {\n        if (a.val != b.val) return a.val > b.val ? a : b;\n     \
-    \   return a.id < b.id ? a : b;\n    }\n    static S e() {\n        return {std::numeric_limits<T>::lowest(),\
-    \ -1};\n    }\n    static constexpr bool commutative = true;\n};\n#line 3 \"monoid/argmin.hpp\"\
-    \ntemplate <class T>\nstruct monoid_argmin {\n    struct S {\n        T val;\n\
-    \        int id;\n    };\n    static S op(S a, S b) {\n        if (a.val != b.val)\
-    \ return a.val < b.val ? a : b;\n        return a.id < b.id ? a : b;\n    }\n\
-    \    static S e() {\n        return {std::numeric_limits<T>::max(), -1};\n   \
-    \ }\n    static constexpr bool commutative = true;\n};\n#line 3 \"monoid/gcd.hpp\"\
-    \ntemplate <class T>\nstruct monoid_gcd {\n    using S = T;\n    static S op(S\
-    \ a, S b) {\n        return std::gcd(a, b);\n    }\n    static S e() {\n     \
-    \   return T(0);\n    }\n    static constexpr bool commutative = true;\n};\n#line\
-    \ 2 \"monoid/max.hpp\"\n#include <algorithm>\n#line 4 \"monoid/max.hpp\"\ntemplate\
-    \ <class T>\nstruct monoid_max {\n    using S = T;\n    static S op(S a, S b)\
-    \ {\n        return std::max(a, b);\n    }\n    static S e() {\n        return\
-    \ std::numeric_limits<T>::lowest();\n    }\n    static constexpr bool commutative\
-    \ = true;\n};\n#line 4 \"monoid/min.hpp\"\ntemplate <class T>\nstruct monoid_min\
+    \ a, S b) {\n        if (a.val != b.val) return a.val < b.val ? a : b;\n     \
+    \   return a.id < b.id ? a : b;\n    }\n    static S e() {\n        return {std::numeric_limits<T>::max(),\
+    \ -1};\n    }\n};\n#line 3 \"monoid/gcd.hpp\"\ntemplate <class T>\nstruct monoid_gcd\
+    \ {\n    using S = T;\n    static S op(S a, S b) {\n        return std::gcd(a,\
+    \ b);\n    }\n    static S e() {\n        return T(0);\n    }\n};\n#line 2 \"\
+    monoid/max.hpp\"\n#include <algorithm>\n#line 4 \"monoid/max.hpp\"\ntemplate <class\
+    \ T>\nstruct monoid_max {\n    using S = T;\n    static S op(S a, S b) {\n   \
+    \     return std::max(a, b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::lowest();\n\
+    \    }\n};\n#line 4 \"monoid/min.hpp\"\ntemplate <class T>\nstruct monoid_min\
     \ {\n    using S = T;\n    static S op(S a, S b) {\n        return std::min(a,\
     \ b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::max();\n\
-    \    }\n    static constexpr bool commutative = true;\n};\n#line 2 \"monoid/xor.hpp\"\
-    \ntemplate <class T>\nstruct monoid_xor {\n    using S = T;\n    static S op(S\
-    \ a, S b) {\n        return a ^ b;\n    }\n    static S e() {\n        return\
-    \ T(0);\n    }\n    static constexpr bool commutative = true;\n};\n#line 19 \"\
-    test/unit/monoid.test.cpp\"\ntemplate <class M, class Naive>\nvoid stress_monoid(std::mt19937\
-    \ &rng, const Naive &naive) {\n    using S = typename M::S;\n    const int N =\
-    \ 1 + rng() % 30;\n    std::vector<S> a(N);\n    for (auto &x : a) x = S(rng()\
-    \ % 100);\n    segtree<M> seg(a);\n    for (int it = 0; it < 200; it++) {\n  \
-    \      if (rng() % 2) {\n            int p = rng() % N;\n            a[p] = S(rng()\
-    \ % 100);\n            seg.set(p, a[p]);\n        } else {\n            int l\
-    \ = rng() % (N + 1), r = rng() % (N + 1);\n            if (l > r) std::swap(l,\
-    \ r);\n            S expect = M::e();\n            for (int i = l; i < r; i++)\
-    \ expect = naive(expect, a[i]);\n            assert(seg.prod(l, r) == expect);\n\
-    \        }\n    }\n}\ntemplate <class M, class Naive>\nvoid stress_argmonoid(std::mt19937\
+    \    }\n};\n#line 2 \"monoid/xor.hpp\"\ntemplate <class T>\nstruct monoid_xor\
+    \ {\n    using S = T;\n    static S op(S a, S b) {\n        return a ^ b;\n  \
+    \  }\n    static S e() {\n        return T(0);\n    }\n};\n#line 19 \"test/unit/monoid.test.cpp\"\
+    \ntemplate <class M, class Naive>\nvoid stress_monoid(std::mt19937 &rng, const\
+    \ Naive &naive) {\n    using S = typename M::S;\n    const int N = 1 + rng() %\
+    \ 30;\n    std::vector<S> a(N);\n    for (auto &x : a) x = S(rng() % 100);\n \
+    \   segtree<M> seg(a);\n    for (int it = 0; it < 200; it++) {\n        if (rng()\
+    \ % 2) {\n            int p = rng() % N;\n            a[p] = S(rng() % 100);\n\
+    \            seg.set(p, a[p]);\n        } else {\n            int l = rng() %\
+    \ (N + 1), r = rng() % (N + 1);\n            if (l > r) std::swap(l, r);\n   \
+    \         S expect = M::e();\n            for (int i = l; i < r; i++) expect =\
+    \ naive(expect, a[i]);\n            assert(seg.prod(l, r) == expect);\n      \
+    \  }\n    }\n}\ntemplate <class M, class Naive>\nvoid stress_argmonoid(std::mt19937\
     \ &rng, const Naive &better) {\n    using S = typename M::S;\n    const int N\
     \ = 1 + rng() % 30;\n    std::vector<S> a(N);\n    for (int i = 0; i < N; i++)\
     \ a[i] = {int(rng() % 5), i};\n    segtree<M> seg(a);\n    for (int it = 0; it\
@@ -230,7 +225,7 @@ data:
   isVerificationFile: true
   path: test/unit/monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 12:18:24+09:00'
+  timestamp: '2026-10-23 12:24:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/monoid.test.cpp
