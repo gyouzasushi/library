@@ -1,21 +1,18 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
 #include <atcoder/modint>
 #include <iostream>
+#include <vector>
 
 #include "datastructure/dual_segtree.hpp"
 using mint = atcoder::modint998244353;
-struct F {
-    mint b, c;
-    mint val(mint x) {
-        return b * x + c;
-    }
+struct range_affine {
+    struct F {
+        mint b, c;
+    };
+    static F composition(F f, F g) { return {f.b * g.b, f.b * g.c + f.c}; }
+    static F id() { return {1, 0}; }
+    static constexpr bool composition_commutative = false;
 };
-F compostition(F f, F g) {
-    return {f.b * g.b, f.b * g.c + f.c};
-}
-F id() {
-    return {1, 0};
-}
 int main() {
     int n, q;
     std::cin >> n >> q;
@@ -25,20 +22,19 @@ int main() {
         std::cin >> x;
         a[i] = mint::raw(x);
     }
-    dual_segtree<F, compostition, id> segt(n);
+    dual_segtree<range_affine> seg(n);
     while (q--) {
         int t;
         std::cin >> t;
         if (t == 0) {
-            int l, r;
-            int b, c;
+            int l, r, b, c;
             std::cin >> l >> r >> b >> c;
-            segt.apply(l, r, {mint::raw(b), mint::raw(c)});
-        }
-        if (t == 1) {
+            seg.apply(l, r, {mint::raw(b), mint::raw(c)});
+        } else {
             int i;
             std::cin >> i;
-            std::cout << segt.get(i).val(a[i]).val() << '\n';
+            auto f = seg.get(i);
+            std::cout << (f.b * a[i] + f.c).val() << '\n';
         }
     }
 }

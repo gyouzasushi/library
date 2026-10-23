@@ -21,6 +21,7 @@ struct range_add_range_sum {
     static F id() {
         return T(0);
     }
+    static constexpr bool composition_commutative = true;
     static S from(T v) {
         return {v, 1};
     }
