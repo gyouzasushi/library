@@ -5,17 +5,17 @@
 #include <random>
 #include <vector>
 
-#include "acted_monoid/range_add_range_sum.hpp"
+#include "algebra/range_add_range_sum.hpp"
 #include "datastructure/lazy_segtree.hpp"
 #include "datastructure/segtree.hpp"
-#include "monoid/add.hpp"
-#include "monoid/affine.hpp"
-#include "monoid/argmax.hpp"
-#include "monoid/argmin.hpp"
-#include "monoid/gcd.hpp"
-#include "monoid/max.hpp"
-#include "monoid/min.hpp"
-#include "monoid/xor.hpp"
+#include "algebra/monoid_add.hpp"
+#include "algebra/monoid_affine.hpp"
+#include "algebra/monoid_argmax.hpp"
+#include "algebra/monoid_argmin.hpp"
+#include "algebra/monoid_gcd.hpp"
+#include "algebra/monoid_max.hpp"
+#include "algebra/monoid_min.hpp"
+#include "algebra/monoid_xor.hpp"
 template <class M, class Naive>
 void stress_monoid(std::mt19937 &rng, const Naive &naive) {
     using S = typename M::S;

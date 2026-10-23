@@ -1,6 +1,6 @@
 ---
 title: "Acted Monoid: Range Add Range Sum"
-documentation_of: acted_monoid/range_add_range_sum.hpp
+documentation_of: algebra/range_add_range_sum.hpp
 ---
 
 ### 概要

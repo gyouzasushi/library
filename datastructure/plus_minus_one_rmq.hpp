@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "datastructure/sparse_table.hpp"
-#include "monoid/argmin.hpp"
+#include "algebra/monoid_argmin.hpp"
 struct plus_minus_one_rmq {
 public:
     plus_minus_one_rmq() : _n(0), s(1), B(0) {

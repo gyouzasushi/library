@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "datastructure/segtree.hpp"
-#include "monoid/min.hpp"
+#include "algebra/monoid_min.hpp"
 int main() {
     int n, q;
     std::cin >> n >> q;

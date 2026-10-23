@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-#include "acted_monoid/range_add_range_sum.hpp"
+#include "algebra/range_add_range_sum.hpp"
 #include "datastructure/lazy_segtree.hpp"
 int main() {
     int n, q;

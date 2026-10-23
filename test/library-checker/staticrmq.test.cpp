@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "datastructure/sparse_table.hpp"
-#include "monoid/min.hpp"
+#include "algebra/monoid_min.hpp"
 int main() {
     int n, q;
     std::cin >> n >> q;

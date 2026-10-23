@@ -8,10 +8,10 @@
 
 #include "datastructure/plus_minus_one_rmq.hpp"
 #include "datastructure/sparse_table.hpp"
-#include "monoid/argmin.hpp"
-#include "monoid/gcd.hpp"
-#include "monoid/max.hpp"
-#include "monoid/min.hpp"
+#include "algebra/monoid_argmin.hpp"
+#include "algebra/monoid_gcd.hpp"
+#include "algebra/monoid_max.hpp"
+#include "algebra/monoid_min.hpp"
 // band without identity: keep the left operand
 struct leftmost {
     using S = int;

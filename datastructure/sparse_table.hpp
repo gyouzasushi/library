@@ -4,7 +4,7 @@
 #include <cassert>
 #include <vector>
 
-#include "monoid/concept.hpp"
+#include "algebra/concept.hpp"
 template <semigroup M> struct sparse_table {
     using S = typename M::S;
     sparse_table() : _n(0) {

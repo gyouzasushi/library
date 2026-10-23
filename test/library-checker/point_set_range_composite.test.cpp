@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "datastructure/segtree.hpp"
-#include "monoid/affine.hpp"
+#include "algebra/monoid_affine.hpp"
 using mint = atcoder::modint998244353;
 using M = monoid_affine<mint>;
 int main() {

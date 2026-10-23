@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "datastructure/segtree.hpp"
-#include "monoid/argmin.hpp"
+#include "algebra/monoid_argmin.hpp"
 template <typename T>
 std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,
                                                    std::vector<T> y) {

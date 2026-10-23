@@ -1,6 +1,6 @@
 ---
-title: "Monoid: Concept"
-documentation_of: monoid/concept.hpp
+title: "Algebra: Concept"
+documentation_of: algebra/concept.hpp
 ---
 
 ### 概要

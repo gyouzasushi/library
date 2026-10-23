@@ -7,5 +7,5 @@ documentation_of: datastructure/segtree.hpp
 - `atcoder::segtree` を monoid 構造体 1 つで指定するためのエイリアス。
 
 ### 使い方
-- `segtree<M>`: `M` は `S`, `op`, `e` を static メンバとして持つ構造体。`monoid/` 以下のものか、同じ形で自作したもの。
+- `segtree<M>`: `M` は `S`, `op`, `e` を static メンバとして持つ構造体。`algebra/` 以下のものか、同じ形で自作したもの。
 - 以降は `atcoder::segtree` と同じ。

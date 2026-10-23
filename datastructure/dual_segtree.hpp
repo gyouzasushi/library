@@ -4,7 +4,7 @@
 #include <cassert>
 #include <vector>
 
-#include "monoid/concept.hpp"
+#include "algebra/concept.hpp"
 template <action A>
 struct dual_segtree {
     using F = typename A::F;
