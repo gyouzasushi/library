@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/bitwise_or_convolution.test.cpp
     title: test/library-checker/bitwise_or_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/zeta_mobius_transform.test.cpp
+    title: test/unit/zeta_mobius_transform.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -62,6 +65,7 @@ data:
   timestamp: '2022-09-17 18:19:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unit/zeta_mobius_transform.test.cpp
   - test/library-checker/bitwise_and_convolution.test.cpp
   - test/library-checker/bitwise_or_convolution.test.cpp
 documentation_of: math/zeta_mobius_transform.hpp

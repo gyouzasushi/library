@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/unit/topological_sort.test.cpp
+    title: test/unit/topological_sort.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/topological_sort.hpp\"\n#include <queue>\nstd::vector<int>\
@@ -33,8 +36,9 @@ data:
   path: graph/topological_sort.hpp
   requiredBy: []
   timestamp: '2024-06-04 13:53:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/unit/topological_sort.test.cpp
 documentation_of: graph/topological_sort.hpp
 layout: document
 redirect_from:

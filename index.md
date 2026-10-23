@@ -93,7 +93,7 @@ data:
       path: graph/subtree_classify.hpp
       title: "\u6839\u4ED8\u304D\u6728\u306E\u540C\u578B\u6027\u306B\u3088\u308B\u90E8\
         \u5206\u6728\u306E\u5206\u985E"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/topological_sort.hpp
       title: graph/topological_sort.hpp
   - name: math
@@ -119,9 +119,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: math/matrix.hpp
-    - icon: ':warning:'
-      path: math/modint.hpp
-      title: modint
     - icon: ':heavy_check_mark:'
       path: math/modint2305843009213693951.hpp
       title: math/modint2305843009213693951.hpp
@@ -425,6 +422,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/sparse_table.test.cpp
       title: test/unit/sparse_table.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/topological_sort.test.cpp
+      title: test/unit/topological_sort.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/zeta_mobius_transform.test.cpp
+      title: test/unit/zeta_mobius_transform.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'
