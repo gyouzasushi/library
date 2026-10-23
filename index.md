@@ -95,7 +95,7 @@ data:
         \u5206\u6728\u306E\u5206\u985E"
     - icon: ':heavy_check_mark:'
       path: graph/topological_sort.hpp
-      title: graph/topological_sort.hpp
+      title: Topological Sort
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
