@@ -1,63 +1,76 @@
 #pragma once
+#include <cassert>
+#include <utility>
 #include <vector>
-template <typename T>
-struct matrix {
-public:
-    matrix() {
+
+#include "algebra/concept.hpp"
+#include "algebra/semiring_plus_times.hpp"
+template <semiring R>
+struct semiring_matrix {
+    using S = typename R::S;
+    semiring_matrix() : semiring_matrix(0, 0) {}
+    semiring_matrix(int h, int w) : h(h), w(w), a(h, std::vector<S>(w, R::zero())) {}
+    explicit semiring_matrix(std::vector<std::vector<S>> v) : h(int(v.size())), w(h ? int(v[0].size()) : 0), a(std::move(v)) {
+        for (int i = 0; i < h; i++) assert(int(a[i].size()) == w);
     }
-    matrix(size_t n, size_t m) : a(n, std::vector<T>(m, 0)) {
-    }
-    matrix(std::vector<std::vector<T>> _a) {
-        for (size_t i = 1; i < _a.size(); i++) {
-            assert(_a[0].size() == _a[i].size());
-        }
-        a = std::move(_a);
-    }
-    matrix(std::vector<T> _a) {
-        a.resize(_a.size());
-        for (size_t i = 0; i < a.size(); i++) {
-            a[i].resize(1);
-            a[i][0] = _a[i];
-        }
-    }
-    static matrix e(size_t n) {
-        matrix ret(n, n);
-        for (size_t i = 0; i < n; i++) ret[i][i] = 1;
+    static semiring_matrix e(int n) {
+        semiring_matrix ret(n, n);
+        for (int i = 0; i < n; i++) ret[i][i] = R::one();
         return ret;
     }
-    inline const std::vector<T>& operator[](int i) const {
+    int height() const {
+        return h;
+    }
+    int width() const {
+        return w;
+    }
+    const std::vector<S>& operator[](int i) const {
         return a[i];
     }
-    inline std::vector<T>& operator[](int i) {
+    std::vector<S>& operator[](int i) {
         return a[i];
     }
-    matrix& operator*=(const matrix& rhs) {
-        assert(a[0].size() == rhs.a.size());
-        std::vector ret(a.size(), std::vector<T>(rhs[0].size(), 0));
-        for (size_t i = 0; i < a.size(); i++) {
-            for (size_t j = 0; j < rhs[0].size(); j++) {
-                for (size_t k = 0; k < a[0].size(); k++) {
-                    ret[i][j] += a[i][k] * rhs[k][j];
-                }
+    friend semiring_matrix operator+(const semiring_matrix& lhs, const semiring_matrix& rhs) {
+        assert(lhs.h == rhs.h && lhs.w == rhs.w);
+        semiring_matrix ret(lhs.h, lhs.w);
+        for (int i = 0; i < lhs.h; i++) {
+            for (int j = 0; j < lhs.w; j++) ret[i][j] = R::add(lhs[i][j], rhs[i][j]);
+        }
+        return ret;
+    }
+    friend semiring_matrix operator*(const semiring_matrix& lhs, const semiring_matrix& rhs) {
+        assert(lhs.w == rhs.h);
+        semiring_matrix ret(lhs.h, rhs.w);
+        for (int i = 0; i < lhs.h; i++) {
+            for (int k = 0; k < lhs.w; k++) {
+                for (int j = 0; j < rhs.w; j++) ret[i][j] = R::add(ret[i][j], R::mul(lhs[i][k], rhs[k][j]));
             }
         }
-        a = std::move(ret);
-        return *this;
+        return ret;
     }
-    matrix operator*(const matrix& rhs) const {
-        return matrix(*this) *= rhs;
+    semiring_matrix& operator+=(const semiring_matrix& rhs) {
+        return *this = *this + rhs;
     }
-    matrix pow(long long k) const {
-        assert(0 <= k);
-        matrix x = *this, ret = matrix::e(a.size());
-        while (k > 0) {
+    semiring_matrix& operator*=(const semiring_matrix& rhs) {
+        return *this = *this * rhs;
+    }
+    semiring_matrix pow(long long k) const {
+        assert(h == w && k >= 0);
+        semiring_matrix x = *this, ret = e(h);
+        while (k) {
             if (k & 1) ret *= x;
             x *= x;
             k >>= 1;
         }
         return ret;
     }
+    friend bool operator==(const semiring_matrix& lhs, const semiring_matrix& rhs) {
+        return lhs.a == rhs.a;
+    }
 
 private:
-    std::vector<std::vector<T>> a;
+    int h, w;
+    std::vector<std::vector<S>> a;
 };
+template <class T>
+using matrix = semiring_matrix<semiring_plus_times<T>>;

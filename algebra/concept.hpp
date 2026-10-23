@@ -18,3 +18,10 @@ template <class A>
 concept acted_monoid = monoid<A> && action<A> && requires(typename A::S x, typename A::F f) {
     { A::mapping(f, x) } -> std::same_as<typename A::S>;
 };
+template <class R>
+concept semiring = requires(typename R::S a, typename R::S b) {
+    { R::add(a, b) } -> std::same_as<typename R::S>;
+    { R::zero() } -> std::same_as<typename R::S>;
+    { R::mul(a, b) } -> std::same_as<typename R::S>;
+    { R::one() } -> std::same_as<typename R::S>;
+};
