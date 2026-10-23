@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: math/modint2305843009213693951.hpp
-    title: math/modint2305843009213693951.hpp
+    title: modint2305843009213693951
   - icon: ':heavy_check_mark:'
     path: math/pow_sum_table.hpp
     title: math/pow_sum_table.hpp
@@ -108,52 +108,66 @@ data:
     \ all_apply(int k, F f) {\n        d[k] = mapping(f, d[k]);\n        if (k < size)\
     \ lz[k] = composition(f, lz[k]);\n    }\n    void push(int k) {\n        all_apply(2\
     \ * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n        lz[k] = id();\n\
-    \    }\n};\n\n}  // namespace atcoder\n\n\n#line 2 \"math/modint2305843009213693951.hpp\"\
-    \n#include <cstdint>\nstruct modint2305843009213693951 {\n    using mint = modint2305843009213693951;\n\
-    \npublic:\n    static constexpr uint64_t mod = 2305843009213693951;\n    modint2305843009213693951()\
-    \ : _v(0) {\n    }\n    modint2305843009213693951(uint64_t v) : _v(fast_mod(v))\
-    \ {\n    }\n    static constexpr uint64_t fast_mod(uint64_t v) {\n        uint64_t\
-    \ u = v >> 61;\n        uint64_t d = v & mod;\n        uint64_t x = u + d;\n \
-    \       if (x > mod) x -= mod;\n        return x;\n    }\n    uint64_t val() const\
-    \ {\n        return _v;\n    }\n\n    mint& operator+=(const mint& rhs) {\n  \
-    \      _v += rhs._v;\n        if (_v >= mod) _v -= mod;\n        return *this;\n\
-    \    }\n    mint& operator-=(const mint& rhs) {\n        _v -= rhs._v;\n     \
-    \   if (_v >= mod) _v += mod;\n        return *this;\n    }\n    mint& operator*=(const\
-    \ mint& rhs) {\n        static constexpr uint64_t mask31 = (uint64_t(1) << 31)\
-    \ - 1;\n        static constexpr uint64_t mask30 = (uint64_t(1) << 30) - 1;\n\
-    \        uint64_t au = _v >> 31;\n        uint64_t ad = _v & mask31;\n       \
-    \ uint64_t bu = rhs._v >> 31;\n        uint64_t bd = rhs._v & mask31;\n      \
-    \  uint64_t m = ad * bu + au * bd;\n        uint64_t mu = m >> 30;\n        uint64_t\
-    \ md = m & mask30;\n        _v = fast_mod((au * bu << 1) + mu + (md << 31) + ad\
-    \ * bd);\n        return *this;\n    }\n    mint operator+() const {\n       \
-    \ return *this;\n    }\n    mint operator-() const {\n        return mint() -\
-    \ *this;\n    }\n    mint pow(uint64_t n) const {\n        mint x = *this, r =\
-    \ 1;\n        while (n) {\n            if (n & 1) r *= x;\n            x *= x;\n\
-    \            n >>= 1;\n        }\n        return r;\n    }\n    friend mint operator+(const\
-    \ mint& lhs, const mint& rhs) {\n        return mint(lhs) += rhs;\n    }\n   \
-    \ friend mint operator-(const mint& lhs, const mint& rhs) {\n        return mint(lhs)\
-    \ -= rhs;\n    }\n    friend mint operator*(const mint& lhs, const mint& rhs)\
-    \ {\n        return mint(lhs) *= rhs;\n    }\n    friend bool operator==(const\
+    \    }\n};\n\n}  // namespace atcoder\n\n\n#line 3 \"math/modint2305843009213693951.hpp\"\
+    \n#include <concepts>\n#include <cstdint>\nstruct modint2305843009213693951 {\n\
+    \    using mint = modint2305843009213693951;\n    static constexpr uint64_t mod()\
+    \ {\n        return m;\n    }\n    static mint raw(uint64_t v) {\n        mint\
+    \ x;\n        x._v = v;\n        return x;\n    }\n    modint2305843009213693951()\
+    \ : _v(0) {}\n    template <std::unsigned_integral T>\n    modint2305843009213693951(T\
+    \ v) : _v(reduce(v)) {}\n    template <std::signed_integral T>\n    modint2305843009213693951(T\
+    \ v) {\n        if (v >= 0) {\n            _v = reduce(uint64_t(v));\n       \
+    \ } else {\n            uint64_t x = reduce(uint64_t(0) - uint64_t(v));\n    \
+    \        _v = x == 0 ? 0 : m - x;\n        }\n    }\n    uint64_t val() const\
+    \ {\n        return _v;\n    }\n    mint& operator++() {\n        if (++_v ==\
+    \ m) _v = 0;\n        return *this;\n    }\n    mint& operator--() {\n       \
+    \ if (_v == 0) _v = m;\n        _v--;\n        return *this;\n    }\n    mint\
+    \ operator++(int) {\n        mint r = *this;\n        ++*this;\n        return\
+    \ r;\n    }\n    mint operator--(int) {\n        mint r = *this;\n        --*this;\n\
+    \        return r;\n    }\n    mint& operator+=(const mint& rhs) {\n        _v\
+    \ += rhs._v;\n        if (_v >= m) _v -= m;\n        return *this;\n    }\n  \
+    \  mint& operator-=(const mint& rhs) {\n        _v += m - rhs._v;\n        if\
+    \ (_v >= m) _v -= m;\n        return *this;\n    }\n    mint& operator*=(const\
+    \ mint& rhs) {\n        constexpr uint64_t mask31 = (uint64_t(1) << 31) - 1;\n\
+    \        constexpr uint64_t mask30 = (uint64_t(1) << 30) - 1;\n        uint64_t\
+    \ au = _v >> 31, ad = _v & mask31;\n        uint64_t bu = rhs._v >> 31, bd = rhs._v\
+    \ & mask31;\n        uint64_t mid = ad * bu + au * bd;\n        uint64_t mu =\
+    \ mid >> 30, md = mid & mask30;\n        _v = reduce((au * bu << 1) + mu + (md\
+    \ << 31) + ad * bd);\n        return *this;\n    }\n    mint& operator/=(const\
+    \ mint& rhs) {\n        return *this *= rhs.inv();\n    }\n    mint operator+()\
+    \ const {\n        return *this;\n    }\n    mint operator-() const {\n      \
+    \  return mint() - *this;\n    }\n    mint pow(long long n) const {\n        assert(0\
+    \ <= n);\n        mint x = *this, r = 1;\n        while (n) {\n            if\
+    \ (n & 1) r *= x;\n            x *= x;\n            n >>= 1;\n        }\n    \
+    \    return r;\n    }\n    mint inv() const {\n        assert(_v != 0);\n    \
+    \    return pow(m - 2);\n    }\n    friend mint operator+(const mint& lhs, const\
+    \ mint& rhs) {\n        return mint(lhs) += rhs;\n    }\n    friend mint operator-(const\
+    \ mint& lhs, const mint& rhs) {\n        return mint(lhs) -= rhs;\n    }\n   \
+    \ friend mint operator*(const mint& lhs, const mint& rhs) {\n        return mint(lhs)\
+    \ *= rhs;\n    }\n    friend mint operator/(const mint& lhs, const mint& rhs)\
+    \ {\n        return mint(lhs) /= rhs;\n    }\n    friend bool operator==(const\
     \ mint& lhs, const mint& rhs) {\n        return lhs._v == rhs._v;\n    }\n   \
     \ friend bool operator!=(const mint& lhs, const mint& rhs) {\n        return lhs._v\
-    \ != rhs._v;\n    }\n\nprivate:\n    uint64_t _v;\n};\n#line 2 \"math/pow_sum_table.hpp\"\
-    \ntemplate <typename mint>\nstruct pow_mod_sums {\n    pow_mod_sums() {\n    }\n\
-    \    pow_mod_sums(mint base, int n) : base(base) {\n        ensure(n);\n    }\n\
-    \    // sum(pow[0..i])\n    const mint& operator[](int i) const {\n        ensure(i);\n\
-    \        return pow_sums[i];\n    }\n    void ensure(int n) const {\n        int\
-    \ sz = pow_sums.size();\n        if (sz > n) return;\n        pow_sums.resize(n\
-    \ + 1);\n        pows.resize(n + 1);\n        for (int i = sz; i <= n; i++) {\n\
-    \            pows[i] = base * pows[i - 1];\n            pow_sums[i] = pow_sums[i\
-    \ - 1] + pows[i - 1];\n        }\n    }\n\nprivate:\n    mutable std::vector<mint>\
-    \ pow_sums{0};\n    mutable std::vector<mint> pows{1};\n    mint base;\n    static\
-    \ constexpr int mod = mint::mod;\n};\n#line 3 \"math/pow_table.hpp\"\ntemplate\
-    \ <typename mint>\nstruct pow_mods {\n    pow_mods() {\n    }\n    pow_mods(mint\
-    \ base, int n) : base(base) {\n        ensure(n);\n    }\n    const mint& operator[](int\
-    \ i) const {\n        ensure(i);\n        return pows[i];\n    }\n    void ensure(int\
-    \ n) const {\n        int sz = pows.size();\n        if (sz > n) return;\n   \
-    \     pows.resize(n + 1);\n        for (int i = sz; i <= n; i++) pows[i] = base\
-    \ * pows[i - 1];\n    }\n\nprivate:\n    mutable std::vector<mint> pows{1};\n\
-    \    mint base;\n    static constexpr int mod = mint::mod;\n};\n#line 10 \"string/range_update_range_hash.hpp\"\
+    \ != rhs._v;\n    }\n\nprivate:\n    static constexpr uint64_t m = (uint64_t(1)\
+    \ << 61) - 1;\n    static constexpr uint64_t reduce(uint64_t v) {\n        uint64_t\
+    \ x = (v >> 61) + (v & m);\n        if (x >= m) x -= m;\n        return x;\n \
+    \   }\n    uint64_t _v;\n};\n#line 2 \"math/pow_sum_table.hpp\"\ntemplate <typename\
+    \ mint>\nstruct pow_mod_sums {\n    pow_mod_sums() {\n    }\n    pow_mod_sums(mint\
+    \ base, int n) : base(base) {\n        ensure(n);\n    }\n    // sum(pow[0..i])\n\
+    \    const mint& operator[](int i) const {\n        ensure(i);\n        return\
+    \ pow_sums[i];\n    }\n    void ensure(int n) const {\n        int sz = pow_sums.size();\n\
+    \        if (sz > n) return;\n        pow_sums.resize(n + 1);\n        pows.resize(n\
+    \ + 1);\n        for (int i = sz; i <= n; i++) {\n            pows[i] = base *\
+    \ pows[i - 1];\n            pow_sums[i] = pow_sums[i - 1] + pows[i - 1];\n   \
+    \     }\n    }\n\nprivate:\n    mutable std::vector<mint> pow_sums{0};\n    mutable\
+    \ std::vector<mint> pows{1};\n    mint base;\n    static constexpr int mod = mint::mod;\n\
+    };\n#line 3 \"math/pow_table.hpp\"\ntemplate <typename mint>\nstruct pow_mods\
+    \ {\n    pow_mods() {\n    }\n    pow_mods(mint base, int n) : base(base) {\n\
+    \        ensure(n);\n    }\n    const mint& operator[](int i) const {\n      \
+    \  ensure(i);\n        return pows[i];\n    }\n    void ensure(int n) const {\n\
+    \        int sz = pows.size();\n        if (sz > n) return;\n        pows.resize(n\
+    \ + 1);\n        for (int i = sz; i <= n; i++) pows[i] = base * pows[i - 1];\n\
+    \    }\n\nprivate:\n    mutable std::vector<mint> pows{1};\n    mint base;\n \
+    \   static constexpr int mod = mint::mod;\n};\n#line 10 \"string/range_update_range_hash.hpp\"\
     \ntemplate <int base_num = 1, typename mint = modint2305843009213693951>\nstruct\
     \ range_update_range_hash {\npublic:\n    range_update_range_hash() {\n    }\n\
     \    range_update_range_hash(const std::vector<int>& a) : n(a.size()) {\n    \
@@ -183,8 +197,8 @@ data:
     \ static std::mt19937_64 rng(std::random_device{}());\n        std::array<mint,\
     \ base_num> bases;\n        for (int i = 0; i < base_num; i++) {\n           \
     \ while (true) {\n                uint64_t k = std::uniform_int_distribution<uint64_t>(\n\
-    \                    1, mint::mod - 1)(rng);\n                if (std::gcd(k,\
-    \ mint::mod - 1) != 1) continue;\n                uint64_t b = mint(r).pow(k).val();\n\
+    \                    1, mint::mod() - 1)(rng);\n                if (std::gcd(k,\
+    \ mint::mod() - 1) != 1) continue;\n                uint64_t b = mint(r).pow(k).val();\n\
     \                if (b <= A) continue;\n                bases[i] = b;\n      \
     \          break;\n            }\n        }\n        return bases;\n    }\n  \
     \  static inline std::array<pow_mod_sums<mint>, base_num> init_pow_sums(\n   \
@@ -244,8 +258,8 @@ data:
     \ base_num> gen_bases() {\n        static std::mt19937_64 rng(std::random_device{}());\n\
     \        std::array<mint, base_num> bases;\n        for (int i = 0; i < base_num;\
     \ i++) {\n            while (true) {\n                uint64_t k = std::uniform_int_distribution<uint64_t>(\n\
-    \                    1, mint::mod - 1)(rng);\n                if (std::gcd(k,\
-    \ mint::mod - 1) != 1) continue;\n                uint64_t b = mint(r).pow(k).val();\n\
+    \                    1, mint::mod() - 1)(rng);\n                if (std::gcd(k,\
+    \ mint::mod() - 1) != 1) continue;\n                uint64_t b = mint(r).pow(k).val();\n\
     \                if (b <= A) continue;\n                bases[i] = b;\n      \
     \          break;\n            }\n        }\n        return bases;\n    }\n  \
     \  static inline std::array<pow_mod_sums<mint>, base_num> init_pow_sums(\n   \
@@ -281,7 +295,7 @@ data:
   isVerificationFile: false
   path: string/range_update_range_hash.hpp
   requiredBy: []
-  timestamp: '2026-10-17 13:59:29+09:00'
+  timestamp: '2026-10-23 22:42:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/0355.test.cpp

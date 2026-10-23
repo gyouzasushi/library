@@ -157,7 +157,7 @@ data:
       title: Matrix
     - icon: ':heavy_check_mark:'
       path: math/modint2305843009213693951.hpp
-      title: math/modint2305843009213693951.hpp
+      title: modint2305843009213693951
     - icon: ':heavy_check_mark:'
       path: math/pow_sum_table.hpp
       title: math/pow_sum_table.hpp
@@ -414,6 +414,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/matrix.test.cpp
       title: test/unit/matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/modint2305843009213693951.test.cpp
+      title: test/unit/modint2305843009213693951.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/monoid.test.cpp
       title: test/unit/monoid.test.cpp
