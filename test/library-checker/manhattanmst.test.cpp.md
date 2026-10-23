@@ -37,24 +37,28 @@ data:
     \ A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n};\n\
     template <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
-    \ A::S>;\n};\n#line 5 \"datastructure/segtree.hpp\"\ntemplate <monoid M>\nusing\
-    \ segtree = atcoder::segtree<typename M::S, M::op, M::e>;\n#line 2 \"algebra/monoid_argmin.hpp\"\
-    \n#include <limits>\ntemplate <class T>\nstruct monoid_argmin {\n    struct S\
-    \ {\n        T val;\n        int id;\n    };\n    static S op(S a, S b) {\n  \
-    \      if (a.val != b.val) return a.val < b.val ? a : b;\n        return a.id\
-    \ < b.id ? a : b;\n    }\n    static S e() {\n        return {std::numeric_limits<T>::max(),\
-    \ -1};\n    }\n};\n#line 10 \"graph/manhattan_mst.hpp\"\ntemplate <typename T>\n\
-    std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,\n       \
-    \                                            std::vector<T> y) {\n    int n =\
-    \ x.size();\n    assert(int(y.size()) == n);\n    std::vector<int> id(n);\n  \
-    \  std::iota(id.begin(), id.end(), 0);\n    std::vector<int> y_id(n);\n    std::vector<std::tuple<int,\
-    \ int, T>> ret;\n    for (int a = 0; a < 2; a++) {\n        for (int b = 0; b\
-    \ < 2; b++) {\n            for (int c = 0; c < 2; c++) {\n                sort(id.begin(),\
-    \ id.end(), [&](int i, int j) {\n                    if (y[i] - x[i] == y[j] -\
-    \ x[j] && y[i] == y[j])\n                        return i < j;\n             \
-    \       if (y[i] - x[i] == y[j] - x[j]) return y[i] > y[j];\n                \
-    \    return y[i] - x[i] < y[j] - x[j];\n                });\n                std::vector<T>\
-    \ _y = y;\n                std::sort(_y.begin(), _y.end());\n                for\
+    \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
+    \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
+    \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 5 \"datastructure/segtree.hpp\"\
+    \ntemplate <monoid M>\nusing segtree = atcoder::segtree<typename M::S, M::op,\
+    \ M::e>;\n#line 2 \"algebra/monoid_argmin.hpp\"\n#include <limits>\ntemplate <class\
+    \ T>\nstruct monoid_argmin {\n    struct S {\n        T val;\n        int id;\n\
+    \    };\n    static S op(S a, S b) {\n        if (a.val != b.val) return a.val\
+    \ < b.val ? a : b;\n        return a.id < b.id ? a : b;\n    }\n    static S e()\
+    \ {\n        return {std::numeric_limits<T>::max(), -1};\n    }\n};\n#line 10\
+    \ \"graph/manhattan_mst.hpp\"\ntemplate <typename T>\nstd::vector<std::tuple<int,\
+    \ int, T>> manhattan_mst(std::vector<T> x,\n                                 \
+    \                  std::vector<T> y) {\n    int n = x.size();\n    assert(int(y.size())\
+    \ == n);\n    std::vector<int> id(n);\n    std::iota(id.begin(), id.end(), 0);\n\
+    \    std::vector<int> y_id(n);\n    std::vector<std::tuple<int, int, T>> ret;\n\
+    \    for (int a = 0; a < 2; a++) {\n        for (int b = 0; b < 2; b++) {\n  \
+    \          for (int c = 0; c < 2; c++) {\n                sort(id.begin(), id.end(),\
+    \ [&](int i, int j) {\n                    if (y[i] - x[i] == y[j] - x[j] && y[i]\
+    \ == y[j])\n                        return i < j;\n                    if (y[i]\
+    \ - x[i] == y[j] - x[j]) return y[i] > y[j];\n                    return y[i]\
+    \ - x[i] < y[j] - x[j];\n                });\n                std::vector<T> _y\
+    \ = y;\n                std::sort(_y.begin(), _y.end());\n                for\
     \ (int i = 0; i < n; i++) {\n                    y_id[i] = std::lower_bound(_y.begin(),\
     \ _y.end(), y[i]) -\n                              _y.begin();\n             \
     \   }\n                segtree<monoid_argmin<T>> segt(n);\n                for\
@@ -90,7 +94,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/manhattanmst.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 22:06:19+09:00'
+  timestamp: '2026-10-23 22:22:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/manhattanmst.test.cpp

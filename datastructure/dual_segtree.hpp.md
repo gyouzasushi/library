@@ -28,13 +28,16 @@ data:
     \    { A::composition_commutative } -> std::convertible_to<bool>;\n};\ntemplate\
     \ <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
-    \ A::S>;\n};\n#line 8 \"datastructure/dual_segtree.hpp\"\ntemplate <action A>\n\
-    struct dual_segtree {\n    using F = typename A::F;\n    dual_segtree() : dual_segtree(0)\
-    \ {}\n    explicit dual_segtree(int n) : dual_segtree(std::vector<F>(n, A::id()))\
-    \ {}\n    explicit dual_segtree(const std::vector<F>& v) : n(int(v.size())) {\n\
-    \        log = std::bit_width(unsigned(std::max(n - 1, 0)));\n        size = 1\
-    \ << log;\n        d.assign(2 * size, A::id());\n        for (int i = 0; i < n;\
-    \ i++) d[size + i] = v[i];\n    }\n    void set(int p, F x) {\n        assert(0\
+    \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
+    \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
+    \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 8 \"datastructure/dual_segtree.hpp\"\
+    \ntemplate <action A>\nstruct dual_segtree {\n    using F = typename A::F;\n \
+    \   dual_segtree() : dual_segtree(0) {}\n    explicit dual_segtree(int n) : dual_segtree(std::vector<F>(n,\
+    \ A::id())) {}\n    explicit dual_segtree(const std::vector<F>& v) : n(int(v.size()))\
+    \ {\n        log = std::bit_width(unsigned(std::max(n - 1, 0)));\n        size\
+    \ = 1 << log;\n        d.assign(2 * size, A::id());\n        for (int i = 0; i\
+    \ < n; i++) d[size + i] = v[i];\n    }\n    void set(int p, F x) {\n        assert(0\
     \ <= p && p < n);\n        p += size;\n        thrust(p);\n        d[p] = x;\n\
     \    }\n    F get(int p) {\n        assert(0 <= p && p < n);\n        p += size;\n\
     \        if constexpr (A::composition_commutative) {\n            F ret = d[p];\n\
@@ -80,7 +83,7 @@ data:
   isVerificationFile: false
   path: datastructure/dual_segtree.hpp
   requiredBy: []
-  timestamp: '2026-10-23 22:06:19+09:00'
+  timestamp: '2026-10-23 22:22:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/dual_segtree.test.cpp

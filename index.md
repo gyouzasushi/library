@@ -33,6 +33,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: algebra/range_add_range_sum.hpp
       title: 'Acted Monoid: Range Add Range Sum'
+    - icon: ':heavy_check_mark:'
+      path: algebra/semiring_max_plus.hpp
+      title: 'Semiring: Max Plus'
+    - icon: ':heavy_check_mark:'
+      path: algebra/semiring_min_plus.hpp
+      title: 'Semiring: Min Plus'
+    - icon: ':heavy_check_mark:'
+      path: algebra/semiring_plus_times.hpp
+      title: 'Semiring: Plus Times'
   - name: algorithm
     pages:
     - icon: ':heavy_check_mark:'
@@ -145,7 +154,7 @@ data:
       title: math/factorize.hpp
     - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
-      title: math/matrix.hpp
+      title: Matrix
     - icon: ':heavy_check_mark:'
       path: math/modint2305843009213693951.hpp
       title: math/modint2305843009213693951.hpp
@@ -155,9 +164,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/pow_table.hpp
       title: math/pow_table.hpp
-    - icon: ':warning:'
-      path: math/semiring_matrix.hpp
-      title: math/semiring_matrix.hpp
     - icon: ':heavy_check_mark:'
       path: math/zeta_mobius_transform.hpp
       title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\
@@ -405,6 +411,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/heavy_light_decomposition.test.cpp
       title: test/unit/heavy_light_decomposition.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/matrix.test.cpp
+      title: test/unit/matrix.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/monoid.test.cpp
       title: test/unit/monoid.test.cpp

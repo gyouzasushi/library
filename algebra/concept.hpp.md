@@ -23,6 +23,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
     title: Manhattan MST
+  - icon: ':heavy_check_mark:'
+    path: math/matrix.hpp
+    title: Matrix
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_A.test.cpp
@@ -37,8 +40,14 @@ data:
     path: test/library-checker/manhattanmst.test.cpp
     title: test/library-checker/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library-checker/matrix_product.test.cpp
+    title: test/library-checker/matrix_product.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/point_set_range_composite.test.cpp
     title: test/library-checker/point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/pow_of_matrix.test.cpp
+    title: test/library-checker/pow_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/range_affine_point_get.test.cpp
     title: test/library-checker/range_affine_point_get.test.cpp
@@ -48,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/dual_segtree.test.cpp
     title: test/unit/dual_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/matrix.test.cpp
+    title: test/unit/matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
@@ -68,7 +80,11 @@ data:
     \  { A::id() } -> std::same_as<typename A::F>;\n    { A::composition_commutative\
     \ } -> std::convertible_to<bool>;\n};\ntemplate <class A>\nconcept acted_monoid\
     \ = monoid<A> && action<A> && requires(typename A::S x, typename A::F f) {\n \
-    \   { A::mapping(f, x) } -> std::same_as<typename A::S>;\n};\n"
+    \   { A::mapping(f, x) } -> std::same_as<typename A::S>;\n};\ntemplate <class\
+    \ R>\nconcept semiring = requires(typename R::S a, typename R::S b) {\n    { R::add(a,\
+    \ b) } -> std::same_as<typename R::S>;\n    { R::zero() } -> std::same_as<typename\
+    \ R::S>;\n    { R::mul(a, b) } -> std::same_as<typename R::S>;\n    { R::one()\
+    \ } -> std::same_as<typename R::S>;\n};\n"
   code: "#pragma once\n#include <concepts>\ntemplate <class M>\nconcept semigroup\
     \ = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename\
     \ M::S>;\n};\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n\
@@ -78,7 +94,10 @@ data:
     \ A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n};\n\
     template <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
-    \ A::S>;\n};\n"
+    \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
+    \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
+    \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: algebra/concept.hpp
@@ -90,15 +109,19 @@ data:
   - datastructure/dual_segtree.hpp
   - graph/manhattan_mst.hpp
   - graph/lowest_common_ancestor.hpp
-  timestamp: '2026-10-23 22:06:19+09:00'
+  - math/matrix.hpp
+  timestamp: '2026-10-23 22:22:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_G.test.cpp
   - test/aoj/DSL_2_A.test.cpp
   - test/unit/sparse_table.test.cpp
   - test/unit/monoid.test.cpp
+  - test/unit/matrix.test.cpp
   - test/unit/dual_segtree.test.cpp
   - test/library-checker/staticrmq.test.cpp
+  - test/library-checker/matrix_product.test.cpp
+  - test/library-checker/pow_of_matrix.test.cpp
   - test/library-checker/range_affine_point_get.test.cpp
   - test/library-checker/point_set_range_composite.test.cpp
   - test/library-checker/lca.test.cpp
@@ -109,10 +132,11 @@ title: 'Algebra: Concept'
 ---
 
 ### 概要
-- `segtree`, `lazy_segtree`, `dual_segtree`, `sparse_table` に渡す構造体の要件。
+- `segtree`, `lazy_segtree`, `dual_segtree`, `sparse_table`, `semiring_matrix` に渡す構造体の要件。
 
 ### 使い方
 - `semigroup<M>`: `M::S` と `M::op(S, S) -> S` を持つ。
 - `monoid<M>`: `semigroup<M>` に加えて `M::e() -> S` を持つ。
 - `action<A>`: `A::F`, `A::composition(F, F) -> F`, `A::id() -> F`, `bool A::composition_commutative` を持つ。
 - `acted_monoid<A>`: `monoid<A>` と `action<A>` に加えて `A::mapping(F, S) -> S` を持つ。
+- `semiring<R>`: `R::S`, `R::add(S, S) -> S`, `R::zero() -> S`, `R::mul(S, S) -> S`, `R::one() -> S` を持つ。

@@ -40,16 +40,20 @@ data:
     \    { A::composition_commutative } -> std::convertible_to<bool>;\n};\ntemplate\
     \ <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
-    \ A::S>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\ntemplate <acted_monoid\
-    \ A>\nusing lazy_segtree = atcoder::lazy_segtree<typename A::S, A::op, A::e, typename\
-    \ A::F, A::mapping, A::composition, A::id>;\n#line 7 \"test/aoj/DSL_2_G.test.cpp\"\
-    \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    using A = range_add_range_sum<long\
-    \ long>;\n    lazy_segtree<A> seg(std::vector<A::S>(n, A::from(0)));\n    while\
-    \ (q--) {\n        int t;\n        std::cin >> t;\n        if (t == 0) {\n   \
-    \         int s, e;\n            long long x;\n            std::cin >> s >> e\
-    \ >> x;\n            seg.apply(s - 1, e, x);\n        } else {\n            int\
-    \ s, e;\n            std::cin >> s >> e;\n            std::cout << seg.prod(s\
-    \ - 1, e).sum << '\\n';\n        }\n    }\n}\n"
+    \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
+    \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
+    \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
+    \ntemplate <acted_monoid A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
+    \ A::S, A::op, A::e, typename A::F, A::mapping, A::composition, A::id>;\n#line\
+    \ 7 \"test/aoj/DSL_2_G.test.cpp\"\nint main() {\n    int n, q;\n    std::cin >>\
+    \ n >> q;\n    using A = range_add_range_sum<long long>;\n    lazy_segtree<A>\
+    \ seg(std::vector<A::S>(n, A::from(0)));\n    while (q--) {\n        int t;\n\
+    \        std::cin >> t;\n        if (t == 0) {\n            int s, e;\n      \
+    \      long long x;\n            std::cin >> s >> e >> x;\n            seg.apply(s\
+    \ - 1, e, x);\n        } else {\n            int s, e;\n            std::cin >>\
+    \ s >> e;\n            std::cout << seg.prod(s - 1, e).sum << '\\n';\n       \
+    \ }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_G\"\n#include\
     \ <iostream>\n#include <vector>\n\n#include \"algebra/range_add_range_sum.hpp\"\
     \n#include \"datastructure/lazy_segtree.hpp\"\nint main() {\n    int n, q;\n \
@@ -67,7 +71,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_G.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 22:06:19+09:00'
+  timestamp: '2026-10-23 22:22:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_G.test.cpp

@@ -27,9 +27,12 @@ data:
     \ } -> std::same_as<typename A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n\
     };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
-    \ A::S>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\ntemplate <acted_monoid\
-    \ A>\nusing lazy_segtree = atcoder::lazy_segtree<typename A::S, A::op, A::e, typename\
-    \ A::F, A::mapping, A::composition, A::id>;\n"
+    \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
+    \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
+    \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
+    \ntemplate <acted_monoid A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
+    \ A::S, A::op, A::e, typename A::F, A::mapping, A::composition, A::id>;\n"
   code: '#pragma once
 
     #include <atcoder/lazysegtree>
@@ -48,7 +51,7 @@ data:
   isVerificationFile: false
   path: datastructure/lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2026-10-23 22:06:19+09:00'
+  timestamp: '2026-10-23 22:22:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_G.test.cpp
