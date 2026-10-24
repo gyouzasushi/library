@@ -6,7 +6,7 @@ int main() {
     int n;
     std::string u;
     std::cin >> n >> u;
-    auto rh = range_update_range_hash<>::from(u);
+    range_update_range_hash<> rh(u);
     int q;
     std::cin >> q;
     while (q--) {
@@ -21,7 +21,7 @@ int main() {
         if (t == "comp") {
             int a, b, c, d;
             std::cin >> a >> b >> c >> d;
-            int sgn = rh.cmp(--a, b, --c, d);
+            int sgn = cmp(rh, --a, b, rh, --c, d);
             std::cout << (sgn == -1 ? 's' : sgn == 0 ? 'e' : 't') << '\n';
         }
     }

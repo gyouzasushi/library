@@ -11,21 +11,21 @@ void solve() {
     for (char &c : s) {
         if (c == '?') c = 'a';
     }
-    auto rhs = rolling_hash<>::from(s);
-    auto rht = rolling_hash<>::from(t);
+    rolling_hash<> rhs(s);
+    rolling_hash<> rht(t);
     auto gt = [&](int i, int j) {
         if (i == -1) return true;
         if (j - i > m) {
-            int cmp1 = rolling_hash<>::cmp(rht, 0, m, rhs, i, i + m);
+            int cmp1 = cmp(rht, 0, m, rhs, i, i + m);
             if (cmp1 != 0) return cmp1 == 1;
-            int cmp2 = rolling_hash<>::cmp(rhs, j, j + m, rht, 0, m);
+            int cmp2 = cmp(rhs, j, j + m, rht, 0, m);
             return cmp2 == 1;
         }
-        int cmp1 = rolling_hash<>::cmp(rht, 0, j - i, rhs, i, j);
+        int cmp1 = cmp(rht, 0, j - i, rhs, i, j);
         if (cmp1 != 0) return cmp1 == 1;
-        int cmp2 = rht.cmp(j - i, m, 0, m - (j - i));
+        int cmp2 = cmp(rht, j - i, m, rht, 0, m - (j - i));
         if (cmp2 != 0) return cmp2 == 1;
-        int cmp3 = rolling_hash<>::cmp(rhs, i + m, j + m, rht, m - (j - i), m);
+        int cmp3 = cmp(rhs, i + m, j + m, rht, m - (j - i), m);
         return cmp3 == 1;
     };
     int ans = -1;

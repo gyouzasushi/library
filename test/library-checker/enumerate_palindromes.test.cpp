@@ -7,15 +7,15 @@ int main() {
     std::cin >> s;
     int n = s.size();
 
-    auto rh = rolling_hash<>::from(s);
-    auto rh_rev = rolling_hash<>::from(std::string(s.rbegin(), s.rend()));
+    rolling_hash<> rh(s);
+    rolling_hash<> rh_rev(std::string(s.rbegin(), s.rend()));
 
     std::vector<int> ans(2 * n - 1);
     for (int i = 0, j = 0; i < n; i++, j += 2) {
         int ok = 0, ng = std::min(i, n - i - 1) + 1;
         while (ng - ok > 1) {
             int mid = (ok + ng) / 2;
-            bool f = rh(i - mid, i) == rh_rev(n - (i + 1 + mid), n - (i + 1));
+            bool f = rh.prod(i - mid, i) == rh_rev.prod(n - (i + 1 + mid), n - (i + 1));
             (f ? ok : ng) = mid;
         }
         ans[j] = ok * 2 + 1;
@@ -24,8 +24,8 @@ int main() {
         int ok = 0, ng = std::min(i + 1, n - i - 1) + 1;
         while (ng - ok > 1) {
             int mid = (ok + ng) / 2;
-            bool f = rh(i - mid + 1, i + 1) ==
-                     rh_rev(n - (i + 1 + mid), n - (i + 1));
+            bool f = rh.prod(i - mid + 1, i + 1) ==
+                     rh_rev.prod(n - (i + 1 + mid), n - (i + 1));
             (f ? ok : ng) = mid;
         }
         ans[j] = ok * 2;

@@ -4,24 +4,23 @@ documentation_of: string/range_update_range_hash.hpp
 ---
 
 ### 概要
-- 区間更新に対応した Rolling-Hash。
-  
+- 区間を 1 文字で埋める更新ができる文字列の、部分文字列のハッシュ値を求める。
+
 ### 使い方
-- `range_update_range_hash<base_num, mint>::from(s)`: 文字列 `s` を初期値として構築する。`base_num` 個の基数を用いて、`mint` でハッシュを計算する。デフォルトは、`base_num = 1, mint = modint2305843009213693951`。
-- `prod(l, r)`: `s[l..r]` のハッシュ値を求める。
-- `all_prod()`: `s` のハッシュ値を求める。
-- `apply(l, r, x)`: `s[l..r]` を `x` で置き換える。
-- `set(p, x)`: `s[p]` を `x` で置き換える。
-- `get(p)`: `s[p]` のハッシュ値を求める。
-- `lcp(l1, r1, l2, r2)`: `s[l1..r1]` と `s[l2..r2]` の LCP の長さを求める。
-- `cmp(l1, r1, l2, r2)`: `s1 = s[l1..r1]` と `s2 = s[l2..r2]` を辞書順で比較する。返り値は、`s1 < s2 ? -1 : s1 == s2 ? 0 : 1`。
+- `range_update_range_hash<k = 1, mint = modint2305843009213693951>(s)`: 文字列 `s` で構築する。`s` は `std::string` か `std::vector<int>`。
+- `size()`: `s` の長さを返す。
+- `set(p, c)`: `s[p]` を `c` に置き換える。
+- `apply(l, r, c)`: `s[l, r)` をすべて `c` に置き換える。
+- `prod(l, r)`: `s[l, r)` のハッシュ値を返す。
+- `get(p)`: `s[p]` のハッシュ値を返す。
+- `all_prod()`: `s` のハッシュ値を返す。
+
+### 制約
+- $0 \le l \le r \le n$
+- $0 \le p < n$
+- $0 \le c <$ `mint::mod()`
 
 ### 計算量
-- 構築: $\mathcal{O}(N)$
-- `prod`: $\mathcal{O}(\log N)$
-- `all_prod`: $\mathcal{O}(1)$
-- `apply`: $\mathcal{O}(\log N)$
-- `set`: $\mathcal{O}(\log N)$
-- `get`: $\mathcal{O}(\log N)$
-- `lcp`: $\mathcal{O}((\log N)^2)$
-- `cmp`: $\mathcal{O}((\log N)^2)$
+- 構築: $\mathcal{O}(kN)$
+- `set`, `apply`, `prod`, `get`: $\mathcal{O}(k \log N)$
+- `all_prod`: $\mathcal{O}(k)$
