@@ -26,7 +26,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix.hpp
     title: Matrix
+  - icon: ':heavy_check_mark:'
+    path: string/range_update_range_hash.hpp
+    title: Range Update Range Hash
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/0355.test.cpp
+    title: test/aoj/0355.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_A.test.cpp
     title: test/aoj/DSL_2_A.test.cpp
@@ -66,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/sparse_table.test.cpp
     title: test/unit/sparse_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/string_hash.test.cpp
+    title: test/unit/string_hash.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -110,14 +119,17 @@ data:
   - graph/manhattan_mst.hpp
   - graph/lowest_common_ancestor.hpp
   - math/matrix.hpp
+  - string/range_update_range_hash.hpp
   timestamp: '2026-10-23 22:22:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_G.test.cpp
+  - test/aoj/0355.test.cpp
   - test/aoj/DSL_2_A.test.cpp
   - test/unit/sparse_table.test.cpp
   - test/unit/monoid.test.cpp
   - test/unit/matrix.test.cpp
+  - test/unit/string_hash.test.cpp
   - test/unit/dual_segtree.test.cpp
   - test/library-checker/staticrmq.test.cpp
   - test/library-checker/matrix_product.test.cpp

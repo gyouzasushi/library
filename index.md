@@ -159,12 +159,6 @@ data:
       path: math/modint2305843009213693951.hpp
       title: modint2305843009213693951
     - icon: ':heavy_check_mark:'
-      path: math/pow_sum_table.hpp
-      title: math/pow_sum_table.hpp
-    - icon: ':heavy_check_mark:'
-      path: math/pow_table.hpp
-      title: math/pow_table.hpp
-    - icon: ':heavy_check_mark:'
       path: math/zeta_mobius_transform.hpp
       title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB"
@@ -176,6 +170,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: Rolling Hash
+    - icon: ':heavy_check_mark:'
+      path: string/string_hash.hpp
+      title: String Hash
     - icon: ':heavy_check_mark:'
       path: string/wildcard_matching.hpp
       title: Wildcard Matching
@@ -432,6 +429,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/sparse_table.test.cpp
       title: test/unit/sparse_table.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/string_hash.test.cpp
+      title: test/unit/string_hash.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/topological_sort.test.cpp
       title: test/unit/topological_sort.test.cpp
