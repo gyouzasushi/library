@@ -56,6 +56,9 @@ data:
   - name: datastructure
     pages:
     - icon: ':heavy_check_mark:'
+      path: datastructure/binary_trie.hpp
+      title: Binary Trie
+    - icon: ':heavy_check_mark:'
       path: datastructure/cumulative_sum.hpp
       title: "\u7D2F\u7A4D\u548C"
     - icon: ':heavy_check_mark:'
@@ -392,6 +395,9 @@ data:
       path: test/library-checker/segment_add_get_min.test.cpp
       title: test/library-checker/segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/set_xor_min.test.cpp
+      title: test/library-checker/set_xor_min.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/shortest_path.test.cpp
       title: test/library-checker/shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
@@ -447,6 +453,9 @@ data:
       title: test/library-checker/zalgorithm_rolling_hash.test.cpp
   - name: test/unit
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/unit/binary_trie.test.cpp
+      title: test/unit/binary_trie.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/dual_segtree.test.cpp
       title: test/unit/dual_segtree.test.cpp
