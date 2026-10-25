@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: algebra/semiring_max_plus.hpp
     title: 'Semiring: Max Plus'
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: algebra/semiring_min_plus.hpp
     title: 'Semiring: Min Plus'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/semiring_plus_times.hpp
     title: 'Semiring: Plus Times'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -45,10 +45,12 @@ data:
     \ semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b)\
     \ } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid =\
     \ semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
-    };\ntemplate <class A>\nconcept action = requires(typename A::F f, typename A::F\
-    \ g) {\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    { A::id()\
-    \ } -> std::same_as<typename A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n\
-    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    };\ntemplate <class G>\nconcept group = monoid<G> && requires(typename G::S a)\
+    \ {\n    { G::inv(a) } -> std::same_as<typename G::S>;\n};\ntemplate <class A>\n\
+    concept action = requires(typename A::F f, typename A::F g) {\n    { A::composition(f,\
+    \ g) } -> std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename\
+    \ A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n};\n\
+    template <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
@@ -175,8 +177,8 @@ data:
   isVerificationFile: true
   path: test/unit/matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 22:22:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-26 01:30:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/unit/matrix.test.cpp
 layout: document

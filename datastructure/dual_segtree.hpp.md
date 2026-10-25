@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/range_affine_point_get.test.cpp
     title: test/library-checker/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/dual_segtree.test.cpp
     title: test/unit/dual_segtree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/dual_segtree.hpp\"\n#include <algorithm>\n\
@@ -22,11 +22,12 @@ data:
     \n#include <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename\
     \ M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n\
     };\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
-    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class A>\nconcept action =\
-    \ requires(typename A::F f, typename A::F g) {\n    { A::composition(f, g) } ->\
-    \ std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename A::F>;\n\
-    \    { A::composition_commutative } -> std::convertible_to<bool>;\n};\ntemplate\
-    \ <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class G>\nconcept group = monoid<G>\
+    \ && requires(typename G::S a) {\n    { G::inv(a) } -> std::same_as<typename G::S>;\n\
+    };\ntemplate <class A>\nconcept action = requires(typename A::F f, typename A::F\
+    \ g) {\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    { A::id()\
+    \ } -> std::same_as<typename A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n\
+    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
@@ -83,8 +84,8 @@ data:
   isVerificationFile: false
   path: datastructure/dual_segtree.hpp
   requiredBy: []
-  timestamp: '2026-10-23 22:22:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-26 01:30:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/unit/dual_segtree.test.cpp
   - test/library-checker/range_affine_point_get.test.cpp

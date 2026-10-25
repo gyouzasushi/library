@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: datastructure/plus_minus_one_rmq.hpp
     title: Plus Minus One RMQ
   - icon: ':heavy_check_mark:'
@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/lca.test.cpp
     title: test/library-checker/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/staticrmq.test.cpp
     title: test/library-checker/staticrmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/sparse_table.test.cpp
     title: test/unit/sparse_table.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/sparse_table.hpp\"\n#include <algorithm>\n\
@@ -31,11 +31,12 @@ data:
     \n#include <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename\
     \ M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n\
     };\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
-    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class A>\nconcept action =\
-    \ requires(typename A::F f, typename A::F g) {\n    { A::composition(f, g) } ->\
-    \ std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename A::F>;\n\
-    \    { A::composition_commutative } -> std::convertible_to<bool>;\n};\ntemplate\
-    \ <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class G>\nconcept group = monoid<G>\
+    \ && requires(typename G::S a) {\n    { G::inv(a) } -> std::same_as<typename G::S>;\n\
+    };\ntemplate <class A>\nconcept action = requires(typename A::F f, typename A::F\
+    \ g) {\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    { A::id()\
+    \ } -> std::same_as<typename A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n\
+    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
@@ -71,8 +72,8 @@ data:
   requiredBy:
   - datastructure/plus_minus_one_rmq.hpp
   - graph/lowest_common_ancestor.hpp
-  timestamp: '2026-10-23 22:22:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-26 01:30:50+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/unit/sparse_table.test.cpp
   - test/library-checker/staticrmq.test.cpp

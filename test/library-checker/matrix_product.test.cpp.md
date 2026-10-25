@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/semiring_plus_times.hpp
     title: 'Semiring: Plus Times'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
@@ -27,16 +27,17 @@ data:
     template <class M>\nconcept semigroup = requires(typename M::S a, typename M::S\
     \ b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n};\ntemplate <class\
     \ M>\nconcept monoid = semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename\
-    \ M::S>;\n};\ntemplate <class A>\nconcept action = requires(typename A::F f, typename\
-    \ A::F g) {\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n  \
-    \  { A::id() } -> std::same_as<typename A::F>;\n    { A::composition_commutative\
-    \ } -> std::convertible_to<bool>;\n};\ntemplate <class A>\nconcept acted_monoid\
-    \ = monoid<A> && action<A> && requires(typename A::S x, typename A::F f) {\n \
-    \   { A::mapping(f, x) } -> std::same_as<typename A::S>;\n};\ntemplate <class\
-    \ R>\nconcept semiring = requires(typename R::S a, typename R::S b) {\n    { R::add(a,\
-    \ b) } -> std::same_as<typename R::S>;\n    { R::zero() } -> std::same_as<typename\
-    \ R::S>;\n    { R::mul(a, b) } -> std::same_as<typename R::S>;\n    { R::one()\
-    \ } -> std::same_as<typename R::S>;\n};\n#line 2 \"algebra/semiring_plus_times.hpp\"\
+    \ M::S>;\n};\ntemplate <class G>\nconcept group = monoid<G> && requires(typename\
+    \ G::S a) {\n    { G::inv(a) } -> std::same_as<typename G::S>;\n};\ntemplate <class\
+    \ A>\nconcept action = requires(typename A::F f, typename A::F g) {\n    { A::composition(f,\
+    \ g) } -> std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename\
+    \ A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n};\n\
+    template <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
+    \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
+    \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 2 \"algebra/semiring_plus_times.hpp\"\
     \ntemplate <class T>\nstruct semiring_plus_times {\n    using S = T;\n    static\
     \ S add(S a, S b) {\n        return a + b;\n    }\n    static S zero() {\n   \
     \     return T(0);\n    }\n    static S mul(S a, S b) {\n        return a * b;\n\
@@ -98,7 +99,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 22:22:20+09:00'
+  timestamp: '2026-10-26 01:30:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/matrix_product.test.cpp

@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/point_set_range_composite.test.cpp
     title: test/library-checker/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algebra/monoid_affine.hpp\"\ntemplate <class T>\nstruct\
@@ -29,7 +29,7 @@ data:
   path: algebra/monoid_affine.hpp
   requiredBy: []
   timestamp: '2026-10-23 22:06:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/unit/monoid.test.cpp
   - test/library-checker/point_set_range_composite.test.cpp

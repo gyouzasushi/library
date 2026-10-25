@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/matrix.test.cpp
     title: test/unit/matrix.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algebra/semiring_min_plus.hpp\"\n#include <algorithm>\n\
@@ -29,7 +29,7 @@ data:
   path: algebra/semiring_min_plus.hpp
   requiredBy: []
   timestamp: '2026-10-23 22:22:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/unit/matrix.test.cpp
 documentation_of: algebra/semiring_min_plus.hpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/range_add_range_sum.hpp
     title: 'Acted Monoid: Range Add Range Sum'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: datastructure/lazy_segtree.hpp
     title: Lazy Segment Tree (acted monoid wrapper)
   _extendedRequiredBy: []
@@ -34,11 +34,12 @@ data:
     \ <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename M::S a,\
     \ typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n};\n\
     template <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
-    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class A>\nconcept action =\
-    \ requires(typename A::F f, typename A::F g) {\n    { A::composition(f, g) } ->\
-    \ std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename A::F>;\n\
-    \    { A::composition_commutative } -> std::convertible_to<bool>;\n};\ntemplate\
-    \ <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class G>\nconcept group = monoid<G>\
+    \ && requires(typename G::S a) {\n    { G::inv(a) } -> std::same_as<typename G::S>;\n\
+    };\ntemplate <class A>\nconcept action = requires(typename A::F f, typename A::F\
+    \ g) {\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    { A::id()\
+    \ } -> std::same_as<typename A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n\
+    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
@@ -71,7 +72,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_G.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 22:22:20+09:00'
+  timestamp: '2026-10-26 01:30:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_G.test.cpp

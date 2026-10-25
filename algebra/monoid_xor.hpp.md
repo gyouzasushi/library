@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: algebra/group_xor.hpp
+    title: 'Group: XOR'
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/unit/weighted_dsu.test.cpp
+    title: test/unit/weighted_dsu.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algebra/monoid_xor.hpp\"\ntemplate <class T>\nstruct monoid_xor\
@@ -20,10 +26,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: algebra/monoid_xor.hpp
-  requiredBy: []
+  requiredBy:
+  - algebra/group_xor.hpp
   timestamp: '2026-10-23 22:06:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/unit/weighted_dsu.test.cpp
   - test/unit/monoid.test.cpp
 documentation_of: algebra/monoid_xor.hpp
 layout: document

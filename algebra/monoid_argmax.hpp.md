@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algebra/monoid_argmax.hpp\"\n#include <limits>\ntemplate\
@@ -26,7 +26,7 @@ data:
   path: algebra/monoid_argmax.hpp
   requiredBy: []
   timestamp: '2026-10-23 22:06:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/unit/monoid.test.cpp
 documentation_of: algebra/monoid_argmax.hpp
