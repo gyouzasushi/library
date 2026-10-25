@@ -8,6 +8,10 @@ template <class M>
 concept monoid = semigroup<M> && requires {
     { M::e() } -> std::same_as<typename M::S>;
 };
+template <class G>
+concept group = monoid<G> && requires(typename G::S a) {
+    { G::inv(a) } -> std::same_as<typename G::S>;
+};
 template <class A>
 concept action = requires(typename A::F f, typename A::F g) {
     { A::composition(f, g) } -> std::same_as<typename A::F>;
