@@ -1,6 +1,6 @@
 #pragma once
 #include <cassert>
-#include <map>
+#include <utility>
 #include <vector>
 #if __has_include(<atcoder/math.hpp>)
 #include <atcoder/math.hpp>
@@ -94,7 +94,7 @@ private:
     }
     static inline long long m = -1;
     static inline long long max_size = 0;
-    static inline std::map<long long, int> factors{};
+    static inline std::vector<std::pair<long long, int>> factors{};
     static inline std::vector<std::vector<long long>> f{};
     static inline std::vector<std::vector<long long>> inv_f{};
 };

@@ -1,9 +1,10 @@
 #pragma once
+#include <algorithm>
 #include <cassert>
 #include <cstdlib>
-#include <map>
 #include <numeric>
-#include <queue>
+#include <utility>
+#include <vector>
 
 namespace internal {
 
@@ -65,23 +66,48 @@ bool is_prime(long long n) {
     return true;
 }
 
-std::map<long long, int> factorize(long long n) {
+std::vector<std::pair<long long, int>> factorize(long long n) {
     assert(n >= 1);
-    std::map<long long, int> ret;
-    while (~n & 1) n >>= 1, ret[2]++;
-    std::queue<long long> q;
-    q.push(n);
-    while (!q.empty()) {
-        long long p = q.front();
-        q.pop();
+    std::vector<std::pair<long long, int>> ret;
+    int c = 0;
+    while (~n & 1) n >>= 1, c++;
+    if (c > 0) ret.emplace_back(2, c);
+    std::vector<long long> st = {n};
+    std::vector<long long> primes;
+    while (!st.empty()) {
+        long long p = st.back();
+        st.pop_back();
         if (p == 1) continue;
         if (is_prime(p)) {
-            ret[p]++;
+            primes.push_back(p);
             continue;
         }
         long long d = internal::rho(p);
-        q.push(d);
-        q.push(p / d);
+        st.push_back(d);
+        st.push_back(p / d);
     }
+    std::sort(primes.begin(), primes.end());
+    for (long long p : primes) {
+        if (!ret.empty() && ret.back().first == p) {
+            ret.back().second++;
+        } else {
+            ret.emplace_back(p, 1);
+        }
+    }
+    return ret;
+}
+
+std::vector<long long> divisors(long long n) {
+    assert(n >= 1);
+    std::vector<long long> ret = {1};
+    for (auto [p, e] : factorize(n)) {
+        int sz = int(ret.size());
+        long long q = 1;
+        for (int i = 0; i < e; i++) {
+            q *= p;
+            for (int j = 0; j < sz; j++) ret.push_back(ret[j] * q);
+        }
+    }
+    std::sort(ret.begin(), ret.end());
     return ret;
 }
