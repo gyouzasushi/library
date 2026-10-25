@@ -79,6 +79,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/sqrt_tree.hpp
       title: Sqrt Tree
+    - icon: ':question:'
+      path: datastructure/wavelet_matrix.hpp
+      title: Wavelet Matrix
   - name: geometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -341,6 +344,12 @@ data:
       path: test/library-checker/range_affine_point_get.test.cpp
       title: test/library-checker/range_affine_point_get.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/range_kth_smallest.test.cpp
+      title: test/library-checker/range_kth_smallest.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/rectangle_sum.test.cpp
+      title: test/library-checker/rectangle_sum.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
       title: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
     - icon: ':heavy_check_mark:'
@@ -358,6 +367,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/static_convex_hull.test.cpp
       title: test/library-checker/static_convex_hull.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/static_range_count_distinct.test.cpp
+      title: test/library-checker/static_range_count_distinct.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/static_range_frequency.test.cpp
+      title: test/library-checker/static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_sum.test.cpp
       title: test/library-checker/static_range_sum.test.cpp
@@ -429,6 +444,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/topological_sort.test.cpp
       title: test/unit/topological_sort.test.cpp
+    - icon: ':x:'
+      path: test/unit/wavelet_matrix.test.cpp
+      title: test/unit/wavelet_matrix.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/zeta_mobius_transform.test.cpp
       title: test/unit/zeta_mobius_transform.test.cpp
