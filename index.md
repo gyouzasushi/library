@@ -79,7 +79,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/sqrt_tree.hpp
       title: Sqrt Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/wavelet_matrix.hpp
       title: Wavelet Matrix
   - name: geometry
@@ -444,7 +444,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/topological_sort.test.cpp
       title: test/unit/topological_sort.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/wavelet_matrix.test.cpp
       title: test/unit/wavelet_matrix.test.cpp
     - icon: ':heavy_check_mark:'

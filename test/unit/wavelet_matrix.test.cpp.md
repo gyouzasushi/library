@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -172,8 +172,8 @@ data:
     \   assert(wm.size() == 0);\n        assert(wm.count(0, 0, 10) == 0);\n      \
     \  assert(wm.sum(0, 0, 10) == 0);\n        assert(wm.sum_smallest(0, 0, 0) ==\
     \ 0);\n        assert(!wm.prev_value(0, 0, 10));\n        wavelet_matrix<int>\
-    \ e;\n        assert(e.size() == 0);\n    }\n    int a, b;\n    std::cin >> a\
-    \ >> b;\n    std::cout << a + b << std::endl;\n}\n"
+    \ e;\n        assert(e.size() == 0);\n    }\n    std::cout << \"Hello World\"\
+    \ << std::endl;\n    return 0;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <random>\n\
     #include <vector>\n\n#include \"datastructure/wavelet_matrix.hpp\"\n\ntemplate\
@@ -234,15 +234,15 @@ data:
     \   assert(wm.size() == 0);\n        assert(wm.count(0, 0, 10) == 0);\n      \
     \  assert(wm.sum(0, 0, 10) == 0);\n        assert(wm.sum_smallest(0, 0, 0) ==\
     \ 0);\n        assert(!wm.prev_value(0, 0, 10));\n        wavelet_matrix<int>\
-    \ e;\n        assert(e.size() == 0);\n    }\n    int a, b;\n    std::cin >> a\
-    \ >> b;\n    std::cout << a + b << std::endl;\n}\n"
+    \ e;\n        assert(e.size() == 0);\n    }\n    std::cout << \"Hello World\"\
+    \ << std::endl;\n    return 0;\n}\n"
   dependsOn:
   - datastructure/wavelet_matrix.hpp
   isVerificationFile: true
   path: test/unit/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-10-25 21:20:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-10-25 21:24:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/wavelet_matrix.test.cpp
 layout: document
