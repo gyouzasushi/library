@@ -120,6 +120,9 @@ data:
       path: graph/lowest_common_ancestor.hpp
       title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
     - icon: ':heavy_check_mark:'
+      path: graph/lowlink.hpp
+      title: Lowlink
+    - icon: ':heavy_check_mark:'
       path: graph/manhattan_mst.hpp
       title: Manhattan MST
     - icon: ':heavy_check_mark:'
@@ -273,6 +276,12 @@ data:
       path: test/aoj/DSL_2_G.test.cpp
       title: test/aoj/DSL_2_G.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_3_A.test.cpp
+      title: test/aoj/GRL_3_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_3_B.test.cpp
+      title: test/aoj/GRL_3_B.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_5_E.test.cpp
       title: test/aoj/GRL_5_E.test.cpp
   - name: test/library-checker
@@ -389,6 +398,9 @@ data:
       path: test/library-checker/tree_path_composite_sum.test.cpp
       title: test/library-checker/tree_path_composite_sum.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/two_edge_connected_components.test.cpp
+      title: test/library-checker/two_edge_connected_components.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/vertex_add_path_sum.test.cpp
       title: test/library-checker/vertex_add_path_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -417,6 +429,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/heavy_light_decomposition.test.cpp
       title: test/unit/heavy_light_decomposition.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/lowlink.test.cpp
+      title: test/unit/lowlink.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/matrix.test.cpp
       title: test/unit/matrix.test.cpp
