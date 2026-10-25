@@ -8,8 +8,7 @@ documentation_of: datastructure/wavelet_matrix.hpp
 
 ### 使い方
 - `wavelet_matrix<T>(a)`: 配列 `a` で構築する。
-- `wavelet_matrix<T, S>(a)`: 配列 `a` で構築する。要素 `i` の重みは `a[i]`。
-- `wavelet_matrix<T, S>(a, w)`: 配列 `a` で構築する。要素 `i` の重みは `w[i]`。
+- `wavelet_matrix<T, S>(a, w)`: 配列 `a` と重み `w` で構築する。
 - `size()`: `a` の長さを返す。
 - `count(l, r, upper)`: $l \le i < r$ かつ `a[i] < upper` となる `i` の個数を返す。
 - `count(l, r, lower, upper)`: $l \le i < r$ かつ `lower <= a[i] < upper` となる `i` の個数を返す。
@@ -17,9 +16,9 @@ documentation_of: datastructure/wavelet_matrix.hpp
 - `kth_largest(l, r, k)`: `a[l], ..., a[r - 1]` を降順に並べたときの `k` 番目 (0-indexed) を返す。
 - `prev_value(l, r, upper)`: `a[l], ..., a[r - 1]` のうち `upper` 未満の最大値を返す。無ければ `std::nullopt`。
 - `next_value(l, r, lower)`: `a[l], ..., a[r - 1]` のうち `lower` 以上の最小値を返す。無ければ `std::nullopt`。
-- `sum(l, r, upper)`: $l \le i < r$ かつ `a[i] < upper` となる `i` の重みの和を返す。
-- `sum(l, r, lower, upper)`: $l \le i < r$ かつ `lower <= a[i] < upper` となる `i` の重みの和を返す。
-- `sum_smallest(l, r, k)`: $l \le i < r$ の要素を `(a[i], i)` の昇順に並べたときの先頭 `k` 個の重みの和を返す。
+- `sum(l, r, upper)`: $l \le i < r$ かつ `a[i] < upper` となる `i` の重みの和を返す。`S` を指定したときのみ。
+- `sum(l, r, lower, upper)`: $l \le i < r$ かつ `lower <= a[i] < upper` となる `i` の重みの和を返す。`S` を指定したときのみ。
+- `sum_smallest(l, r, k)`: $l \le i < r$ の要素を `(a[i], i)` の昇順に並べたときの先頭 `k` 個の重みの和を返す。`S` を指定したときのみ。
 
 ### 制約
 - `T` は `<` で比較できる

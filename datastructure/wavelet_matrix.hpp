@@ -13,15 +13,13 @@ private:
     static constexpr bool weighted = !std::is_void_v<S>;
 
 public:
-    wavelet_matrix() : wavelet_matrix(std::vector<T>{}) {
+    wavelet_matrix() {
+        build({}, {});
     }
-    explicit wavelet_matrix(const std::vector<T>& a) {
-        std::vector<W> w;
-        if constexpr (weighted) {
-            w.reserve(a.size());
-            for (const T& x : a) w.push_back(W(x));
-        }
-        build(a, w);
+    explicit wavelet_matrix(const std::vector<T>& a)
+        requires (!weighted)
+    {
+        build(a, {});
     }
     wavelet_matrix(const std::vector<T>& a, const std::vector<S>& w)
         requires weighted

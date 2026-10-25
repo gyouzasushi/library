@@ -93,10 +93,10 @@ int main() {
             }
         }
     }
-    // weights default to the values
+    // weights equal to the values
     {
         std::vector<int> a = {5, 1, 4, 1, 3};
-        wavelet_matrix<int, long long> wm(a);
+        wavelet_matrix<int, long long> wm(a, std::vector<long long>(a.begin(), a.end()));
         assert(wm.sum_smallest(0, 5, 3) == 5);
         assert(wm.sum(0, 5, 1, 4) == 5);
         assert(wm.kth_smallest(0, 5, 2) == 3);
@@ -107,7 +107,7 @@ int main() {
     }
     // empty
     {
-        wavelet_matrix<int, long long> wm(std::vector<int>{});
+        wavelet_matrix<int, long long> wm({}, {});
         assert(wm.size() == 0);
         assert(wm.count(0, 0, 10) == 0);
         assert(wm.sum(0, 0, 10) == 0);
@@ -115,6 +115,8 @@ int main() {
         assert(!wm.prev_value(0, 0, 10));
         wavelet_matrix<int> e;
         assert(e.size() == 0);
+        wavelet_matrix<int, long long> ew;
+        assert(ew.size() == 0 && ew.sum(0, 0, 0) == 0);
     }
     std::cout << "Hello World" << std::endl;
     return 0;
