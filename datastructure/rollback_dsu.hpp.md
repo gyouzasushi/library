@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/persistent_unionfind.test.cpp
     title: test/library-checker/persistent_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unit/rollback_dsu.test.cpp
     title: test/unit/rollback_dsu.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/rollback_dsu.hpp\"\n#include <algorithm>\n\
@@ -79,7 +79,7 @@ data:
   path: datastructure/rollback_dsu.hpp
   requiredBy: []
   timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/rollback_dsu.test.cpp
   - test/library-checker/persistent_unionfind.test.cpp

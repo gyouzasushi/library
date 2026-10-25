@@ -3,49 +3,49 @@ data:
   libraryCategories:
   - name: algebra
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/concept.hpp
       title: 'Algebra: Concept'
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algebra/group_add.hpp
       title: 'Group: Add'
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algebra/group_xor.hpp
       title: 'Group: XOR'
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_add.hpp
       title: 'Monoid: Add'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_affine.hpp
       title: 'Monoid: Affine'
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_argmax.hpp
       title: 'Monoid: Argmax'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_argmin.hpp
       title: 'Monoid: Argmin'
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_gcd.hpp
       title: 'Monoid: GCD'
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_max.hpp
       title: 'Monoid: Max'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_min.hpp
       title: 'Monoid: Min'
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_xor.hpp
       title: 'Monoid: XOR'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/range_add_range_sum.hpp
       title: 'Acted Monoid: Range Add Range Sum'
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algebra/semiring_max_plus.hpp
       title: 'Semiring: Max Plus'
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algebra/semiring_min_plus.hpp
       title: 'Semiring: Min Plus'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/semiring_plus_times.hpp
       title: 'Semiring: Plus Times'
   - name: algorithm
@@ -58,16 +58,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/cumulative_sum.hpp
       title: "\u7D2F\u7A4D\u548C"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/dual_segtree.hpp
       title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
       path: datastructure/dynamic_li_chao_tree.hpp
       title: Dynamic Li Chao Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/lazy_segtree.hpp
       title: Lazy Segment Tree (acted monoid wrapper)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/plus_minus_one_rmq.hpp
       title: Plus Minus One RMQ
     - icon: ':heavy_check_mark:'
@@ -76,13 +76,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/range_set.hpp
       title: Range Set
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/rollback_dsu.hpp
       title: Rollback DSU
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/segtree.hpp
       title: Segment Tree (monoid wrapper)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/sparse_table.hpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
@@ -91,7 +91,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/wavelet_matrix.hpp
       title: Wavelet Matrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/weighted_dsu.hpp
       title: Weighted DSU
   - name: geometry
@@ -167,25 +167,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/factorize.hpp
       title: Factorize
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: Matrix
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint2305843009213693951.hpp
       title: modint2305843009213693951
+    - icon: ':heavy_check_mark:'
+      path: math/sieve.hpp
+      title: Sieve
     - icon: ':heavy_check_mark:'
       path: math/zeta_mobius_transform.hpp
       title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB"
   - name: string
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/range_update_range_hash.hpp
       title: Range Update Range Hash
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: Rolling Hash
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/string_hash.hpp
       title: String Hash
     - icon: ':heavy_check_mark:'
@@ -296,6 +299,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_5_E.test.cpp
       title: test/aoj/GRL_5_E.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL_1_A.test.cpp
+      title: test/aoj/NTL_1_A.test.cpp
   - name: test/library-checker
     pages:
     - icon: ':heavy_check_mark:'
@@ -328,6 +334,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/enumerate_palindromes.test.cpp
       title: test/library-checker/enumerate_palindromes.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/enumerate_primes.test.cpp
+      title: test/library-checker/enumerate_primes.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/factorize.test.cpp
       title: test/library-checker/factorize.test.cpp
@@ -364,7 +373,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/pow_of_matrix.test.cpp
       title: test/library-checker/pow_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_point_get.test.cpp
       title: test/library-checker/range_affine_point_get.test.cpp
     - icon: ':heavy_check_mark:'
@@ -400,7 +409,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_sum.test.cpp
       title: test/library-checker/static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/staticrmq.test.cpp
       title: test/library-checker/staticrmq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -415,10 +424,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/two_edge_connected_components.test.cpp
       title: test/library-checker/two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/unionfind_with_potential.test.cpp
       title: test/library-checker/unionfind_with_potential.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
       title: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
     - icon: ':heavy_check_mark:'
@@ -438,7 +447,7 @@ data:
       title: test/library-checker/zalgorithm_rolling_hash.test.cpp
   - name: test/unit
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/dual_segtree.test.cpp
       title: test/unit/dual_segtree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -453,13 +462,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/lowlink.test.cpp
       title: test/unit/lowlink.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/matrix.test.cpp
       title: test/unit/matrix.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/modint2305843009213693951.test.cpp
       title: test/unit/modint2305843009213693951.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/monoid.test.cpp
       title: test/unit/monoid.test.cpp
     - icon: ':heavy_check_mark:'
@@ -471,13 +480,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/rerooting.test.cpp
       title: test/unit/rerooting.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/rollback_dsu.test.cpp
       title: test/unit/rollback_dsu.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
+      path: test/unit/sieve.test.cpp
+      title: test/unit/sieve.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/unit/sparse_table.test.cpp
       title: test/unit/sparse_table.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/string_hash.test.cpp
       title: test/unit/string_hash.test.cpp
     - icon: ':heavy_check_mark:'
@@ -486,7 +498,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/wavelet_matrix.test.cpp
       title: test/unit/wavelet_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/weighted_dsu.test.cpp
       title: test/unit/weighted_dsu.test.cpp
     - icon: ':heavy_check_mark:'

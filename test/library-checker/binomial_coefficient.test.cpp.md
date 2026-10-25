@@ -40,7 +40,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2026-10-25 13:51:16+09:00'
+  timestamp: '2026-10-26 01:59:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/binomial_coefficient.test.cpp

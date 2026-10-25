@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_argmin.hpp
     title: 'Monoid: Argmin'
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_gcd.hpp
     title: 'Monoid: GCD'
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_max.hpp
     title: 'Monoid: Max'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_min.hpp
     title: 'Monoid: Min'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/plus_minus_one_rmq.hpp
     title: Plus Minus One RMQ
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/sparse_table.hpp
     title: Sparse Table
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -184,7 +184,7 @@ data:
   path: test/unit/sparse_table.test.cpp
   requiredBy: []
   timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/sparse_table.test.cpp
 layout: document

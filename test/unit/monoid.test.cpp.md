@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_add.hpp
     title: 'Monoid: Add'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_affine.hpp
     title: 'Monoid: Affine'
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_argmax.hpp
     title: 'Monoid: Argmax'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_argmin.hpp
     title: 'Monoid: Argmin'
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_gcd.hpp
     title: 'Monoid: GCD'
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_max.hpp
     title: 'Monoid: Max'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_min.hpp
     title: 'Monoid: Min'
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_xor.hpp
     title: 'Monoid: XOR'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/range_add_range_sum.hpp
     title: 'Acted Monoid: Range Add Range Sum'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/lazy_segtree.hpp
     title: Lazy Segment Tree (acted monoid wrapper)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/segtree.hpp
     title: Segment Tree (monoid wrapper)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -233,7 +233,7 @@ data:
   path: test/unit/monoid.test.cpp
   requiredBy: []
   timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/monoid.test.cpp
 layout: document

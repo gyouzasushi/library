@@ -24,8 +24,8 @@ data:
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ math/binomial_coefficient_arbitrary_mod.hpp: line 8: unable to process #include\
     \ in #if / #ifdef / #ifndef other than include guards\n"
-  code: "#pragma once\n#include <cassert>\n#include <map>\n#include <vector>\n#if\
-    \ __has_include(<atcoder/math.hpp>)\n#include <atcoder/math.hpp>\n#else\n#include\
+  code: "#pragma once\n#include <cassert>\n#include <utility>\n#include <vector>\n\
+    #if __has_include(<atcoder/math.hpp>)\n#include <atcoder/math.hpp>\n#else\n#include\
     \ \"atcoder/math.hpp\"\n#endif\n#include \"math/factorize.hpp\"\ntemplate <int\
     \ id = -1>\nstruct binomial_coefficient_arbitrary_mod {\n    static void set_mod(int\
     \ mod) {\n        assert(1 <= mod);\n        m = mod;\n        factors = factorize(m);\n\
@@ -66,15 +66,15 @@ data:
     \        long long r = 1, y = x;\n        while (n) {\n            if (n & 1)\
     \ r *= y;\n            n >>= 1;\n            if (n) y *= y;\n        }\n     \
     \   return r;\n    }\n    static inline long long m = -1;\n    static inline long\
-    \ long max_size = 0;\n    static inline std::map<long long, int> factors{};\n\
-    \    static inline std::vector<std::vector<long long>> f{};\n    static inline\
-    \ std::vector<std::vector<long long>> inv_f{};\n};\n"
+    \ long max_size = 0;\n    static inline std::vector<std::pair<long long, int>>\
+    \ factors{};\n    static inline std::vector<std::vector<long long>> f{};\n   \
+    \ static inline std::vector<std::vector<long long>> inv_f{};\n};\n"
   dependsOn:
   - math/factorize.hpp
   isVerificationFile: false
   path: math/binomial_coefficient_arbitrary_mod.hpp
   requiredBy: []
-  timestamp: '2026-10-25 13:51:16+09:00'
+  timestamp: '2026-10-26 01:59:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/binomial_coefficient.test.cpp

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_argmin.hpp
     title: 'Monoid: Argmin'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/plus_minus_one_rmq.hpp
     title: Plus Minus One RMQ
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/sparse_table.hpp
     title: Sparse Table
   _extendedRequiredBy: []
