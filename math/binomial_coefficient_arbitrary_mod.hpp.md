@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: math/factorize.hpp
-    title: math/factorize.hpp
+    title: Factorize
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: math/binomial_coefficient_arbitrary_mod.hpp
   requiredBy: []
-  timestamp: '2026-10-17 13:59:29+09:00'
+  timestamp: '2026-10-25 13:51:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/binomial_coefficient.test.cpp

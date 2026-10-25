@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
-    title: math/bostan_mori.hpp
+    title: Bostan-Mori
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -16,8 +16,8 @@ data:
     - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
   bundledCode: "#line 1 \"test/library-checker/bostan_mori.test.cpp\"\n#define PROBLEM\
     \ \\\n    \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
-    \n#line 2 \"math/bostan_mori.hpp\"\n\n#include <cassert>\n#include <ranges>\n\
-    #include <vector>\n\n#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#include <algorithm>\n\
+    \n#line 2 \"math/bostan_mori.hpp\"\n#include <cassert>\n#include <ranges>\n#include\
+    \ <vector>\n\n#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <array>\n#line 7 \"atcoder/convolution.hpp\"\n#include <type_traits>\n\
     #line 9 \"atcoder/convolution.hpp\"\n\n#line 1 \"atcoder/internal_bit.hpp\"\n\n\
     \n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n#if __cplusplus >= 202002L\n\
@@ -391,29 +391,25 @@ data:
     \ long)(x), (long long)(MOD1));\n        if (diff < 0) diff += MOD1;\n       \
     \ static constexpr unsigned long long offset[5] = {\n            0, 0, M1M2M3,\
     \ 2 * M1M2M3, 3 * M1M2M3};\n        x -= offset[diff % 5];\n        c[i] = x;\n\
-    \    }\n\n    return c;\n}\n\n}  // namespace atcoder\n\n\n#line 8 \"math/bostan_mori.hpp\"\
-    \n\ntemplate <typename mint>\nmint bostan_mori(long long N, std::vector<mint>\
-    \ P, std::vector<mint> Q) {\n    assert(N >= 0);\n\n    auto odd = [](const std::vector<mint>&\
-    \ f) -> std::vector<mint> {\n        return f | std::views::drop(1) | std::views::stride(2)\
-    \ |\n               std::ranges::to<std::vector<mint>>();\n    };\n\n    auto\
-    \ even = [](const std::vector<mint>& f) -> std::vector<mint> {\n        return\
-    \ f | std::views::stride(2) | std::ranges::to<std::vector<mint>>();\n    };\n\n\
-    \    while (N > 0) {\n        std::vector Q_alt = Q | std::views::enumerate |\n\
-    \                            std::views::transform([](auto p) {\n            \
-    \                    auto [i, x] = p;\n                                return\
-    \ (i & 1 ? -x : x);\n                            }) |\n                      \
-    \      std::ranges::to<std::vector<mint>>();\n        std::vector U = atcoder::convolution(P,\
-    \ Q_alt);\n        P = std::move(N & 1 ? odd(U) : even(U));\n        std::vector\
-    \ V = atcoder::convolution(Q, Q_alt);\n        Q = std::move(even(V));\n     \
-    \   N >>= 1;\n    }\n\n    return P[0] / Q[0];\n}\n#line 4 \"test/library-checker/bostan_mori.test.cpp\"\
-    \n\n#include <iostream>\n\nusing mint = atcoder::modint998244353;\n\nint main()\
-    \ {\n    int d;\n    long long k;\n    std::cin >> d >> k;\n    std::vector<mint>\
-    \ a(d);\n    for (int i = 0; i < d; i++) {\n        int x;\n        std::cin >>\
-    \ x;\n        a[i] = mint(x);\n    }\n    std::vector<mint> c(d + 1, 1);\n   \
-    \ for (int i = 1; i <= d; i++) {\n        int x;\n        std::cin >> x;\n   \
-    \     c[i] = mint(-x);\n    }\n    std::vector b = atcoder::convolution(a, c);\n\
-    \    b.resize(a.size());\n    std::cout << bostan_mori(k, b, c).val() << '\\n';\n\
-    }\n"
+    \    }\n\n    return c;\n}\n\n}  // namespace atcoder\n\n\n#line 7 \"math/bostan_mori.hpp\"\
+    \n\ntemplate <class mint>\nmint bostan_mori(long long n, std::vector<mint> p,\
+    \ std::vector<mint> q) {\n    assert(n >= 0);\n    assert(!q.empty() && q[0] !=\
+    \ 0);\n    auto even = [](const std::vector<mint>& f) {\n        return f | std::views::stride(2)\
+    \ | std::ranges::to<std::vector<mint>>();\n    };\n    auto odd = [](const std::vector<mint>&\
+    \ f) {\n        return f | std::views::drop(1) | std::views::stride(2) |\n   \
+    \            std::ranges::to<std::vector<mint>>();\n    };\n    while (n > 0)\
+    \ {\n        std::vector<mint> q_neg = q;\n        for (int i = 1; i < int(q_neg.size());\
+    \ i += 2) q_neg[i] = -q_neg[i];\n        std::vector<mint> u = atcoder::convolution(p,\
+    \ q_neg);\n        p = n & 1 ? odd(u) : even(u);\n        q = even(atcoder::convolution(q,\
+    \ q_neg));\n        n >>= 1;\n    }\n    return p.empty() ? mint(0) : p[0] / q[0];\n\
+    }\n#line 4 \"test/library-checker/bostan_mori.test.cpp\"\n\n#include <iostream>\n\
+    \nusing mint = atcoder::modint998244353;\n\nint main() {\n    int d;\n    long\
+    \ long k;\n    std::cin >> d >> k;\n    std::vector<mint> a(d);\n    for (int\
+    \ i = 0; i < d; i++) {\n        int x;\n        std::cin >> x;\n        a[i] =\
+    \ mint(x);\n    }\n    std::vector<mint> c(d + 1, 1);\n    for (int i = 1; i <=\
+    \ d; i++) {\n        int x;\n        std::cin >> x;\n        c[i] = mint(-x);\n\
+    \    }\n    std::vector b = atcoder::convolution(a, c);\n    b.resize(a.size());\n\
+    \    std::cout << bostan_mori(k, b, c).val() << '\\n';\n}\n"
   code: "#define PROBLEM \\\n    \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
     \n#include \"../../math/bostan_mori.hpp\"\n\n#include <iostream>\n\nusing mint\
     \ = atcoder::modint998244353;\n\nint main() {\n    int d;\n    long long k;\n\
@@ -428,7 +424,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/bostan_mori.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 13:59:29+09:00'
+  timestamp: '2026-10-25 13:51:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/bostan_mori.test.cpp

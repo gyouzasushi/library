@@ -50,9 +50,6 @@ data:
   - name: datastructure
     pages:
     - icon: ':heavy_check_mark:'
-      path: datastructure/cartesian_tree.hpp
-      title: Cartesian Tree
-    - icon: ':heavy_check_mark:'
       path: datastructure/cumulative_sum.hpp
       title: "\u7D2F\u7A4D\u548C"
     - icon: ':heavy_check_mark:'
@@ -145,13 +142,13 @@ data:
       title: Bitwise Or Convolution
     - icon: ':heavy_check_mark:'
       path: math/bostan_mori.hpp
-      title: math/bostan_mori.hpp
+      title: Bostan-Mori
     - icon: ':heavy_check_mark:'
       path: math/combinatorics.hpp
       title: Combinatorics
     - icon: ':heavy_check_mark:'
       path: math/factorize.hpp
-      title: math/factorize.hpp
+      title: Factorize
     - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: Matrix
@@ -295,9 +292,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/bostan_mori.test.cpp
       title: test/library-checker/bostan_mori.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/library-checker/cartesian_tree.test.cpp
-      title: test/library-checker/cartesian_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/chromatic_number.test.cpp
       title: test/library-checker/chromatic_number.test.cpp

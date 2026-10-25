@@ -6,7 +6,7 @@ data:
     title: Binomial Coefficient (Arbitrary Mod)
   - icon: ':heavy_check_mark:'
     path: math/factorize.hpp
-    title: math/factorize.hpp
+    title: Factorize
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -40,7 +40,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 13:59:29+09:00'
+  timestamp: '2026-10-25 13:51:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/binomial_coefficient.test.cpp

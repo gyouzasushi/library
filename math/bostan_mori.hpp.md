@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/bostan_mori.hpp\"\n\n#include <cassert>\n#include <ranges>\n\
+  bundledCode: "#line 2 \"math/bostan_mori.hpp\"\n#include <cassert>\n#include <ranges>\n\
     #include <vector>\n\n#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <array>\n#line 7 \"atcoder/convolution.hpp\"\n#include <type_traits>\n\
     #line 9 \"atcoder/convolution.hpp\"\n\n#line 1 \"atcoder/internal_bit.hpp\"\n\n\
@@ -386,48 +386,55 @@ data:
     \ long)(x), (long long)(MOD1));\n        if (diff < 0) diff += MOD1;\n       \
     \ static constexpr unsigned long long offset[5] = {\n            0, 0, M1M2M3,\
     \ 2 * M1M2M3, 3 * M1M2M3};\n        x -= offset[diff % 5];\n        c[i] = x;\n\
-    \    }\n\n    return c;\n}\n\n}  // namespace atcoder\n\n\n#line 8 \"math/bostan_mori.hpp\"\
-    \n\ntemplate <typename mint>\nmint bostan_mori(long long N, std::vector<mint>\
-    \ P, std::vector<mint> Q) {\n    assert(N >= 0);\n\n    auto odd = [](const std::vector<mint>&\
-    \ f) -> std::vector<mint> {\n        return f | std::views::drop(1) | std::views::stride(2)\
-    \ |\n               std::ranges::to<std::vector<mint>>();\n    };\n\n    auto\
-    \ even = [](const std::vector<mint>& f) -> std::vector<mint> {\n        return\
-    \ f | std::views::stride(2) | std::ranges::to<std::vector<mint>>();\n    };\n\n\
-    \    while (N > 0) {\n        std::vector Q_alt = Q | std::views::enumerate |\n\
-    \                            std::views::transform([](auto p) {\n            \
-    \                    auto [i, x] = p;\n                                return\
-    \ (i & 1 ? -x : x);\n                            }) |\n                      \
-    \      std::ranges::to<std::vector<mint>>();\n        std::vector U = atcoder::convolution(P,\
-    \ Q_alt);\n        P = std::move(N & 1 ? odd(U) : even(U));\n        std::vector\
-    \ V = atcoder::convolution(Q, Q_alt);\n        Q = std::move(even(V));\n     \
-    \   N >>= 1;\n    }\n\n    return P[0] / Q[0];\n}\n"
-  code: "#pragma once\n\n#include <cassert>\n#include <ranges>\n#include <vector>\n\
-    \n#include \"atcoder/convolution\"\n\ntemplate <typename mint>\nmint bostan_mori(long\
-    \ long N, std::vector<mint> P, std::vector<mint> Q) {\n    assert(N >= 0);\n\n\
-    \    auto odd = [](const std::vector<mint>& f) -> std::vector<mint> {\n      \
-    \  return f | std::views::drop(1) | std::views::stride(2) |\n               std::ranges::to<std::vector<mint>>();\n\
-    \    };\n\n    auto even = [](const std::vector<mint>& f) -> std::vector<mint>\
-    \ {\n        return f | std::views::stride(2) | std::ranges::to<std::vector<mint>>();\n\
-    \    };\n\n    while (N > 0) {\n        std::vector Q_alt = Q | std::views::enumerate\
-    \ |\n                            std::views::transform([](auto p) {\n        \
-    \                        auto [i, x] = p;\n                                return\
-    \ (i & 1 ? -x : x);\n                            }) |\n                      \
-    \      std::ranges::to<std::vector<mint>>();\n        std::vector U = atcoder::convolution(P,\
-    \ Q_alt);\n        P = std::move(N & 1 ? odd(U) : even(U));\n        std::vector\
-    \ V = atcoder::convolution(Q, Q_alt);\n        Q = std::move(even(V));\n     \
-    \   N >>= 1;\n    }\n\n    return P[0] / Q[0];\n}"
+    \    }\n\n    return c;\n}\n\n}  // namespace atcoder\n\n\n#line 7 \"math/bostan_mori.hpp\"\
+    \n\ntemplate <class mint>\nmint bostan_mori(long long n, std::vector<mint> p,\
+    \ std::vector<mint> q) {\n    assert(n >= 0);\n    assert(!q.empty() && q[0] !=\
+    \ 0);\n    auto even = [](const std::vector<mint>& f) {\n        return f | std::views::stride(2)\
+    \ | std::ranges::to<std::vector<mint>>();\n    };\n    auto odd = [](const std::vector<mint>&\
+    \ f) {\n        return f | std::views::drop(1) | std::views::stride(2) |\n   \
+    \            std::ranges::to<std::vector<mint>>();\n    };\n    while (n > 0)\
+    \ {\n        std::vector<mint> q_neg = q;\n        for (int i = 1; i < int(q_neg.size());\
+    \ i += 2) q_neg[i] = -q_neg[i];\n        std::vector<mint> u = atcoder::convolution(p,\
+    \ q_neg);\n        p = n & 1 ? odd(u) : even(u);\n        q = even(atcoder::convolution(q,\
+    \ q_neg));\n        n >>= 1;\n    }\n    return p.empty() ? mint(0) : p[0] / q[0];\n\
+    }\n"
+  code: "#pragma once\n#include <cassert>\n#include <ranges>\n#include <vector>\n\n\
+    #include \"atcoder/convolution\"\n\ntemplate <class mint>\nmint bostan_mori(long\
+    \ long n, std::vector<mint> p, std::vector<mint> q) {\n    assert(n >= 0);\n \
+    \   assert(!q.empty() && q[0] != 0);\n    auto even = [](const std::vector<mint>&\
+    \ f) {\n        return f | std::views::stride(2) | std::ranges::to<std::vector<mint>>();\n\
+    \    };\n    auto odd = [](const std::vector<mint>& f) {\n        return f | std::views::drop(1)\
+    \ | std::views::stride(2) |\n               std::ranges::to<std::vector<mint>>();\n\
+    \    };\n    while (n > 0) {\n        std::vector<mint> q_neg = q;\n        for\
+    \ (int i = 1; i < int(q_neg.size()); i += 2) q_neg[i] = -q_neg[i];\n        std::vector<mint>\
+    \ u = atcoder::convolution(p, q_neg);\n        p = n & 1 ? odd(u) : even(u);\n\
+    \        q = even(atcoder::convolution(q, q_neg));\n        n >>= 1;\n    }\n\
+    \    return p.empty() ? mint(0) : p[0] / q[0];\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/bostan_mori.hpp
   requiredBy: []
-  timestamp: '2026-10-17 13:59:29+09:00'
+  timestamp: '2026-10-25 13:51:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/bostan_mori.test.cpp
 documentation_of: math/bostan_mori.hpp
 layout: document
-redirect_from:
-- /library/math/bostan_mori.hpp
-- /library/math/bostan_mori.hpp.html
-title: math/bostan_mori.hpp
+title: Bostan-Mori
 ---
+
+### 概要
+- 有理関数 $P(x) / Q(x)$ の $x^n$ の係数を求める。
+
+### 使い方
+- `bostan_mori<mint>(n, p, q)`: $[x^n] \dfrac{p_0 + p_1 x + \cdots}{q_0 + q_1 x + \cdots}$ を返す。
+
+### 制約
+- $0 \le n$
+- $q_0 \ne 0$
+- `mint` は `atcoder::static_modint<m>`
+- $m$ は素数
+- $2^c \mid (m - 1)$ かつ $\lvert p \rvert + \lvert q \rvert - 1 \le 2^c$ なる $c$ が存在する
+
+### 計算量
+- $d = \lvert p \rvert + \lvert q \rvert$ として $\mathcal{O}(d \log d \log n)$
