@@ -116,7 +116,6 @@ int main() {
         wavelet_matrix<int> e;
         assert(e.size() == 0);
     }
-    int a, b;
-    std::cin >> a >> b;
-    std::cout << a + b << std::endl;
+    std::cout << "Hello World" << std::endl;
+    return 0;
 }
