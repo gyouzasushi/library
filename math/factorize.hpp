@@ -1,10 +1,16 @@
 #pragma once
-#include <cmath>
+#include <cassert>
+#include <cstdlib>
+#include <map>
 #include <numeric>
+#include <queue>
+
+namespace internal {
+
 long long modmul(long long x, long long y, long long mod) {
-    using i128 = __int128_t;
-    return (long long)(i128(x) * i128(y) % i128(mod));
+    return (long long)((__int128_t)x * y % mod);
 }
+
 long long modpow(long long a, long long n, long long mod) {
     long long ret = 1;
     while (n > 0) {
@@ -14,12 +20,12 @@ long long modpow(long long a, long long n, long long mod) {
     }
     return ret;
 }
+
 long long rho(long long n) {
     long long z = 0;
-    auto f = [&](long long x) -> long long {
+    auto f = [&](long long x) {
         long long ret = modmul(x, x, n) + z;
-        if (ret == n) return 0;
-        return ret;
+        return ret >= n ? ret - n : ret;
     };
     while (true) {
         long long x = ++z;
@@ -33,30 +39,34 @@ long long rho(long long n) {
         }
     }
 }
-#include <initializer_list>
-bool miller_rabin(long long n) {
-    if (n == 1) return 0;
+
+}  // namespace internal
+
+bool is_prime(long long n) {
+    assert(n >= 1);
+    if (n == 1) return false;
+    if (n % 2 == 0) return n == 2;
     long long d = n - 1, s = 0;
     while (~d & 1) d >>= 1, s++;
-    auto check = [&](long long a) -> bool {
-        long long x = modpow(a, d, n);
-        if (x == 1) return 1;
-        long long y = n - 1;
-        for (int i = 0; i < s; i++) {
-            if (x == y) return true;
-            x = modmul(x, x, n);
-        }
-        return false;
-    };
     for (long long a : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37}) {
         if (a >= n) break;
-        if (!check(a)) return false;
+        long long x = internal::modpow(a, d, n);
+        if (x == 1) continue;
+        bool ok = false;
+        for (int i = 0; i < s; i++) {
+            if (x == n - 1) {
+                ok = true;
+                break;
+            }
+            x = internal::modmul(x, x, n);
+        }
+        if (!ok) return false;
     }
     return true;
 }
-#include <map>
-#include <queue>
+
 std::map<long long, int> factorize(long long n) {
+    assert(n >= 1);
     std::map<long long, int> ret;
     while (~n & 1) n >>= 1, ret[2]++;
     std::queue<long long> q;
@@ -65,11 +75,11 @@ std::map<long long, int> factorize(long long n) {
         long long p = q.front();
         q.pop();
         if (p == 1) continue;
-        if (miller_rabin(p)) {
+        if (is_prime(p)) {
             ret[p]++;
             continue;
         }
-        long long d = rho(p);
+        long long d = internal::rho(p);
         q.push(d);
         q.push(p / d);
     }
