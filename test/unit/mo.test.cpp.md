@@ -21,12 +21,12 @@ data:
     \n\nstruct mo {\n    mo() = default;\n    int add(int l, int r) {\n        assert(0\
     \ <= l && l <= r);\n        lr.emplace_back(l, r);\n        return (int)lr.size()\
     \ - 1;\n    }\n    void run(auto add_left, auto add_right, auto erase_left, auto\
-    \ erase_right,\n             auto out) const {\n        int l = 0, r = 0;\n  \
-    \      for (int i : order()) {\n            while (l > lr[i].first) add_left(--l);\n\
+    \ erase_right,\n             auto query) const {\n        int l = 0, r = 0;\n\
+    \        for (int i : order()) {\n            while (l > lr[i].first) add_left(--l);\n\
     \            while (r < lr[i].second) add_right(r++);\n            while (l <\
     \ lr[i].first) erase_left(l++);\n            while (r > lr[i].second) erase_right(--r);\n\
-    \            out(i);\n        }\n    }\n    void run(auto add, auto erase, auto\
-    \ out) const {\n        run(add, add, erase, erase, out);\n    }\n\n  private:\n\
+    \            query(i);\n        }\n    }\n    void run(auto add, auto erase, auto\
+    \ query) const {\n        run(add, add, erase, erase, query);\n    }\n\n  private:\n\
     \    std::vector<std::pair<int, int>> lr;\n    std::vector<int> order() const\
     \ {\n        int q = lr.size();\n        if (q == 0) return {};\n        int n\
     \ = 1;\n        for (auto [l, r] : lr) n = std::max(n, r);\n        int w = std::max(1,\
@@ -115,7 +115,7 @@ data:
   isVerificationFile: true
   path: test/unit/mo.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 21:19:58+09:00'
+  timestamp: '2026-10-26 21:23:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/mo.test.cpp

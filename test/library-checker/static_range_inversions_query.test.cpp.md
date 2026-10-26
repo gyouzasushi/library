@@ -21,22 +21,22 @@ data:
     #include <utility>\n#line 9 \"algorithm/mo.hpp\"\n\nstruct mo {\n    mo() = default;\n\
     \    int add(int l, int r) {\n        assert(0 <= l && l <= r);\n        lr.emplace_back(l,\
     \ r);\n        return (int)lr.size() - 1;\n    }\n    void run(auto add_left,\
-    \ auto add_right, auto erase_left, auto erase_right,\n             auto out) const\
-    \ {\n        int l = 0, r = 0;\n        for (int i : order()) {\n            while\
-    \ (l > lr[i].first) add_left(--l);\n            while (r < lr[i].second) add_right(r++);\n\
-    \            while (l < lr[i].first) erase_left(l++);\n            while (r >\
-    \ lr[i].second) erase_right(--r);\n            out(i);\n        }\n    }\n   \
-    \ void run(auto add, auto erase, auto out) const {\n        run(add, add, erase,\
-    \ erase, out);\n    }\n\n  private:\n    std::vector<std::pair<int, int>> lr;\n\
-    \    std::vector<int> order() const {\n        int q = lr.size();\n        if\
-    \ (q == 0) return {};\n        int n = 1;\n        for (auto [l, r] : lr) n =\
-    \ std::max(n, r);\n        int w = std::max(1, (int)(std::sqrt(3.0) * n / std::sqrt(2.0\
-    \ * q)));\n        std::vector<int> ord(q);\n        std::iota(ord.begin(), ord.end(),\
-    \ 0);\n        std::sort(ord.begin(), ord.end(), [&](int a, int b) {\n       \
-    \     int ba = lr[a].first / w, bb = lr[b].first / w;\n            if (ba != bb)\
-    \ return ba < bb;\n            return (ba & 1) ? lr[a].second > lr[b].second\n\
-    \                            : lr[a].second < lr[b].second;\n        });\n   \
-    \     auto cost = [&](int a, int b) {\n            return std::abs(lr[ord[a]].first\
+    \ auto add_right, auto erase_left, auto erase_right,\n             auto query)\
+    \ const {\n        int l = 0, r = 0;\n        for (int i : order()) {\n      \
+    \      while (l > lr[i].first) add_left(--l);\n            while (r < lr[i].second)\
+    \ add_right(r++);\n            while (l < lr[i].first) erase_left(l++);\n    \
+    \        while (r > lr[i].second) erase_right(--r);\n            query(i);\n \
+    \       }\n    }\n    void run(auto add, auto erase, auto query) const {\n   \
+    \     run(add, add, erase, erase, query);\n    }\n\n  private:\n    std::vector<std::pair<int,\
+    \ int>> lr;\n    std::vector<int> order() const {\n        int q = lr.size();\n\
+    \        if (q == 0) return {};\n        int n = 1;\n        for (auto [l, r]\
+    \ : lr) n = std::max(n, r);\n        int w = std::max(1, (int)(std::sqrt(3.0)\
+    \ * n / std::sqrt(2.0 * q)));\n        std::vector<int> ord(q);\n        std::iota(ord.begin(),\
+    \ ord.end(), 0);\n        std::sort(ord.begin(), ord.end(), [&](int a, int b)\
+    \ {\n            int ba = lr[a].first / w, bb = lr[b].first / w;\n           \
+    \ if (ba != bb) return ba < bb;\n            return (ba & 1) ? lr[a].second >\
+    \ lr[b].second\n                            : lr[a].second < lr[b].second;\n \
+    \       });\n        auto cost = [&](int a, int b) {\n            return std::abs(lr[ord[a]].first\
     \ - lr[ord[b]].first) +\n                   std::abs(lr[ord[a]].second - lr[ord[b]].second);\n\
     \        };\n        auto improve = [&](int k) {\n            if (cost(k, k +\
     \ 2) + cost(k + 1, k + 3) <\n                cost(k, k + 1) + cost(k + 2, k +\
@@ -136,7 +136,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 21:19:58+09:00'
+  timestamp: '2026-10-26 21:23:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/static_range_inversions_query.test.cpp
