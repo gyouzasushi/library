@@ -99,6 +99,7 @@
 "test/unit/sparse_table.test.cpp": "2026-10-26 01:30:50 +0900",
 "test/unit/string_hash.test.cpp": "2026-10-26 01:30:50 +0900",
 "test/unit/topological_sort.test.cpp": "2026-10-23 21:58:52 +0900",
+"test/unit/trie.test.cpp": "2026-10-26 15:53:35 +0900",
 "test/unit/wavelet_matrix.test.cpp": "2026-10-25 23:13:53 +0900",
 "test/unit/weighted_dsu.test.cpp": "2026-10-26 01:30:50 +0900",
 "test/unit/zeta_mobius_transform.test.cpp": "2026-10-23 21:43:17 +0900",
