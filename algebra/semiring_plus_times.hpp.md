@@ -39,8 +39,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/matrix.test.cpp
-  - test/library-checker/matrix_product.test.cpp
   - test/library-checker/pow_of_matrix.test.cpp
+  - test/library-checker/matrix_product.test.cpp
 documentation_of: algebra/semiring_plus_times.hpp
 layout: document
 title: 'Semiring: Plus Times'

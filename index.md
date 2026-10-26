@@ -53,6 +53,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: algorithm/longest_increasing_subsequence.hpp
       title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(LIS)"
+    - icon: ':heavy_check_mark:'
+      path: algorithm/mo.hpp
+      title: Mo's Algorithm
   - name: datastructure
     pages:
     - icon: ':heavy_check_mark:'
@@ -416,6 +419,9 @@ data:
       path: test/library-checker/static_range_frequency.test.cpp
       title: test/library-checker/static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/static_range_inversions_query.test.cpp
+      title: test/library-checker/static_range_inversions_query.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_sum.test.cpp
       title: test/library-checker/static_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -477,6 +483,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/matrix.test.cpp
       title: test/unit/matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/mo.test.cpp
+      title: test/unit/mo.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/modint2305843009213693951.test.cpp
       title: test/unit/modint2305843009213693951.test.cpp

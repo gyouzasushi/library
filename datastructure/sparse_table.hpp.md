@@ -70,14 +70,14 @@ data:
   isVerificationFile: false
   path: datastructure/sparse_table.hpp
   requiredBy:
-  - datastructure/plus_minus_one_rmq.hpp
   - graph/lowest_common_ancestor.hpp
+  - datastructure/plus_minus_one_rmq.hpp
   timestamp: '2026-10-26 01:30:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/sparse_table.test.cpp
-  - test/library-checker/staticrmq.test.cpp
   - test/library-checker/lca.test.cpp
+  - test/library-checker/staticrmq.test.cpp
 documentation_of: datastructure/sparse_table.hpp
 layout: document
 title: Sparse Table

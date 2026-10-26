@@ -126,37 +126,37 @@ data:
   isVerificationFile: false
   path: algebra/concept.hpp
   requiredBy:
-  - datastructure/weighted_dsu.hpp
-  - datastructure/sparse_table.hpp
-  - datastructure/lazy_segtree.hpp
-  - datastructure/plus_minus_one_rmq.hpp
-  - datastructure/segtree.hpp
-  - datastructure/dual_segtree.hpp
-  - graph/manhattan_mst.hpp
-  - graph/lowest_common_ancestor.hpp
   - math/matrix.hpp
   - string/range_update_range_hash.hpp
+  - graph/lowest_common_ancestor.hpp
+  - graph/manhattan_mst.hpp
+  - datastructure/dual_segtree.hpp
+  - datastructure/plus_minus_one_rmq.hpp
+  - datastructure/weighted_dsu.hpp
+  - datastructure/sparse_table.hpp
+  - datastructure/segtree.hpp
+  - datastructure/lazy_segtree.hpp
   timestamp: '2026-10-26 01:30:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_2_G.test.cpp
   - test/aoj/0355.test.cpp
+  - test/aoj/DSL_2_G.test.cpp
   - test/aoj/DSL_2_A.test.cpp
-  - test/unit/sparse_table.test.cpp
-  - test/unit/weighted_dsu.test.cpp
-  - test/unit/monoid.test.cpp
-  - test/unit/matrix.test.cpp
-  - test/unit/string_hash.test.cpp
   - test/unit/dual_segtree.test.cpp
-  - test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
-  - test/library-checker/staticrmq.test.cpp
-  - test/library-checker/matrix_product.test.cpp
-  - test/library-checker/pow_of_matrix.test.cpp
-  - test/library-checker/range_affine_point_get.test.cpp
-  - test/library-checker/point_set_range_composite.test.cpp
-  - test/library-checker/unionfind_with_potential.test.cpp
+  - test/unit/monoid.test.cpp
+  - test/unit/weighted_dsu.test.cpp
+  - test/unit/string_hash.test.cpp
+  - test/unit/matrix.test.cpp
+  - test/unit/sparse_table.test.cpp
   - test/library-checker/lca.test.cpp
+  - test/library-checker/unionfind_with_potential.test.cpp
+  - test/library-checker/staticrmq.test.cpp
+  - test/library-checker/pow_of_matrix.test.cpp
+  - test/library-checker/matrix_product.test.cpp
+  - test/library-checker/point_set_range_composite.test.cpp
   - test/library-checker/manhattanmst.test.cpp
+  - test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
+  - test/library-checker/range_affine_point_get.test.cpp
 documentation_of: algebra/concept.hpp
 layout: document
 title: 'Algebra: Concept'

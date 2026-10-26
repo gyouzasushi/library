@@ -57,8 +57,8 @@ data:
   timestamp: '2026-10-20 22:33:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/117.test.cpp
   - test/library-checker/binomial_coefficient_prime_mod.test.cpp
+  - test/yukicoder/117.test.cpp
 documentation_of: math/combinatorics.hpp
 layout: document
 title: Combinatorics

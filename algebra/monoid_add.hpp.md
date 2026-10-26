@@ -34,8 +34,8 @@ data:
   timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/weighted_dsu.test.cpp
   - test/unit/monoid.test.cpp
+  - test/unit/weighted_dsu.test.cpp
   - test/library-checker/unionfind_with_potential.test.cpp
 documentation_of: algebra/monoid_add.hpp
 layout: document

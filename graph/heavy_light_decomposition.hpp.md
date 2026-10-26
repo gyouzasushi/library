@@ -187,11 +187,11 @@ data:
   verifiedWith:
   - test/aoj/GRL_5_E.test.cpp
   - test/unit/heavy_light_decomposition.test.cpp
+  - test/library-checker/jump_on_tree.test.cpp
   - test/library-checker/vertex_add_subtree_sum.test.cpp
-  - test/library-checker/vertex_add_path_sum.test.cpp
   - test/library-checker/lca_heavy_light_decomposition.test.cpp
   - test/library-checker/vertex_set_path_composite.test.cpp
-  - test/library-checker/jump_on_tree.test.cpp
+  - test/library-checker/vertex_add_path_sum.test.cpp
 documentation_of: graph/heavy_light_decomposition.hpp
 layout: document
 title: "HL\u5206\u89E3 (Heavy-Light Decomposition)"
