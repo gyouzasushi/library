@@ -4,13 +4,16 @@ documentation_of: datastructure/sqrt_tree.hpp
 ---
 
 ### 概要
-- 任意の半群に対する区間クエリを高速に処理する。
-- `sparse_table` と違い演算が冪等である必要はないが、構築の定数倍が重く、空間も多い。
+- 静的な配列の区間積を求める。
 
 ### 使い方
-- `sqrt_tree<S, op>(v)`: 半群 `(S, op)`、配列 `v` で初期化する。`op` は結合律を満たす必要がある（冪等性は不要）。
-- `prod(l, r)`: $\mathrm{op} (\mathrm{op} (\cdots \mathrm{op} (\mathrm{v}_{l}, \mathrm{v}_{l+1}),\cdots ), \mathrm{v}_{r-1})$ を求める。空区間 ($l = r$) は禁止。
+- `sqrt_tree<M>(a)`: 配列 `a` で構築する。`M` は `S` と `op` を static メンバとして持つ構造体。`e` は不要。
+- `prod(l, r)`: `op(a[l], ..., a[r - 1])` を返す。
+
+### 制約
+- `op` は結合的
+- $0 \le l < r \le n$
 
 ### 計算量
-- 構築: $\mathcal O(N \log \log N)$
-- クエリ: $\mathcal O(1)$
+- 構築: $\mathcal{O}(N \log \log N)$
+- `prod`: $\mathcal{O}(1)$

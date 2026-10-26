@@ -2,12 +2,13 @@
 #include <algorithm>
 #include <cassert>
 #include <vector>
-template <class S, S (*op)(S, S)>
-struct sqrt_tree {
-public:
+
+#include "algebra/concept.hpp"
+template <semigroup M> struct sqrt_tree {
+    using S = typename M::S;
     sqrt_tree() {
     }
-    sqrt_tree(const std::vector<S>& a) : _n(int(a.size())) {
+    explicit sqrt_tree(const std::vector<S>& a) : _n(int(a.size())) {
         if (_n == 0) return;
         _lg = 0;
         while ((1 << _lg) < _n) _lg++;
@@ -42,12 +43,12 @@ public:
         build(0, 0, _n, 0);
     }
 
-    S prod(int l, int r) {
+    S prod(int l, int r) const {
         assert(0 <= l && l < r && r <= _n);
         return query(l, r - 1, 0, 0);
     }
 
-private:
+  private:
     int _n = 0, _lg = 0, index_sz = 0;
     std::vector<S> v;
     std::vector<int> clz, layers, on_layer;
@@ -56,11 +57,11 @@ private:
     void build_block(int layer, int l, int r) {
         pref[layer][l] = v[l];
         for (int i = l + 1; i < r; i++) {
-            pref[layer][i] = op(pref[layer][i - 1], v[i]);
+            pref[layer][i] = M::op(pref[layer][i - 1], v[i]);
         }
         suf[layer][r - 1] = v[r - 1];
         for (int i = r - 2; i >= l; i--) {
-            suf[layer][i] = op(v[i], suf[layer][i + 1]);
+            suf[layer][i] = M::op(v[i], suf[layer][i + 1]);
         }
     }
 
@@ -74,7 +75,7 @@ private:
             between[layer - 1][between_offs + l_bound + (i << b_cnt_log) + i] = ans;
             for (int j = i + 1; j < b_cnt; j++) {
                 S add = suf[layer][l_bound + (j << b_sz_log)];
-                ans = op(ans, add);
+                ans = M::op(ans, add);
                 between[layer - 1][between_offs + l_bound + (i << b_cnt_log) + j] = ans;
             }
         }
@@ -103,9 +104,9 @@ private:
         }
     }
 
-    S query(int l, int r, int between_offs, int base) {
+    S query(int l, int r, int between_offs, int base) const {
         if (l == r) return v[l];
-        if (l + 1 == r) return op(v[l], v[r]);
+        if (l + 1 == r) return M::op(v[l], v[r]);
         int layer = on_layer[clz[(l - base) ^ (r - base)]];
         int b_sz_log = (layers[layer] + 1) >> 1;
         int b_cnt_log = layers[layer] >> 1;
@@ -117,9 +118,9 @@ private:
             S add = (layer == 0)
                         ? query(_n + l_block, _n + r_block, (1 << _lg) - _n, _n)
                         : between[layer - 1][between_offs + l_bound + (l_block << b_cnt_log) + r_block];
-            ans = op(ans, add);
+            ans = M::op(ans, add);
         }
-        ans = op(ans, pref[layer][r]);
+        ans = M::op(ans, pref[layer][r]);
         return ans;
     }
 };

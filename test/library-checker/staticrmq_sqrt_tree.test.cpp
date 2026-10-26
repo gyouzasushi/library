@@ -1,18 +1,15 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
-#include <algorithm>
 #include <iostream>
+#include <vector>
 
+#include "algebra/monoid_min.hpp"
 #include "datastructure/sqrt_tree.hpp"
-using S = int;
-S op(S a, S b) {
-    return std::min(a, b);
-}
 int main() {
     int n, q;
     std::cin >> n >> q;
-    std::vector<S> a(n);
-    for (int i = 0; i < n; i++) std::cin >> a[i];
-    sqrt_tree<S, op> s(a);
+    std::vector<int> a(n);
+    for (auto& x : a) std::cin >> x;
+    sqrt_tree<monoid_min<int>> s(a);
     while (q--) {
         int l, r;
         std::cin >> l >> r;
