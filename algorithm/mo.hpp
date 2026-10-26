@@ -15,18 +15,18 @@ struct mo {
         return (int)lr.size() - 1;
     }
     void run(auto add_left, auto add_right, auto erase_left, auto erase_right,
-             auto out) const {
+             auto query) const {
         int l = 0, r = 0;
         for (int i : order()) {
             while (l > lr[i].first) add_left(--l);
             while (r < lr[i].second) add_right(r++);
             while (l < lr[i].first) erase_left(l++);
             while (r > lr[i].second) erase_right(--r);
-            out(i);
+            query(i);
         }
     }
-    void run(auto add, auto erase, auto out) const {
-        run(add, add, erase, erase, out);
+    void run(auto add, auto erase, auto query) const {
+        run(add, add, erase, erase, query);
     }
 
   private:

@@ -9,8 +9,8 @@ documentation_of: algorithm/mo.hpp
 ### 使い方
 - `mo()`: クエリの無い状態で作る。
 - `add(l, r)`: 区間 $[l, r)$ のクエリを追加し、クエリ番号を返す。番号は追加順。
-- `run(add_left, add_right, erase_left, erase_right, out)`: 区間 $[0, 0)$ から始めて、区間を 1 要素ずつ動かしながら全クエリに答える。`add_left(i)`, `add_right(i)` は要素 $i$ を区間の左端, 右端に加え、`erase_left(i)`, `erase_right(i)` は要素 $i$ を区間の左端, 右端から除き、`out(q)` はクエリ $q$ に答える。区間は伸ばしてから縮める。
-- `run(add, erase, out)`: 左右で同じ関数を使う。
+- `run(add_left, add_right, erase_left, erase_right, query)`: 区間 $[0, 0)$ から始めて、区間を 1 要素ずつ動かしながら全クエリに答える。`add_left(i)`, `add_right(i)` は要素 $i$ を区間の左端, 右端に加え、`erase_left(i)`, `erase_right(i)` は要素 $i$ を区間の左端, 右端から除き、`query(k)` はクエリ $k$ に答える。区間は伸ばしてから縮める。
+- `run(add, erase, query)`: 左右で同じ関数を使う。
 
 ### 制約
 - $0 \le l \le r$
