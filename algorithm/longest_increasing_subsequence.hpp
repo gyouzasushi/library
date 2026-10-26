@@ -1,30 +1,54 @@
 #pragma once
+#include <algorithm>
+#include <cassert>
+#include <functional>
 #include <vector>
-template <typename T, class Compare>
-std::vector<T> longest_increasing_subsequence(const std::vector<T> &a,
-                                              Compare comp) {
-    const int n = a.size();
-    std::vector<T> dp;
-    std::vector<int> id(n);
-    for (int i = 0; i < n; i++) {
-        typename std::vector<T>::iterator it =
-            std::lower_bound(dp.begin(), dp.end(), a[i], comp);
-        id[i] = std::distance(dp.begin(), it);
-        if (it == dp.end()) {
-            dp.push_back(a[i]);
-        } else {
-            *it = a[i];
+
+template <class T, class Compare = std::less<T>>
+struct longest_increasing_subsequence {
+    explicit longest_increasing_subsequence(const std::vector<T>& a,
+                                            Compare comp = {})
+        : n(a.size()), pos(n) {
+        std::vector<T> dp;
+        for (int i = 0; i < n; i++) {
+            auto it = std::lower_bound(dp.begin(), dp.end(), a[i], comp);
+            pos[i] = it - dp.begin();
+            if (it == dp.end()) {
+                dp.push_back(a[i]);
+            } else {
+                *it = a[i];
+            }
         }
-    }
-    std::vector<T> lis(dp.size());
-    for (int i = n - 1, j = lis.size() - 1; i >= 0; i--) {
-        if (id[i] == j) {
-            lis[j--] = i;
+        len = dp.size();
+        cand.resize(len);
+        for (int i = n - 1; i >= 0; i--) {
+            int j = pos[i];
+            if (j == len - 1 ||
+                (!cand[j + 1].empty() && comp(a[i], a[cand[j + 1].back()]))) {
+                cand[j].push_back(i);
+            } else {
+                pos[i] = -1;
+            }
         }
+        for (auto& c : cand) std::reverse(c.begin(), c.end());
     }
-    return lis;
-}
-template <typename T>
-std::vector<T> longest_increasing_subsequence(const std::vector<T> &a) {
-    return longest_increasing_subsequence(a, std::less<T>());
-}
+    int length() const { return len; }
+    int position(int i) const {
+        assert(0 <= i && i < n);
+        return pos[i];
+    }
+    const std::vector<int>& candidates(int j) const {
+        assert(0 <= j && j < len);
+        return cand[j];
+    }
+    std::vector<int> indices() const {
+        std::vector<int> res(len);
+        for (int j = 0; j < len; j++) res[j] = cand[j].front();
+        return res;
+    }
+
+  private:
+    int n, len;
+    std::vector<int> pos;
+    std::vector<std::vector<int>> cand;
+};
