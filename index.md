@@ -183,6 +183,9 @@ data:
       path: math/sieve.hpp
       title: Sieve
     - icon: ':heavy_check_mark:'
+      path: math/xor_basis.hpp
+      title: Xor Basis
+    - icon: ':heavy_check_mark:'
       path: math/zeta_mobius_transform.hpp
       title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB"
@@ -546,6 +549,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/wildcard_matching.test.cpp
       title: test/unit/wildcard_matching.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/xor_basis.test.cpp
+      title: test/unit/xor_basis.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/zeta_mobius_transform.test.cpp
       title: test/unit/zeta_mobius_transform.test.cpp
