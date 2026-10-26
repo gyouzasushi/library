@@ -529,6 +529,9 @@ data:
       path: test/unit/string_hash.test.cpp
       title: test/unit/string_hash.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/unit/subtree_classify.test.cpp
+      title: test/unit/subtree_classify.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/unit/topological_sort.test.cpp
       title: test/unit/topological_sort.test.cpp
     - icon: ':heavy_check_mark:'
