@@ -538,6 +538,9 @@ data:
       path: test/unit/weighted_dsu.test.cpp
       title: test/unit/weighted_dsu.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/unit/wildcard_matching.test.cpp
+      title: test/unit/wildcard_matching.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/unit/zeta_mobius_transform.test.cpp
       title: test/unit/zeta_mobius_transform.test.cpp
   - name: test/yukicoder

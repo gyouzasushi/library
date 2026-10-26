@@ -16,20 +16,23 @@ data:
     - https://judge.yosupo.jp/problem/wildcard_pattern_matching
   bundledCode: "#line 1 \"test/library-checker/wildcard_pattern_matching.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/wildcard_pattern_matching\"\
-    \n#include <iostream>\n\n#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <array>\n#include <cassert>\n#include <type_traits>\n#include <vector>\n\
-    \n#line 1 \"atcoder/internal_bit.hpp\"\n\n\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
-    #endif\n\n#if __cplusplus >= 202002L\n#include <bit>\n#endif\n\nnamespace atcoder\
-    \ {\n\nnamespace internal {\n\n#if __cplusplus >= 202002L\n\nusing std::bit_ceil;\n\
-    \n#else\n\n// @return same with std::bit::bit_ceil\nunsigned int bit_ceil(unsigned\
-    \ int n) {\n    unsigned int x = 1;\n    while (x < (unsigned int)(n)) x *= 2;\n\
-    \    return x;\n}\n\n#endif\n\n// @param n `1 <= n`\n// @return same with std::bit::countr_zero\n\
-    int countr_zero(unsigned int n) {\n#ifdef _MSC_VER\n    unsigned long index;\n\
-    \    _BitScanForward(&index, n);\n    return index;\n#else\n    return __builtin_ctz(n);\n\
-    #endif\n}\n\n// @param n `1 <= n`\n// @return same with std::bit::countr_zero\n\
-    constexpr int countr_zero_constexpr(unsigned int n) {\n    int x = 0;\n    while\
-    \ (!(n & (1 << x))) x++;\n    return x;\n}\n\n}  // namespace internal\n\n}  //\
-    \ namespace atcoder\n\n\n#line 1 \"atcoder/modint.hpp\"\n\n\n\n#line 5 \"atcoder/modint.hpp\"\
+    \n#include <iostream>\n#include <string>\n\n#line 2 \"string/wildcard_matching.hpp\"\
+    \n#include <algorithm>\n#include <cassert>\n#line 5 \"string/wildcard_matching.hpp\"\
+    \n#include <vector>\n\n#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#line 5 \"atcoder/convolution.hpp\"\
+    \n#include <array>\n#line 7 \"atcoder/convolution.hpp\"\n#include <type_traits>\n\
+    #line 9 \"atcoder/convolution.hpp\"\n\n#line 1 \"atcoder/internal_bit.hpp\"\n\n\
+    \n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n#if __cplusplus >= 202002L\n\
+    #include <bit>\n#endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n#if __cplusplus\
+    \ >= 202002L\n\nusing std::bit_ceil;\n\n#else\n\n// @return same with std::bit::bit_ceil\n\
+    unsigned int bit_ceil(unsigned int n) {\n    unsigned int x = 1;\n    while (x\
+    \ < (unsigned int)(n)) x *= 2;\n    return x;\n}\n\n#endif\n\n// @param n `1 <=\
+    \ n`\n// @return same with std::bit::countr_zero\nint countr_zero(unsigned int\
+    \ n) {\n#ifdef _MSC_VER\n    unsigned long index;\n    _BitScanForward(&index,\
+    \ n);\n    return index;\n#else\n    return __builtin_ctz(n);\n#endif\n}\n\n//\
+    \ @param n `1 <= n`\n// @return same with std::bit::countr_zero\nconstexpr int\
+    \ countr_zero_constexpr(unsigned int n) {\n    int x = 0;\n    while (!(n & (1\
+    \ << x))) x++;\n    return x;\n}\n\n}  // namespace internal\n\n}  // namespace\
+    \ atcoder\n\n\n#line 1 \"atcoder/modint.hpp\"\n\n\n\n#line 5 \"atcoder/modint.hpp\"\
     \n#include <numeric>\n#line 7 \"atcoder/modint.hpp\"\n\n#ifdef _MSC_VER\n#include\
     \ <intrin.h>\n#endif\n\n#line 1 \"atcoder/internal_math.hpp\"\n\n\n\n#include\
     \ <utility>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace atcoder\
@@ -389,70 +392,47 @@ data:
     \ long)(x), (long long)(MOD1));\n        if (diff < 0) diff += MOD1;\n       \
     \ static constexpr unsigned long long offset[5] = {\n            0, 0, M1M2M3,\
     \ 2 * M1M2M3, 3 * M1M2M3};\n        x -= offset[diff % 5];\n        c[i] = x;\n\
-    \    }\n\n    return c;\n}\n\n}  // namespace atcoder\n\n\n#line 3 \"string/wildcard_matching.hpp\"\
-    \nstd::vector<bool> wildcard_matching(std::string s, std::string t) {\n    int\
-    \ n = s.size(), m = t.size();\n    assert(m > 0);\n    assert(n >= m);\n    std::vector<long\
-    \ long> a1(n), a2(n), a3(n);\n    for (int i = 0; i < n; i++) {\n        a1[i]\
-    \ = s[i] == '?' ? 0 : 1;\n        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)s[i]);\n\
-    \        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)s[i]);\n    }\n    std::vector<long\
-    \ long> b1(m), b2(m), b3(m);\n    for (int i = 0; i < m; i++) {\n        b1[i]\
-    \ = t[i] == '?' ? 0 : 1;\n        b2[i] = b1[i] * (t[i] == '?' ? 0 : (long long)t[i]);\n\
-    \        b3[i] = b2[i] * (t[i] == '?' ? 0 : (long long)t[i]);\n    }\n    auto\
-    \ f = [](const std::vector<long long> &a, std::vector<long long> &b) {\n     \
-    \   std::reverse(b.begin(), b.end());\n        std::vector<long long> c = atcoder::convolution_ll(a,\
-    \ b);\n        return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n\
-    \    };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
-    \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
-    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
-    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n\nstd::vector<bool>\
-    \ wildcard_matching_lower(std::string s, std::string t) {\n    int n = s.size(),\
-    \ m = t.size();\n    assert(m > 0);\n    assert(n >= m);\n    std::vector<long\
-    \ long> a1(n), a2(n), a3(n);\n    for (int i = 0; i < n; i++) {\n        a1[i]\
-    \ = s[i] == '?' ? 0 : 1;\n        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i]\
-    \ - 'a' + 1));\n        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] -\
-    \ 'a' + 1));\n    }\n    std::vector<long long> b1(m), b2(m), b3(m);\n    for\
-    \ (int i = 0; i < m; i++) {\n        b1[i] = t[i] == '?' ? 0 : 1;\n        b2[i]\
-    \ = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'a' + 1));\n        b3[i] =\
-    \ b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'a' + 1));\n    }\n    auto f\
-    \ = [](const std::vector<long long> &a, std::vector<long long> &b) {\n       \
-    \ std::reverse(b.begin(), b.end());\n        std::vector c = atcoder::convolution(a,\
-    \ b);\n        return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n\
-    \    };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
-    \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
-    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
-    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n\nstd::vector<bool>\
-    \ wildcard_matching_upper(std::string s, std::string t) {\n    int n = s.size(),\
-    \ m = t.size();\n    assert(m > 0);\n    assert(n >= m);\n    std::vector<long\
-    \ long> a1(n), a2(n), a3(n);\n    for (int i = 0; i < n; i++) {\n        a1[i]\
-    \ = s[i] == '?' ? 0 : 1;\n        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i]\
-    \ - 'A' + 1));\n        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] -\
-    \ 'A' + 1));\n    }\n    std::vector<long long> b1(m), b2(m), b3(m);\n    for\
-    \ (int i = 0; i < m; i++) {\n        b1[i] = t[i] == '?' ? 0 : 1;\n        b2[i]\
-    \ = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));\n        b3[i] =\
-    \ b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));\n    }\n    auto f\
-    \ = [](const std::vector<long long> &a, std::vector<long long> &b) {\n       \
-    \ std::reverse(b.begin(), b.end());\n        std::vector c = atcoder::convolution(a,\
-    \ b);\n        return std::vector<long long>(c.begin() + b.size() - 1, c.end());\n\
-    \    };\n    std::vector<long long> c1 = f(a3, b1);\n    std::vector<long long>\
-    \ c2 = f(a2, b2);\n    std::vector<long long> c3 = f(a1, b3);\n    std::vector<bool>\
-    \ ret(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        ret[i] =\
-    \ c1[i] - c2[i] * 2 + c3[i] == 0;\n    }\n    return ret;\n}\n#line 5 \"test/library-checker/wildcard_pattern_matching.test.cpp\"\
-    \nint main() {\n    std::string s, t;\n    std::cin >> s >> t;\n    for (char\
-    \ &c : s) {\n        if (c == '*') c = '?';\n    }\n    for (char &c : t) {\n\
-    \        if (c == '*') c = '?';\n    }\n    for (int ans : wildcard_matching_lower(s,\
-    \ t)) {\n        std::cout << ans;\n    }\n    std::cout << '\\n';\n}\n"
+    \    }\n\n    return c;\n}\n\n}  // namespace atcoder\n\n\n#line 8 \"string/wildcard_matching.hpp\"\
+    \n\nnamespace internal {\n// a, b: 0 = wildcard, 1..k = symbols\nstd::vector<bool>\
+    \ wildcard_matching(const std::vector<long long>& a,\n                       \
+    \             std::vector<long long> b, int k) {\n    int n = a.size(), m = b.size();\n\
+    \    if (m > n) return {};\n    if (m == 0) return std::vector<bool>(n + 1, true);\n\
+    \    assert((long double)m * k * k * k * k < 9e18L);\n    std::reverse(b.begin(),\
+    \ b.end());\n    auto pw = [](const std::vector<long long>& v, int e) {\n    \
+    \    std::vector<long long> r(v.size());\n        for (size_t i = 0; i < v.size();\
+    \ i++) {\n            r[i] = v[i];\n            for (int j = 1; j < e; j++) r[i]\
+    \ *= v[i];\n        }\n        return r;\n    };\n    auto c1 = atcoder::convolution_ll(pw(a,\
+    \ 3), pw(b, 1));\n    auto c2 = atcoder::convolution_ll(pw(a, 2), pw(b, 2));\n\
+    \    auto c3 = atcoder::convolution_ll(pw(a, 1), pw(b, 3));\n    std::vector<bool>\
+    \ res(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        res[i] =\
+    \ c1[i + m - 1] - 2 * c2[i + m - 1] + c3[i + m - 1] == 0;\n    }\n    return res;\n\
+    }\n}  // namespace internal\n\ntemplate <class T>\nstd::vector<bool> wildcard_matching(const\
+    \ std::vector<T>& s,\n                                    const std::vector<T>&\
+    \ t, T wildcard) {\n    std::vector<T> v;\n    for (const T& x : s) v.push_back(x);\n\
+    \    for (const T& x : t) v.push_back(x);\n    std::sort(v.begin(), v.end());\n\
+    \    v.erase(std::unique(v.begin(), v.end()), v.end());\n    auto id = [&](const\
+    \ T& x) -> long long {\n        if (x == wildcard) return 0;\n        return std::lower_bound(v.begin(),\
+    \ v.end(), x) - v.begin() + 1;\n    };\n    std::vector<long long> a(s.size()),\
+    \ b(t.size());\n    for (size_t i = 0; i < s.size(); i++) a[i] = id(s[i]);\n \
+    \   for (size_t i = 0; i < t.size(); i++) b[i] = id(t[i]);\n    return internal::wildcard_matching(a,\
+    \ b, v.size());\n}\n\nstd::vector<bool> wildcard_matching(const std::string& s,\
+    \ const std::string& t,\n                                    char wildcard = '?')\
+    \ {\n    return wildcard_matching(std::vector<char>(s.begin(), s.end()),\n   \
+    \                          std::vector<char>(t.begin(), t.end()), wildcard);\n\
+    }\n#line 6 \"test/library-checker/wildcard_pattern_matching.test.cpp\"\nint main()\
+    \ {\n    std::string s, t;\n    std::cin >> s >> t;\n    for (bool ok : wildcard_matching(s,\
+    \ t, '*')) std::cout << ok;\n    std::cout << '\\n';\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/wildcard_pattern_matching\"\
-    \n#include <iostream>\n\n#include \"string/wildcard_matching.hpp\"\nint main()\
-    \ {\n    std::string s, t;\n    std::cin >> s >> t;\n    for (char &c : s) {\n\
-    \        if (c == '*') c = '?';\n    }\n    for (char &c : t) {\n        if (c\
-    \ == '*') c = '?';\n    }\n    for (int ans : wildcard_matching_lower(s, t)) {\n\
-    \        std::cout << ans;\n    }\n    std::cout << '\\n';\n}"
+    \n#include <iostream>\n#include <string>\n\n#include \"string/wildcard_matching.hpp\"\
+    \nint main() {\n    std::string s, t;\n    std::cin >> s >> t;\n    for (bool\
+    \ ok : wildcard_matching(s, t, '*')) std::cout << ok;\n    std::cout << '\\n';\n\
+    }\n"
   dependsOn:
   - string/wildcard_matching.hpp
   isVerificationFile: true
   path: test/library-checker/wildcard_pattern_matching.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 13:59:29+09:00'
+  timestamp: '2026-10-26 22:28:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/wildcard_pattern_matching.test.cpp
