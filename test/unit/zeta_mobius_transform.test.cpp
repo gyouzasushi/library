@@ -5,6 +5,8 @@
 #include <random>
 #include <vector>
 
+#include "math/bitwise_and_convolution.hpp"
+#include "math/bitwise_or_convolution.hpp"
 #include "math/zeta_mobius_transform.hpp"
 using mint = atcoder::modint998244353;
 int main() {
@@ -31,6 +33,23 @@ int main() {
             assert(g == sub);
             subset_mobius(g);
             assert(g == f);
+        }
+    }
+    // long long: convolutions against brute force, including n = 1
+    for (int k = 0; k <= 6; k++) {
+        int n = 1 << k;
+        for (int trial = 0; trial < 5; trial++) {
+            std::vector<long long> a(n), b(n), ca(n), co(n);
+            for (auto& x : a) x = int(rng() % 2001) - 1000;
+            for (auto& x : b) x = int(rng() % 2001) - 1000;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    ca[i & j] += a[i] * b[j];
+                    co[i | j] += a[i] * b[j];
+                }
+            }
+            assert(bitwise_and_convolution(a, b) == ca);
+            assert(bitwise_or_convolution(a, b) == co);
         }
     }
     std::cout << "Hello World" << std::endl;

@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bitwise_and_convolution"
-#include "../../math/bitwise_or_convolution.hpp"
+#include "math/bitwise_or_convolution.hpp"
 
 #include <atcoder/modint>
 #include <iostream>
