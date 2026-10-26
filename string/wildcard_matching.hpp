@@ -1,94 +1,59 @@
 #pragma once
+#include <algorithm>
+#include <cassert>
+#include <string>
+#include <vector>
+
 #include "atcoder/convolution.hpp"
-std::vector<bool> wildcard_matching(std::string s, std::string t) {
-    int n = s.size(), m = t.size();
-    assert(m > 0);
-    assert(n >= m);
-    std::vector<long long> a1(n), a2(n), a3(n);
-    for (int i = 0; i < n; i++) {
-        a1[i] = s[i] == '?' ? 0 : 1;
-        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)s[i]);
-        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)s[i]);
-    }
-    std::vector<long long> b1(m), b2(m), b3(m);
-    for (int i = 0; i < m; i++) {
-        b1[i] = t[i] == '?' ? 0 : 1;
-        b2[i] = b1[i] * (t[i] == '?' ? 0 : (long long)t[i]);
-        b3[i] = b2[i] * (t[i] == '?' ? 0 : (long long)t[i]);
-    }
-    auto f = [](const std::vector<long long> &a, std::vector<long long> &b) {
-        std::reverse(b.begin(), b.end());
-        std::vector<long long> c = atcoder::convolution_ll(a, b);
-        return std::vector<long long>(c.begin() + b.size() - 1, c.end());
+
+namespace internal {
+// a, b: 0 = wildcard, 1..k = symbols
+std::vector<bool> wildcard_matching(const std::vector<long long>& a,
+                                    std::vector<long long> b, int k) {
+    int n = a.size(), m = b.size();
+    if (m > n) return {};
+    if (m == 0) return std::vector<bool>(n + 1, true);
+    assert((long double)m * k * k * k * k < 9e18L);
+    std::reverse(b.begin(), b.end());
+    auto pw = [](const std::vector<long long>& v, int e) {
+        std::vector<long long> r(v.size());
+        for (size_t i = 0; i < v.size(); i++) {
+            r[i] = v[i];
+            for (int j = 1; j < e; j++) r[i] *= v[i];
+        }
+        return r;
     };
-    std::vector<long long> c1 = f(a3, b1);
-    std::vector<long long> c2 = f(a2, b2);
-    std::vector<long long> c3 = f(a1, b3);
-    std::vector<bool> ret(n - m + 1);
+    auto c1 = atcoder::convolution_ll(pw(a, 3), pw(b, 1));
+    auto c2 = atcoder::convolution_ll(pw(a, 2), pw(b, 2));
+    auto c3 = atcoder::convolution_ll(pw(a, 1), pw(b, 3));
+    std::vector<bool> res(n - m + 1);
     for (int i = 0; i < n - m + 1; i++) {
-        ret[i] = c1[i] - c2[i] * 2 + c3[i] == 0;
+        res[i] = c1[i + m - 1] - 2 * c2[i + m - 1] + c3[i + m - 1] == 0;
     }
-    return ret;
+    return res;
+}
+}  // namespace internal
+
+template <class T>
+std::vector<bool> wildcard_matching(const std::vector<T>& s,
+                                    const std::vector<T>& t, T wildcard) {
+    std::vector<T> v;
+    for (const T& x : s) v.push_back(x);
+    for (const T& x : t) v.push_back(x);
+    std::sort(v.begin(), v.end());
+    v.erase(std::unique(v.begin(), v.end()), v.end());
+    auto id = [&](const T& x) -> long long {
+        if (x == wildcard) return 0;
+        return std::lower_bound(v.begin(), v.end(), x) - v.begin() + 1;
+    };
+    std::vector<long long> a(s.size()), b(t.size());
+    for (size_t i = 0; i < s.size(); i++) a[i] = id(s[i]);
+    for (size_t i = 0; i < t.size(); i++) b[i] = id(t[i]);
+    return internal::wildcard_matching(a, b, v.size());
 }
 
-std::vector<bool> wildcard_matching_lower(std::string s, std::string t) {
-    int n = s.size(), m = t.size();
-    assert(m > 0);
-    assert(n >= m);
-    std::vector<long long> a1(n), a2(n), a3(n);
-    for (int i = 0; i < n; i++) {
-        a1[i] = s[i] == '?' ? 0 : 1;
-        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i] - 'a' + 1));
-        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] - 'a' + 1));
-    }
-    std::vector<long long> b1(m), b2(m), b3(m);
-    for (int i = 0; i < m; i++) {
-        b1[i] = t[i] == '?' ? 0 : 1;
-        b2[i] = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'a' + 1));
-        b3[i] = b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'a' + 1));
-    }
-    auto f = [](const std::vector<long long> &a, std::vector<long long> &b) {
-        std::reverse(b.begin(), b.end());
-        std::vector c = atcoder::convolution(a, b);
-        return std::vector<long long>(c.begin() + b.size() - 1, c.end());
-    };
-    std::vector<long long> c1 = f(a3, b1);
-    std::vector<long long> c2 = f(a2, b2);
-    std::vector<long long> c3 = f(a1, b3);
-    std::vector<bool> ret(n - m + 1);
-    for (int i = 0; i < n - m + 1; i++) {
-        ret[i] = c1[i] - c2[i] * 2 + c3[i] == 0;
-    }
-    return ret;
-}
-
-std::vector<bool> wildcard_matching_upper(std::string s, std::string t) {
-    int n = s.size(), m = t.size();
-    assert(m > 0);
-    assert(n >= m);
-    std::vector<long long> a1(n), a2(n), a3(n);
-    for (int i = 0; i < n; i++) {
-        a1[i] = s[i] == '?' ? 0 : 1;
-        a2[i] = a1[i] * (s[i] == '?' ? 0 : (long long)(s[i] - 'A' + 1));
-        a3[i] = a2[i] * (s[i] == '?' ? 0 : (long long)(s[i] - 'A' + 1));
-    }
-    std::vector<long long> b1(m), b2(m), b3(m);
-    for (int i = 0; i < m; i++) {
-        b1[i] = t[i] == '?' ? 0 : 1;
-        b2[i] = b1[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));
-        b3[i] = b2[i] * (t[i] == '?' ? 0 : (long long)(t[i] - 'A' + 1));
-    }
-    auto f = [](const std::vector<long long> &a, std::vector<long long> &b) {
-        std::reverse(b.begin(), b.end());
-        std::vector c = atcoder::convolution(a, b);
-        return std::vector<long long>(c.begin() + b.size() - 1, c.end());
-    };
-    std::vector<long long> c1 = f(a3, b1);
-    std::vector<long long> c2 = f(a2, b2);
-    std::vector<long long> c3 = f(a1, b3);
-    std::vector<bool> ret(n - m + 1);
-    for (int i = 0; i < n - m + 1; i++) {
-        ret[i] = c1[i] - c2[i] * 2 + c3[i] == 0;
-    }
-    return ret;
+std::vector<bool> wildcard_matching(const std::string& s, const std::string& t,
+                                    char wildcard = '?') {
+    return wildcard_matching(std::vector<char>(s.begin(), s.end()),
+                             std::vector<char>(t.begin(), t.end()), wildcard);
 }
