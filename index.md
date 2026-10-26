@@ -68,11 +68,11 @@ data:
       path: datastructure/dual_segtree.hpp
       title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
-      path: datastructure/dynamic_li_chao_tree.hpp
-      title: Dynamic Li Chao Tree
-    - icon: ':heavy_check_mark:'
       path: datastructure/lazy_segtree.hpp
       title: Lazy Segment Tree (acted monoid wrapper)
+    - icon: ':heavy_check_mark:'
+      path: datastructure/li_chao_tree.hpp
+      title: Li Chao Tree
     - icon: ':heavy_check_mark:'
       path: datastructure/plus_minus_one_rmq.hpp
       title: Plus Minus One RMQ
@@ -480,6 +480,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/heavy_light_decomposition.test.cpp
       title: test/unit/heavy_light_decomposition.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/li_chao_tree.test.cpp
+      title: test/unit/li_chao_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/longest_increasing_subsequence.test.cpp
       title: test/unit/longest_increasing_subsequence.test.cpp
