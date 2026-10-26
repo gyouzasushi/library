@@ -111,6 +111,7 @@
 "test/unit/wavelet_matrix.test.cpp": "2026-10-25 23:13:53 +0900",
 "test/unit/weighted_dsu.test.cpp": "2026-10-26 01:30:50 +0900",
 "test/unit/wildcard_matching.test.cpp": "2026-10-26 22:28:12 +0900",
+"test/unit/xor_basis.test.cpp": "2026-10-27 07:17:18 +0900",
 "test/unit/zeta_mobius_transform.test.cpp": "2026-10-27 06:53:58 +0900",
 "test/yukicoder/117.test.cpp": "2026-10-20 22:40:03 +0900",
 "test/yukicoder/1601.test.cpp": "2026-10-19 20:56:31 +0900",
