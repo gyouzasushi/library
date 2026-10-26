@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/bitwise_and_convolution.hpp
+    title: Bitwise And Convolution
+  - icon: ':heavy_check_mark:'
+    path: math/bitwise_or_convolution.hpp
+    title: Bitwise Or Convolution
+  - icon: ':heavy_check_mark:'
     path: math/zeta_mobius_transform.hpp
     title: "\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB"
@@ -18,39 +24,32 @@ data:
   bundledCode: "#line 1 \"test/unit/zeta_mobius_transform.test.cpp\"\n#define PROBLEM\
     \ \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\n#include\
     \ <atcoder/modint>\n#include <cassert>\n#include <iostream>\n#include <random>\n\
-    #include <vector>\n\n#line 4 \"math/zeta_mobius_transform.hpp\"\ntemplate <typename\
-    \ mint>\nvoid superset_zeta(std::vector<mint>& f) {\n    int n = f.size();\n \
-    \   assert((n & -n) == n);\n    for (int i = 1; i < n; i <<= 1) {\n        for\
+    #include <vector>\n\n#line 4 \"math/zeta_mobius_transform.hpp\"\ntemplate <class\
+    \ T>\nvoid superset_zeta(std::vector<T>& f) {\n    int n = int(f.size());\n  \
+    \  assert((n & -n) == n);\n    for (int i = 1; i < n; i <<= 1) {\n        for\
     \ (int j = 0; j < n; j++) {\n            if ((j & i) == 0) {\n               \
-    \ f[j] += f[j | i];\n            }\n        }\n    }\n}\ntemplate <typename mint>\n\
-    void superset_mobius(std::vector<mint>& f) {\n    int n = f.size();\n    assert((n\
+    \ f[j] += f[j | i];\n            }\n        }\n    }\n}\ntemplate <class T>\n\
+    void superset_mobius(std::vector<T>& f) {\n    int n = int(f.size());\n    assert((n\
     \ & -n) == n);\n    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0;\
     \ j < n; j++) {\n            if ((j & i) == 0) {\n                f[j] -= f[j\
-    \ | i];\n            }\n        }\n    }\n}\ntemplate <typename mint>\nvoid subset_zeta(std::vector<mint>&\
-    \ f) {\n    int n = f.size();\n    assert((n & -n) == n);\n    for (int i = 1;\
-    \ i < n; i <<= 1) {\n        for (int j = 0; j < n; j++) {\n            if ((j\
-    \ & i) == 0) {\n                f[j | i] += f[j];\n            }\n        }\n\
-    \    }\n}\ntemplate <typename mint>\nvoid subset_mobius(std::vector<mint>& f)\
-    \ {\n    int n = f.size();\n    assert((n & -n) == n);\n    for (int i = 1; i\
+    \ | i];\n            }\n        }\n    }\n}\ntemplate <class T>\nvoid subset_zeta(std::vector<T>&\
+    \ f) {\n    int n = int(f.size());\n    assert((n & -n) == n);\n    for (int i\
+    \ = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; j++) {\n            if\
+    \ ((j & i) == 0) {\n                f[j | i] += f[j];\n            }\n       \
+    \ }\n    }\n}\ntemplate <class T>\nvoid subset_mobius(std::vector<T>& f) {\n \
+    \   int n = int(f.size());\n    assert((n & -n) == n);\n    for (int i = 1; i\
     \ < n; i <<= 1) {\n        for (int j = 0; j < n; j++) {\n            if ((j &\
     \ i) == 0) {\n                f[j | i] -= f[j];\n            }\n        }\n  \
-    \  }\n}\n#line 9 \"test/unit/zeta_mobius_transform.test.cpp\"\nusing mint = atcoder::modint998244353;\n\
-    int main() {\n    std::mt19937 rng(7959);\n    for (int k = 0; k <= 8; k++) {\n\
-    \        int n = 1 << k;\n        for (int trial = 0; trial < 5; trial++) {\n\
-    \            std::vector<mint> f(n);\n            for (auto& x : f) x = rng();\n\
-    \            std::vector<mint> sup(n), sub(n);\n            for (int s = 0; s\
-    \ < n; s++) {\n                for (int t = 0; t < n; t++) {\n               \
-    \     if ((s & t) == s) sup[s] += f[t];\n                    if ((s & t) == t)\
-    \ sub[s] += f[t];\n                }\n            }\n            auto g = f;\n\
-    \            superset_zeta(g);\n            assert(g == sup);\n            superset_mobius(g);\n\
-    \            assert(g == f);\n            g = f;\n            subset_zeta(g);\n\
-    \            assert(g == sub);\n            subset_mobius(g);\n            assert(g\
-    \ == f);\n        }\n    }\n    std::cout << \"Hello World\" << std::endl;\n \
-    \   return 0;\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
-    \n#include <atcoder/modint>\n#include <cassert>\n#include <iostream>\n#include\
-    \ <random>\n#include <vector>\n\n#include \"math/zeta_mobius_transform.hpp\"\n\
-    using mint = atcoder::modint998244353;\nint main() {\n    std::mt19937 rng(7959);\n\
+    \  }\n}\n#line 3 \"math/bitwise_and_convolution.hpp\"\ntemplate <class T>\nstd::vector<T>\
+    \ bitwise_and_convolution(std::vector<T> a,\n                                \
+    \          std::vector<T> b) {\n    superset_zeta(a);\n    superset_zeta(b);\n\
+    \    for (int i = 0; i < int(a.size()); i++) {\n        a[i] *= b[i];\n    }\n\
+    \    superset_mobius(a);\n    return a;\n}\n#line 3 \"math/bitwise_or_convolution.hpp\"\
+    \ntemplate <class T>\nstd::vector<T> bitwise_or_convolution(std::vector<T> a,\n\
+    \                                         std::vector<T> b) {\n    subset_zeta(a);\n\
+    \    subset_zeta(b);\n    for (int i = 0; i < int(a.size()); i++) {\n        a[i]\
+    \ *= b[i];\n    }\n    subset_mobius(a);\n    return a;\n}\n#line 11 \"test/unit/zeta_mobius_transform.test.cpp\"\
+    \nusing mint = atcoder::modint998244353;\nint main() {\n    std::mt19937 rng(7959);\n\
     \    for (int k = 0; k <= 8; k++) {\n        int n = 1 << k;\n        for (int\
     \ trial = 0; trial < 5; trial++) {\n            std::vector<mint> f(n);\n    \
     \        for (auto& x : f) x = rng();\n            std::vector<mint> sup(n), sub(n);\n\
@@ -61,13 +60,49 @@ data:
     \ == sup);\n            superset_mobius(g);\n            assert(g == f);\n   \
     \         g = f;\n            subset_zeta(g);\n            assert(g == sub);\n\
     \            subset_mobius(g);\n            assert(g == f);\n        }\n    }\n\
-    \    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
+    \    // long long: convolutions against brute force, including n = 1\n    for\
+    \ (int k = 0; k <= 6; k++) {\n        int n = 1 << k;\n        for (int trial\
+    \ = 0; trial < 5; trial++) {\n            std::vector<long long> a(n), b(n), ca(n),\
+    \ co(n);\n            for (auto& x : a) x = int(rng() % 2001) - 1000;\n      \
+    \      for (auto& x : b) x = int(rng() % 2001) - 1000;\n            for (int i\
+    \ = 0; i < n; i++) {\n                for (int j = 0; j < n; j++) {\n        \
+    \            ca[i & j] += a[i] * b[j];\n                    co[i | j] += a[i]\
+    \ * b[j];\n                }\n            }\n            assert(bitwise_and_convolution(a,\
+    \ b) == ca);\n            assert(bitwise_or_convolution(a, b) == co);\n      \
+    \  }\n    }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+    \n#include <atcoder/modint>\n#include <cassert>\n#include <iostream>\n#include\
+    \ <random>\n#include <vector>\n\n#include \"math/bitwise_and_convolution.hpp\"\
+    \n#include \"math/bitwise_or_convolution.hpp\"\n#include \"math/zeta_mobius_transform.hpp\"\
+    \nusing mint = atcoder::modint998244353;\nint main() {\n    std::mt19937 rng(7959);\n\
+    \    for (int k = 0; k <= 8; k++) {\n        int n = 1 << k;\n        for (int\
+    \ trial = 0; trial < 5; trial++) {\n            std::vector<mint> f(n);\n    \
+    \        for (auto& x : f) x = rng();\n            std::vector<mint> sup(n), sub(n);\n\
+    \            for (int s = 0; s < n; s++) {\n                for (int t = 0; t\
+    \ < n; t++) {\n                    if ((s & t) == s) sup[s] += f[t];\n       \
+    \             if ((s & t) == t) sub[s] += f[t];\n                }\n         \
+    \   }\n            auto g = f;\n            superset_zeta(g);\n            assert(g\
+    \ == sup);\n            superset_mobius(g);\n            assert(g == f);\n   \
+    \         g = f;\n            subset_zeta(g);\n            assert(g == sub);\n\
+    \            subset_mobius(g);\n            assert(g == f);\n        }\n    }\n\
+    \    // long long: convolutions against brute force, including n = 1\n    for\
+    \ (int k = 0; k <= 6; k++) {\n        int n = 1 << k;\n        for (int trial\
+    \ = 0; trial < 5; trial++) {\n            std::vector<long long> a(n), b(n), ca(n),\
+    \ co(n);\n            for (auto& x : a) x = int(rng() % 2001) - 1000;\n      \
+    \      for (auto& x : b) x = int(rng() % 2001) - 1000;\n            for (int i\
+    \ = 0; i < n; i++) {\n                for (int j = 0; j < n; j++) {\n        \
+    \            ca[i & j] += a[i] * b[j];\n                    co[i | j] += a[i]\
+    \ * b[j];\n                }\n            }\n            assert(bitwise_and_convolution(a,\
+    \ b) == ca);\n            assert(bitwise_or_convolution(a, b) == co);\n      \
+    \  }\n    }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
   dependsOn:
+  - math/bitwise_and_convolution.hpp
   - math/zeta_mobius_transform.hpp
+  - math/bitwise_or_convolution.hpp
   isVerificationFile: true
   path: test/unit/zeta_mobius_transform.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:43:17+09:00'
+  timestamp: '2026-10-27 06:53:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/zeta_mobius_transform.test.cpp
