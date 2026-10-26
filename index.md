@@ -52,7 +52,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: algorithm/longest_increasing_subsequence.hpp
-      title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217(LIS)"
+      title: Longest Increasing Subsequence
     - icon: ':heavy_check_mark:'
       path: algorithm/mo.hpp
       title: Mo's Algorithm
@@ -362,6 +362,9 @@ data:
       path: test/library-checker/line_add_get_min.test.cpp
       title: test/library-checker/line_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/longest_increasing_subsequence.test.cpp
+      title: test/library-checker/longest_increasing_subsequence.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/manhattanmst.test.cpp
       title: test/library-checker/manhattanmst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -477,6 +480,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/heavy_light_decomposition.test.cpp
       title: test/unit/heavy_light_decomposition.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/longest_increasing_subsequence.test.cpp
+      title: test/unit/longest_increasing_subsequence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/lowlink.test.cpp
       title: test/unit/lowlink.test.cpp
