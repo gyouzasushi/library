@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: string/aho_corasick.hpp
+    title: Aho-Corasick
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/unit/aho_corasick.test.cpp
+    title: test/unit/aho_corasick.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/trie.test.cpp
     title: test/unit/trie.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/430.test.cpp
+    title: test/yukicoder/430.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -68,11 +77,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: string/trie.hpp
-  requiredBy: []
+  requiredBy:
+  - string/aho_corasick.hpp
   timestamp: '2026-10-26 15:53:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/trie.test.cpp
+  - test/unit/aho_corasick.test.cpp
+  - test/yukicoder/430.test.cpp
 documentation_of: string/trie.hpp
 layout: document
 title: Trie

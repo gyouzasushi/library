@@ -192,6 +192,9 @@ data:
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
+      path: string/aho_corasick.hpp
+      title: Aho-Corasick
+    - icon: ':heavy_check_mark:'
       path: string/range_update_range_hash.hpp
       title: Range Update Range Hash
     - icon: ':heavy_check_mark:'
@@ -469,6 +472,9 @@ data:
   - name: test/unit
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/unit/aho_corasick.test.cpp
+      title: test/unit/aho_corasick.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/unit/binary_trie.test.cpp
       title: test/unit/binary_trie.test.cpp
     - icon: ':heavy_check_mark:'
@@ -569,5 +575,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2231.test.cpp
       title: test/yukicoder/2231.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/430.test.cpp
+      title: test/yukicoder/430.test.cpp
 layout: toppage
 ---
