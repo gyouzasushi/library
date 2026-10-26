@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min"
 #include <iostream>
 
-#include "datastructure/dynamic_li_chao_tree.hpp"
+#include "datastructure/li_chao_tree.hpp"
 int main() {
     int n, q;
     std::cin >> n >> q;
-    dynamic_li_chao_tree lct;
+    li_chao_tree<long long> lct(-1000000000, 1000000001);
     while (n--) {
         long long l, r, a, b;
         std::cin >> l >> r >> a >> b;
@@ -22,11 +22,11 @@ int main() {
         if (t == 1) {
             long long p;
             std::cin >> p;
-            long long ans = lct.get(p);
-            if (ans == std::numeric_limits<long long>::max()) {
-                std::cout << "INFINITY\n";
+            auto ans = lct.min(p);
+            if (ans) {
+                std::cout << *ans << '\n';
             } else {
-                std::cout << ans << '\n';
+                std::cout << "INFINITY\n";
             }
         }
     }
