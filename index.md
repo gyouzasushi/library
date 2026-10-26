@@ -523,6 +523,9 @@ data:
       path: test/unit/sparse_table.test.cpp
       title: test/unit/sparse_table.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/unit/sqrt_tree.test.cpp
+      title: test/unit/sqrt_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/unit/string_hash.test.cpp
       title: test/unit/string_hash.test.cpp
     - icon: ':heavy_check_mark:'

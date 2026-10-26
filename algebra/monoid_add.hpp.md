@@ -13,6 +13,9 @@ data:
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/unit/sqrt_tree.test.cpp
+    title: test/unit/sqrt_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/unit/weighted_dsu.test.cpp
     title: test/unit/weighted_dsu.test.cpp
   _isVerificationFailed: false
@@ -34,6 +37,7 @@ data:
   timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unit/sqrt_tree.test.cpp
   - test/unit/monoid.test.cpp
   - test/unit/weighted_dsu.test.cpp
   - test/library-checker/unionfind_with_potential.test.cpp

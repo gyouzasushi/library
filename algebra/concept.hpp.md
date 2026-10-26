@@ -18,6 +18,9 @@ data:
     path: datastructure/sparse_table.hpp
     title: Sparse Table
   - icon: ':heavy_check_mark:'
+    path: datastructure/sqrt_tree.hpp
+    title: Sqrt Tree
+  - icon: ':heavy_check_mark:'
     path: datastructure/weighted_dsu.hpp
     title: Weighted DSU
   - icon: ':heavy_check_mark:'
@@ -64,6 +67,9 @@ data:
     path: test/library-checker/staticrmq.test.cpp
     title: test/library-checker/staticrmq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library-checker/staticrmq_sqrt_tree.test.cpp
+    title: test/library-checker/staticrmq_sqrt_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/unionfind_with_potential.test.cpp
     title: test/library-checker/unionfind_with_potential.test.cpp
   - icon: ':heavy_check_mark:'
@@ -81,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/sparse_table.test.cpp
     title: test/unit/sparse_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/sqrt_tree.test.cpp
+    title: test/unit/sqrt_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/string_hash.test.cpp
     title: test/unit/string_hash.test.cpp
@@ -136,12 +145,14 @@ data:
   - datastructure/sparse_table.hpp
   - datastructure/segtree.hpp
   - datastructure/lazy_segtree.hpp
+  - datastructure/sqrt_tree.hpp
   timestamp: '2026-10-26 01:30:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/0355.test.cpp
   - test/aoj/DSL_2_G.test.cpp
   - test/aoj/DSL_2_A.test.cpp
+  - test/unit/sqrt_tree.test.cpp
   - test/unit/dual_segtree.test.cpp
   - test/unit/monoid.test.cpp
   - test/unit/weighted_dsu.test.cpp
@@ -151,6 +162,7 @@ data:
   - test/library-checker/lca.test.cpp
   - test/library-checker/unionfind_with_potential.test.cpp
   - test/library-checker/staticrmq.test.cpp
+  - test/library-checker/staticrmq_sqrt_tree.test.cpp
   - test/library-checker/pow_of_matrix.test.cpp
   - test/library-checker/matrix_product.test.cpp
   - test/library-checker/point_set_range_composite.test.cpp

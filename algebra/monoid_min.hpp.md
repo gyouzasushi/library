@@ -10,6 +10,9 @@ data:
     path: test/library-checker/staticrmq.test.cpp
     title: test/library-checker/staticrmq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library-checker/staticrmq_sqrt_tree.test.cpp
+    title: test/library-checker/staticrmq_sqrt_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,6 +42,7 @@ data:
   - test/unit/monoid.test.cpp
   - test/unit/sparse_table.test.cpp
   - test/library-checker/staticrmq.test.cpp
+  - test/library-checker/staticrmq_sqrt_tree.test.cpp
 documentation_of: algebra/monoid_min.hpp
 layout: document
 title: 'Monoid: Min'
