@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: datastructure/cumulative_sum.hpp
-    title: "\u7D2F\u7A4D\u548C"
+    title: Cumulative Sum
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -16,18 +16,16 @@ data:
     - https://judge.yosupo.jp/problem/static_range_sum
   bundledCode: "#line 1 \"test/library-checker/static_range_sum.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include <bits/stdc++.h>\n\
-    \n#line 3 \"datastructure/cumulative_sum.hpp\"\ntemplate <typename T>\nstruct\
-    \ cumulative_sum {\n    int n;\n    std::vector<T> cumsum;\n    cumulative_sum()\
-    \ {\n    }\n    cumulative_sum(std::vector<T>& d) : n(d.size()), cumsum(n + 1)\
-    \ {\n        for (int i = 0; i < n; i++) {\n            cumsum[i + 1] = cumsum[i]\
-    \ + d[i];\n        }\n    }\n    T sum(int l, int r) {\n        // 0-indexed\n\
-    \        // [l, r)\n        assert(0 <= l);\n        assert(l <= r);\n       \
-    \ assert(r <= n);\n        return cumsum[r] - cumsum[l];\n    }\n};\n#line 5 \"\
-    test/library-checker/static_range_sum.test.cpp\"\nint main() {\n    int n, q;\n\
-    \    std::cin >> n >> q;\n    std::vector<long long> a(n);\n    for (int i = 0;\
-    \ i < n; i++) std::cin >> a[i];\n    cumulative_sum cs(a);\n    while (q--) {\n\
-    \        int l, r;\n        std::cin >> l >> r;\n        std::cout << cs.sum(l,\
-    \ r) << '\\n';\n    }\n}\n"
+    \n#line 4 \"datastructure/cumulative_sum.hpp\"\n\ntemplate <class T> struct cumulative_sum\
+    \ {\n    cumulative_sum() = default;\n    explicit cumulative_sum(const std::vector<T>&\
+    \ a) : n(a.size()), s(n + 1) {\n        for (int i = 0; i < n; i++) s[i + 1] =\
+    \ s[i] + a[i];\n    }\n    T sum(int l, int r) const {\n        assert(0 <= l\
+    \ && l <= r && r <= n);\n        return s[r] - s[l];\n    }\n\n  private:\n  \
+    \  int n = 0;\n    std::vector<T> s;\n};\n#line 5 \"test/library-checker/static_range_sum.test.cpp\"\
+    \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<long long>\
+    \ a(n);\n    for (int i = 0; i < n; i++) std::cin >> a[i];\n    cumulative_sum\
+    \ cs(a);\n    while (q--) {\n        int l, r;\n        std::cin >> l >> r;\n\
+    \        std::cout << cs.sum(l, r) << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include\
     \ <bits/stdc++.h>\n\n#include \"datastructure/cumulative_sum.hpp\"\nint main()\
     \ {\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<long long> a(n);\n\
@@ -39,7 +37,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/static_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-05-30 15:02:19+09:00'
+  timestamp: '2026-10-26 22:21:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/static_range_sum.test.cpp

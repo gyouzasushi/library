@@ -63,7 +63,7 @@ data:
       title: Binary Trie
     - icon: ':heavy_check_mark:'
       path: datastructure/cumulative_sum.hpp
-      title: "\u7D2F\u7A4D\u548C"
+      title: Cumulative Sum
     - icon: ':heavy_check_mark:'
       path: datastructure/dual_segtree.hpp
       title: Dual Segment Tree
@@ -124,7 +124,7 @@ data:
       title: "\u30B0\u30EA\u30C3\u30C9\u306E\u30DE\u30B9"
     - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.hpp
-      title: "\u5F69\u8272\u6570"
+      title: Chromatic Number
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: "Dijkstra \u6CD5"
@@ -468,6 +468,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/binary_trie.test.cpp
       title: test/unit/binary_trie.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/chromatic_number.test.cpp
+      title: test/unit/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/dual_segtree.test.cpp
       title: test/unit/dual_segtree.test.cpp

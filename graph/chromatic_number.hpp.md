@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/chromatic_number.test.cpp
     title: test/library-checker/chromatic_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/chromatic_number.test.cpp
+    title: test/unit/chromatic_number.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -219,51 +222,55 @@ data:
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
     \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 6 \"graph/chromatic_number.hpp\"\
-    \nint chromatic_number(std::vector<std::vector<bool>> g) {\n    int n = g.size();\n\
-    \    std::vector<int> bit(n);\n    for (int i = 0; i < n; i++) {\n        assert(int(g[i].size())\
-    \ == n);\n        for (int j = 0; j < n; j++) {\n            bit[i] |= g[i][j]\
-    \ << j;\n        }\n    }\n    int ret = n;\n    using mint = atcoder::modint;\n\
-    \    for (int mod : {1e9 + 7, 1e9 + 11, 1e9 + 21}) {\n        mint::set_mod(mod);\n\
-    \        std::vector<mint> dp(1 << n), prod(1 << n, 1);\n        dp[0] = 1;\n\
-    \        for (int s = 1; s < 1 << n; s++) {\n            int u = __builtin_ctz(s);\n\
-    \            dp[s] = dp[s ^ (1 << u)] + dp[(s ^ (1 << u)) & ~bit[u]];\n      \
-    \  }\n        for (int i = 1; i < ret; i++) {\n            mint sum = 0;\n   \
-    \         for (int j = 0; j < 1 << n; j++) {\n                int s = j ^ (j >>\
-    \ 1);\n                prod[s] *= dp[s];\n                sum += j & 1 ? prod[s]\
-    \ : -prod[s];\n            }\n            if (sum.val() != 0) ret = i;\n     \
-    \   }\n    }\n    return ret;\n}\n"
+    \n\nint chromatic_number(const std::vector<std::vector<int>>& g) {\n    int n\
+    \ = g.size();\n    assert(n <= 30);\n    std::vector<int> adj(n);\n    for (int\
+    \ u = 0; u < n; u++) {\n        for (int v : g[u]) adj[u] |= 1 << v;\n    }\n\
+    \    if (n == 0) return 0;\n    using mint = atcoder::dynamic_modint<20261026>;\n\
+    \    int ret = n;\n    for (int mod : {1000000007, 1000000009, 1000000021}) {\n\
+    \        mint::set_mod(mod);\n        std::vector<mint> ind(1 << n), prod(1 <<\
+    \ n, 1);\n        ind[0] = 1;\n        for (int s = 1; s < 1 << n; s++) {\n  \
+    \          int u = __builtin_ctz(s);\n            ind[s] = ind[s ^ (1 << u)] +\
+    \ ind[(s ^ (1 << u)) & ~adj[u]];\n        }\n        for (int k = 1; k < ret;\
+    \ k++) {\n            mint sum = 0;\n            for (int s = 0; s < 1 << n; s++)\
+    \ {\n                prod[s] *= ind[s];\n                sum += (n - __builtin_popcount(s))\
+    \ & 1 ? -prod[s] : prod[s];\n            }\n            if (sum != 0) ret = k;\n\
+    \        }\n    }\n    return ret;\n}\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n\n#include \"atcoder/modint.hpp\"\
-    \nint chromatic_number(std::vector<std::vector<bool>> g) {\n    int n = g.size();\n\
-    \    std::vector<int> bit(n);\n    for (int i = 0; i < n; i++) {\n        assert(int(g[i].size())\
-    \ == n);\n        for (int j = 0; j < n; j++) {\n            bit[i] |= g[i][j]\
-    \ << j;\n        }\n    }\n    int ret = n;\n    using mint = atcoder::modint;\n\
-    \    for (int mod : {1e9 + 7, 1e9 + 11, 1e9 + 21}) {\n        mint::set_mod(mod);\n\
-    \        std::vector<mint> dp(1 << n), prod(1 << n, 1);\n        dp[0] = 1;\n\
-    \        for (int s = 1; s < 1 << n; s++) {\n            int u = __builtin_ctz(s);\n\
-    \            dp[s] = dp[s ^ (1 << u)] + dp[(s ^ (1 << u)) & ~bit[u]];\n      \
-    \  }\n        for (int i = 1; i < ret; i++) {\n            mint sum = 0;\n   \
-    \         for (int j = 0; j < 1 << n; j++) {\n                int s = j ^ (j >>\
-    \ 1);\n                prod[s] *= dp[s];\n                sum += j & 1 ? prod[s]\
-    \ : -prod[s];\n            }\n            if (sum.val() != 0) ret = i;\n     \
-    \   }\n    }\n    return ret;\n}"
+    \n\nint chromatic_number(const std::vector<std::vector<int>>& g) {\n    int n\
+    \ = g.size();\n    assert(n <= 30);\n    std::vector<int> adj(n);\n    for (int\
+    \ u = 0; u < n; u++) {\n        for (int v : g[u]) adj[u] |= 1 << v;\n    }\n\
+    \    if (n == 0) return 0;\n    using mint = atcoder::dynamic_modint<20261026>;\n\
+    \    int ret = n;\n    for (int mod : {1000000007, 1000000009, 1000000021}) {\n\
+    \        mint::set_mod(mod);\n        std::vector<mint> ind(1 << n), prod(1 <<\
+    \ n, 1);\n        ind[0] = 1;\n        for (int s = 1; s < 1 << n; s++) {\n  \
+    \          int u = __builtin_ctz(s);\n            ind[s] = ind[s ^ (1 << u)] +\
+    \ ind[(s ^ (1 << u)) & ~adj[u]];\n        }\n        for (int k = 1; k < ret;\
+    \ k++) {\n            mint sum = 0;\n            for (int s = 0; s < 1 << n; s++)\
+    \ {\n                prod[s] *= ind[s];\n                sum += (n - __builtin_popcount(s))\
+    \ & 1 ? -prod[s] : prod[s];\n            }\n            if (sum != 0) ret = k;\n\
+    \        }\n    }\n    return ret;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/chromatic_number.hpp
   requiredBy: []
-  timestamp: '2026-10-17 13:59:29+09:00'
+  timestamp: '2026-10-26 22:21:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unit/chromatic_number.test.cpp
   - test/library-checker/chromatic_number.test.cpp
 documentation_of: graph/chromatic_number.hpp
 layout: document
-title: "\u5F69\u8272\u6570"
+title: Chromatic Number
 ---
 
 ### 概要
-- グラフの彩色数を求める。
-  
+- 無向グラフの彩色数を求める。
+
 ### 使い方
-- `chromatic_number(g)`: 隣接行列 `g` で表されるグラフの彩色数を求める。
+- `chromatic_number(g)`: 隣接リスト `g` で表される無向グラフの彩色数を返す。
+
+### 制約
+- $0 \le n \le 30$
 
 ### 計算量
-- $\mathcal O(2^N N)$
+- $\mathcal{O}(2^n n)$

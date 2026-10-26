@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic_number.hpp
-    title: "\u5F69\u8272\u6570"
+    title: Chromatic Number
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,8 +15,9 @@ data:
     links:
     - https://judge.yosupo.jp/problem/chromatic_number
   bundledCode: "#line 1 \"test/library-checker/chromatic_number.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n#line 2 \"graph/chromatic_number.hpp\"\
-    \n#include <cassert>\n#include <vector>\n\n#line 1 \"atcoder/modint.hpp\"\n\n\n\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n#include <iostream>\n\
+    #include <vector>\n\n#line 2 \"graph/chromatic_number.hpp\"\n#include <cassert>\n\
+    #line 4 \"graph/chromatic_number.hpp\"\n\n#line 1 \"atcoder/modint.hpp\"\n\n\n\
     \n#line 5 \"atcoder/modint.hpp\"\n#include <numeric>\n#include <type_traits>\n\
     \n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n#line 1 \"atcoder/internal_math.hpp\"\
     \n\n\n\n#include <utility>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n\
@@ -223,35 +224,35 @@ data:
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
     \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 6 \"graph/chromatic_number.hpp\"\
-    \nint chromatic_number(std::vector<std::vector<bool>> g) {\n    int n = g.size();\n\
-    \    std::vector<int> bit(n);\n    for (int i = 0; i < n; i++) {\n        assert(int(g[i].size())\
-    \ == n);\n        for (int j = 0; j < n; j++) {\n            bit[i] |= g[i][j]\
-    \ << j;\n        }\n    }\n    int ret = n;\n    using mint = atcoder::modint;\n\
-    \    for (int mod : {1e9 + 7, 1e9 + 11, 1e9 + 21}) {\n        mint::set_mod(mod);\n\
-    \        std::vector<mint> dp(1 << n), prod(1 << n, 1);\n        dp[0] = 1;\n\
-    \        for (int s = 1; s < 1 << n; s++) {\n            int u = __builtin_ctz(s);\n\
-    \            dp[s] = dp[s ^ (1 << u)] + dp[(s ^ (1 << u)) & ~bit[u]];\n      \
-    \  }\n        for (int i = 1; i < ret; i++) {\n            mint sum = 0;\n   \
-    \         for (int j = 0; j < 1 << n; j++) {\n                int s = j ^ (j >>\
-    \ 1);\n                prod[s] *= dp[s];\n                sum += j & 1 ? prod[s]\
-    \ : -prod[s];\n            }\n            if (sum.val() != 0) ret = i;\n     \
-    \   }\n    }\n    return ret;\n}\n#line 4 \"test/library-checker/chromatic_number.test.cpp\"\
-    \n\n#include <iostream>\nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\
-    \    std::vector g(n, std::vector(n, false));\n    for (int i = 0; i < m; i++)\
-    \ {\n        int u, v;\n        std::cin >> u >> v;\n        g[u][v] = g[v][u]\
-    \ = true;\n    }\n    std::cout << chromatic_number(g) << '\\n';\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n\
-    #include \"graph/chromatic_number.hpp\"\n\n#include <iostream>\nint main() {\n\
-    \    int n, m;\n    std::cin >> n >> m;\n    std::vector g(n, std::vector(n, false));\n\
-    \    for (int i = 0; i < m; i++) {\n        int u, v;\n        std::cin >> u >>\
-    \ v;\n        g[u][v] = g[v][u] = true;\n    }\n    std::cout << chromatic_number(g)\
-    \ << '\\n';\n}"
+    \n\nint chromatic_number(const std::vector<std::vector<int>>& g) {\n    int n\
+    \ = g.size();\n    assert(n <= 30);\n    std::vector<int> adj(n);\n    for (int\
+    \ u = 0; u < n; u++) {\n        for (int v : g[u]) adj[u] |= 1 << v;\n    }\n\
+    \    if (n == 0) return 0;\n    using mint = atcoder::dynamic_modint<20261026>;\n\
+    \    int ret = n;\n    for (int mod : {1000000007, 1000000009, 1000000021}) {\n\
+    \        mint::set_mod(mod);\n        std::vector<mint> ind(1 << n), prod(1 <<\
+    \ n, 1);\n        ind[0] = 1;\n        for (int s = 1; s < 1 << n; s++) {\n  \
+    \          int u = __builtin_ctz(s);\n            ind[s] = ind[s ^ (1 << u)] +\
+    \ ind[(s ^ (1 << u)) & ~adj[u]];\n        }\n        for (int k = 1; k < ret;\
+    \ k++) {\n            mint sum = 0;\n            for (int s = 0; s < 1 << n; s++)\
+    \ {\n                prod[s] *= ind[s];\n                sum += (n - __builtin_popcount(s))\
+    \ & 1 ? -prod[s] : prod[s];\n            }\n            if (sum != 0) ret = k;\n\
+    \        }\n    }\n    return ret;\n}\n#line 6 \"test/library-checker/chromatic_number.test.cpp\"\
+    \nint main() {\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<std::vector<int>>\
+    \ g(n);\n    for (int i = 0; i < m; i++) {\n        int u, v;\n        std::cin\
+    \ >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\
+    \    std::cout << chromatic_number(g) << '\\n';\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n#include\
+    \ <iostream>\n#include <vector>\n\n#include \"graph/chromatic_number.hpp\"\nint\
+    \ main() {\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<std::vector<int>>\
+    \ g(n);\n    for (int i = 0; i < m; i++) {\n        int u, v;\n        std::cin\
+    \ >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\
+    \    std::cout << chromatic_number(g) << '\\n';\n}\n"
   dependsOn:
   - graph/chromatic_number.hpp
   isVerificationFile: true
   path: test/library-checker/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 13:59:29+09:00'
+  timestamp: '2026-10-26 22:21:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/chromatic_number.test.cpp
