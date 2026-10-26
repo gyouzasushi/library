@@ -1,15 +1,18 @@
 ---
-title: 累積和
+title: Cumulative Sum
 documentation_of: datastructure/cumulative_sum.hpp
 ---
 
 ### 概要
-- 累積和を前計算することで区間和を高速に計算する。
-  
+- 数列の区間和を答える。
+
 ### 使い方
-- `cumulative_sum(d)`: 数列 $\mathrm d$ で初期化する。
-- `sum(l, r)`: $\mathrm d_l + \mathrm d_{l+1} + \cdots +\mathrm d_{r-1}$ を求める。
-  
+- `cumulative_sum<T>(a)`: 数列 `a` で構築する。
+- `sum(l, r)`: $a_l + a_{l+1} + \cdots + a_{r-1}$ を返す。
+
+### 制約
+- $0 \le l \le r \le n$
+
 ### 計算量
-- `cumulative_sum(d)`: $\mathcal O(N)$
-- `sum(l, r)`: $\mathcal O(1)$
+- 構築: $\mathcal{O}(n)$
+- `sum`: $\mathcal{O}(1)$

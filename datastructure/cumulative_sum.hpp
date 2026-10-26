@@ -1,22 +1,18 @@
 #pragma once
+#include <cassert>
 #include <vector>
-template <typename T>
-struct cumulative_sum {
-    int n;
-    std::vector<T> cumsum;
-    cumulative_sum() {
+
+template <class T> struct cumulative_sum {
+    cumulative_sum() = default;
+    explicit cumulative_sum(const std::vector<T>& a) : n(a.size()), s(n + 1) {
+        for (int i = 0; i < n; i++) s[i + 1] = s[i] + a[i];
     }
-    cumulative_sum(std::vector<T>& d) : n(d.size()), cumsum(n + 1) {
-        for (int i = 0; i < n; i++) {
-            cumsum[i + 1] = cumsum[i] + d[i];
-        }
+    T sum(int l, int r) const {
+        assert(0 <= l && l <= r && r <= n);
+        return s[r] - s[l];
     }
-    T sum(int l, int r) {
-        // 0-indexed
-        // [l, r)
-        assert(0 <= l);
-        assert(l <= r);
-        assert(r <= n);
-        return cumsum[r] - cumsum[l];
-    }
+
+  private:
+    int n = 0;
+    std::vector<T> s;
 };

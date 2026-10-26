@@ -3,33 +3,32 @@
 #include <vector>
 
 #include "atcoder/modint.hpp"
-int chromatic_number(std::vector<std::vector<bool>> g) {
+
+int chromatic_number(const std::vector<std::vector<int>>& g) {
     int n = g.size();
-    std::vector<int> bit(n);
-    for (int i = 0; i < n; i++) {
-        assert(int(g[i].size()) == n);
-        for (int j = 0; j < n; j++) {
-            bit[i] |= g[i][j] << j;
-        }
+    assert(n <= 30);
+    std::vector<int> adj(n);
+    for (int u = 0; u < n; u++) {
+        for (int v : g[u]) adj[u] |= 1 << v;
     }
+    if (n == 0) return 0;
+    using mint = atcoder::dynamic_modint<20261026>;
     int ret = n;
-    using mint = atcoder::modint;
-    for (int mod : {1e9 + 7, 1e9 + 11, 1e9 + 21}) {
+    for (int mod : {1000000007, 1000000009, 1000000021}) {
         mint::set_mod(mod);
-        std::vector<mint> dp(1 << n), prod(1 << n, 1);
-        dp[0] = 1;
+        std::vector<mint> ind(1 << n), prod(1 << n, 1);
+        ind[0] = 1;
         for (int s = 1; s < 1 << n; s++) {
             int u = __builtin_ctz(s);
-            dp[s] = dp[s ^ (1 << u)] + dp[(s ^ (1 << u)) & ~bit[u]];
+            ind[s] = ind[s ^ (1 << u)] + ind[(s ^ (1 << u)) & ~adj[u]];
         }
-        for (int i = 1; i < ret; i++) {
+        for (int k = 1; k < ret; k++) {
             mint sum = 0;
-            for (int j = 0; j < 1 << n; j++) {
-                int s = j ^ (j >> 1);
-                prod[s] *= dp[s];
-                sum += j & 1 ? prod[s] : -prod[s];
+            for (int s = 0; s < 1 << n; s++) {
+                prod[s] *= ind[s];
+                sum += (n - __builtin_popcount(s)) & 1 ? -prod[s] : prod[s];
             }
-            if (sum.val() != 0) ret = i;
+            if (sum != 0) ret = k;
         }
     }
     return ret;
