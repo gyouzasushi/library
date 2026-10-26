@@ -195,6 +195,9 @@ data:
       path: string/string_hash.hpp
       title: String Hash
     - icon: ':heavy_check_mark:'
+      path: string/trie.hpp
+      title: Trie
+    - icon: ':heavy_check_mark:'
       path: string/wildcard_matching.hpp
       title: Wildcard Matching
   verificationCategories:
@@ -504,6 +507,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/topological_sort.test.cpp
       title: test/unit/topological_sort.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/trie.test.cpp
+      title: test/unit/trie.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/wavelet_matrix.test.cpp
       title: test/unit/wavelet_matrix.test.cpp
