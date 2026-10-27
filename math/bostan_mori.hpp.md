@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/linear_recurrence.hpp
+    title: Linear Recurrence
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library-checker/bostan_mori.test.cpp
-    title: test/library-checker/bostan_mori.test.cpp
+    path: test/library-checker/find_linear_recurrence.test.cpp
+    title: test/library-checker/find_linear_recurrence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/linear_recurrence.test.cpp
+    title: test/unit/linear_recurrence.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -413,11 +422,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/bostan_mori.hpp
-  requiredBy: []
+  requiredBy:
+  - math/linear_recurrence.hpp
   timestamp: '2026-10-25 13:51:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library-checker/bostan_mori.test.cpp
+  - test/unit/linear_recurrence.test.cpp
+  - test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/library-checker/find_linear_recurrence.test.cpp
 documentation_of: math/bostan_mori.hpp
 layout: document
 title: Bostan-Mori

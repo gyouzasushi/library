@@ -177,6 +177,9 @@ data:
       path: math/lagrange_interpolation.hpp
       title: Lagrange Interpolation
     - icon: ':heavy_check_mark:'
+      path: math/linear_recurrence.hpp
+      title: Linear Recurrence
+    - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
@@ -341,9 +344,6 @@ data:
       path: test/library-checker/bitwise_or_convolution.test.cpp
       title: test/library-checker/bitwise_or_convolution.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/library-checker/bostan_mori.test.cpp
-      title: test/library-checker/bostan_mori.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/library-checker/chromatic_number.test.cpp
       title: test/library-checker/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
@@ -362,8 +362,14 @@ data:
       path: test/library-checker/factorize.test.cpp
       title: test/library-checker/factorize.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/find_linear_recurrence.test.cpp
+      title: test/library-checker/find_linear_recurrence.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/jump_on_tree.test.cpp
       title: test/library-checker/jump_on_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp
+      title: test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/lca.test.cpp
       title: test/library-checker/lca.test.cpp
@@ -504,6 +510,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/li_chao_tree.test.cpp
       title: test/unit/li_chao_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/linear_recurrence.test.cpp
+      title: test/unit/linear_recurrence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/longest_increasing_subsequence.test.cpp
       title: test/unit/longest_increasing_subsequence.test.cpp

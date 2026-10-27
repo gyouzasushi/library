@@ -4,6 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
     title: Bostan-Mori
+  - icon: ':heavy_check_mark:'
+    path: math/linear_recurrence.hpp
+    title: Linear Recurrence
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,14 +17,15 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
     links:
     - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
-  bundledCode: "#line 1 \"test/library-checker/bostan_mori.test.cpp\"\n#define PROBLEM\
-    \ \\\n    \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
-    \n#line 2 \"math/bostan_mori.hpp\"\n#include <cassert>\n#include <ranges>\n#include\
-    \ <vector>\n\n#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <array>\n#line 7 \"atcoder/convolution.hpp\"\n#include <type_traits>\n\
-    #line 9 \"atcoder/convolution.hpp\"\n\n#line 1 \"atcoder/internal_bit.hpp\"\n\n\
-    \n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n#if __cplusplus >= 202002L\n\
-    #include <bit>\n#endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n#if __cplusplus\
+  bundledCode: "#line 1 \"test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n#include <atcoder/modint>\n#include <iostream>\n#include <vector>\n\n#line 2\
+    \ \"math/linear_recurrence.hpp\"\n#include <cassert>\n#line 4 \"math/linear_recurrence.hpp\"\
+    \n\n#line 1 \"atcoder/convolution.hpp\"\n\n\n\n#include <algorithm>\n#include\
+    \ <array>\n#line 7 \"atcoder/convolution.hpp\"\n#include <type_traits>\n#line\
+    \ 9 \"atcoder/convolution.hpp\"\n\n#line 1 \"atcoder/internal_bit.hpp\"\n\n\n\n\
+    #ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n#if __cplusplus >= 202002L\n#include\
+    \ <bit>\n#endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n#if __cplusplus\
     \ >= 202002L\n\nusing std::bit_ceil;\n\n#else\n\n// @return same with std::bit::bit_ceil\n\
     unsigned int bit_ceil(unsigned int n) {\n    unsigned int x = 1;\n    while (x\
     \ < (unsigned int)(n)) x *= 2;\n    return x;\n}\n\n#endif\n\n// @param n `1 <=\
@@ -391,7 +395,8 @@ data:
     \ long)(x), (long long)(MOD1));\n        if (diff < 0) diff += MOD1;\n       \
     \ static constexpr unsigned long long offset[5] = {\n            0, 0, M1M2M3,\
     \ 2 * M1M2M3, 3 * M1M2M3};\n        x -= offset[diff % 5];\n        c[i] = x;\n\
-    \    }\n\n    return c;\n}\n\n}  // namespace atcoder\n\n\n#line 7 \"math/bostan_mori.hpp\"\
+    \    }\n\n    return c;\n}\n\n}  // namespace atcoder\n\n\n#line 3 \"math/bostan_mori.hpp\"\
+    \n#include <ranges>\n#line 5 \"math/bostan_mori.hpp\"\n\n#line 7 \"math/bostan_mori.hpp\"\
     \n\ntemplate <class mint>\nmint bostan_mori(long long n, std::vector<mint> p,\
     \ std::vector<mint> q) {\n    assert(n >= 0);\n    assert(!q.empty() && q[0] !=\
     \ 0);\n    auto even = [](const std::vector<mint>& f) {\n        return f | std::views::stride(2)\
@@ -402,35 +407,49 @@ data:
     \ i += 2) q_neg[i] = -q_neg[i];\n        std::vector<mint> u = atcoder::convolution(p,\
     \ q_neg);\n        p = n & 1 ? odd(u) : even(u);\n        q = even(atcoder::convolution(q,\
     \ q_neg));\n        n >>= 1;\n    }\n    return p.empty() ? mint(0) : p[0] / q[0];\n\
-    }\n#line 4 \"test/library-checker/bostan_mori.test.cpp\"\n\n#include <iostream>\n\
-    \nusing mint = atcoder::modint998244353;\n\nint main() {\n    int d;\n    long\
-    \ long k;\n    std::cin >> d >> k;\n    std::vector<mint> a(d);\n    for (int\
-    \ i = 0; i < d; i++) {\n        int x;\n        std::cin >> x;\n        a[i] =\
-    \ mint(x);\n    }\n    std::vector<mint> c(d + 1, 1);\n    for (int i = 1; i <=\
-    \ d; i++) {\n        int x;\n        std::cin >> x;\n        c[i] = mint(-x);\n\
-    \    }\n    std::vector b = atcoder::convolution(a, c);\n    b.resize(a.size());\n\
-    \    std::cout << bostan_mori(k, b, c).val() << '\\n';\n}\n"
-  code: "#define PROBLEM \\\n    \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
-    \n#include \"../../math/bostan_mori.hpp\"\n\n#include <iostream>\n\nusing mint\
-    \ = atcoder::modint998244353;\n\nint main() {\n    int d;\n    long long k;\n\
-    \    std::cin >> d >> k;\n    std::vector<mint> a(d);\n    for (int i = 0; i <\
-    \ d; i++) {\n        int x;\n        std::cin >> x;\n        a[i] = mint(x);\n\
-    \    }\n    std::vector<mint> c(d + 1, 1);\n    for (int i = 1; i <= d; i++) {\n\
-    \        int x;\n        std::cin >> x;\n        c[i] = mint(-x);\n    }\n   \
-    \ std::vector b = atcoder::convolution(a, c);\n    b.resize(a.size());\n    std::cout\
-    \ << bostan_mori(k, b, c).val() << '\\n';\n}"
+    }\n#line 7 \"math/linear_recurrence.hpp\"\ntemplate <class mint> std::vector<mint>\
+    \ berlekamp_massey(const std::vector<mint>& a) {\n    int n = int(a.size()), l\
+    \ = 0, m = 0;\n    std::vector<mint> c(n + 1), b(n + 1), t;\n    c[0] = b[0] =\
+    \ 1;\n    mint bd = 1;\n    for (int i = 0; i < n; i++) {\n        m++;\n    \
+    \    mint d = a[i];\n        for (int j = 1; j <= l; j++) d += c[j] * a[i - j];\n\
+    \        if (d == 0) continue;\n        t = c;\n        mint coef = d / bd;\n\
+    \        for (int j = m; j <= n; j++) c[j] -= coef * b[j - m];\n        if (2\
+    \ * l > i) continue;\n        l = i + 1 - l;\n        b = t;\n        bd = d;\n\
+    \        m = 0;\n    }\n    c.resize(l + 1);\n    c.erase(c.begin());\n    for\
+    \ (auto& x : c) x = -x;\n    return c;\n}\ntemplate <class mint>\nmint kth_term_of_linear_recurrence(const\
+    \ std::vector<mint>& a, const std::vector<mint>& c, long long k) {\n    int d\
+    \ = int(c.size());\n    assert(d <= int(a.size()));\n    assert(k >= 0);\n   \
+    \ if (k < int(a.size())) return a[k];\n    std::vector<mint> q(d + 1), p(a.begin(),\
+    \ a.begin() + d);\n    q[0] = 1;\n    for (int i = 0; i < d; i++) q[i + 1] = -c[i];\n\
+    \    p = atcoder::convolution(p, q);\n    p.resize(d);\n    return bostan_mori(k,\
+    \ p, q);\n}\n#line 7 \"test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
+    \nusing mint = atcoder::modint998244353;\nint main() {\n    int d;\n    long long\
+    \ k;\n    std::cin >> d >> k;\n    std::vector<mint> a(d), c(d);\n    for (auto&\
+    \ x : a) {\n        int v;\n        std::cin >> v;\n        x = v;\n    }\n  \
+    \  for (auto& x : c) {\n        int v;\n        std::cin >> v;\n        x = v;\n\
+    \    }\n    std::cout << kth_term_of_linear_recurrence(a, c, k).val() << '\\n';\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n#include <atcoder/modint>\n#include <iostream>\n#include <vector>\n\n#include\
+    \ \"math/linear_recurrence.hpp\"\nusing mint = atcoder::modint998244353;\nint\
+    \ main() {\n    int d;\n    long long k;\n    std::cin >> d >> k;\n    std::vector<mint>\
+    \ a(d), c(d);\n    for (auto& x : a) {\n        int v;\n        std::cin >> v;\n\
+    \        x = v;\n    }\n    for (auto& x : c) {\n        int v;\n        std::cin\
+    \ >> v;\n        x = v;\n    }\n    std::cout << kth_term_of_linear_recurrence(a,\
+    \ c, k).val() << '\\n';\n}\n"
   dependsOn:
+  - math/linear_recurrence.hpp
   - math/bostan_mori.hpp
   isVerificationFile: true
-  path: test/library-checker/bostan_mori.test.cpp
+  path: test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2026-10-25 13:51:16+09:00'
+  timestamp: '2026-10-27 12:43:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library-checker/bostan_mori.test.cpp
+documentation_of: test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library-checker/bostan_mori.test.cpp
-- /verify/test/library-checker/bostan_mori.test.cpp.html
-title: test/library-checker/bostan_mori.test.cpp
+- /verify/test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp
+- /verify/test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp.html
+title: test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp
 ---
