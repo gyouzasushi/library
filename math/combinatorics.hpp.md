@@ -1,14 +1,23 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/lagrange_interpolation.hpp
+    title: Lagrange Interpolation
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/binomial_coefficient_prime_mod.test.cpp
     title: test/library-checker/binomial_coefficient_prime_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/unit/lagrange_interpolation.test.cpp
+    title: test/unit/lagrange_interpolation.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/117.test.cpp
     title: test/yukicoder/117.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/665.test.cpp
+    title: test/yukicoder/665.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -53,12 +62,15 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/combinatorics.hpp
-  requiredBy: []
+  requiredBy:
+  - math/lagrange_interpolation.hpp
   timestamp: '2026-10-20 22:33:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unit/lagrange_interpolation.test.cpp
   - test/library-checker/binomial_coefficient_prime_mod.test.cpp
   - test/yukicoder/117.test.cpp
+  - test/yukicoder/665.test.cpp
 documentation_of: math/combinatorics.hpp
 layout: document
 title: Combinatorics

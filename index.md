@@ -174,6 +174,9 @@ data:
       path: math/factorize.hpp
       title: Factorize
     - icon: ':heavy_check_mark:'
+      path: math/lagrange_interpolation.hpp
+      title: Lagrange Interpolation
+    - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
@@ -496,6 +499,9 @@ data:
       path: test/unit/heavy_light_decomposition.test.cpp
       title: test/unit/heavy_light_decomposition.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/unit/lagrange_interpolation.test.cpp
+      title: test/unit/lagrange_interpolation.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/unit/li_chao_tree.test.cpp
       title: test/unit/li_chao_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -584,5 +590,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/430.test.cpp
       title: test/yukicoder/430.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/665.test.cpp
+      title: test/yukicoder/665.test.cpp
 layout: toppage
 ---
