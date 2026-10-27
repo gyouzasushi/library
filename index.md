@@ -180,6 +180,9 @@ data:
       path: math/modint2305843009213693951.hpp
       title: modint2305843009213693951
     - icon: ':heavy_check_mark:'
+      path: math/quotient_blocks.hpp
+      title: Quotient Blocks
+    - icon: ':heavy_check_mark:'
       path: math/sieve.hpp
       title: Sieve
     - icon: ':heavy_check_mark:'
@@ -513,6 +516,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/monoid.test.cpp
       title: test/unit/monoid.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/quotient_blocks.test.cpp
+      title: test/unit/quotient_blocks.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/range_map.test.cpp
       title: test/unit/range_map.test.cpp
