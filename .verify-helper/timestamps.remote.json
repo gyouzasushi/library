@@ -91,6 +91,7 @@
 "test/unit/functional_graph.test.cpp": "2026-10-22 22:21:08 +0900",
 "test/unit/geometry.test.cpp": "2026-10-22 23:24:07 +0900",
 "test/unit/heavy_light_decomposition.test.cpp": "2026-10-19 02:29:38 +0900",
+"test/unit/lagrange_interpolation.test.cpp": "2026-10-27 12:32:30 +0900",
 "test/unit/li_chao_tree.test.cpp": "2026-10-26 22:16:38 +0900",
 "test/unit/longest_increasing_subsequence.test.cpp": "2026-10-26 21:56:22 +0900",
 "test/unit/lowlink.test.cpp": "2026-10-25 23:38:54 +0900",
@@ -119,5 +120,6 @@
 "test/yukicoder/1601.test.cpp": "2026-10-19 20:56:31 +0900",
 "test/yukicoder/1601_2.test.cpp": "2026-10-19 22:21:29 +0900",
 "test/yukicoder/2231.test.cpp": "2026-10-26 22:28:12 +0900",
-"test/yukicoder/430.test.cpp": "2026-10-27 07:43:44 +0900"
+"test/yukicoder/430.test.cpp": "2026-10-27 07:43:44 +0900",
+"test/yukicoder/665.test.cpp": "2026-10-27 12:32:30 +0900"
 }
