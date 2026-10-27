@@ -13,6 +13,9 @@ data:
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/unit/persistent_segtree.test.cpp
+    title: test/unit/persistent_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/unit/sqrt_tree.test.cpp
     title: test/unit/sqrt_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -38,6 +41,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/sqrt_tree.test.cpp
+  - test/unit/persistent_segtree.test.cpp
   - test/unit/monoid.test.cpp
   - test/unit/weighted_dsu.test.cpp
   - test/library-checker/unionfind_with_potential.test.cpp

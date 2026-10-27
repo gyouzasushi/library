@@ -16,6 +16,9 @@ data:
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/unit/persistent_segtree.test.cpp
+    title: test/unit/persistent_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/unit/sparse_table.test.cpp
     title: test/unit/sparse_table.test.cpp
   _isVerificationFailed: false
@@ -39,6 +42,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_A.test.cpp
+  - test/unit/persistent_segtree.test.cpp
   - test/unit/monoid.test.cpp
   - test/unit/sparse_table.test.cpp
   - test/library-checker/staticrmq.test.cpp

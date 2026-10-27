@@ -4,9 +4,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library-checker/persistent_unionfind.test.cpp
-    title: test/library-checker/persistent_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/unit/rollback_dsu.test.cpp
     title: test/unit/rollback_dsu.test.cpp
   _isVerificationFailed: false
@@ -82,7 +79,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/rollback_dsu.test.cpp
-  - test/library-checker/persistent_unionfind.test.cpp
 documentation_of: datastructure/rollback_dsu.hpp
 layout: document
 title: Rollback DSU

@@ -9,6 +9,9 @@ data:
     path: datastructure/lazy_segtree.hpp
     title: Lazy Segment Tree (acted monoid wrapper)
   - icon: ':heavy_check_mark:'
+    path: datastructure/persistent_segtree.hpp
+    title: Persistent Segment Tree
+  - icon: ':heavy_check_mark:'
     path: datastructure/plus_minus_one_rmq.hpp
     title: Plus Minus One RMQ
   - icon: ':heavy_check_mark:'
@@ -100,6 +103,9 @@ data:
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/unit/persistent_segtree.test.cpp
+    title: test/unit/persistent_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/unit/sparse_table.test.cpp
     title: test/unit/sparse_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -156,6 +162,7 @@ data:
   - graph/manhattan_mst.hpp
   - datastructure/dual_segtree.hpp
   - datastructure/plus_minus_one_rmq.hpp
+  - datastructure/persistent_segtree.hpp
   - datastructure/weighted_dsu.hpp
   - datastructure/sparse_table.hpp
   - datastructure/segtree.hpp
@@ -168,6 +175,7 @@ data:
   - test/aoj/DSL_2_G.test.cpp
   - test/aoj/DSL_2_A.test.cpp
   - test/unit/sqrt_tree.test.cpp
+  - test/unit/persistent_segtree.test.cpp
   - test/unit/dual_segtree.test.cpp
   - test/unit/monoid.test.cpp
   - test/unit/weighted_dsu.test.cpp

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: datastructure/rectangle_sum.hpp
+    title: Rectangle Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/range_kth_smallest.test.cpp
@@ -15,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/static_range_frequency.test.cpp
     title: test/library-checker/static_range_frequency.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/rectangle_sum.test.cpp
+    title: test/unit/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/wavelet_matrix.test.cpp
     title: test/unit/wavelet_matrix.test.cpp
@@ -219,11 +225,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: datastructure/wavelet_matrix.hpp
-  requiredBy: []
+  requiredBy:
+  - datastructure/rectangle_sum.hpp
   timestamp: '2026-10-25 23:13:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/wavelet_matrix.test.cpp
+  - test/unit/rectangle_sum.test.cpp
   - test/library-checker/static_range_frequency.test.cpp
   - test/library-checker/range_kth_smallest.test.cpp
   - test/library-checker/rectangle_sum.test.cpp

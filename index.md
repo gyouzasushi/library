@@ -37,8 +37,17 @@ data:
       path: algebra/monoid_xor.hpp
       title: 'Monoid: XOR'
     - icon: ':heavy_check_mark:'
+      path: algebra/range_add_range_max.hpp
+      title: 'Acted Monoid: Range Add Range Max'
+    - icon: ':heavy_check_mark:'
+      path: algebra/range_add_range_min.hpp
+      title: 'Acted Monoid: Range Add Range Min'
+    - icon: ':heavy_check_mark:'
       path: algebra/range_add_range_sum.hpp
       title: 'Acted Monoid: Range Add Range Sum'
+    - icon: ':heavy_check_mark:'
+      path: algebra/range_add_range_sum_of_squares.hpp
+      title: 'Acted Monoid: Range Add Range Sum of Squares'
     - icon: ':heavy_check_mark:'
       path: algebra/semiring_max_plus.hpp
       title: 'Semiring: Max Plus'
@@ -74,6 +83,12 @@ data:
       path: datastructure/li_chao_tree.hpp
       title: Li Chao Tree
     - icon: ':heavy_check_mark:'
+      path: datastructure/persistent_array.hpp
+      title: Persistent Array
+    - icon: ':heavy_check_mark:'
+      path: datastructure/persistent_segtree.hpp
+      title: Persistent Segment Tree
+    - icon: ':heavy_check_mark:'
       path: datastructure/plus_minus_one_rmq.hpp
       title: Plus Minus One RMQ
     - icon: ':heavy_check_mark:'
@@ -82,6 +97,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/range_set.hpp
       title: Range Set
+    - icon: ':heavy_check_mark:'
+      path: datastructure/rectangle_sum.hpp
+      title: Rectangle Sum
     - icon: ':heavy_check_mark:'
       path: datastructure/rollback_dsu.hpp
       title: Rollback DSU
@@ -94,6 +112,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/sqrt_tree.hpp
       title: Sqrt Tree
+    - icon: ':heavy_check_mark:'
+      path: datastructure/top_k_sum.hpp
+      title: Top K Sum
     - icon: ':heavy_check_mark:'
       path: datastructure/wavelet_matrix.hpp
       title: Wavelet Matrix
@@ -547,6 +568,12 @@ data:
       path: test/unit/monoid.test.cpp
       title: test/unit/monoid.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/unit/persistent_array.test.cpp
+      title: test/unit/persistent_array.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/persistent_segtree.test.cpp
+      title: test/unit/persistent_segtree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/unit/quotient_blocks.test.cpp
       title: test/unit/quotient_blocks.test.cpp
     - icon: ':heavy_check_mark:'
@@ -555,6 +582,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/range_set.test.cpp
       title: test/unit/range_set.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/rectangle_sum.test.cpp
+      title: test/unit/rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/rerooting.test.cpp
       title: test/unit/rerooting.test.cpp
@@ -576,6 +606,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/subtree_classify.test.cpp
       title: test/unit/subtree_classify.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/top_k_sum.test.cpp
+      title: test/unit/top_k_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/topological_sort.test.cpp
       title: test/unit/topological_sort.test.cpp
