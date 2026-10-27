@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/semiring_plus_times.hpp
     title: 'Semiring: Plus Times'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
@@ -123,11 +123,11 @@ data:
     \ >> x;\n            a[i][j] = x;\n        }\n    }\n    std::vector<mint> b(n);\n\
     \    for (auto& x : b) {\n        int v;\n        std::cin >> v;\n        x =\
     \ v;\n    }\n    auto s = solve_linear_system(a, b);\n    if (!s) {\n        std::cout\
-    \ << -1 << '\\n';\n        return 0;\n    }\n    int r = m - int(s->kernel.size());\n\
-    \    std::cout << r << '\\n';\n    for (int j = 0; j < m; j++) std::cout << s->x[j].val()\
-    \ << \" \\n\"[j + 1 == m];\n    if (m == 0) std::cout << '\\n';\n    for (auto&\
-    \ v : s->kernel) {\n        for (int j = 0; j < m; j++) std::cout << v[j].val()\
-    \ << \" \\n\"[j + 1 == m];\n    }\n}\n"
+    \ << -1 << '\\n';\n        return 0;\n    }\n    std::cout << s->kernel.size()\
+    \ << '\\n';\n    for (int j = 0; j < m; j++) std::cout << s->x[j].val() << \"\
+    \ \\n\"[j + 1 == m];\n    if (m == 0) std::cout << '\\n';\n    for (auto& v :\
+    \ s->kernel) {\n        for (int j = 0; j < m; j++) std::cout << v[j].val() <<\
+    \ \" \\n\"[j + 1 == m];\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
     \n#include <atcoder/modint>\n#include <iostream>\n#include <vector>\n\n#include\
     \ \"math/matrix.hpp\"\nusing mint = atcoder::modint998244353;\nint main() {\n\
@@ -137,11 +137,10 @@ data:
     \    std::vector<mint> b(n);\n    for (auto& x : b) {\n        int v;\n      \
     \  std::cin >> v;\n        x = v;\n    }\n    auto s = solve_linear_system(a,\
     \ b);\n    if (!s) {\n        std::cout << -1 << '\\n';\n        return 0;\n \
-    \   }\n    int r = m - int(s->kernel.size());\n    std::cout << r << '\\n';\n\
-    \    for (int j = 0; j < m; j++) std::cout << s->x[j].val() << \" \\n\"[j + 1\
-    \ == m];\n    if (m == 0) std::cout << '\\n';\n    for (auto& v : s->kernel) {\n\
-    \        for (int j = 0; j < m; j++) std::cout << v[j].val() << \" \\n\"[j + 1\
-    \ == m];\n    }\n}\n"
+    \   }\n    std::cout << s->kernel.size() << '\\n';\n    for (int j = 0; j < m;\
+    \ j++) std::cout << s->x[j].val() << \" \\n\"[j + 1 == m];\n    if (m == 0) std::cout\
+    \ << '\\n';\n    for (auto& v : s->kernel) {\n        for (int j = 0; j < m; j++)\
+    \ std::cout << v[j].val() << \" \\n\"[j + 1 == m];\n    }\n}\n"
   dependsOn:
   - math/matrix.hpp
   - algebra/concept.hpp
@@ -149,8 +148,8 @@ data:
   isVerificationFile: true
   path: test/library-checker/system_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2026-10-27 18:39:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-10-27 19:30:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/system_of_linear_equations.test.cpp
 layout: document

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/semiring_plus_times.hpp
     title: 'Semiring: Plus Times'
   _extendedRequiredBy: []
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/pow_of_matrix.test.cpp
     title: test/library-checker/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/system_of_linear_equations.test.cpp
     title: test/library-checker/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,9 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/matrix.test.cpp
     title: test/unit/matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/matrix.hpp\"\n#include <cassert>\n#include <optional>\n\
@@ -215,7 +215,7 @@ data:
   path: math/matrix.hpp
   requiredBy: []
   timestamp: '2026-10-27 18:39:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/matrix.test.cpp
   - test/unit/linear_algebra.test.cpp

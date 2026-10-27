@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/semiring_plus_times.hpp
     title: 'Semiring: Plus Times'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []

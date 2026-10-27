@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
   - icon: ':heavy_check_mark:'
@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: algebra/semiring_min_plus.hpp
     title: 'Semiring: Min Plus'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/semiring_plus_times.hpp
     title: 'Semiring: Plus Times'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []

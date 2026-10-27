@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: algebra
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/concept.hpp
       title: 'Algebra: Concept'
     - icon: ':heavy_check_mark:'
@@ -45,7 +45,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: algebra/semiring_min_plus.hpp
       title: 'Semiring: Min Plus'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/semiring_plus_times.hpp
       title: 'Semiring: Plus Times'
   - name: algorithm
@@ -179,7 +179,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/linear_recurrence.hpp
       title: Linear Recurrence
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
@@ -463,7 +463,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/suffix_array_rolling_hash.test.cpp
       title: test/library-checker/suffix_array_rolling_hash.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/system_of_linear_equations.test.cpp
       title: test/library-checker/system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'
