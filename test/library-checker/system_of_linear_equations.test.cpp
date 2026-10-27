@@ -27,8 +27,7 @@ int main() {
         std::cout << -1 << '\n';
         return 0;
     }
-    int r = m - int(s->kernel.size());
-    std::cout << r << '\n';
+    std::cout << s->kernel.size() << '\n';
     for (int j = 0; j < m; j++) std::cout << s->x[j].val() << " \n"[j + 1 == m];
     if (m == 0) std::cout << '\n';
     for (auto& v : s->kernel) {
