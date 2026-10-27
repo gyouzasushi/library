@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
     title: Manhattan MST
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix.hpp
     title: Matrix
   - icon: ':heavy_check_mark:'
@@ -46,14 +46,23 @@ data:
     path: test/aoj/DSL_2_G.test.cpp
     title: test/aoj/DSL_2_G.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library-checker/inverse_matrix.test.cpp
+    title: test/library-checker/inverse_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/lca.test.cpp
     title: test/library-checker/lca.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/manhattanmst.test.cpp
     title: test/library-checker/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library-checker/matrix_det.test.cpp
+    title: test/library-checker/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/matrix_product.test.cpp
     title: test/library-checker/matrix_product.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/matrix_rank.test.cpp
+    title: test/library-checker/matrix_rank.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/point_set_range_composite.test.cpp
     title: test/library-checker/point_set_range_composite.test.cpp
@@ -69,6 +78,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/staticrmq_sqrt_tree.test.cpp
     title: test/library-checker/staticrmq_sqrt_tree.test.cpp
+  - icon: ':x:'
+    path: test/library-checker/system_of_linear_equations.test.cpp
+    title: test/library-checker/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/unionfind_with_potential.test.cpp
     title: test/library-checker/unionfind_with_potential.test.cpp
@@ -78,6 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/dual_segtree.test.cpp
     title: test/unit/dual_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/linear_algebra.test.cpp
+    title: test/unit/linear_algebra.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/matrix.test.cpp
     title: test/unit/matrix.test.cpp
@@ -96,9 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/weighted_dsu.test.cpp
     title: test/unit/weighted_dsu.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algebra/concept.hpp\"\n#include <concepts>\ntemplate <class\
@@ -147,7 +162,7 @@ data:
   - datastructure/lazy_segtree.hpp
   - datastructure/sqrt_tree.hpp
   timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/0355.test.cpp
   - test/aoj/DSL_2_G.test.cpp
@@ -159,9 +174,13 @@ data:
   - test/unit/string_hash.test.cpp
   - test/unit/matrix.test.cpp
   - test/unit/sparse_table.test.cpp
+  - test/unit/linear_algebra.test.cpp
+  - test/library-checker/inverse_matrix.test.cpp
   - test/library-checker/lca.test.cpp
+  - test/library-checker/matrix_det.test.cpp
   - test/library-checker/unionfind_with_potential.test.cpp
   - test/library-checker/staticrmq.test.cpp
+  - test/library-checker/system_of_linear_equations.test.cpp
   - test/library-checker/staticrmq_sqrt_tree.test.cpp
   - test/library-checker/pow_of_matrix.test.cpp
   - test/library-checker/matrix_product.test.cpp
@@ -169,6 +188,7 @@ data:
   - test/library-checker/manhattanmst.test.cpp
   - test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
   - test/library-checker/range_affine_point_get.test.cpp
+  - test/library-checker/matrix_rank.test.cpp
 documentation_of: algebra/concept.hpp
 layout: document
 title: 'Algebra: Concept'

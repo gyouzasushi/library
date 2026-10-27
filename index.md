@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: algebra
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: algebra/concept.hpp
       title: 'Algebra: Concept'
     - icon: ':heavy_check_mark:'
@@ -45,7 +45,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: algebra/semiring_min_plus.hpp
       title: 'Semiring: Min Plus'
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: algebra/semiring_plus_times.hpp
       title: 'Semiring: Plus Times'
   - name: algorithm
@@ -179,7 +179,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/linear_recurrence.hpp
       title: Linear Recurrence
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
@@ -365,6 +365,9 @@ data:
       path: test/library-checker/find_linear_recurrence.test.cpp
       title: test/library-checker/find_linear_recurrence.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/inverse_matrix.test.cpp
+      title: test/library-checker/inverse_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/jump_on_tree.test.cpp
       title: test/library-checker/jump_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -386,8 +389,14 @@ data:
       path: test/library-checker/manhattanmst.test.cpp
       title: test/library-checker/manhattanmst.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/matrix_det.test.cpp
+      title: test/library-checker/matrix_det.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/matrix_product.test.cpp
       title: test/library-checker/matrix_product.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/matrix_rank.test.cpp
+      title: test/library-checker/matrix_rank.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/persistent_unionfind.test.cpp
       title: test/library-checker/persistent_unionfind.test.cpp
@@ -454,6 +463,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/suffix_array_rolling_hash.test.cpp
       title: test/library-checker/suffix_array_rolling_hash.test.cpp
+    - icon: ':x:'
+      path: test/library-checker/system_of_linear_equations.test.cpp
+      title: test/library-checker/system_of_linear_equations.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/tree_path_composite_sum.test.cpp
       title: test/library-checker/tree_path_composite_sum.test.cpp
@@ -510,6 +522,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/li_chao_tree.test.cpp
       title: test/unit/li_chao_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/linear_algebra.test.cpp
+      title: test/unit/linear_algebra.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/linear_recurrence.test.cpp
       title: test/unit/linear_recurrence.test.cpp
