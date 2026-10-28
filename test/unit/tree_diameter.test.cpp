@@ -51,13 +51,6 @@ int main() {
             assert(found);
         }
         assert(len == diam);
-        for (int x = 0; x < n; x++) {
-            long long far = *std::max_element(dist[x].begin(), dist[x].end());
-            assert(d.farthest_dist(x) == far);
-            int f = d.farthest(x);
-            assert(dist[x][f] == far);
-            assert(f == int(std::max_element(dist[x].begin(), dist[x].end()) - dist[x].begin()));
-        }
     }
     std::cout << "Hello World" << std::endl;
     return 0;

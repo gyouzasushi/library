@@ -19,18 +19,18 @@ public:
     void build() {
         assert(_n >= 1);
         std::vector<int> par;
-        std::vector<T> d0;
-        search(0, d0, par);
-        _u = int(std::max_element(d0.begin(), d0.end()) - d0.begin());
-        search(_u, du, par);
-        _v = int(std::max_element(du.begin(), du.end()) - du.begin());
+        std::vector<T> d;
+        search(0, d, par);
+        _u = int(std::max_element(d.begin(), d.end()) - d.begin());
+        search(_u, d, par);
+        _v = int(std::max_element(d.begin(), d.end()) - d.begin());
+        _length = d[_v];
         _path.clear();
         for (int x = _v; x != -1; x = par[x]) _path.push_back(x);
         std::reverse(_path.begin(), _path.end());
-        search(_v, dv, par);
     }
     T length() const {
-        return du[_v];
+        return _length;
     }
     std::pair<int, int> ends() const {
         return {_u, _v};
@@ -38,20 +38,11 @@ public:
     const std::vector<int>& path() const {
         return _path;
     }
-    T farthest_dist(int x) const {
-        assert(0 <= x && x < _n);
-        return std::max(du[x], dv[x]);
-    }
-    int farthest(int x) const {
-        assert(0 <= x && x < _n);
-        if (du[x] != dv[x]) return du[x] > dv[x] ? _u : _v;
-        return std::min(_u, _v);
-    }
 
 private:
     int _n, _u = -1, _v = -1;
+    T _length = T(0);
     std::vector<std::vector<std::pair<int, T>>> g;
-    std::vector<T> du, dv;
     std::vector<int> _path;
     void search(int s, std::vector<T>& d, std::vector<int>& par) const {
         d.assign(_n, T(0));

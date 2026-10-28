@@ -4,7 +4,7 @@ documentation_of: graph/tree_diameter.hpp
 ---
 
 ### 概要
-- 木の直径と、各頂点から最も遠い頂点を求める。
+- 木の直径を求める。
 
 ### 使い方
 - `tree_diameter<T> d(n)`: 頂点数 `n`、辺の重みの型 `T`。
@@ -13,8 +13,6 @@ documentation_of: graph/tree_diameter.hpp
 - `length()`: 直径の長さを返す。
 - `ends()`: 直径の両端 `(u, v)` を返す。
 - `path()`: `u` から `v` への直径の頂点列を返す。
-- `farthest_dist(x)`: 頂点 `x` から最も遠い頂点までの距離を返す。
-- `farthest(x)`: 頂点 `x` から最も遠い頂点を返す。複数あるときは番号が最小のもの。
 
 ### 制約
 - $1 \le n$
@@ -23,5 +21,4 @@ documentation_of: graph/tree_diameter.hpp
 
 ### 計算量
 - `build`: $\mathcal{O}(N)$
-- `path`: $\mathcal{O}(1)$
 - その他: $\mathcal{O}(1)$
