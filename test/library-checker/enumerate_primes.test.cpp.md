@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/sieve.hpp
     title: Sieve
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_primes
@@ -38,8 +38,8 @@ data:
     \ {\n            int sz = int(ret.size());\n            int q = 1;\n         \
     \   for (int i = 0; i < e; i++) {\n                q *= p;\n                for\
     \ (int j = 0; j < sz; j++) ret.push_back(ret[j] * q);\n            }\n       \
-    \ }\n        std::sort(ret.begin(), ret.end());\n        return ret;\n    }\n\n\
-    private:\n    int _n;\n    std::vector<int> lpf, _primes;\n};\n#line 6 \"test/library-checker/enumerate_primes.test.cpp\"\
+    \ }\n        std::ranges::sort(ret);\n        return ret;\n    }\n\nprivate:\n\
+    \    int _n;\n    std::vector<int> lpf, _primes;\n};\n#line 6 \"test/library-checker/enumerate_primes.test.cpp\"\
     \n\nint main() {\n    int n, a, b;\n    std::cin >> n >> a >> b;\n    sieve s(n);\n\
     \    const std::vector<int>& p = s.primes();\n    std::vector<int> ans;\n    for\
     \ (int i = b; i < int(p.size()); i += a) ans.push_back(p[i]);\n    std::cout <<\
@@ -58,8 +58,8 @@ data:
   isVerificationFile: true
   path: test/library-checker/enumerate_primes.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 01:59:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library-checker/enumerate_primes.test.cpp
 layout: document

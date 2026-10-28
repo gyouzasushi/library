@@ -2,31 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: datastructure/rectangle_sum.hpp
     title: Rectangle Sum
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/range_kth_smallest.test.cpp
     title: test/library-checker/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/rectangle_sum.test.cpp
     title: test/library-checker/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/static_range_count_distinct.test.cpp
     title: test/library-checker/static_range_count_distinct.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/static_range_frequency.test.cpp
     title: test/library-checker/static_range_frequency.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/rectangle_sum.test.cpp
     title: test/unit/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/wavelet_matrix.test.cpp
     title: test/unit/wavelet_matrix.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/wavelet_matrix.hpp\"\n#include <algorithm>\n\
@@ -94,29 +94,29 @@ data:
     \ prefix sums of weights in the order at level d (cs[log]: original order)\n \
     \   std::vector<std::vector<W>> cs;\n\n    void build(const std::vector<T>& a,\
     \ const std::vector<W>& w) {\n        n = int(a.size());\n        key = a;\n \
-    \       std::sort(key.begin(), key.end());\n        key.erase(std::unique(key.begin(),\
-    \ key.end()), key.end());\n        log = key.empty() ? 0 : std::bit_width(unsigned(key.size()\
+    \       std::ranges::sort(key);\n        key.erase(std::ranges::unique(key).begin(),\
+    \ key.end());\n        log = key.empty() ? 0 : std::bit_width(unsigned(key.size()\
     \ - 1));\n        std::vector<int> b(n), order(n);\n        for (int i = 0; i\
-    \ < n; i++) {\n            b[i] = int(std::lower_bound(key.begin(), key.end(),\
-    \ a[i]) - key.begin());\n            order[i] = i;\n        }\n        bv.assign(log,\
-    \ bit_vector(n));\n        if constexpr (weighted) {\n            cs.assign(log\
-    \ + 1, std::vector<W>(n + 1));\n            for (int i = 0; i < n; i++) cs[log][i\
-    \ + 1] = cs[log][i] + w[i];\n        }\n        std::vector<int> next(n);\n  \
-    \      for (int d = log - 1; d >= 0; d--) {\n            int z = 0;\n        \
-    \    for (int i = 0; i < n; i++) {\n                if (b[order[i]] >> d & 1)\
-    \ {\n                    bv[d].set(i);\n                } else {\n           \
-    \         next[z++] = order[i];\n                }\n            }\n          \
-    \  for (int i = 0; i < n; i++) {\n                if (b[order[i]] >> d & 1) next[z++]\
-    \ = order[i];\n            }\n            bv[d].build();\n            std::swap(order,\
-    \ next);\n            if constexpr (weighted) {\n                for (int i =\
-    \ 0; i < n; i++) cs[d][i + 1] = cs[d][i] + w[order[i]];\n            }\n     \
-    \   }\n    }\n    // #{ v in key : v < x }\n    int rank_of(const T& x) const\
-    \ {\n        return int(std::lower_bound(key.begin(), key.end(), x) - key.begin());\n\
-    \    }\n    // #{ i in [l, r) : b[i] < u }, 0 <= u <= |key|\n    int count_rank(int\
-    \ l, int r, int u) const {\n        if (u == 0) return 0;\n        if (u >= int(key.size()))\
-    \ return r - l;\n        int res = 0;\n        for (int d = log - 1; d >= 0; d--)\
-    \ {\n            int l0 = bv[d].rank0(l), r0 = bv[d].rank0(r);\n            if\
-    \ (u >> d & 1) {\n                res += r0 - l0;\n                l += bv[d].zeros\
+    \ < n; i++) {\n            b[i] = int(std::ranges::lower_bound(key, a[i]) - key.begin());\n\
+    \            order[i] = i;\n        }\n        bv.assign(log, bit_vector(n));\n\
+    \        if constexpr (weighted) {\n            cs.assign(log + 1, std::vector<W>(n\
+    \ + 1));\n            for (int i = 0; i < n; i++) cs[log][i + 1] = cs[log][i]\
+    \ + w[i];\n        }\n        std::vector<int> next(n);\n        for (int d =\
+    \ log - 1; d >= 0; d--) {\n            int z = 0;\n            for (int i = 0;\
+    \ i < n; i++) {\n                if (b[order[i]] >> d & 1) {\n               \
+    \     bv[d].set(i);\n                } else {\n                    next[z++] =\
+    \ order[i];\n                }\n            }\n            for (int i = 0; i <\
+    \ n; i++) {\n                if (b[order[i]] >> d & 1) next[z++] = order[i];\n\
+    \            }\n            bv[d].build();\n            std::swap(order, next);\n\
+    \            if constexpr (weighted) {\n                for (int i = 0; i < n;\
+    \ i++) cs[d][i + 1] = cs[d][i] + w[order[i]];\n            }\n        }\n    }\n\
+    \    // #{ v in key : v < x }\n    int rank_of(const T& x) const {\n        return\
+    \ int(std::ranges::lower_bound(key, x) - key.begin());\n    }\n    // #{ i in\
+    \ [l, r) : b[i] < u }, 0 <= u <= |key|\n    int count_rank(int l, int r, int u)\
+    \ const {\n        if (u == 0) return 0;\n        if (u >= int(key.size())) return\
+    \ r - l;\n        int res = 0;\n        for (int d = log - 1; d >= 0; d--) {\n\
+    \            int l0 = bv[d].rank0(l), r0 = bv[d].rank0(r);\n            if (u\
+    \ >> d & 1) {\n                res += r0 - l0;\n                l += bv[d].zeros\
     \ - l0, r += bv[d].zeros - r0;\n            } else {\n                l = l0,\
     \ r = r0;\n            }\n        }\n        return res;\n    }\n    S sum_rank(int\
     \ l, int r, int u) const\n        requires weighted\n    {\n        if (u == 0)\
@@ -190,29 +190,29 @@ data:
     \ prefix sums of weights in the order at level d (cs[log]: original order)\n \
     \   std::vector<std::vector<W>> cs;\n\n    void build(const std::vector<T>& a,\
     \ const std::vector<W>& w) {\n        n = int(a.size());\n        key = a;\n \
-    \       std::sort(key.begin(), key.end());\n        key.erase(std::unique(key.begin(),\
-    \ key.end()), key.end());\n        log = key.empty() ? 0 : std::bit_width(unsigned(key.size()\
+    \       std::ranges::sort(key);\n        key.erase(std::ranges::unique(key).begin(),\
+    \ key.end());\n        log = key.empty() ? 0 : std::bit_width(unsigned(key.size()\
     \ - 1));\n        std::vector<int> b(n), order(n);\n        for (int i = 0; i\
-    \ < n; i++) {\n            b[i] = int(std::lower_bound(key.begin(), key.end(),\
-    \ a[i]) - key.begin());\n            order[i] = i;\n        }\n        bv.assign(log,\
-    \ bit_vector(n));\n        if constexpr (weighted) {\n            cs.assign(log\
-    \ + 1, std::vector<W>(n + 1));\n            for (int i = 0; i < n; i++) cs[log][i\
-    \ + 1] = cs[log][i] + w[i];\n        }\n        std::vector<int> next(n);\n  \
-    \      for (int d = log - 1; d >= 0; d--) {\n            int z = 0;\n        \
-    \    for (int i = 0; i < n; i++) {\n                if (b[order[i]] >> d & 1)\
-    \ {\n                    bv[d].set(i);\n                } else {\n           \
-    \         next[z++] = order[i];\n                }\n            }\n          \
-    \  for (int i = 0; i < n; i++) {\n                if (b[order[i]] >> d & 1) next[z++]\
-    \ = order[i];\n            }\n            bv[d].build();\n            std::swap(order,\
-    \ next);\n            if constexpr (weighted) {\n                for (int i =\
-    \ 0; i < n; i++) cs[d][i + 1] = cs[d][i] + w[order[i]];\n            }\n     \
-    \   }\n    }\n    // #{ v in key : v < x }\n    int rank_of(const T& x) const\
-    \ {\n        return int(std::lower_bound(key.begin(), key.end(), x) - key.begin());\n\
-    \    }\n    // #{ i in [l, r) : b[i] < u }, 0 <= u <= |key|\n    int count_rank(int\
-    \ l, int r, int u) const {\n        if (u == 0) return 0;\n        if (u >= int(key.size()))\
-    \ return r - l;\n        int res = 0;\n        for (int d = log - 1; d >= 0; d--)\
-    \ {\n            int l0 = bv[d].rank0(l), r0 = bv[d].rank0(r);\n            if\
-    \ (u >> d & 1) {\n                res += r0 - l0;\n                l += bv[d].zeros\
+    \ < n; i++) {\n            b[i] = int(std::ranges::lower_bound(key, a[i]) - key.begin());\n\
+    \            order[i] = i;\n        }\n        bv.assign(log, bit_vector(n));\n\
+    \        if constexpr (weighted) {\n            cs.assign(log + 1, std::vector<W>(n\
+    \ + 1));\n            for (int i = 0; i < n; i++) cs[log][i + 1] = cs[log][i]\
+    \ + w[i];\n        }\n        std::vector<int> next(n);\n        for (int d =\
+    \ log - 1; d >= 0; d--) {\n            int z = 0;\n            for (int i = 0;\
+    \ i < n; i++) {\n                if (b[order[i]] >> d & 1) {\n               \
+    \     bv[d].set(i);\n                } else {\n                    next[z++] =\
+    \ order[i];\n                }\n            }\n            for (int i = 0; i <\
+    \ n; i++) {\n                if (b[order[i]] >> d & 1) next[z++] = order[i];\n\
+    \            }\n            bv[d].build();\n            std::swap(order, next);\n\
+    \            if constexpr (weighted) {\n                for (int i = 0; i < n;\
+    \ i++) cs[d][i + 1] = cs[d][i] + w[order[i]];\n            }\n        }\n    }\n\
+    \    // #{ v in key : v < x }\n    int rank_of(const T& x) const {\n        return\
+    \ int(std::ranges::lower_bound(key, x) - key.begin());\n    }\n    // #{ i in\
+    \ [l, r) : b[i] < u }, 0 <= u <= |key|\n    int count_rank(int l, int r, int u)\
+    \ const {\n        if (u == 0) return 0;\n        if (u >= int(key.size())) return\
+    \ r - l;\n        int res = 0;\n        for (int d = log - 1; d >= 0; d--) {\n\
+    \            int l0 = bv[d].rank0(l), r0 = bv[d].rank0(r);\n            if (u\
+    \ >> d & 1) {\n                res += r0 - l0;\n                l += bv[d].zeros\
     \ - l0, r += bv[d].zeros - r0;\n            } else {\n                l = l0,\
     \ r = r0;\n            }\n        }\n        return res;\n    }\n    S sum_rank(int\
     \ l, int r, int u) const\n        requires weighted\n    {\n        if (u == 0)\
@@ -227,14 +227,14 @@ data:
   path: datastructure/wavelet_matrix.hpp
   requiredBy:
   - datastructure/rectangle_sum.hpp
-  timestamp: '2026-10-25 23:13:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/unit/rectangle_sum.test.cpp
   - test/unit/wavelet_matrix.test.cpp
+  - test/unit/rectangle_sum.test.cpp
+  - test/library-checker/static_range_frequency.test.cpp
   - test/library-checker/range_kth_smallest.test.cpp
   - test/library-checker/rectangle_sum.test.cpp
-  - test/library-checker/static_range_frequency.test.cpp
   - test/library-checker/static_range_count_distinct.test.cpp
 documentation_of: datastructure/wavelet_matrix.hpp
 layout: document

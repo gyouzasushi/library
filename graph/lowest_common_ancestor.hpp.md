@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/monoid_argmin.hpp
     title: 'Monoid: Argmin'
   - icon: ':heavy_check_mark:'

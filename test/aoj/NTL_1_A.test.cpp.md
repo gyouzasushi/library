@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/sieve.hpp
     title: Sieve
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A
@@ -36,12 +36,12 @@ data:
     \ = {1};\n        for (auto [p, e] : factorize(x)) {\n            int sz = int(ret.size());\n\
     \            int q = 1;\n            for (int i = 0; i < e; i++) {\n         \
     \       q *= p;\n                for (int j = 0; j < sz; j++) ret.push_back(ret[j]\
-    \ * q);\n            }\n        }\n        std::sort(ret.begin(), ret.end());\n\
-    \        return ret;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> lpf,\
-    \ _primes;\n};\n#line 5 \"test/aoj/NTL_1_A.test.cpp\"\n\nint main() {\n    int\
-    \ n;\n    std::cin >> n;\n    sieve s(n);\n    std::cout << n << ':';\n    for\
-    \ (auto [p, e] : s.factorize(n)) {\n        for (int i = 0; i < e; i++) std::cout\
-    \ << ' ' << p;\n    }\n    std::cout << '\\n';\n}\n"
+    \ * q);\n            }\n        }\n        std::ranges::sort(ret);\n        return\
+    \ ret;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> lpf, _primes;\n};\n\
+    #line 5 \"test/aoj/NTL_1_A.test.cpp\"\n\nint main() {\n    int n;\n    std::cin\
+    \ >> n;\n    sieve s(n);\n    std::cout << n << ':';\n    for (auto [p, e] : s.factorize(n))\
+    \ {\n        for (int i = 0; i < e; i++) std::cout << ' ' << p;\n    }\n    std::cout\
+    \ << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A\"\n#include\
     \ <iostream>\n\n#include \"math/sieve.hpp\"\n\nint main() {\n    int n;\n    std::cin\
     \ >> n;\n    sieve s(n);\n    std::cout << n << ':';\n    for (auto [p, e] : s.factorize(n))\
@@ -52,8 +52,8 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_1_A.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 01:59:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_A.test.cpp
 layout: document

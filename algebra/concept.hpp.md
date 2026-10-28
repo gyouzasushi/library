@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: datastructure/dual_segtree.hpp
     title: Dual Segment Tree
+  - icon: ':x:'
+    path: datastructure/dynamic_segtree.hpp
+    title: Dynamic Segment Tree
   - icon: ':heavy_check_mark:'
     path: datastructure/lazy_segtree.hpp
     title: Lazy Segment Tree (acted monoid wrapper)
@@ -14,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: datastructure/plus_minus_one_rmq.hpp
     title: Plus Minus One RMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: datastructure/segtree.hpp
     title: Segment Tree (monoid wrapper)
   - icon: ':heavy_check_mark:'
@@ -23,13 +26,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: datastructure/sqrt_tree.hpp
     title: Sqrt Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: datastructure/weighted_dsu.hpp
     title: Weighted DSU
   - icon: ':heavy_check_mark:'
     path: graph/lowest_common_ancestor.hpp
     title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/manhattan_mst.hpp
     title: Manhattan MST
   - icon: ':heavy_check_mark:'
@@ -54,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/lca.test.cpp
     title: test/library-checker/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/manhattanmst.test.cpp
     title: test/library-checker/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/matrix_rank.test.cpp
     title: test/library-checker/matrix_rank.test.cpp
+  - icon: ':x:'
+    path: test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
+    title: test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library-checker/point_set_range_composite.test.cpp
     title: test/library-checker/point_set_range_composite.test.cpp
@@ -84,15 +90,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/system_of_linear_equations.test.cpp
     title: test/library-checker/system_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/unionfind_with_potential.test.cpp
     title: test/library-checker/unionfind_with_potential.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/dual_segtree.test.cpp
     title: test/unit/dual_segtree.test.cpp
+  - icon: ':x:'
+    path: test/unit/dynamic_segtree.test.cpp
+    title: test/unit/dynamic_segtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/linear_algebra.test.cpp
     title: test/unit/linear_algebra.test.cpp
@@ -114,12 +123,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/string_hash.test.cpp
     title: test/unit/string_hash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/weighted_dsu.test.cpp
     title: test/unit/weighted_dsu.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algebra/concept.hpp\"\n#include <concepts>\ntemplate <class\
@@ -156,47 +165,50 @@ data:
   isVerificationFile: false
   path: algebra/concept.hpp
   requiredBy:
+  - math/matrix.hpp
   - string/range_update_range_hash.hpp
   - graph/lowest_common_ancestor.hpp
   - graph/manhattan_mst.hpp
-  - math/matrix.hpp
-  - datastructure/segtree.hpp
-  - datastructure/sqrt_tree.hpp
-  - datastructure/persistent_segtree.hpp
   - datastructure/dual_segtree.hpp
-  - datastructure/sparse_table.hpp
-  - datastructure/lazy_segtree.hpp
   - datastructure/plus_minus_one_rmq.hpp
+  - datastructure/persistent_segtree.hpp
   - datastructure/weighted_dsu.hpp
+  - datastructure/dynamic_segtree.hpp
+  - datastructure/sparse_table.hpp
+  - datastructure/segtree.hpp
+  - datastructure/lazy_segtree.hpp
+  - datastructure/sqrt_tree.hpp
   timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/0355.test.cpp
+  - test/aoj/DSL_2_G.test.cpp
+  - test/aoj/DSL_2_A.test.cpp
   - test/unit/sqrt_tree.test.cpp
+  - test/unit/dynamic_segtree.test.cpp
+  - test/unit/persistent_segtree.test.cpp
+  - test/unit/dual_segtree.test.cpp
+  - test/unit/monoid.test.cpp
   - test/unit/weighted_dsu.test.cpp
   - test/unit/string_hash.test.cpp
   - test/unit/matrix.test.cpp
   - test/unit/sparse_table.test.cpp
-  - test/unit/dual_segtree.test.cpp
-  - test/unit/monoid.test.cpp
-  - test/unit/persistent_segtree.test.cpp
   - test/unit/linear_algebra.test.cpp
-  - test/library-checker/staticrmq_sqrt_tree.test.cpp
-  - test/library-checker/range_affine_point_get.test.cpp
-  - test/library-checker/staticrmq.test.cpp
   - test/library-checker/inverse_matrix.test.cpp
-  - test/library-checker/system_of_linear_equations.test.cpp
-  - test/library-checker/pow_of_matrix.test.cpp
   - test/library-checker/lca.test.cpp
-  - test/library-checker/manhattanmst.test.cpp
   - test/library-checker/matrix_det.test.cpp
-  - test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
   - test/library-checker/unionfind_with_potential.test.cpp
+  - test/library-checker/staticrmq.test.cpp
+  - test/library-checker/system_of_linear_equations.test.cpp
+  - test/library-checker/staticrmq_sqrt_tree.test.cpp
+  - test/library-checker/pow_of_matrix.test.cpp
   - test/library-checker/matrix_product.test.cpp
   - test/library-checker/point_set_range_composite.test.cpp
+  - test/library-checker/manhattanmst.test.cpp
+  - test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
+  - test/library-checker/range_affine_point_get.test.cpp
+  - test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
   - test/library-checker/matrix_rank.test.cpp
-  - test/aoj/0355.test.cpp
-  - test/aoj/DSL_2_G.test.cpp
-  - test/aoj/DSL_2_A.test.cpp
 documentation_of: algebra/concept.hpp
 layout: document
 title: 'Algebra: Concept'

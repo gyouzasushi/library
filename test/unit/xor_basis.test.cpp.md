@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/xor_basis.hpp
     title: Xor Basis
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -23,8 +23,8 @@ data:
     \    int size() const {\n        return int(b.size());\n    }\n    bool insert(T\
     \ x) {\n        x = reduce(x);\n        if (x == 0) return false;\n        T p\
     \ = T(1) << (std::bit_width(std::make_unsigned_t<T>(x)) - 1);\n        for (T&\
-    \ v : b) {\n            if (v & p) v ^= x;\n        }\n        b.insert(std::lower_bound(b.begin(),\
-    \ b.end(), x, std::greater<T>()), x);\n        return true;\n    }\n    bool contains(T\
+    \ v : b) {\n            if (v & p) v ^= x;\n        }\n        b.insert(std::ranges::lower_bound(b,\
+    \ x, std::greater<T>()), x);\n        return true;\n    }\n    bool contains(T\
     \ x) const {\n        return reduce(x) == 0;\n    }\n    T max(T xor_val = 0)\
     \ const {\n        check(xor_val);\n        for (T v : b) xor_val = std::max(xor_val,\
     \ T(xor_val ^ v));\n        return xor_val;\n    }\n    T min(T xor_val = 0) const\
@@ -119,8 +119,8 @@ data:
   isVerificationFile: true
   path: test/unit/xor_basis.test.cpp
   requiredBy: []
-  timestamp: '2026-10-27 07:17:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/unit/xor_basis.test.cpp
 layout: document

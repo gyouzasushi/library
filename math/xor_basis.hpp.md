@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/xor_basis.test.cpp
     title: test/unit/xor_basis.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/xor_basis.hpp\"\n#include <algorithm>\n#include <bit>\n\
@@ -18,10 +18,10 @@ data:
     \     return int(b.size());\n    }\n    bool insert(T x) {\n        x = reduce(x);\n\
     \        if (x == 0) return false;\n        T p = T(1) << (std::bit_width(std::make_unsigned_t<T>(x))\
     \ - 1);\n        for (T& v : b) {\n            if (v & p) v ^= x;\n        }\n\
-    \        b.insert(std::lower_bound(b.begin(), b.end(), x, std::greater<T>()),\
-    \ x);\n        return true;\n    }\n    bool contains(T x) const {\n        return\
-    \ reduce(x) == 0;\n    }\n    T max(T xor_val = 0) const {\n        check(xor_val);\n\
-    \        for (T v : b) xor_val = std::max(xor_val, T(xor_val ^ v));\n        return\
+    \        b.insert(std::ranges::lower_bound(b, x, std::greater<T>()), x);\n   \
+    \     return true;\n    }\n    bool contains(T x) const {\n        return reduce(x)\
+    \ == 0;\n    }\n    T max(T xor_val = 0) const {\n        check(xor_val);\n  \
+    \      for (T v : b) xor_val = std::max(xor_val, T(xor_val ^ v));\n        return\
     \ xor_val;\n    }\n    T min(T xor_val = 0) const {\n        return reduce(xor_val);\n\
     \    }\n    T kth_smallest(T k, T xor_val = 0) const {\n        int r = size();\n\
     \        assert(0 <= k && (r >= std::numeric_limits<T>::digits || k < (T(1) <<\
@@ -41,8 +41,8 @@ data:
     \    }\n    bool insert(T x) {\n        x = reduce(x);\n        if (x == 0) return\
     \ false;\n        T p = T(1) << (std::bit_width(std::make_unsigned_t<T>(x)) -\
     \ 1);\n        for (T& v : b) {\n            if (v & p) v ^= x;\n        }\n \
-    \       b.insert(std::lower_bound(b.begin(), b.end(), x, std::greater<T>()), x);\n\
-    \        return true;\n    }\n    bool contains(T x) const {\n        return reduce(x)\
+    \       b.insert(std::ranges::lower_bound(b, x, std::greater<T>()), x);\n    \
+    \    return true;\n    }\n    bool contains(T x) const {\n        return reduce(x)\
     \ == 0;\n    }\n    T max(T xor_val = 0) const {\n        check(xor_val);\n  \
     \      for (T v : b) xor_val = std::max(xor_val, T(xor_val ^ v));\n        return\
     \ xor_val;\n    }\n    T min(T xor_val = 0) const {\n        return reduce(xor_val);\n\
@@ -61,8 +61,8 @@ data:
   isVerificationFile: false
   path: math/xor_basis.hpp
   requiredBy: []
-  timestamp: '2026-10-27 07:17:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/unit/xor_basis.test.cpp
 documentation_of: math/xor_basis.hpp

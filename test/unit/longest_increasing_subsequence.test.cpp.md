@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: algorithm/longest_increasing_subsequence.hpp
     title: Longest Increasing Subsequence
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -22,17 +22,17 @@ data:
     \ {\n    explicit longest_increasing_subsequence(const std::vector<T>& a,\n  \
     \                                          Compare comp = {})\n        : n(a.size()),\
     \ pos(n) {\n        std::vector<T> dp;\n        for (int i = 0; i < n; i++) {\n\
-    \            auto it = std::lower_bound(dp.begin(), dp.end(), a[i], comp);\n \
-    \           pos[i] = it - dp.begin();\n            if (it == dp.end()) {\n   \
-    \             dp.push_back(a[i]);\n            } else {\n                *it =\
-    \ a[i];\n            }\n        }\n        len = dp.size();\n        cand.resize(len);\n\
+    \            auto it = std::ranges::lower_bound(dp, a[i], comp);\n           \
+    \ pos[i] = it - dp.begin();\n            if (it == dp.end()) {\n             \
+    \   dp.push_back(a[i]);\n            } else {\n                *it = a[i];\n \
+    \           }\n        }\n        len = dp.size();\n        cand.resize(len);\n\
     \        for (int i = n - 1; i >= 0; i--) {\n            int j = pos[i];\n   \
     \         if (j == len - 1 ||\n                (!cand[j + 1].empty() && comp(a[i],\
     \ a[cand[j + 1].back()]))) {\n                cand[j].push_back(i);\n        \
     \    } else {\n                pos[i] = -1;\n            }\n        }\n      \
-    \  for (auto& c : cand) std::reverse(c.begin(), c.end());\n    }\n    int length()\
-    \ const { return len; }\n    int position(int i) const {\n        assert(0 <=\
-    \ i && i < n);\n        return pos[i];\n    }\n    const std::vector<int>& candidates(int\
+    \  for (auto& c : cand) std::ranges::reverse(c);\n    }\n    int length() const\
+    \ { return len; }\n    int position(int i) const {\n        assert(0 <= i && i\
+    \ < n);\n        return pos[i];\n    }\n    const std::vector<int>& candidates(int\
     \ j) const {\n        assert(0 <= j && j < len);\n        return cand[j];\n  \
     \  }\n    std::vector<int> indices() const {\n        std::vector<int> res(len);\n\
     \        for (int j = 0; j < len; j++) res[j] = cand[j].front();\n        return\
@@ -113,8 +113,8 @@ data:
   isVerificationFile: true
   path: test/unit/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 21:56:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/unit/longest_increasing_subsequence.test.cpp
 layout: document

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
   - icon: ':heavy_check_mark:'
     path: algebra/monoid_min.hpp
     title: 'Monoid: Min'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: datastructure/segtree.hpp
     title: Segment Tree (monoid wrapper)
   _extendedRequiredBy: []

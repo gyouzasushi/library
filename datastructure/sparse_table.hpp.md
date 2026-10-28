@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
   _extendedRequiredBy:
@@ -76,8 +76,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/sparse_table.test.cpp
-  - test/library-checker/staticrmq.test.cpp
   - test/library-checker/lca.test.cpp
+  - test/library-checker/staticrmq.test.cpp
 documentation_of: datastructure/sparse_table.hpp
 layout: document
 title: Sparse Table

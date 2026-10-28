@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/wildcard_matching.hpp
     title: Wildcard Matching
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -397,11 +397,11 @@ data:
     \ wildcard_matching(const std::vector<long long>& a,\n                       \
     \             std::vector<long long> b, int k) {\n    int n = a.size(), m = b.size();\n\
     \    if (m > n) return {};\n    if (m == 0) return std::vector<bool>(n + 1, true);\n\
-    \    assert((long double)m * k * k * k * k < 9e18L);\n    std::reverse(b.begin(),\
-    \ b.end());\n    auto pw = [](const std::vector<long long>& v, int e) {\n    \
-    \    std::vector<long long> r(v.size());\n        for (size_t i = 0; i < v.size();\
-    \ i++) {\n            r[i] = v[i];\n            for (int j = 1; j < e; j++) r[i]\
-    \ *= v[i];\n        }\n        return r;\n    };\n    auto c1 = atcoder::convolution_ll(pw(a,\
+    \    assert((long double)m * k * k * k * k < 9e18L);\n    std::ranges::reverse(b);\n\
+    \    auto pw = [](const std::vector<long long>& v, int e) {\n        std::vector<long\
+    \ long> r(v.size());\n        for (size_t i = 0; i < v.size(); i++) {\n      \
+    \      r[i] = v[i];\n            for (int j = 1; j < e; j++) r[i] *= v[i];\n \
+    \       }\n        return r;\n    };\n    auto c1 = atcoder::convolution_ll(pw(a,\
     \ 3), pw(b, 1));\n    auto c2 = atcoder::convolution_ll(pw(a, 2), pw(b, 2));\n\
     \    auto c3 = atcoder::convolution_ll(pw(a, 1), pw(b, 3));\n    std::vector<bool>\
     \ res(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        res[i] =\
@@ -409,30 +409,29 @@ data:
     }\n}  // namespace internal\n\ntemplate <class T>\nstd::vector<bool> wildcard_matching(const\
     \ std::vector<T>& s,\n                                    const std::vector<T>&\
     \ t, T wildcard) {\n    std::vector<T> v;\n    for (const T& x : s) v.push_back(x);\n\
-    \    for (const T& x : t) v.push_back(x);\n    std::sort(v.begin(), v.end());\n\
-    \    v.erase(std::unique(v.begin(), v.end()), v.end());\n    auto id = [&](const\
-    \ T& x) -> long long {\n        if (x == wildcard) return 0;\n        return std::lower_bound(v.begin(),\
-    \ v.end(), x) - v.begin() + 1;\n    };\n    std::vector<long long> a(s.size()),\
-    \ b(t.size());\n    for (size_t i = 0; i < s.size(); i++) a[i] = id(s[i]);\n \
-    \   for (size_t i = 0; i < t.size(); i++) b[i] = id(t[i]);\n    return internal::wildcard_matching(a,\
-    \ b, v.size());\n}\n\nstd::vector<bool> wildcard_matching(const std::string& s,\
-    \ const std::string& t,\n                                    char wildcard = '?')\
-    \ {\n    return wildcard_matching(std::vector<char>(s.begin(), s.end()),\n   \
-    \                          std::vector<char>(t.begin(), t.end()), wildcard);\n\
-    }\n#line 9 \"test/unit/wildcard_matching.test.cpp\"\n\ntemplate <class Seq, class\
-    \ T>\nstd::vector<bool> brute(const Seq& s, const Seq& t, T wildcard) {\n    int\
-    \ n = s.size(), m = t.size();\n    if (m > n) return {};\n    std::vector<bool>\
-    \ res(n - m + 1, true);\n    for (int i = 0; i < n - m + 1; i++)\n        for\
-    \ (int j = 0; j < m; j++)\n            if (s[i + j] != t[j] && s[i + j] != wildcard\
-    \ && t[j] != wildcard) res[i] = false;\n    return res;\n}\n\nint main() {\n \
-    \   std::mt19937 rng(2231);\n    for (int it = 0; it < 2000; it++) {\n       \
-    \ int n = rng() % 12, m = rng() % 12, k = 1 + rng() % 4;\n        std::string\
-    \ s(n, ' '), t(m, ' ');\n        for (auto& c : s) c = rng() % 3 == 0 ? '?' :\
-    \ 'a' + rng() % k;\n        for (auto& c : t) c = rng() % 3 == 0 ? '?' : 'a' +\
-    \ rng() % k;\n        assert(wildcard_matching(s, t) == brute(s, t, '?'));\n \
-    \       std::vector<int> a(n), b(m);\n        for (auto& x : a) x = rng() % 3\
-    \ == 0 ? -1 : (int)(rng() % k) * 1000000;\n        for (auto& x : b) x = rng()\
-    \ % 3 == 0 ? -1 : (int)(rng() % k) * 1000000;\n        assert(wildcard_matching(a,\
+    \    for (const T& x : t) v.push_back(x);\n    std::ranges::sort(v);\n    v.erase(std::ranges::unique(v).begin(),\
+    \ v.end());\n    auto id = [&](const T& x) -> long long {\n        if (x == wildcard)\
+    \ return 0;\n        return std::ranges::lower_bound(v, x) - v.begin() + 1;\n\
+    \    };\n    std::vector<long long> a(s.size()), b(t.size());\n    for (size_t\
+    \ i = 0; i < s.size(); i++) a[i] = id(s[i]);\n    for (size_t i = 0; i < t.size();\
+    \ i++) b[i] = id(t[i]);\n    return internal::wildcard_matching(a, b, v.size());\n\
+    }\n\nstd::vector<bool> wildcard_matching(const std::string& s, const std::string&\
+    \ t,\n                                    char wildcard = '?') {\n    return wildcard_matching(std::vector<char>(s.begin(),\
+    \ s.end()),\n                             std::vector<char>(t.begin(), t.end()),\
+    \ wildcard);\n}\n#line 9 \"test/unit/wildcard_matching.test.cpp\"\n\ntemplate\
+    \ <class Seq, class T>\nstd::vector<bool> brute(const Seq& s, const Seq& t, T\
+    \ wildcard) {\n    int n = s.size(), m = t.size();\n    if (m > n) return {};\n\
+    \    std::vector<bool> res(n - m + 1, true);\n    for (int i = 0; i < n - m +\
+    \ 1; i++)\n        for (int j = 0; j < m; j++)\n            if (s[i + j] != t[j]\
+    \ && s[i + j] != wildcard && t[j] != wildcard) res[i] = false;\n    return res;\n\
+    }\n\nint main() {\n    std::mt19937 rng(2231);\n    for (int it = 0; it < 2000;\
+    \ it++) {\n        int n = rng() % 12, m = rng() % 12, k = 1 + rng() % 4;\n  \
+    \      std::string s(n, ' '), t(m, ' ');\n        for (auto& c : s) c = rng()\
+    \ % 3 == 0 ? '?' : 'a' + rng() % k;\n        for (auto& c : t) c = rng() % 3 ==\
+    \ 0 ? '?' : 'a' + rng() % k;\n        assert(wildcard_matching(s, t) == brute(s,\
+    \ t, '?'));\n        std::vector<int> a(n), b(m);\n        for (auto& x : a) x\
+    \ = rng() % 3 == 0 ? -1 : (int)(rng() % k) * 1000000;\n        for (auto& x :\
+    \ b) x = rng() % 3 == 0 ? -1 : (int)(rng() % k) * 1000000;\n        assert(wildcard_matching(a,\
     \ b, -1) == brute(a, b, -1));\n    }\n    // full ASCII alphabet, long strings\n\
     \    {\n        int n = 300000, m = 100000;\n        std::string s(n, ' '), t(m,\
     \ ' ');\n        for (auto& c : s) c = 33 + rng() % 94;\n        for (auto& c\
@@ -470,8 +469,8 @@ data:
   isVerificationFile: true
   path: test/unit/wildcard_matching.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:28:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/unit/wildcard_matching.test.cpp
 layout: document

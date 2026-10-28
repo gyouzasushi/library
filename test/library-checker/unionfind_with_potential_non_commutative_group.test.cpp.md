@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: datastructure/weighted_dsu.hpp
     title: Weighted DSU
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
@@ -267,11 +267,11 @@ data:
     \          leader_buf[i] = leader(i);\n            group_size[leader_buf[i]]++;\n\
     \        }\n        std::vector<std::vector<int>> result(_n);\n        for (int\
     \ i = 0; i < _n; i++) result[i].reserve(group_size[i]);\n        for (int i =\
-    \ 0; i < _n; i++) result[leader_buf[i]].push_back(i);\n        result.erase(std::remove_if(result.begin(),\
-    \ result.end(),\n                                    [&](const std::vector<int>&\
-    \ v) { return v.empty(); }),\n                     result.end());\n        return\
-    \ result;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> parent_or_size;\n\
-    \    std::vector<S> pot;  // relative to parent\n};\n#line 7 \"test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp\"\
+    \ 0; i < _n; i++) result[leader_buf[i]].push_back(i);\n        result.erase(std::ranges::remove_if(result,\
+    \ [](const std::vector<int>& v) { return v.empty(); }).begin(),\n            \
+    \         result.end());\n        return result;\n    }\n\nprivate:\n    int _n;\n\
+    \    std::vector<int> parent_or_size;\n    std::vector<S> pot;  // relative to\
+    \ parent\n};\n#line 7 \"test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\n// 2x2 matrices with determinant\
     \ 1\nstruct group_sl2 {\n    using S = std::array<mint, 4>;\n    static S op(S\
     \ a, S b) {\n        return {a[0] * b[0] + a[1] * b[2], a[0] * b[1] + a[1] * b[3],\
@@ -312,8 +312,8 @@ data:
   isVerificationFile: true
   path: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
 layout: document

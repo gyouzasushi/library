@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
@@ -81,29 +81,29 @@ data:
     \ prefix sums of weights in the order at level d (cs[log]: original order)\n \
     \   std::vector<std::vector<W>> cs;\n\n    void build(const std::vector<T>& a,\
     \ const std::vector<W>& w) {\n        n = int(a.size());\n        key = a;\n \
-    \       std::sort(key.begin(), key.end());\n        key.erase(std::unique(key.begin(),\
-    \ key.end()), key.end());\n        log = key.empty() ? 0 : std::bit_width(unsigned(key.size()\
+    \       std::ranges::sort(key);\n        key.erase(std::ranges::unique(key).begin(),\
+    \ key.end());\n        log = key.empty() ? 0 : std::bit_width(unsigned(key.size()\
     \ - 1));\n        std::vector<int> b(n), order(n);\n        for (int i = 0; i\
-    \ < n; i++) {\n            b[i] = int(std::lower_bound(key.begin(), key.end(),\
-    \ a[i]) - key.begin());\n            order[i] = i;\n        }\n        bv.assign(log,\
-    \ bit_vector(n));\n        if constexpr (weighted) {\n            cs.assign(log\
-    \ + 1, std::vector<W>(n + 1));\n            for (int i = 0; i < n; i++) cs[log][i\
-    \ + 1] = cs[log][i] + w[i];\n        }\n        std::vector<int> next(n);\n  \
-    \      for (int d = log - 1; d >= 0; d--) {\n            int z = 0;\n        \
-    \    for (int i = 0; i < n; i++) {\n                if (b[order[i]] >> d & 1)\
-    \ {\n                    bv[d].set(i);\n                } else {\n           \
-    \         next[z++] = order[i];\n                }\n            }\n          \
-    \  for (int i = 0; i < n; i++) {\n                if (b[order[i]] >> d & 1) next[z++]\
-    \ = order[i];\n            }\n            bv[d].build();\n            std::swap(order,\
-    \ next);\n            if constexpr (weighted) {\n                for (int i =\
-    \ 0; i < n; i++) cs[d][i + 1] = cs[d][i] + w[order[i]];\n            }\n     \
-    \   }\n    }\n    // #{ v in key : v < x }\n    int rank_of(const T& x) const\
-    \ {\n        return int(std::lower_bound(key.begin(), key.end(), x) - key.begin());\n\
-    \    }\n    // #{ i in [l, r) : b[i] < u }, 0 <= u <= |key|\n    int count_rank(int\
-    \ l, int r, int u) const {\n        if (u == 0) return 0;\n        if (u >= int(key.size()))\
-    \ return r - l;\n        int res = 0;\n        for (int d = log - 1; d >= 0; d--)\
-    \ {\n            int l0 = bv[d].rank0(l), r0 = bv[d].rank0(r);\n            if\
-    \ (u >> d & 1) {\n                res += r0 - l0;\n                l += bv[d].zeros\
+    \ < n; i++) {\n            b[i] = int(std::ranges::lower_bound(key, a[i]) - key.begin());\n\
+    \            order[i] = i;\n        }\n        bv.assign(log, bit_vector(n));\n\
+    \        if constexpr (weighted) {\n            cs.assign(log + 1, std::vector<W>(n\
+    \ + 1));\n            for (int i = 0; i < n; i++) cs[log][i + 1] = cs[log][i]\
+    \ + w[i];\n        }\n        std::vector<int> next(n);\n        for (int d =\
+    \ log - 1; d >= 0; d--) {\n            int z = 0;\n            for (int i = 0;\
+    \ i < n; i++) {\n                if (b[order[i]] >> d & 1) {\n               \
+    \     bv[d].set(i);\n                } else {\n                    next[z++] =\
+    \ order[i];\n                }\n            }\n            for (int i = 0; i <\
+    \ n; i++) {\n                if (b[order[i]] >> d & 1) next[z++] = order[i];\n\
+    \            }\n            bv[d].build();\n            std::swap(order, next);\n\
+    \            if constexpr (weighted) {\n                for (int i = 0; i < n;\
+    \ i++) cs[d][i + 1] = cs[d][i] + w[order[i]];\n            }\n        }\n    }\n\
+    \    // #{ v in key : v < x }\n    int rank_of(const T& x) const {\n        return\
+    \ int(std::ranges::lower_bound(key, x) - key.begin());\n    }\n    // #{ i in\
+    \ [l, r) : b[i] < u }, 0 <= u <= |key|\n    int count_rank(int l, int r, int u)\
+    \ const {\n        if (u == 0) return 0;\n        if (u >= int(key.size())) return\
+    \ r - l;\n        int res = 0;\n        for (int d = log - 1; d >= 0; d--) {\n\
+    \            int l0 = bv[d].rank0(l), r0 = bv[d].rank0(r);\n            if (u\
+    \ >> d & 1) {\n                res += r0 - l0;\n                l += bv[d].zeros\
     \ - l0, r += bv[d].zeros - r0;\n            } else {\n                l = l0,\
     \ r = r0;\n            }\n        }\n        return res;\n    }\n    S sum_rank(int\
     \ l, int r, int u) const\n        requires weighted\n    {\n        if (u == 0)\
@@ -129,8 +129,8 @@ data:
   isVerificationFile: true
   path: test/library-checker/static_range_frequency.test.cpp
   requiredBy: []
-  timestamp: '2026-10-25 23:13:53+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library-checker/static_range_frequency.test.cpp
 layout: document

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/monoid_argmin.hpp
     title: 'Monoid: Argmin'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: datastructure/segtree.hpp
     title: Segment Tree (monoid wrapper)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/manhattan_mst.hpp
     title: Manhattan MST
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/manhattanmst
@@ -52,20 +52,19 @@ data:
     \ \"graph/manhattan_mst.hpp\"\ntemplate <typename T>\nstd::vector<std::tuple<int,\
     \ int, T>> manhattan_mst(std::vector<T> x,\n                                 \
     \                  std::vector<T> y) {\n    int n = x.size();\n    assert(int(y.size())\
-    \ == n);\n    std::vector<int> id(n);\n    std::iota(id.begin(), id.end(), 0);\n\
-    \    std::vector<int> y_id(n);\n    std::vector<std::tuple<int, int, T>> ret;\n\
-    \    for (int a = 0; a < 2; a++) {\n        for (int b = 0; b < 2; b++) {\n  \
-    \          for (int c = 0; c < 2; c++) {\n                sort(id.begin(), id.end(),\
-    \ [&](int i, int j) {\n                    if (y[i] - x[i] == y[j] - x[j] && y[i]\
-    \ == y[j])\n                        return i < j;\n                    if (y[i]\
-    \ - x[i] == y[j] - x[j]) return y[i] > y[j];\n                    return y[i]\
-    \ - x[i] < y[j] - x[j];\n                });\n                std::vector<T> _y\
-    \ = y;\n                std::sort(_y.begin(), _y.end());\n                for\
-    \ (int i = 0; i < n; i++) {\n                    y_id[i] = std::lower_bound(_y.begin(),\
-    \ _y.end(), y[i]) -\n                              _y.begin();\n             \
-    \   }\n                segtree<monoid_argmin<T>> segt(n);\n                for\
-    \ (int i : id) {\n                    auto p = segt.prod(y_id[i], n);\n      \
-    \              if (p.id != -1) {\n                        ret.emplace_back(i,\
+    \ == n);\n    std::vector<int> id(n);\n    std::ranges::iota(id, 0);\n    std::vector<int>\
+    \ y_id(n);\n    std::vector<std::tuple<int, int, T>> ret;\n    for (int a = 0;\
+    \ a < 2; a++) {\n        for (int b = 0; b < 2; b++) {\n            for (int c\
+    \ = 0; c < 2; c++) {\n                sort(id.begin(), id.end(), [&](int i, int\
+    \ j) {\n                    if (y[i] - x[i] == y[j] - x[j] && y[i] == y[j])\n\
+    \                        return i < j;\n                    if (y[i] - x[i] ==\
+    \ y[j] - x[j]) return y[i] > y[j];\n                    return y[i] - x[i] < y[j]\
+    \ - x[j];\n                });\n                std::vector<T> _y = y;\n     \
+    \           std::ranges::sort(_y);\n                for (int i = 0; i < n; i++)\
+    \ {\n                    y_id[i] = std::ranges::lower_bound(_y, y[i]) - _y.begin();\n\
+    \                }\n                segtree<monoid_argmin<T>> segt(n);\n     \
+    \           for (int i : id) {\n                    auto p = segt.prod(y_id[i],\
+    \ n);\n                    if (p.id != -1) {\n                        ret.emplace_back(i,\
     \ p.id, p.val - (x[i] + y[i]));\n                    }\n                    segt.set(y_id[i],\
     \ {x[i] + y[i], i});\n                }\n                std::swap(x, y);\n  \
     \          }\n            for (T &x : x) x = -x;\n        }\n        for (T &y\
@@ -96,8 +95,8 @@ data:
   isVerificationFile: true
   path: test/library-checker/manhattanmst.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library-checker/manhattanmst.test.cpp
 layout: document

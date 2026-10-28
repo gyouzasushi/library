@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: algebra/group_add.hpp
     title: 'Group: Add'
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: algebra/group_xor.hpp
     title: 'Group: XOR'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/monoid_add.hpp
     title: 'Monoid: Add'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/monoid_xor.hpp
     title: 'Monoid: XOR'
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: datastructure/weighted_dsu.hpp
     title: Weighted DSU
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -82,13 +82,13 @@ data:
     \          leader_buf[i] = leader(i);\n            group_size[leader_buf[i]]++;\n\
     \        }\n        std::vector<std::vector<int>> result(_n);\n        for (int\
     \ i = 0; i < _n; i++) result[i].reserve(group_size[i]);\n        for (int i =\
-    \ 0; i < _n; i++) result[leader_buf[i]].push_back(i);\n        result.erase(std::remove_if(result.begin(),\
-    \ result.end(),\n                                    [&](const std::vector<int>&\
-    \ v) { return v.empty(); }),\n                     result.end());\n        return\
-    \ result;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> parent_or_size;\n\
-    \    std::vector<S> pot;  // relative to parent\n};\n#line 11 \"test/unit/weighted_dsu.test.cpp\"\
-    \n\n// brute force: potentials via BFS over accepted constraints\ntemplate <class\
-    \ G> struct brute {\n    using S = typename G::S;\n    int n;\n    std::vector<std::vector<std::pair<int,\
+    \ 0; i < _n; i++) result[leader_buf[i]].push_back(i);\n        result.erase(std::ranges::remove_if(result,\
+    \ [](const std::vector<int>& v) { return v.empty(); }).begin(),\n            \
+    \         result.end());\n        return result;\n    }\n\nprivate:\n    int _n;\n\
+    \    std::vector<int> parent_or_size;\n    std::vector<S> pot;  // relative to\
+    \ parent\n};\n#line 11 \"test/unit/weighted_dsu.test.cpp\"\n\n// brute force:\
+    \ potentials via BFS over accepted constraints\ntemplate <class G> struct brute\
+    \ {\n    using S = typename G::S;\n    int n;\n    std::vector<std::vector<std::pair<int,\
     \ S>>> g;  // (to, diff(from, to))\n    explicit brute(int n) : n(n), g(n) {\n\
     \    }\n    std::vector<std::optional<S>> potentials(int s) {\n        std::vector<std::optional<S>>\
     \ p(n);\n        p[s] = G::e();\n        std::vector<int> st = {s};\n        while\
@@ -187,8 +187,8 @@ data:
   isVerificationFile: true
   path: test/unit/weighted_dsu.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/unit/weighted_dsu.test.cpp
 layout: document

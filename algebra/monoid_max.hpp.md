@@ -3,15 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/unit/dynamic_segtree.test.cpp
+    title: test/unit/dynamic_segtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/sparse_table.test.cpp
     title: test/unit/sparse_table.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algebra/monoid_max.hpp\"\n#include <algorithm>\n#include\
@@ -27,10 +30,11 @@ data:
   path: algebra/monoid_max.hpp
   requiredBy: []
   timestamp: '2026-10-23 22:06:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/unit/sparse_table.test.cpp
+  - test/unit/dynamic_segtree.test.cpp
   - test/unit/monoid.test.cpp
+  - test/unit/sparse_table.test.cpp
 documentation_of: algebra/monoid_max.hpp
 layout: document
 title: 'Monoid: Max'

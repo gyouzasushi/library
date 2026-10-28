@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/factorize.hpp
     title: Factorize
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/binomial_coefficient.test.cpp
     title: test/library-checker/binomial_coefficient.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -74,8 +74,8 @@ data:
   isVerificationFile: false
   path: math/binomial_coefficient_arbitrary_mod.hpp
   requiredBy: []
-  timestamp: '2026-10-26 01:59:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library-checker/binomial_coefficient.test.cpp
 documentation_of: math/binomial_coefficient_arbitrary_mod.hpp

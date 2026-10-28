@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/monoid_argmin.hpp
     title: 'Monoid: Argmin'
   - icon: ':heavy_check_mark:'
     path: algebra/monoid_gcd.hpp
     title: 'Monoid: GCD'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/monoid_max.hpp
     title: 'Monoid: Max'
   - icon: ':heavy_check_mark:'

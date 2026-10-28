@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: algorithm/mo.hpp
     title: Mo's Algorithm
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -31,20 +31,20 @@ data:
     \ int>> lr;\n    std::vector<int> order() const {\n        int q = lr.size();\n\
     \        if (q == 0) return {};\n        int n = 1;\n        for (auto [l, r]\
     \ : lr) n = std::max(n, r);\n        int w = std::max(1, (int)(std::sqrt(3.0)\
-    \ * n / std::sqrt(2.0 * q)));\n        std::vector<int> ord(q);\n        std::iota(ord.begin(),\
-    \ ord.end(), 0);\n        std::sort(ord.begin(), ord.end(), [&](int a, int b)\
-    \ {\n            int ba = lr[a].first / w, bb = lr[b].first / w;\n           \
-    \ if (ba != bb) return ba < bb;\n            return (ba & 1) ? lr[a].second >\
-    \ lr[b].second\n                            : lr[a].second < lr[b].second;\n \
-    \       });\n        auto cost = [&](int a, int b) {\n            return std::abs(lr[ord[a]].first\
-    \ - lr[ord[b]].first) +\n                   std::abs(lr[ord[a]].second - lr[ord[b]].second);\n\
-    \        };\n        auto improve = [&](int k) {\n            if (cost(k, k +\
-    \ 2) + cost(k + 1, k + 3) <\n                cost(k, k + 1) + cost(k + 2, k +\
-    \ 3))\n                std::swap(ord[k + 1], ord[k + 2]);\n            if (cost(k,\
-    \ k + 3) + cost(k + 1, k + 4) <\n                cost(k, k + 1) + cost(k + 3,\
-    \ k + 4))\n                std::swap(ord[k + 1], ord[k + 3]);\n        };\n  \
-    \      for (int k = 0; k + 5 <= q; k++) improve(k);\n        for (int k = q -\
-    \ 5; k >= 0; k--) improve(k);\n        return ord;\n    }\n};\n#line 1 \"atcoder/fenwicktree.hpp\"\
+    \ * n / std::sqrt(2.0 * q)));\n        std::vector<int> ord(q);\n        std::ranges::iota(ord,\
+    \ 0);\n        std::ranges::sort(ord, [&](int a, int b) {\n            int ba\
+    \ = lr[a].first / w, bb = lr[b].first / w;\n            if (ba != bb) return ba\
+    \ < bb;\n            return (ba & 1) ? lr[a].second > lr[b].second\n         \
+    \                   : lr[a].second < lr[b].second;\n        });\n        auto\
+    \ cost = [&](int a, int b) {\n            return std::abs(lr[ord[a]].first - lr[ord[b]].first)\
+    \ +\n                   std::abs(lr[ord[a]].second - lr[ord[b]].second);\n   \
+    \     };\n        auto improve = [&](int k) {\n            if (cost(k, k + 2)\
+    \ + cost(k + 1, k + 3) <\n                cost(k, k + 1) + cost(k + 2, k + 3))\n\
+    \                std::swap(ord[k + 1], ord[k + 2]);\n            if (cost(k, k\
+    \ + 3) + cost(k + 1, k + 4) <\n                cost(k, k + 1) + cost(k + 3, k\
+    \ + 4))\n                std::swap(ord[k + 1], ord[k + 3]);\n        };\n    \
+    \    for (int k = 0; k + 5 <= q; k++) improve(k);\n        for (int k = q - 5;\
+    \ k >= 0; k--) improve(k);\n        return ord;\n    }\n};\n#line 1 \"atcoder/fenwicktree.hpp\"\
     \n\n\n\n#line 6 \"atcoder/fenwicktree.hpp\"\n\n#line 1 \"atcoder/internal_type_traits.hpp\"\
     \n\n\n\n#line 6 \"atcoder/internal_type_traits.hpp\"\n#include <type_traits>\n\
     \nnamespace atcoder {\n\nnamespace internal {\n\n#ifndef _MSC_VER\ntemplate <class\
@@ -136,8 +136,8 @@ data:
   isVerificationFile: true
   path: test/library-checker/static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 21:23:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library-checker/static_range_inversions_query.test.cpp
 layout: document

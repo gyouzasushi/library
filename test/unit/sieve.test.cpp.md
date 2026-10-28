@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/factorize.hpp
     title: Factorize
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/sieve.hpp
     title: Sieve
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -48,23 +48,22 @@ data:
     \        st.pop_back();\n        if (p == 1) continue;\n        if (is_prime(p))\
     \ {\n            primes.push_back(p);\n            continue;\n        }\n    \
     \    long long d = internal::rho(p);\n        st.push_back(d);\n        st.push_back(p\
-    \ / d);\n    }\n    std::sort(primes.begin(), primes.end());\n    for (long long\
-    \ p : primes) {\n        if (!ret.empty() && ret.back().first == p) {\n      \
-    \      ret.back().second++;\n        } else {\n            ret.emplace_back(p,\
-    \ 1);\n        }\n    }\n    return ret;\n}\n\nstd::vector<long long> divisors(long\
-    \ long n) {\n    assert(n >= 1);\n    std::vector<long long> ret = {1};\n    for\
-    \ (auto [p, e] : factorize(n)) {\n        int sz = int(ret.size());\n        long\
-    \ long q = 1;\n        for (int i = 0; i < e; i++) {\n            q *= p;\n  \
-    \          for (int j = 0; j < sz; j++) ret.push_back(ret[j] * q);\n        }\n\
-    \    }\n    std::sort(ret.begin(), ret.end());\n    return ret;\n}\n#line 6 \"\
-    math/sieve.hpp\"\nstruct sieve {\npublic:\n    sieve() : sieve(1) {\n    }\n \
-    \   explicit sieve(int n) : _n(n), lpf(n + 1, 0) {\n        assert(n >= 1);\n\
-    \        for (int i = 2; i <= n; i++) {\n            if (lpf[i] == 0) {\n    \
-    \            lpf[i] = i;\n                _primes.push_back(i);\n            }\n\
-    \            for (int p : _primes) {\n                if (p > lpf[i] || (long\
-    \ long)p * i > n) break;\n                lpf[p * i] = p;\n            }\n   \
-    \     }\n    }\n    bool is_prime(int x) const {\n        assert(0 <= x && x <=\
-    \ _n);\n        return x >= 2 && lpf[x] == x;\n    }\n    int smallest_prime_factor(int\
+    \ / d);\n    }\n    std::ranges::sort(primes);\n    for (long long p : primes)\
+    \ {\n        if (!ret.empty() && ret.back().first == p) {\n            ret.back().second++;\n\
+    \        } else {\n            ret.emplace_back(p, 1);\n        }\n    }\n   \
+    \ return ret;\n}\n\nstd::vector<long long> divisors(long long n) {\n    assert(n\
+    \ >= 1);\n    std::vector<long long> ret = {1};\n    for (auto [p, e] : factorize(n))\
+    \ {\n        int sz = int(ret.size());\n        long long q = 1;\n        for\
+    \ (int i = 0; i < e; i++) {\n            q *= p;\n            for (int j = 0;\
+    \ j < sz; j++) ret.push_back(ret[j] * q);\n        }\n    }\n    std::ranges::sort(ret);\n\
+    \    return ret;\n}\n#line 6 \"math/sieve.hpp\"\nstruct sieve {\npublic:\n   \
+    \ sieve() : sieve(1) {\n    }\n    explicit sieve(int n) : _n(n), lpf(n + 1, 0)\
+    \ {\n        assert(n >= 1);\n        for (int i = 2; i <= n; i++) {\n       \
+    \     if (lpf[i] == 0) {\n                lpf[i] = i;\n                _primes.push_back(i);\n\
+    \            }\n            for (int p : _primes) {\n                if (p > lpf[i]\
+    \ || (long long)p * i > n) break;\n                lpf[p * i] = p;\n         \
+    \   }\n        }\n    }\n    bool is_prime(int x) const {\n        assert(0 <=\
+    \ x && x <= _n);\n        return x >= 2 && lpf[x] == x;\n    }\n    int smallest_prime_factor(int\
     \ x) const {\n        assert(2 <= x && x <= _n);\n        return lpf[x];\n   \
     \ }\n    const std::vector<int>& primes() const {\n        return _primes;\n \
     \   }\n    std::vector<std::pair<int, int>> factorize(int x) const {\n       \
@@ -77,20 +76,20 @@ data:
     \ = {1};\n        for (auto [p, e] : factorize(x)) {\n            int sz = int(ret.size());\n\
     \            int q = 1;\n            for (int i = 0; i < e; i++) {\n         \
     \       q *= p;\n                for (int j = 0; j < sz; j++) ret.push_back(ret[j]\
-    \ * q);\n            }\n        }\n        std::sort(ret.begin(), ret.end());\n\
-    \        return ret;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> lpf,\
-    \ _primes;\n};\n#line 9 \"test/unit/sieve.test.cpp\"\n\nstd::vector<std::pair<long\
-    \ long, int>> naive_factorize(long long x) {\n    std::vector<std::pair<long long,\
-    \ int>> ret;\n    for (long long p = 2; p * p <= x; p++) {\n        int e = 0;\n\
-    \        while (x % p == 0) x /= p, e++;\n        if (e) ret.emplace_back(p, e);\n\
-    \    }\n    if (x > 1) ret.emplace_back(x, 1);\n    return ret;\n}\nstd::vector<long\
-    \ long> naive_divisors(long long x) {\n    std::vector<long long> ret;\n    for\
-    \ (long long d = 1; d <= x; d++) {\n        if (x % d == 0) ret.push_back(d);\n\
-    \    }\n    return ret;\n}\n\nint main() {\n    const int n = 3000;\n    sieve\
-    \ s(n);\n    {\n        std::vector<int> ps;\n        for (int x = 0; x <= n;\
-    \ x++) {\n            bool prime = x >= 2;\n            for (int d = 2; d * d\
-    \ <= x; d++) prime &= x % d != 0;\n            assert(s.is_prime(x) == prime);\n\
-    \            if (prime) ps.push_back(x);\n            if (x >= 2) assert(s.smallest_prime_factor(x)\
+    \ * q);\n            }\n        }\n        std::ranges::sort(ret);\n        return\
+    \ ret;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> lpf, _primes;\n};\n\
+    #line 9 \"test/unit/sieve.test.cpp\"\n\nstd::vector<std::pair<long long, int>>\
+    \ naive_factorize(long long x) {\n    std::vector<std::pair<long long, int>> ret;\n\
+    \    for (long long p = 2; p * p <= x; p++) {\n        int e = 0;\n        while\
+    \ (x % p == 0) x /= p, e++;\n        if (e) ret.emplace_back(p, e);\n    }\n \
+    \   if (x > 1) ret.emplace_back(x, 1);\n    return ret;\n}\nstd::vector<long long>\
+    \ naive_divisors(long long x) {\n    std::vector<long long> ret;\n    for (long\
+    \ long d = 1; d <= x; d++) {\n        if (x % d == 0) ret.push_back(d);\n    }\n\
+    \    return ret;\n}\n\nint main() {\n    const int n = 3000;\n    sieve s(n);\n\
+    \    {\n        std::vector<int> ps;\n        for (int x = 0; x <= n; x++) {\n\
+    \            bool prime = x >= 2;\n            for (int d = 2; d * d <= x; d++)\
+    \ prime &= x % d != 0;\n            assert(s.is_prime(x) == prime);\n        \
+    \    if (prime) ps.push_back(x);\n            if (x >= 2) assert(s.smallest_prime_factor(x)\
     \ == naive_factorize(x)[0].first);\n            if (x >= 1) {\n              \
     \  auto f = s.factorize(x);\n                auto g = naive_factorize(x);\n  \
     \              assert(f.size() == g.size());\n                for (size_t i =\
@@ -165,8 +164,8 @@ data:
   isVerificationFile: true
   path: test/unit/sieve.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 01:59:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/unit/sieve.test.cpp
 layout: document

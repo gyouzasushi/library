@@ -41,12 +41,12 @@ data:
   timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/sparse_table.test.cpp
-  - test/unit/monoid.test.cpp
-  - test/unit/persistent_segtree.test.cpp
-  - test/library-checker/staticrmq_sqrt_tree.test.cpp
-  - test/library-checker/staticrmq.test.cpp
   - test/aoj/DSL_2_A.test.cpp
+  - test/unit/persistent_segtree.test.cpp
+  - test/unit/monoid.test.cpp
+  - test/unit/sparse_table.test.cpp
+  - test/library-checker/staticrmq.test.cpp
+  - test/library-checker/staticrmq_sqrt_tree.test.cpp
 documentation_of: algebra/monoid_min.hpp
 layout: document
 title: 'Monoid: Min'

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/line.hpp
     title: 'Geometry: Line'
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/point.hpp
     title: 'Geometry: Point'
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/polygon.hpp
     title: 'Geometry: Polygon'
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.00001'
@@ -26,17 +26,18 @@ data:
     \ ERROR 0.00001\n#include <iomanip>\n#include <iostream>\n#include <vector>\n\n\
     #line 2 \"geometry/polygon.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
     \ <cmath>\n#include <concepts>\n#include <utility>\n#line 8 \"geometry/polygon.hpp\"\
-    \n\n#line 7 \"geometry/line.hpp\"\n\n#line 5 \"geometry/point.hpp\"\n#include\
-    \ <type_traits>\nnamespace geo {\ninline long double eps = 1e-9;\ntemplate <class\
-    \ T> int sgn(T a) {\n    if constexpr (std::is_integral_v<T>) {\n        return\
-    \ (a > 0) - (a < 0);\n    } else {\n        return a < -eps ? -1 : a > eps ? 1\
-    \ : 0;\n    }\n}\ntemplate <class T> struct point {\n    T x, y;\n    point()\
-    \ : x(0), y(0) {\n    }\n    point(T x, T y) : x(x), y(y) {\n    }\n    point&\
-    \ operator+=(const point& p) {\n        x += p.x, y += p.y;\n        return *this;\n\
-    \    }\n    point& operator-=(const point& p) {\n        x -= p.x, y -= p.y;\n\
-    \        return *this;\n    }\n    point& operator*=(T k) {\n        x *= k, y\
-    \ *= k;\n        return *this;\n    }\n    point& operator/=(T k) requires std::floating_point<T>\
-    \ {\n        x /= k, y /= k;\n        return *this;\n    }\n    point operator-()\
+    \n\n#line 7 \"geometry/line.hpp\"\n\n#line 3 \"geometry/point.hpp\"\n#include\
+    \ <compare>\n#line 6 \"geometry/point.hpp\"\n#include <type_traits>\nnamespace\
+    \ geo {\ninline long double eps = 1e-9;\ntemplate <class T> int sgn(T a) {\n \
+    \   if constexpr (std::is_integral_v<T>) {\n        return (a > 0) - (a < 0);\n\
+    \    } else {\n        return a < -eps ? -1 : a > eps ? 1 : 0;\n    }\n}\ntemplate\
+    \ <class T> struct point {\n    T x, y;\n    point() : x(0), y(0) {\n    }\n \
+    \   point(T x, T y) : x(x), y(y) {\n    }\n    point& operator+=(const point&\
+    \ p) {\n        x += p.x, y += p.y;\n        return *this;\n    }\n    point&\
+    \ operator-=(const point& p) {\n        x -= p.x, y -= p.y;\n        return *this;\n\
+    \    }\n    point& operator*=(T k) {\n        x *= k, y *= k;\n        return\
+    \ *this;\n    }\n    point& operator/=(T k) requires std::floating_point<T> {\n\
+    \        x /= k, y /= k;\n        return *this;\n    }\n    point operator-()\
     \ const {\n        return point(-x, -y);\n    }\n    friend point operator+(point\
     \ a, const point& b) {\n        return a += b;\n    }\n    friend point operator-(point\
     \ a, const point& b) {\n        return a -= b;\n    }\n    friend point operator*(point\
@@ -44,11 +45,9 @@ data:
     \ a) {\n        return a *= k;\n    }\n    friend point operator/(point a, T k)\
     \ requires std::floating_point<T> {\n        return a /= k;\n    }\n    friend\
     \ bool operator==(const point& a, const point& b) {\n        return sgn(a.x -\
-    \ b.x) == 0 && sgn(a.y - b.y) == 0;\n    }\n    friend bool operator!=(const point&\
-    \ a, const point& b) {\n        return !(a == b);\n    }\n    friend bool operator<(const\
-    \ point& a, const point& b) {\n        if (sgn(a.x - b.x) != 0) return a.x < b.x;\n\
-    \        return sgn(a.y - b.y) < 0;\n    }\n    friend bool operator>(const point&\
-    \ a, const point& b) {\n        return b < a;\n    }\n    friend std::istream&\
+    \ b.x) == 0 && sgn(a.y - b.y) == 0;\n    }\n    friend std::weak_ordering operator<=>(const\
+    \ point& a, const point& b) {\n        if (int s = sgn(a.x - b.x); s != 0) return\
+    \ s <=> 0;\n        return sgn(a.y - b.y) <=> 0;\n    }\n    friend std::istream&\
     \ operator>>(std::istream& is, point& p) {\n        return is >> p.x >> p.y;\n\
     \    }\n    friend std::ostream& operator<<(std::ostream& os, const point& p)\
     \ {\n        return os << p.x << ' ' << p.y;\n    }\n};\ntemplate <class T> T\
@@ -142,42 +141,41 @@ data:
     \ 0 && sgn(dot(a, b)) <= 0) return 1;\n        if (sgn(a.y) > sgn(b.y)) std::swap(a,\
     \ b);\n        if (sgn(a.y) <= 0 && 0 < sgn(b.y) && sgn(cross(a, b)) > 0) in =\
     \ !in;\n    }\n    return in ? 2 : 0;\n}\ntemplate <class T> polygon<T> convex_hull(std::vector<point<T>>\
-    \ ps, bool strict = true) {\n    int n = int(ps.size());\n    std::sort(ps.begin(),\
-    \ ps.end());\n    ps.erase(std::unique(ps.begin(), ps.end()), ps.end());\n   \
-    \ n = int(ps.size());\n    if (n <= 2) return ps;\n    polygon<T> ret(2 * n);\n\
-    \    int k = 0;\n    for (int i = 0; i < n; ret[k++] = ps[i++]) {\n        while\
-    \ (k >= 2 && ccw(ret[k - 2], ret[k - 1], ps[i]) < (strict ? 1 : 0)) k--;\n   \
-    \ }\n    for (int i = n - 2, t = k + 1; i >= 0; ret[k++] = ps[i--]) {\n      \
-    \  while (k >= t && ccw(ret[k - 2], ret[k - 1], ps[i]) < (strict ? 1 : 0)) k--;\n\
-    \    }\n    ret.resize(k - 1);\n    return ret;\n}\ntemplate <class T> std::pair<int,\
-    \ int> farthest_pair(const std::vector<point<T>>& ps) {\n    int n = int(ps.size());\n\
-    \    assert(n >= 2);\n    polygon<T> ch = convex_hull(ps);\n    int m = int(ch.size());\n\
-    \    auto index_of = [&](const point<T>& p) {\n        return int(std::find(ps.begin(),\
-    \ ps.end(), p) - ps.begin());\n    };\n    if (m == 1) return {0, 1};\n    if\
-    \ (m == 2) return {index_of(ch[0]), index_of(ch[1])};\n    std::pair<int, int>\
-    \ ret = {0, 1};\n    T best = norm(ch[0] - ch[1]);\n    for (int i = 0, j = 1;\
-    \ i < m; i++) {\n        while (norm(ch[i] - ch[(j + 1) % m]) > norm(ch[i] - ch[j]))\
-    \ j = (j + 1) % m;\n        if (norm(ch[i] - ch[j]) > best) {\n            best\
-    \ = norm(ch[i] - ch[j]);\n            ret = {i, j};\n        }\n    }\n    return\
-    \ {index_of(ch[ret.first]), index_of(ch[ret.second])};\n}\ntemplate <class T>\
-    \ std::pair<int, int> closest_pair(const std::vector<point<T>>& ps) {\n    int\
-    \ n = int(ps.size());\n    assert(n >= 2);\n    std::vector<int> id(n);\n    for\
-    \ (int i = 0; i < n; i++) id[i] = i;\n    std::sort(id.begin(), id.end(), [&](int\
-    \ i, int j) { return ps[i] < ps[j]; });\n    std::pair<int, int> ret = {id[0],\
-    \ id[1]};\n    T best = norm(ps[id[0]] - ps[id[1]]);\n    std::vector<int> buf(n);\n\
-    \    auto rec = [&](auto rec, int l, int r) -> void {\n        if (r - l <= 1)\
-    \ return;\n        int m = (l + r) / 2;\n        T x = ps[id[m]].x;\n        rec(rec,\
-    \ l, m);\n        rec(rec, m, r);\n        std::inplace_merge(id.begin() + l,\
-    \ id.begin() + m, id.begin() + r,\n                           [&](int i, int j)\
-    \ { return ps[i].y < ps[j].y; });\n        int k = 0;\n        for (int t = l;\
-    \ t < r; t++) {\n            int i = id[t];\n            T dx = ps[i].x - x;\n\
-    \            if (dx * dx >= best) continue;\n            for (int u = k - 1; u\
-    \ >= 0; u--) {\n                int j = buf[u];\n                T dy = ps[i].y\
-    \ - ps[j].y;\n                if (dy * dy >= best) break;\n                T d\
-    \ = norm(ps[i] - ps[j]);\n                if (d < best) {\n                  \
-    \  best = d;\n                    ret = {j, i};\n                }\n         \
-    \   }\n            buf[k++] = i;\n        }\n    };\n    rec(rec, 0, n);\n   \
-    \ return ret;\n}\ntemplate <std::floating_point T> polygon<T> convex_cut(const\
+    \ ps, bool strict = true) {\n    int n = int(ps.size());\n    std::ranges::sort(ps);\n\
+    \    ps.erase(std::ranges::unique(ps).begin(), ps.end());\n    n = int(ps.size());\n\
+    \    if (n <= 2) return ps;\n    polygon<T> ret(2 * n);\n    int k = 0;\n    for\
+    \ (int i = 0; i < n; ret[k++] = ps[i++]) {\n        while (k >= 2 && ccw(ret[k\
+    \ - 2], ret[k - 1], ps[i]) < (strict ? 1 : 0)) k--;\n    }\n    for (int i = n\
+    \ - 2, t = k + 1; i >= 0; ret[k++] = ps[i--]) {\n        while (k >= t && ccw(ret[k\
+    \ - 2], ret[k - 1], ps[i]) < (strict ? 1 : 0)) k--;\n    }\n    ret.resize(k -\
+    \ 1);\n    return ret;\n}\ntemplate <class T> std::pair<int, int> farthest_pair(const\
+    \ std::vector<point<T>>& ps) {\n    int n = int(ps.size());\n    assert(n >= 2);\n\
+    \    polygon<T> ch = convex_hull(ps);\n    int m = int(ch.size());\n    auto index_of\
+    \ = [&](const point<T>& p) {\n        return int(std::ranges::find(ps, p) - ps.begin());\n\
+    \    };\n    if (m == 1) return {0, 1};\n    if (m == 2) return {index_of(ch[0]),\
+    \ index_of(ch[1])};\n    std::pair<int, int> ret = {0, 1};\n    T best = norm(ch[0]\
+    \ - ch[1]);\n    for (int i = 0, j = 1; i < m; i++) {\n        while (norm(ch[i]\
+    \ - ch[(j + 1) % m]) > norm(ch[i] - ch[j])) j = (j + 1) % m;\n        if (norm(ch[i]\
+    \ - ch[j]) > best) {\n            best = norm(ch[i] - ch[j]);\n            ret\
+    \ = {i, j};\n        }\n    }\n    return {index_of(ch[ret.first]), index_of(ch[ret.second])};\n\
+    }\ntemplate <class T> std::pair<int, int> closest_pair(const std::vector<point<T>>&\
+    \ ps) {\n    int n = int(ps.size());\n    assert(n >= 2);\n    std::vector<int>\
+    \ id(n);\n    for (int i = 0; i < n; i++) id[i] = i;\n    std::ranges::sort(id,\
+    \ [&](int i, int j) { return ps[i] < ps[j]; });\n    std::pair<int, int> ret =\
+    \ {id[0], id[1]};\n    T best = norm(ps[id[0]] - ps[id[1]]);\n    std::vector<int>\
+    \ buf(n);\n    auto rec = [&](auto rec, int l, int r) -> void {\n        if (r\
+    \ - l <= 1) return;\n        int m = (l + r) / 2;\n        T x = ps[id[m]].x;\n\
+    \        rec(rec, l, m);\n        rec(rec, m, r);\n        std::inplace_merge(id.begin()\
+    \ + l, id.begin() + m, id.begin() + r,\n                           [&](int i,\
+    \ int j) { return ps[i].y < ps[j].y; });\n        int k = 0;\n        for (int\
+    \ t = l; t < r; t++) {\n            int i = id[t];\n            T dx = ps[i].x\
+    \ - x;\n            if (dx * dx >= best) continue;\n            for (int u = k\
+    \ - 1; u >= 0; u--) {\n                int j = buf[u];\n                T dy =\
+    \ ps[i].y - ps[j].y;\n                if (dy * dy >= best) break;\n          \
+    \      T d = norm(ps[i] - ps[j]);\n                if (d < best) {\n         \
+    \           best = d;\n                    ret = {j, i};\n                }\n\
+    \            }\n            buf[k++] = i;\n        }\n    };\n    rec(rec, 0,\
+    \ n);\n    return ret;\n}\ntemplate <std::floating_point T> polygon<T> convex_cut(const\
     \ polygon<T>& poly, const line<T>& l) {\n    int n = int(poly.size());\n    polygon<T>\
     \ ret;\n    for (int i = 0; i < n; i++) {\n        const point<T>& p = poly[i];\n\
     \        const point<T>& q = poly[(i + 1) % n];\n        int cp = ccw(l.a, l.b,\
@@ -204,8 +202,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_4_C.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 23:24:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/CGL_4_C.test.cpp
 layout: document

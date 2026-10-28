@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/shortest_path.test.cpp
     title: test/library-checker/shortest_path.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/dijkstra.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -32,8 +32,8 @@ data:
     \        return _dist[v] != inf;\n    }\n    std::vector<int> path(int t) const\
     \ {\n        assert(0 <= t && t < _n);\n        if (_dist[t] == inf) return {};\n\
     \        std::vector<int> res;\n        for (int v = t; v != -1; v = _prev[v])\
-    \ res.push_back(v);\n        std::reverse(res.begin(), res.end());\n        return\
-    \ res;\n    }\n\nprivate:\n    static constexpr T inf = std::numeric_limits<T>::max();\n\
+    \ res.push_back(v);\n        std::ranges::reverse(res);\n        return res;\n\
+    \    }\n\nprivate:\n    static constexpr T inf = std::numeric_limits<T>::max();\n\
     \    int _n;\n    std::vector<std::vector<std::pair<int, T>>> g;\n    std::vector<T>\
     \ _dist;\n    std::vector<int> _prev;\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <limits>\n\
@@ -57,16 +57,16 @@ data:
     \        return _dist[v] != inf;\n    }\n    std::vector<int> path(int t) const\
     \ {\n        assert(0 <= t && t < _n);\n        if (_dist[t] == inf) return {};\n\
     \        std::vector<int> res;\n        for (int v = t; v != -1; v = _prev[v])\
-    \ res.push_back(v);\n        std::reverse(res.begin(), res.end());\n        return\
-    \ res;\n    }\n\nprivate:\n    static constexpr T inf = std::numeric_limits<T>::max();\n\
+    \ res.push_back(v);\n        std::ranges::reverse(res);\n        return res;\n\
+    \    }\n\nprivate:\n    static constexpr T inf = std::numeric_limits<T>::max();\n\
     \    int _n;\n    std::vector<std::vector<std::pair<int, T>>> g;\n    std::vector<T>\
     \ _dist;\n    std::vector<int> _prev;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/dijkstra.hpp
   requiredBy: []
-  timestamp: '2026-10-20 08:03:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library-checker/shortest_path.test.cpp
 documentation_of: graph/dijkstra.hpp

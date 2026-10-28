@@ -2,13 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: algebra/group_add.hpp
     title: 'Group: Add'
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
+    title: test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
+  - icon: ':x:'
     path: test/library-checker/unionfind_with_potential.test.cpp
     title: test/library-checker/unionfind_with_potential.test.cpp
+  - icon: ':x:'
+    path: test/unit/dynamic_segtree.test.cpp
+    title: test/unit/dynamic_segtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
@@ -18,12 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/sqrt_tree.test.cpp
     title: test/unit/sqrt_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/weighted_dsu.test.cpp
     title: test/unit/weighted_dsu.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algebra/monoid_add.hpp\"\ntemplate <class T>\nstruct monoid_add\
@@ -38,13 +44,15 @@ data:
   requiredBy:
   - algebra/group_add.hpp
   timestamp: '2026-10-23 22:06:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/unit/sqrt_tree.test.cpp
-  - test/unit/weighted_dsu.test.cpp
-  - test/unit/monoid.test.cpp
+  - test/unit/dynamic_segtree.test.cpp
   - test/unit/persistent_segtree.test.cpp
+  - test/unit/monoid.test.cpp
+  - test/unit/weighted_dsu.test.cpp
   - test/library-checker/unionfind_with_potential.test.cpp
+  - test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
 documentation_of: algebra/monoid_add.hpp
 layout: document
 title: 'Monoid: Add'

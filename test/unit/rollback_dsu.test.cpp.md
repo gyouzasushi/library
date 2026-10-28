@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: datastructure/rollback_dsu.hpp
     title: Rollback DSU
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -67,16 +67,15 @@ data:
     \            group_size[leader_buf[i]]++;\n        }\n        std::vector<std::vector<int>>\
     \ result(_n);\n        for (int i = 0; i < _n; i++) result[i].reserve(group_size[i]);\n\
     \        for (int i = 0; i < _n; i++) result[leader_buf[i]].push_back(i);\n  \
-    \      result.erase(std::remove_if(result.begin(), result.end(),\n           \
-    \                         [&](const std::vector<int>& v) { return v.empty(); }),\n\
-    \                     result.end());\n        return result;\n    }\n\nprivate:\n\
-    \    int _n;\n    std::vector<int> parent_or_size;\n    std::vector<std::pair<int,\
-    \ int>> history;  // (attached leader, its old parent_or_size)\n};\n#line 9 \"\
-    test/unit/rollback_dsu.test.cpp\"\n\nint main() {\n    std::mt19937 rng(99);\n\
-    \    for (int it = 0; it < 300; it++) {\n        int n = 1 + rng() % 10;\n   \
-    \     rollback_dsu d(n);\n        std::vector<std::pair<int, int>> merged;  //\
-    \ current edge list\n        std::vector<std::pair<int, int>> stack_sizes;\n \
-    \       auto check = [&] {\n            atcoder::dsu ref(n);\n            for\
+    \      result.erase(std::ranges::remove_if(result, [](const std::vector<int>&\
+    \ v) { return v.empty(); }).begin(),\n                     result.end());\n  \
+    \      return result;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> parent_or_size;\n\
+    \    std::vector<std::pair<int, int>> history;  // (attached leader, its old parent_or_size)\n\
+    };\n#line 9 \"test/unit/rollback_dsu.test.cpp\"\n\nint main() {\n    std::mt19937\
+    \ rng(99);\n    for (int it = 0; it < 300; it++) {\n        int n = 1 + rng()\
+    \ % 10;\n        rollback_dsu d(n);\n        std::vector<std::pair<int, int>>\
+    \ merged;  // current edge list\n        std::vector<std::pair<int, int>> stack_sizes;\n\
+    \        auto check = [&] {\n            atcoder::dsu ref(n);\n            for\
     \ (auto [a, b] : merged) ref.merge(a, b);\n            for (int a = 0; a < n;\
     \ a++) {\n                for (int b = 0; b < n; b++) assert(d.same(a, b) == ref.same(a,\
     \ b));\n                assert(d.size(a) == ref.size(a));\n            }\n   \
@@ -117,8 +116,8 @@ data:
   isVerificationFile: true
   path: test/unit/rollback_dsu.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/unit/rollback_dsu.test.cpp
 layout: document

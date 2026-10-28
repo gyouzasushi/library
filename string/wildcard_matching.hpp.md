@@ -6,18 +6,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0378.test.cpp
     title: test/aoj/0378.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/wildcard_pattern_matching.test.cpp
     title: test/library-checker/wildcard_pattern_matching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/wildcard_matching.test.cpp
     title: test/unit/wildcard_matching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/wildcard_matching.hpp\"\n#include <algorithm>\n#include\
@@ -400,36 +400,7 @@ data:
     \ wildcard_matching(const std::vector<long long>& a,\n                       \
     \             std::vector<long long> b, int k) {\n    int n = a.size(), m = b.size();\n\
     \    if (m > n) return {};\n    if (m == 0) return std::vector<bool>(n + 1, true);\n\
-    \    assert((long double)m * k * k * k * k < 9e18L);\n    std::reverse(b.begin(),\
-    \ b.end());\n    auto pw = [](const std::vector<long long>& v, int e) {\n    \
-    \    std::vector<long long> r(v.size());\n        for (size_t i = 0; i < v.size();\
-    \ i++) {\n            r[i] = v[i];\n            for (int j = 1; j < e; j++) r[i]\
-    \ *= v[i];\n        }\n        return r;\n    };\n    auto c1 = atcoder::convolution_ll(pw(a,\
-    \ 3), pw(b, 1));\n    auto c2 = atcoder::convolution_ll(pw(a, 2), pw(b, 2));\n\
-    \    auto c3 = atcoder::convolution_ll(pw(a, 1), pw(b, 3));\n    std::vector<bool>\
-    \ res(n - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        res[i] =\
-    \ c1[i + m - 1] - 2 * c2[i + m - 1] + c3[i + m - 1] == 0;\n    }\n    return res;\n\
-    }\n}  // namespace internal\n\ntemplate <class T>\nstd::vector<bool> wildcard_matching(const\
-    \ std::vector<T>& s,\n                                    const std::vector<T>&\
-    \ t, T wildcard) {\n    std::vector<T> v;\n    for (const T& x : s) v.push_back(x);\n\
-    \    for (const T& x : t) v.push_back(x);\n    std::sort(v.begin(), v.end());\n\
-    \    v.erase(std::unique(v.begin(), v.end()), v.end());\n    auto id = [&](const\
-    \ T& x) -> long long {\n        if (x == wildcard) return 0;\n        return std::lower_bound(v.begin(),\
-    \ v.end(), x) - v.begin() + 1;\n    };\n    std::vector<long long> a(s.size()),\
-    \ b(t.size());\n    for (size_t i = 0; i < s.size(); i++) a[i] = id(s[i]);\n \
-    \   for (size_t i = 0; i < t.size(); i++) b[i] = id(t[i]);\n    return internal::wildcard_matching(a,\
-    \ b, v.size());\n}\n\nstd::vector<bool> wildcard_matching(const std::string& s,\
-    \ const std::string& t,\n                                    char wildcard = '?')\
-    \ {\n    return wildcard_matching(std::vector<char>(s.begin(), s.end()),\n   \
-    \                          std::vector<char>(t.begin(), t.end()), wildcard);\n\
-    }\n"
-  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <string>\n\
-    #include <vector>\n\n#include \"atcoder/convolution.hpp\"\n\nnamespace internal\
-    \ {\n// a, b: 0 = wildcard, 1..k = symbols\nstd::vector<bool> wildcard_matching(const\
-    \ std::vector<long long>& a,\n                                    std::vector<long\
-    \ long> b, int k) {\n    int n = a.size(), m = b.size();\n    if (m > n) return\
-    \ {};\n    if (m == 0) return std::vector<bool>(n + 1, true);\n    assert((long\
-    \ double)m * k * k * k * k < 9e18L);\n    std::reverse(b.begin(), b.end());\n\
+    \    assert((long double)m * k * k * k * k < 9e18L);\n    std::ranges::reverse(b);\n\
     \    auto pw = [](const std::vector<long long>& v, int e) {\n        std::vector<long\
     \ long> r(v.size());\n        for (size_t i = 0; i < v.size(); i++) {\n      \
     \      r[i] = v[i];\n            for (int j = 1; j < e; j++) r[i] *= v[i];\n \
@@ -441,27 +412,54 @@ data:
     }\n}  // namespace internal\n\ntemplate <class T>\nstd::vector<bool> wildcard_matching(const\
     \ std::vector<T>& s,\n                                    const std::vector<T>&\
     \ t, T wildcard) {\n    std::vector<T> v;\n    for (const T& x : s) v.push_back(x);\n\
-    \    for (const T& x : t) v.push_back(x);\n    std::sort(v.begin(), v.end());\n\
-    \    v.erase(std::unique(v.begin(), v.end()), v.end());\n    auto id = [&](const\
-    \ T& x) -> long long {\n        if (x == wildcard) return 0;\n        return std::lower_bound(v.begin(),\
-    \ v.end(), x) - v.begin() + 1;\n    };\n    std::vector<long long> a(s.size()),\
-    \ b(t.size());\n    for (size_t i = 0; i < s.size(); i++) a[i] = id(s[i]);\n \
-    \   for (size_t i = 0; i < t.size(); i++) b[i] = id(t[i]);\n    return internal::wildcard_matching(a,\
-    \ b, v.size());\n}\n\nstd::vector<bool> wildcard_matching(const std::string& s,\
-    \ const std::string& t,\n                                    char wildcard = '?')\
-    \ {\n    return wildcard_matching(std::vector<char>(s.begin(), s.end()),\n   \
-    \                          std::vector<char>(t.begin(), t.end()), wildcard);\n\
-    }\n"
+    \    for (const T& x : t) v.push_back(x);\n    std::ranges::sort(v);\n    v.erase(std::ranges::unique(v).begin(),\
+    \ v.end());\n    auto id = [&](const T& x) -> long long {\n        if (x == wildcard)\
+    \ return 0;\n        return std::ranges::lower_bound(v, x) - v.begin() + 1;\n\
+    \    };\n    std::vector<long long> a(s.size()), b(t.size());\n    for (size_t\
+    \ i = 0; i < s.size(); i++) a[i] = id(s[i]);\n    for (size_t i = 0; i < t.size();\
+    \ i++) b[i] = id(t[i]);\n    return internal::wildcard_matching(a, b, v.size());\n\
+    }\n\nstd::vector<bool> wildcard_matching(const std::string& s, const std::string&\
+    \ t,\n                                    char wildcard = '?') {\n    return wildcard_matching(std::vector<char>(s.begin(),\
+    \ s.end()),\n                             std::vector<char>(t.begin(), t.end()),\
+    \ wildcard);\n}\n"
+  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <string>\n\
+    #include <vector>\n\n#include \"atcoder/convolution.hpp\"\n\nnamespace internal\
+    \ {\n// a, b: 0 = wildcard, 1..k = symbols\nstd::vector<bool> wildcard_matching(const\
+    \ std::vector<long long>& a,\n                                    std::vector<long\
+    \ long> b, int k) {\n    int n = a.size(), m = b.size();\n    if (m > n) return\
+    \ {};\n    if (m == 0) return std::vector<bool>(n + 1, true);\n    assert((long\
+    \ double)m * k * k * k * k < 9e18L);\n    std::ranges::reverse(b);\n    auto pw\
+    \ = [](const std::vector<long long>& v, int e) {\n        std::vector<long long>\
+    \ r(v.size());\n        for (size_t i = 0; i < v.size(); i++) {\n            r[i]\
+    \ = v[i];\n            for (int j = 1; j < e; j++) r[i] *= v[i];\n        }\n\
+    \        return r;\n    };\n    auto c1 = atcoder::convolution_ll(pw(a, 3), pw(b,\
+    \ 1));\n    auto c2 = atcoder::convolution_ll(pw(a, 2), pw(b, 2));\n    auto c3\
+    \ = atcoder::convolution_ll(pw(a, 1), pw(b, 3));\n    std::vector<bool> res(n\
+    \ - m + 1);\n    for (int i = 0; i < n - m + 1; i++) {\n        res[i] = c1[i\
+    \ + m - 1] - 2 * c2[i + m - 1] + c3[i + m - 1] == 0;\n    }\n    return res;\n\
+    }\n}  // namespace internal\n\ntemplate <class T>\nstd::vector<bool> wildcard_matching(const\
+    \ std::vector<T>& s,\n                                    const std::vector<T>&\
+    \ t, T wildcard) {\n    std::vector<T> v;\n    for (const T& x : s) v.push_back(x);\n\
+    \    for (const T& x : t) v.push_back(x);\n    std::ranges::sort(v);\n    v.erase(std::ranges::unique(v).begin(),\
+    \ v.end());\n    auto id = [&](const T& x) -> long long {\n        if (x == wildcard)\
+    \ return 0;\n        return std::ranges::lower_bound(v, x) - v.begin() + 1;\n\
+    \    };\n    std::vector<long long> a(s.size()), b(t.size());\n    for (size_t\
+    \ i = 0; i < s.size(); i++) a[i] = id(s[i]);\n    for (size_t i = 0; i < t.size();\
+    \ i++) b[i] = id(t[i]);\n    return internal::wildcard_matching(a, b, v.size());\n\
+    }\n\nstd::vector<bool> wildcard_matching(const std::string& s, const std::string&\
+    \ t,\n                                    char wildcard = '?') {\n    return wildcard_matching(std::vector<char>(s.begin(),\
+    \ s.end()),\n                             std::vector<char>(t.begin(), t.end()),\
+    \ wildcard);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: string/wildcard_matching.hpp
   requiredBy: []
-  timestamp: '2026-10-26 22:28:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/0378.test.cpp
   - test/unit/wildcard_matching.test.cpp
   - test/library-checker/wildcard_pattern_matching.test.cpp
-  - test/aoj/0378.test.cpp
   - test/yukicoder/2231.test.cpp
 documentation_of: string/wildcard_matching.hpp
 layout: document

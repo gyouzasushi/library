@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/unionfind_with_potential.test.cpp
     title: test/library-checker/unionfind_with_potential.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/weighted_dsu.test.cpp
     title: test/unit/weighted_dsu.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/weighted_dsu.hpp\"\n#include <algorithm>\n\
@@ -61,11 +61,11 @@ data:
     \          leader_buf[i] = leader(i);\n            group_size[leader_buf[i]]++;\n\
     \        }\n        std::vector<std::vector<int>> result(_n);\n        for (int\
     \ i = 0; i < _n; i++) result[i].reserve(group_size[i]);\n        for (int i =\
-    \ 0; i < _n; i++) result[leader_buf[i]].push_back(i);\n        result.erase(std::remove_if(result.begin(),\
-    \ result.end(),\n                                    [&](const std::vector<int>&\
-    \ v) { return v.empty(); }),\n                     result.end());\n        return\
-    \ result;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> parent_or_size;\n\
-    \    std::vector<S> pot;  // relative to parent\n};\n"
+    \ 0; i < _n; i++) result[leader_buf[i]].push_back(i);\n        result.erase(std::ranges::remove_if(result,\
+    \ [](const std::vector<int>& v) { return v.empty(); }).begin(),\n            \
+    \         result.end());\n        return result;\n    }\n\nprivate:\n    int _n;\n\
+    \    std::vector<int> parent_or_size;\n    std::vector<S> pot;  // relative to\
+    \ parent\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
     #include <vector>\n\n#include \"algebra/concept.hpp\"\n\n// potential p[v] of\
     \ each vertex; diff(a, b) = op(inv(p[a]), p[b])\ntemplate <group G> struct weighted_dsu\
@@ -93,22 +93,21 @@ data:
     \           group_size[leader_buf[i]]++;\n        }\n        std::vector<std::vector<int>>\
     \ result(_n);\n        for (int i = 0; i < _n; i++) result[i].reserve(group_size[i]);\n\
     \        for (int i = 0; i < _n; i++) result[leader_buf[i]].push_back(i);\n  \
-    \      result.erase(std::remove_if(result.begin(), result.end(),\n           \
-    \                         [&](const std::vector<int>& v) { return v.empty(); }),\n\
-    \                     result.end());\n        return result;\n    }\n\nprivate:\n\
-    \    int _n;\n    std::vector<int> parent_or_size;\n    std::vector<S> pot;  //\
-    \ relative to parent\n};\n"
+    \      result.erase(std::ranges::remove_if(result, [](const std::vector<int>&\
+    \ v) { return v.empty(); }).begin(),\n                     result.end());\n  \
+    \      return result;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> parent_or_size;\n\
+    \    std::vector<S> pot;  // relative to parent\n};\n"
   dependsOn:
   - algebra/concept.hpp
   isVerificationFile: false
   path: datastructure/weighted_dsu.hpp
   requiredBy: []
-  timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/unit/weighted_dsu.test.cpp
-  - test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
   - test/library-checker/unionfind_with_potential.test.cpp
+  - test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
 documentation_of: datastructure/weighted_dsu.hpp
 layout: document
 title: Weighted DSU

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/rollback_dsu.test.cpp
     title: test/unit/rollback_dsu.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"datastructure/rollback_dsu.hpp\"\n#include <algorithm>\n\
@@ -36,11 +36,11 @@ data:
     \            group_size[leader_buf[i]]++;\n        }\n        std::vector<std::vector<int>>\
     \ result(_n);\n        for (int i = 0; i < _n; i++) result[i].reserve(group_size[i]);\n\
     \        for (int i = 0; i < _n; i++) result[leader_buf[i]].push_back(i);\n  \
-    \      result.erase(std::remove_if(result.begin(), result.end(),\n           \
-    \                         [&](const std::vector<int>& v) { return v.empty(); }),\n\
-    \                     result.end());\n        return result;\n    }\n\nprivate:\n\
-    \    int _n;\n    std::vector<int> parent_or_size;\n    std::vector<std::pair<int,\
-    \ int>> history;  // (attached leader, its old parent_or_size)\n};\n"
+    \      result.erase(std::ranges::remove_if(result, [](const std::vector<int>&\
+    \ v) { return v.empty(); }).begin(),\n                     result.end());\n  \
+    \      return result;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> parent_or_size;\n\
+    \    std::vector<std::pair<int, int>> history;  // (attached leader, its old parent_or_size)\n\
+    };\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
     #include <vector>\nstruct rollback_dsu {\npublic:\n    rollback_dsu() : rollback_dsu(0)\
     \ {\n    }\n    explicit rollback_dsu(int n) : _n(n), parent_or_size(n, -1) {\n\
@@ -66,17 +66,17 @@ data:
     \            group_size[leader_buf[i]]++;\n        }\n        std::vector<std::vector<int>>\
     \ result(_n);\n        for (int i = 0; i < _n; i++) result[i].reserve(group_size[i]);\n\
     \        for (int i = 0; i < _n; i++) result[leader_buf[i]].push_back(i);\n  \
-    \      result.erase(std::remove_if(result.begin(), result.end(),\n           \
-    \                         [&](const std::vector<int>& v) { return v.empty(); }),\n\
-    \                     result.end());\n        return result;\n    }\n\nprivate:\n\
-    \    int _n;\n    std::vector<int> parent_or_size;\n    std::vector<std::pair<int,\
-    \ int>> history;  // (attached leader, its old parent_or_size)\n};\n"
+    \      result.erase(std::ranges::remove_if(result, [](const std::vector<int>&\
+    \ v) { return v.empty(); }).begin(),\n                     result.end());\n  \
+    \      return result;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> parent_or_size;\n\
+    \    std::vector<std::pair<int, int>> history;  // (attached leader, its old parent_or_size)\n\
+    };\n"
   dependsOn: []
   isVerificationFile: false
   path: datastructure/rollback_dsu.hpp
   requiredBy: []
-  timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/unit/rollback_dsu.test.cpp
 documentation_of: datastructure/rollback_dsu.hpp

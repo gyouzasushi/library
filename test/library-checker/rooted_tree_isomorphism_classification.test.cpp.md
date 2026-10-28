@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/subtree_classify.hpp
     title: "\u6839\u4ED8\u304D\u6728\u306E\u540C\u578B\u6027\u306B\u3088\u308B\u90E8\
       \u5206\u6728\u306E\u5206\u985E"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -29,7 +29,7 @@ data:
     \    std::map<std::vector<int>, int> id;\n    std::vector<int> key;\n    for (int\
     \ i = n - 1; i >= 0; i--) {\n        int u = order[i];\n        key.clear();\n\
     \        for (int v : g[u]) {\n            if (v != par[u]) key.push_back(ret[v]);\n\
-    \        }\n        std::sort(key.begin(), key.end());\n        ret[u] = id.try_emplace(key,\
+    \        }\n        std::ranges::sort(key);\n        ret[u] = id.try_emplace(key,\
     \ int(id.size())).first->second;\n    }\n    return ret;\n}\n#line 7 \"test/library-checker/rooted_tree_isomorphism_classification.test.cpp\"\
     \nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<std::vector<int>>\
     \ g(n);\n    for (int i = 1; i < n; i++) {\n        int p;\n        std::cin >>\
@@ -50,8 +50,8 @@ data:
   isVerificationFile: true
   path: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
   requiredBy: []
-  timestamp: '2026-10-27 06:10:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
 layout: document

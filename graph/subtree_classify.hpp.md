@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
     title: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/subtree_classify.test.cpp
     title: test/unit/subtree_classify.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/subtree_classify.hpp\"\n#include <algorithm>\n#include\
@@ -26,7 +26,7 @@ data:
     \    std::map<std::vector<int>, int> id;\n    std::vector<int> key;\n    for (int\
     \ i = n - 1; i >= 0; i--) {\n        int u = order[i];\n        key.clear();\n\
     \        for (int v : g[u]) {\n            if (v != par[u]) key.push_back(ret[v]);\n\
-    \        }\n        std::sort(key.begin(), key.end());\n        ret[u] = id.try_emplace(key,\
+    \        }\n        std::ranges::sort(key);\n        ret[u] = id.try_emplace(key,\
     \ int(id.size())).first->second;\n    }\n    return ret;\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <map>\n\
     #include <vector>\nstd::vector<int> subtree_classify(const std::vector<std::vector<int>>&\
@@ -39,15 +39,15 @@ data:
     \ n);\n    std::vector<int> ret(n);\n    std::map<std::vector<int>, int> id;\n\
     \    std::vector<int> key;\n    for (int i = n - 1; i >= 0; i--) {\n        int\
     \ u = order[i];\n        key.clear();\n        for (int v : g[u]) {\n        \
-    \    if (v != par[u]) key.push_back(ret[v]);\n        }\n        std::sort(key.begin(),\
-    \ key.end());\n        ret[u] = id.try_emplace(key, int(id.size())).first->second;\n\
-    \    }\n    return ret;\n}\n"
+    \    if (v != par[u]) key.push_back(ret[v]);\n        }\n        std::ranges::sort(key);\n\
+    \        ret[u] = id.try_emplace(key, int(id.size())).first->second;\n    }\n\
+    \    return ret;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/subtree_classify.hpp
   requiredBy: []
-  timestamp: '2026-10-27 06:10:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/unit/subtree_classify.test.cpp
   - test/library-checker/rooted_tree_isomorphism_classification.test.cpp

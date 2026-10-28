@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dijkstra.hpp
     title: "Dijkstra \u6CD5"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/shortest_path
@@ -37,8 +37,8 @@ data:
     \        return _dist[v] != inf;\n    }\n    std::vector<int> path(int t) const\
     \ {\n        assert(0 <= t && t < _n);\n        if (_dist[t] == inf) return {};\n\
     \        std::vector<int> res;\n        for (int v = t; v != -1; v = _prev[v])\
-    \ res.push_back(v);\n        std::reverse(res.begin(), res.end());\n        return\
-    \ res;\n    }\n\nprivate:\n    static constexpr T inf = std::numeric_limits<T>::max();\n\
+    \ res.push_back(v);\n        std::ranges::reverse(res);\n        return res;\n\
+    \    }\n\nprivate:\n    static constexpr T inf = std::numeric_limits<T>::max();\n\
     \    int _n;\n    std::vector<std::vector<std::pair<int, T>>> g;\n    std::vector<T>\
     \ _dist;\n    std::vector<int> _prev;\n};\n#line 5 \"test/library-checker/shortest_path.test.cpp\"\
     \nint main() {\n    int n, m, s, t;\n    std::cin >> n >> m >> s >> t;\n    dijkstra<long\
@@ -64,8 +64,8 @@ data:
   isVerificationFile: true
   path: test/library-checker/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2026-10-20 08:03:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library-checker/shortest_path.test.cpp
 layout: document

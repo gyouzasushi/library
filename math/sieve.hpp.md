@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_1_A.test.cpp
     title: test/aoj/NTL_1_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/enumerate_primes.test.cpp
     title: test/library-checker/enumerate_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/sieve.test.cpp
     title: test/unit/sieve.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/sieve.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -38,9 +38,8 @@ data:
     \ = {1};\n        for (auto [p, e] : factorize(x)) {\n            int sz = int(ret.size());\n\
     \            int q = 1;\n            for (int i = 0; i < e; i++) {\n         \
     \       q *= p;\n                for (int j = 0; j < sz; j++) ret.push_back(ret[j]\
-    \ * q);\n            }\n        }\n        std::sort(ret.begin(), ret.end());\n\
-    \        return ret;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> lpf,\
-    \ _primes;\n};\n"
+    \ * q);\n            }\n        }\n        std::ranges::sort(ret);\n        return\
+    \ ret;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> lpf, _primes;\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
     #include <vector>\nstruct sieve {\npublic:\n    sieve() : sieve(1) {\n    }\n\
     \    explicit sieve(int n) : _n(n), lpf(n + 1, 0) {\n        assert(n >= 1);\n\
@@ -62,19 +61,18 @@ data:
     \ = {1};\n        for (auto [p, e] : factorize(x)) {\n            int sz = int(ret.size());\n\
     \            int q = 1;\n            for (int i = 0; i < e; i++) {\n         \
     \       q *= p;\n                for (int j = 0; j < sz; j++) ret.push_back(ret[j]\
-    \ * q);\n            }\n        }\n        std::sort(ret.begin(), ret.end());\n\
-    \        return ret;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> lpf,\
-    \ _primes;\n};\n"
+    \ * q);\n            }\n        }\n        std::ranges::sort(ret);\n        return\
+    \ ret;\n    }\n\nprivate:\n    int _n;\n    std::vector<int> lpf, _primes;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: math/sieve.hpp
   requiredBy: []
-  timestamp: '2026-10-26 01:59:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/aoj/NTL_1_A.test.cpp
   - test/unit/sieve.test.cpp
   - test/library-checker/enumerate_primes.test.cpp
-  - test/aoj/NTL_1_A.test.cpp
 documentation_of: math/sieve.hpp
 layout: document
 title: Sieve

@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/binomial_coefficient_arbitrary_mod.hpp
     title: Binomial Coefficient (Arbitrary Mod)
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/binomial_coefficient.test.cpp
     title: test/library-checker/binomial_coefficient.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/factorize.test.cpp
     title: test/library-checker/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/sieve.test.cpp
     title: test/unit/sieve.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/factorize.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -49,15 +49,15 @@ data:
     \        st.pop_back();\n        if (p == 1) continue;\n        if (is_prime(p))\
     \ {\n            primes.push_back(p);\n            continue;\n        }\n    \
     \    long long d = internal::rho(p);\n        st.push_back(d);\n        st.push_back(p\
-    \ / d);\n    }\n    std::sort(primes.begin(), primes.end());\n    for (long long\
-    \ p : primes) {\n        if (!ret.empty() && ret.back().first == p) {\n      \
-    \      ret.back().second++;\n        } else {\n            ret.emplace_back(p,\
-    \ 1);\n        }\n    }\n    return ret;\n}\n\nstd::vector<long long> divisors(long\
-    \ long n) {\n    assert(n >= 1);\n    std::vector<long long> ret = {1};\n    for\
-    \ (auto [p, e] : factorize(n)) {\n        int sz = int(ret.size());\n        long\
-    \ long q = 1;\n        for (int i = 0; i < e; i++) {\n            q *= p;\n  \
-    \          for (int j = 0; j < sz; j++) ret.push_back(ret[j] * q);\n        }\n\
-    \    }\n    std::sort(ret.begin(), ret.end());\n    return ret;\n}\n"
+    \ / d);\n    }\n    std::ranges::sort(primes);\n    for (long long p : primes)\
+    \ {\n        if (!ret.empty() && ret.back().first == p) {\n            ret.back().second++;\n\
+    \        } else {\n            ret.emplace_back(p, 1);\n        }\n    }\n   \
+    \ return ret;\n}\n\nstd::vector<long long> divisors(long long n) {\n    assert(n\
+    \ >= 1);\n    std::vector<long long> ret = {1};\n    for (auto [p, e] : factorize(n))\
+    \ {\n        int sz = int(ret.size());\n        long long q = 1;\n        for\
+    \ (int i = 0; i < e; i++) {\n            q *= p;\n            for (int j = 0;\
+    \ j < sz; j++) ret.push_back(ret[j] * q);\n        }\n    }\n    std::ranges::sort(ret);\n\
+    \    return ret;\n}\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <cstdlib>\n\
     #include <numeric>\n#include <utility>\n#include <vector>\n\nnamespace internal\
     \ {\n\nlong long modmul(long long x, long long y, long long mod) {\n    return\
@@ -87,22 +87,22 @@ data:
     \        st.pop_back();\n        if (p == 1) continue;\n        if (is_prime(p))\
     \ {\n            primes.push_back(p);\n            continue;\n        }\n    \
     \    long long d = internal::rho(p);\n        st.push_back(d);\n        st.push_back(p\
-    \ / d);\n    }\n    std::sort(primes.begin(), primes.end());\n    for (long long\
-    \ p : primes) {\n        if (!ret.empty() && ret.back().first == p) {\n      \
-    \      ret.back().second++;\n        } else {\n            ret.emplace_back(p,\
-    \ 1);\n        }\n    }\n    return ret;\n}\n\nstd::vector<long long> divisors(long\
-    \ long n) {\n    assert(n >= 1);\n    std::vector<long long> ret = {1};\n    for\
-    \ (auto [p, e] : factorize(n)) {\n        int sz = int(ret.size());\n        long\
-    \ long q = 1;\n        for (int i = 0; i < e; i++) {\n            q *= p;\n  \
-    \          for (int j = 0; j < sz; j++) ret.push_back(ret[j] * q);\n        }\n\
-    \    }\n    std::sort(ret.begin(), ret.end());\n    return ret;\n}\n"
+    \ / d);\n    }\n    std::ranges::sort(primes);\n    for (long long p : primes)\
+    \ {\n        if (!ret.empty() && ret.back().first == p) {\n            ret.back().second++;\n\
+    \        } else {\n            ret.emplace_back(p, 1);\n        }\n    }\n   \
+    \ return ret;\n}\n\nstd::vector<long long> divisors(long long n) {\n    assert(n\
+    \ >= 1);\n    std::vector<long long> ret = {1};\n    for (auto [p, e] : factorize(n))\
+    \ {\n        int sz = int(ret.size());\n        long long q = 1;\n        for\
+    \ (int i = 0; i < e; i++) {\n            q *= p;\n            for (int j = 0;\
+    \ j < sz; j++) ret.push_back(ret[j] * q);\n        }\n    }\n    std::ranges::sort(ret);\n\
+    \    return ret;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/factorize.hpp
   requiredBy:
   - math/binomial_coefficient_arbitrary_mod.hpp
-  timestamp: '2026-10-26 01:59:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-28 21:58:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/unit/sieve.test.cpp
   - test/library-checker/binomial_coefficient.test.cpp

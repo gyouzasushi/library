@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
   - icon: ':heavy_check_mark:'
     path: datastructure/lazy_segtree.hpp
     title: Lazy Segment Tree (acted monoid wrapper)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint2305843009213693951.hpp
     title: modint2305843009213693951
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/string_hash.hpp
     title: String Hash
   _extendedRequiredBy: []
@@ -185,8 +185,8 @@ data:
   timestamp: '2026-10-26 01:30:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/string_hash.test.cpp
   - test/aoj/0355.test.cpp
+  - test/unit/string_hash.test.cpp
 documentation_of: string/range_update_range_hash.hpp
 layout: document
 title: Range Update Range Hash
