@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/binomial_coefficient.test.cpp
     title: test/library-checker/binomial_coefficient.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/factorize.test.cpp
     title: test/library-checker/factorize.test.cpp
   - icon: ':x:'

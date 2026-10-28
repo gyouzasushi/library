@@ -149,7 +149,7 @@ data:
       title: 'Geometry: Polygon'
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/bfs_tree_of_complement.hpp
       title: "\u88DC\u30B0\u30E9\u30D5\u306E BFS \u68EE"
     - icon: ':heavy_check_mark:'
@@ -388,16 +388,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/closest_pair.test.cpp
       title: test/library-checker/closest_pair.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library-checker/connected_components_of_complement_graph.test.cpp
       title: test/library-checker/connected_components_of_complement_graph.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/enumerate_palindromes.test.cpp
       title: test/library-checker/enumerate_palindromes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library-checker/enumerate_primes.test.cpp
       title: test/library-checker/enumerate_primes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library-checker/factorize.test.cpp
       title: test/library-checker/factorize.test.cpp
     - icon: ':heavy_check_mark:'

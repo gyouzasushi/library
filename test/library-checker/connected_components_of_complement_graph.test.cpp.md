@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bfs_tree_of_complement.hpp
     title: "\u88DC\u30B0\u30E9\u30D5\u306E BFS \u68EE"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/connected_components_of_complement_graph
@@ -63,7 +63,7 @@ data:
   path: test/library-checker/connected_components_of_complement_graph.test.cpp
   requiredBy: []
   timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library-checker/connected_components_of_complement_graph.test.cpp
 layout: document

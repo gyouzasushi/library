@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_A.test.cpp
     title: test/aoj/NTL_1_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library-checker/enumerate_primes.test.cpp
     title: test/library-checker/enumerate_primes.test.cpp
   - icon: ':x:'
