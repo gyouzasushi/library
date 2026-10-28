@@ -66,10 +66,10 @@ data:
   timestamp: '2026-10-26 01:30:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unit/string_hash.test.cpp
+  - test/unit/monoid.test.cpp
   - test/aoj/0355.test.cpp
   - test/aoj/DSL_2_G.test.cpp
-  - test/unit/monoid.test.cpp
-  - test/unit/string_hash.test.cpp
 documentation_of: datastructure/lazy_segtree.hpp
 layout: document
 title: Lazy Segment Tree (acted monoid wrapper)

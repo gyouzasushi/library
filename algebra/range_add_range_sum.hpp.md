@@ -37,8 +37,8 @@ data:
   timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_2_G.test.cpp
   - test/unit/monoid.test.cpp
+  - test/aoj/DSL_2_G.test.cpp
 documentation_of: algebra/range_add_range_sum.hpp
 layout: document
 title: 'Acted Monoid: Range Add Range Sum'

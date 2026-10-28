@@ -46,13 +46,13 @@ data:
   timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/unit/sqrt_tree.test.cpp
   - test/unit/dynamic_segtree.test.cpp
-  - test/unit/persistent_segtree.test.cpp
-  - test/unit/monoid.test.cpp
+  - test/unit/sqrt_tree.test.cpp
   - test/unit/weighted_dsu.test.cpp
-  - test/library-checker/unionfind_with_potential.test.cpp
+  - test/unit/monoid.test.cpp
+  - test/unit/persistent_segtree.test.cpp
   - test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
+  - test/library-checker/unionfind_with_potential.test.cpp
 documentation_of: algebra/monoid_add.hpp
 layout: document
 title: 'Monoid: Add'

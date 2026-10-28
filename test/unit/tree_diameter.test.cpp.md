@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_diameter.hpp
     title: Tree Diameter
   _extendedRequiredBy: []

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_D.test.cpp
     title: test/aoj/DPL_1_D.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/unit/longest_increasing_subsequence.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algorithm/longest_increasing_subsequence.hpp\"\n#include\
@@ -65,11 +65,11 @@ data:
   path: algorithm/longest_increasing_subsequence.hpp
   requiredBy: []
   timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/DPL_1_D.test.cpp
   - test/unit/longest_increasing_subsequence.test.cpp
   - test/library-checker/longest_increasing_subsequence.test.cpp
+  - test/aoj/DPL_1_D.test.cpp
 documentation_of: algorithm/longest_increasing_subsequence.hpp
 layout: document
 title: Longest Increasing Subsequence

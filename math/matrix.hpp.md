@@ -220,9 +220,9 @@ data:
   - test/unit/matrix.test.cpp
   - test/unit/linear_algebra.test.cpp
   - test/library-checker/inverse_matrix.test.cpp
-  - test/library-checker/matrix_det.test.cpp
   - test/library-checker/system_of_linear_equations.test.cpp
   - test/library-checker/pow_of_matrix.test.cpp
+  - test/library-checker/matrix_det.test.cpp
   - test/library-checker/matrix_product.test.cpp
   - test/library-checker/matrix_rank.test.cpp
 documentation_of: math/matrix.hpp

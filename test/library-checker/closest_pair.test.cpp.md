@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: geometry/point.hpp
     title: 'Geometry: Point'
-  - icon: ':x:'
+  - icon: ':question:'
     path: geometry/polygon.hpp
     title: 'Geometry: Polygon'
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/closest_pair
@@ -198,7 +198,7 @@ data:
   path: test/library-checker/closest_pair.test.cpp
   requiredBy: []
   timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/closest_pair.test.cpp
 layout: document

@@ -428,8 +428,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/linear_recurrence.test.cpp
-  - test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library-checker/find_linear_recurrence.test.cpp
+  - test/library-checker/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: math/bostan_mori.hpp
 layout: document
 title: Bostan-Mori

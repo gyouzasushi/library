@@ -31,8 +31,8 @@ data:
   timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/unit/monoid.test.cpp
   - test/unit/weighted_dsu.test.cpp
+  - test/unit/monoid.test.cpp
 documentation_of: algebra/monoid_xor.hpp
 layout: document
 title: 'Monoid: XOR'

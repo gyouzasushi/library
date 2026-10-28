@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/binomial_coefficient_arbitrary_mod.hpp
     title: Binomial Coefficient (Arbitrary Mod)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/binomial_coefficient.test.cpp
     title: test/library-checker/binomial_coefficient.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/factorize.test.cpp
     title: test/library-checker/factorize.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/unit/sieve.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/factorize.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -102,7 +102,7 @@ data:
   requiredBy:
   - math/binomial_coefficient_arbitrary_mod.hpp
   timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/unit/sieve.test.cpp
   - test/library-checker/binomial_coefficient.test.cpp

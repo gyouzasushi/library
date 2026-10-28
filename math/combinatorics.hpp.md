@@ -69,8 +69,8 @@ data:
   verifiedWith:
   - test/unit/lagrange_interpolation.test.cpp
   - test/library-checker/binomial_coefficient_prime_mod.test.cpp
-  - test/yukicoder/117.test.cpp
   - test/yukicoder/665.test.cpp
+  - test/yukicoder/117.test.cpp
 documentation_of: math/combinatorics.hpp
 layout: document
 title: Combinatorics

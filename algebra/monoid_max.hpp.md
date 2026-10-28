@@ -33,8 +33,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/unit/dynamic_segtree.test.cpp
-  - test/unit/monoid.test.cpp
   - test/unit/sparse_table.test.cpp
+  - test/unit/monoid.test.cpp
 documentation_of: algebra/monoid_max.hpp
 layout: document
 title: 'Monoid: Max'

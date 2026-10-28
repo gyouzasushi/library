@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: geometry/point.hpp
     title: 'Geometry: Point'
-  - icon: ':x:'
+  - icon: ':question:'
     path: geometry/polygon.hpp
     title: 'Geometry: Polygon'
   _extendedRequiredBy: []

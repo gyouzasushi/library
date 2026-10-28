@@ -106,8 +106,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/unit/weighted_dsu.test.cpp
-  - test/library-checker/unionfind_with_potential.test.cpp
   - test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
+  - test/library-checker/unionfind_with_potential.test.cpp
 documentation_of: datastructure/weighted_dsu.hpp
 layout: document
 title: Weighted DSU

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/factorize.hpp
     title: Factorize
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/sieve.hpp
     title: Sieve
   _extendedRequiredBy: []

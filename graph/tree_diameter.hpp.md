@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_A.test.cpp
     title: test/aoj/GRL_5_A.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/unit/tree_diameter.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree_diameter.hpp\"\n#include <algorithm>\n#include\
@@ -65,10 +65,10 @@ data:
   path: graph/tree_diameter.hpp
   requiredBy: []
   timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_5_A.test.cpp
   - test/unit/tree_diameter.test.cpp
+  - test/aoj/GRL_5_A.test.cpp
 documentation_of: graph/tree_diameter.hpp
 layout: document
 title: Tree Diameter

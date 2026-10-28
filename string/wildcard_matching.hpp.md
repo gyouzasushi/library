@@ -457,9 +457,9 @@ data:
   timestamp: '2026-10-28 21:58:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/0378.test.cpp
   - test/unit/wildcard_matching.test.cpp
   - test/library-checker/wildcard_pattern_matching.test.cpp
+  - test/aoj/0378.test.cpp
   - test/yukicoder/2231.test.cpp
 documentation_of: string/wildcard_matching.hpp
 layout: document
