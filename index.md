@@ -49,6 +49,15 @@ data:
       path: algebra/range_add_range_sum_of_squares.hpp
       title: 'Acted Monoid: Range Add Range Sum of Squares'
     - icon: ':heavy_check_mark:'
+      path: algebra/range_assign_range_max.hpp
+      title: 'Acted Monoid: Range Assign Range Max'
+    - icon: ':heavy_check_mark:'
+      path: algebra/range_assign_range_min.hpp
+      title: 'Acted Monoid: Range Assign Range Min'
+    - icon: ':heavy_check_mark:'
+      path: algebra/range_assign_range_sum.hpp
+      title: 'Acted Monoid: Range Assign Range Sum'
+    - icon: ':heavy_check_mark:'
       path: algebra/semiring_max_plus.hpp
       title: 'Semiring: Max Plus'
     - icon: ':heavy_check_mark:'
@@ -174,6 +183,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/topological_sort.hpp
       title: Topological Sort
+    - icon: ':heavy_check_mark:'
+      path: graph/tree_diameter.hpp
+      title: Tree Diameter
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
@@ -341,6 +353,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_3_B.test.cpp
       title: test/aoj/GRL_3_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_5_A.test.cpp
+      title: test/aoj/GRL_5_A.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_5_E.test.cpp
       title: test/aoj/GRL_5_E.test.cpp
@@ -612,6 +627,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/topological_sort.test.cpp
       title: test/unit/topological_sort.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/tree_diameter.test.cpp
+      title: test/unit/tree_diameter.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/trie.test.cpp
       title: test/unit/trie.test.cpp

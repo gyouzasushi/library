@@ -41,6 +41,15 @@ data:
     path: algebra/range_add_range_sum_of_squares.hpp
     title: 'Acted Monoid: Range Add Range Sum of Squares'
   - icon: ':heavy_check_mark:'
+    path: algebra/range_assign_range_max.hpp
+    title: 'Acted Monoid: Range Assign Range Max'
+  - icon: ':heavy_check_mark:'
+    path: algebra/range_assign_range_min.hpp
+    title: 'Acted Monoid: Range Assign Range Min'
+  - icon: ':heavy_check_mark:'
+    path: algebra/range_assign_range_sum.hpp
+    title: 'Acted Monoid: Range Assign Range Sum'
+  - icon: ':heavy_check_mark:'
     path: datastructure/lazy_segtree.hpp
     title: Lazy Segment Tree (acted monoid wrapper)
   - icon: ':heavy_check_mark:'
@@ -89,17 +98,39 @@ data:
     \ }\n    static F composition(F f, F g) {\n        return f + g;\n    }\n    static\
     \ F id() {\n        return T(0);\n    }\n    static constexpr bool composition_commutative\
     \ = true;\n    static S from(T v) {\n        return {v, v * v, 1};\n    }\n};\n\
-    #line 2 \"datastructure/lazy_segtree.hpp\"\n#include <atcoder/lazysegtree>\n\n\
-    #line 2 \"algebra/concept.hpp\"\n#include <concepts>\ntemplate <class M>\nconcept\
-    \ semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b)\
-    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid =\
-    \ semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
-    };\ntemplate <class G>\nconcept group = monoid<G> && requires(typename G::S a)\
-    \ {\n    { G::inv(a) } -> std::same_as<typename G::S>;\n};\ntemplate <class A>\n\
-    concept action = requires(typename A::F f, typename A::F g) {\n    { A::composition(f,\
-    \ g) } -> std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename\
-    \ A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n};\n\
-    template <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    #line 3 \"algebra/range_assign_range_max.hpp\"\n#include <optional>\ntemplate\
+    \ <class T>\nstruct range_assign_range_max {\n    using S = T;\n    using F =\
+    \ std::optional<T>;\n    static S op(S a, S b) {\n        return a < b ? b : a;\n\
+    \    }\n    static S e() {\n        return std::numeric_limits<T>::lowest();\n\
+    \    }\n    static S mapping(F f, S x) {\n        return f ? *f : x;\n    }\n\
+    \    static F composition(F f, F g) {\n        return f ? f : g;\n    }\n    static\
+    \ F id() {\n        return std::nullopt;\n    }\n    static constexpr bool composition_commutative\
+    \ = false;\n};\n#line 4 \"algebra/range_assign_range_min.hpp\"\ntemplate <class\
+    \ T>\nstruct range_assign_range_min {\n    using S = T;\n    using F = std::optional<T>;\n\
+    \    static S op(S a, S b) {\n        return a < b ? a : b;\n    }\n    static\
+    \ S e() {\n        return std::numeric_limits<T>::max();\n    }\n    static S\
+    \ mapping(F f, S x) {\n        return f ? *f : x;\n    }\n    static F composition(F\
+    \ f, F g) {\n        return f ? f : g;\n    }\n    static F id() {\n        return\
+    \ std::nullopt;\n    }\n    static constexpr bool composition_commutative = false;\n\
+    };\n#line 3 \"algebra/range_assign_range_sum.hpp\"\ntemplate <class T>\nstruct\
+    \ range_assign_range_sum {\n    struct S {\n        T sum;\n        int len;\n\
+    \    };\n    using F = std::optional<T>;\n    static S op(S a, S b) {\n      \
+    \  return {a.sum + b.sum, a.len + b.len};\n    }\n    static S e() {\n       \
+    \ return {T(0), 0};\n    }\n    static S mapping(F f, S x) {\n        return f\
+    \ ? S{*f * x.len, x.len} : x;\n    }\n    static F composition(F f, F g) {\n \
+    \       return f ? f : g;\n    }\n    static F id() {\n        return std::nullopt;\n\
+    \    }\n    static constexpr bool composition_commutative = false;\n    static\
+    \ S from(T v) {\n        return {v, 1};\n    }\n};\n#line 2 \"datastructure/lazy_segtree.hpp\"\
+    \n#include <atcoder/lazysegtree>\n\n#line 2 \"algebra/concept.hpp\"\n#include\
+    \ <concepts>\ntemplate <class M>\nconcept semigroup = requires(typename M::S a,\
+    \ typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename M::S>;\n};\n\
+    template <class M>\nconcept monoid = semigroup<M> && requires {\n    { M::e()\
+    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class G>\nconcept group = monoid<G>\
+    \ && requires(typename G::S a) {\n    { G::inv(a) } -> std::same_as<typename G::S>;\n\
+    };\ntemplate <class A>\nconcept action = requires(typename A::F f, typename A::F\
+    \ g) {\n    { A::composition(f, g) } -> std::same_as<typename A::F>;\n    { A::id()\
+    \ } -> std::same_as<typename A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n\
+    };\ntemplate <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
     \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
@@ -136,7 +167,7 @@ data:
     \ b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::max();\n\
     \    }\n};\n#line 2 \"algebra/monoid_xor.hpp\"\ntemplate <class T>\nstruct monoid_xor\
     \ {\n    using S = T;\n    static S op(S a, S b) {\n        return a ^ b;\n  \
-    \  }\n    static S e() {\n        return T(0);\n    }\n};\n#line 22 \"test/unit/monoid.test.cpp\"\
+    \  }\n    static S e() {\n        return T(0);\n    }\n};\n#line 25 \"test/unit/monoid.test.cpp\"\
     \ntemplate <class M, class Naive>\nvoid stress_monoid(std::mt19937 &rng, const\
     \ Naive &naive) {\n    using S = typename M::S;\n    const int N = 1 + rng() %\
     \ 30;\n    std::vector<S> a(N);\n    for (auto &x : a) x = S(rng() % 100);\n \
@@ -200,10 +231,31 @@ data:
     \  } else {\n            long long sum = 0, sq = 0;\n            for (int i =\
     \ l; i < r; i++) sum += a[i], sq += a[i] * a[i];\n            A::S got = seg.prod(l,\
     \ r);\n            assert(got.sum == sum && got.sum_of_squares == sq && got.len\
-    \ == r - l);\n        }\n    }\n}\nint main() {\n    std::mt19937 rng(7959);\n\
-    \    for (int trial = 0; trial < 100; trial++) {\n        stress_monoid<monoid_add<long\
-    \ long>>(rng, [](long long a, long long b) { return a + b; });\n        stress_monoid<monoid_min<int>>(rng,\
-    \ [](int a, int b) { return std::min(a, b); });\n        stress_monoid<monoid_max<int>>(rng,\
+    \ == r - l);\n        }\n    }\n}\ntemplate <class A, class Naive>\nvoid stress_range_assign(std::mt19937\
+    \ &rng, const Naive &naive) {\n    const int N = 1 + rng() % 30;\n    std::vector<long\
+    \ long> a(N);\n    for (auto &x : a) x = (long long)(rng() % 100) - 50;\n    lazy_segtree<A>\
+    \ seg(a);\n    for (int it = 0; it < 200; it++) {\n        int l = rng() % (N\
+    \ + 1), r = rng() % (N + 1);\n        if (l > r) std::swap(l, r);\n        if\
+    \ (rng() % 2) {\n            long long x = (long long)(rng() % 100) - 50;\n  \
+    \          for (int i = l; i < r; i++) a[i] = x;\n            seg.apply(l, r,\
+    \ x);\n        } else {\n            long long expect = A::e();\n            for\
+    \ (int i = l; i < r; i++) expect = naive(expect, a[i]);\n            assert(seg.prod(l,\
+    \ r) == expect);\n        }\n    }\n}\nvoid stress_range_assign_range_sum(std::mt19937\
+    \ &rng) {\n    using A = range_assign_range_sum<long long>;\n    const int N =\
+    \ 1 + rng() % 30;\n    std::vector<long long> a(N);\n    std::vector<A::S> init(N);\n\
+    \    for (int i = 0; i < N; i++) {\n        a[i] = (long long)(rng() % 100) -\
+    \ 50;\n        init[i] = A::from(a[i]);\n    }\n    lazy_segtree<A> seg(init);\n\
+    \    for (int it = 0; it < 200; it++) {\n        int l = rng() % (N + 1), r =\
+    \ rng() % (N + 1);\n        if (l > r) std::swap(l, r);\n        if (rng() % 2)\
+    \ {\n            long long x = (long long)(rng() % 100) - 50;\n            for\
+    \ (int i = l; i < r; i++) a[i] = x;\n            seg.apply(l, r, x);\n       \
+    \ } else {\n            long long expect = 0;\n            for (int i = l; i <\
+    \ r; i++) expect += a[i];\n            assert(seg.prod(l, r).sum == expect);\n\
+    \            assert(seg.prod(l, r).len == r - l);\n        }\n    }\n}\nint main()\
+    \ {\n    std::mt19937 rng(7959);\n    for (int trial = 0; trial < 100; trial++)\
+    \ {\n        stress_monoid<monoid_add<long long>>(rng, [](long long a, long long\
+    \ b) { return a + b; });\n        stress_monoid<monoid_min<int>>(rng, [](int a,\
+    \ int b) { return std::min(a, b); });\n        stress_monoid<monoid_max<int>>(rng,\
     \ [](int a, int b) { return std::max(a, b); });\n        stress_monoid<monoid_gcd<int>>(rng,\
     \ [](int a, int b) { return std::gcd(a, b); });\n        stress_monoid<monoid_xor<unsigned>>(rng,\
     \ [](unsigned a, unsigned b) { return a ^ b; });\n        stress_argmonoid<monoid_argmin<int>>(rng,\
@@ -212,62 +264,66 @@ data:
     \        stress_range_add<range_add_range_min<long long>>(rng, [](long long a,\
     \ long long b) { return std::min(a, b); });\n        stress_range_add<range_add_range_max<long\
     \ long>>(rng, [](long long a, long long b) { return std::max(a, b); });\n    \
-    \    stress_range_add_range_sum_of_squares(rng);\n    }\n    std::cout << \"Hello\
-    \ World\" << std::endl;\n    return 0;\n}\n"
+    \    stress_range_add_range_sum_of_squares(rng);\n        stress_range_assign<range_assign_range_min<long\
+    \ long>>(rng, [](long long a, long long b) { return std::min(a, b); });\n    \
+    \    stress_range_assign<range_assign_range_max<long long>>(rng, [](long long\
+    \ a, long long b) { return std::max(a, b); });\n        stress_range_assign_range_sum(rng);\n\
+    \    }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <cassert>\n#include <iostream>\n#include <numeric>\n#include <random>\n\
     #include <vector>\n\n#include \"algebra/range_add_range_max.hpp\"\n#include \"\
     algebra/range_add_range_min.hpp\"\n#include \"algebra/range_add_range_sum.hpp\"\
-    \n#include \"algebra/range_add_range_sum_of_squares.hpp\"\n#include \"datastructure/lazy_segtree.hpp\"\
-    \n#include \"datastructure/segtree.hpp\"\n#include \"algebra/monoid_add.hpp\"\n\
-    #include \"algebra/monoid_affine.hpp\"\n#include \"algebra/monoid_argmax.hpp\"\
-    \n#include \"algebra/monoid_argmin.hpp\"\n#include \"algebra/monoid_gcd.hpp\"\n\
-    #include \"algebra/monoid_max.hpp\"\n#include \"algebra/monoid_min.hpp\"\n#include\
-    \ \"algebra/monoid_xor.hpp\"\ntemplate <class M, class Naive>\nvoid stress_monoid(std::mt19937\
-    \ &rng, const Naive &naive) {\n    using S = typename M::S;\n    const int N =\
-    \ 1 + rng() % 30;\n    std::vector<S> a(N);\n    for (auto &x : a) x = S(rng()\
-    \ % 100);\n    segtree<M> seg(a);\n    for (int it = 0; it < 200; it++) {\n  \
-    \      if (rng() % 2) {\n            int p = rng() % N;\n            a[p] = S(rng()\
-    \ % 100);\n            seg.set(p, a[p]);\n        } else {\n            int l\
-    \ = rng() % (N + 1), r = rng() % (N + 1);\n            if (l > r) std::swap(l,\
-    \ r);\n            S expect = M::e();\n            for (int i = l; i < r; i++)\
-    \ expect = naive(expect, a[i]);\n            assert(seg.prod(l, r) == expect);\n\
-    \        }\n    }\n}\ntemplate <class M, class Naive>\nvoid stress_argmonoid(std::mt19937\
-    \ &rng, const Naive &better) {\n    using S = typename M::S;\n    const int N\
-    \ = 1 + rng() % 30;\n    std::vector<S> a(N);\n    for (int i = 0; i < N; i++)\
-    \ a[i] = {int(rng() % 5), i};\n    segtree<M> seg(a);\n    for (int it = 0; it\
-    \ < 200; it++) {\n        if (rng() % 2) {\n            int p = rng() % N;\n \
-    \           a[p] = {int(rng() % 5), p};\n            seg.set(p, a[p]);\n     \
-    \   } else {\n            int l = rng() % (N + 1), r = rng() % (N + 1);\n    \
-    \        if (l > r) std::swap(l, r);\n            S got = seg.prod(l, r);\n  \
-    \          if (l == r) {\n                assert(got.id == -1);\n            \
-    \    continue;\n            }\n            int best = l;\n            for (int\
-    \ i = l + 1; i < r; i++) {\n                if (better(a[i].val, a[best].val))\
-    \ best = i;\n            }\n            assert(got.id == best && got.val == a[best].val);\n\
-    \        }\n    }\n}\nvoid stress_affine(std::mt19937 &rng) {\n    using M = monoid_affine<long\
-    \ long>;\n    constexpr long long MOD = 998244353;\n    const int N = 1 + rng()\
-    \ % 30;\n    std::vector<M::S> a(N);\n    for (auto &f : a) f = {(long long)(rng()\
-    \ % 5), (long long)(rng() % 5)};\n    segtree<M> seg(a);\n    for (int it = 0;\
-    \ it < 200; it++) {\n        if (rng() % 2) {\n            int p = rng() % N;\n\
-    \            a[p] = {(long long)(rng() % 5), (long long)(rng() % 5)};\n      \
-    \      seg.set(p, a[p]);\n        } else {\n            int l = rng() % (N + 1),\
-    \ r = rng() % (N + 1);\n            if (l > r) std::swap(l, r);\n            long\
-    \ long x = rng() % 10, y = x;\n            for (int i = l; i < r; i++) y = M::eval(a[i],\
-    \ y) % MOD;\n            assert(M::eval(seg.prod(l, r), x) % MOD == y);\n    \
-    \    }\n    }\n}\nvoid stress_range_add_range_sum(std::mt19937 &rng) {\n    using\
-    \ A = range_add_range_sum<long long>;\n    const int N = 1 + rng() % 30;\n   \
-    \ std::vector<long long> a(N);\n    std::vector<A::S> init(N);\n    for (int i\
-    \ = 0; i < N; i++) {\n        a[i] = rng() % 100;\n        init[i] = A::from(a[i]);\n\
-    \    }\n    lazy_segtree<A> seg(init);\n    for (int it = 0; it < 200; it++) {\n\
-    \        int l = rng() % (N + 1), r = rng() % (N + 1);\n        if (l > r) std::swap(l,\
-    \ r);\n        if (rng() % 2) {\n            long long x = rng() % 100;\n    \
-    \        for (int i = l; i < r; i++) a[i] += x;\n            seg.apply(l, r, x);\n\
-    \        } else {\n            long long expect = 0;\n            for (int i =\
-    \ l; i < r; i++) expect += a[i];\n            assert(seg.prod(l, r).sum == expect);\n\
-    \            assert(seg.prod(l, r).len == r - l);\n        }\n    }\n}\ntemplate\
-    \ <class A, class Naive>\nvoid stress_range_add(std::mt19937 &rng, const Naive\
-    \ &naive) {\n    const int N = 1 + rng() % 30;\n    std::vector<long long> a(N);\n\
-    \    for (auto &x : a) x = (long long)(rng() % 100) - 50;\n    lazy_segtree<A>\
+    \n#include \"algebra/range_add_range_sum_of_squares.hpp\"\n#include \"algebra/range_assign_range_max.hpp\"\
+    \n#include \"algebra/range_assign_range_min.hpp\"\n#include \"algebra/range_assign_range_sum.hpp\"\
+    \n#include \"datastructure/lazy_segtree.hpp\"\n#include \"datastructure/segtree.hpp\"\
+    \n#include \"algebra/monoid_add.hpp\"\n#include \"algebra/monoid_affine.hpp\"\n\
+    #include \"algebra/monoid_argmax.hpp\"\n#include \"algebra/monoid_argmin.hpp\"\
+    \n#include \"algebra/monoid_gcd.hpp\"\n#include \"algebra/monoid_max.hpp\"\n#include\
+    \ \"algebra/monoid_min.hpp\"\n#include \"algebra/monoid_xor.hpp\"\ntemplate <class\
+    \ M, class Naive>\nvoid stress_monoid(std::mt19937 &rng, const Naive &naive) {\n\
+    \    using S = typename M::S;\n    const int N = 1 + rng() % 30;\n    std::vector<S>\
+    \ a(N);\n    for (auto &x : a) x = S(rng() % 100);\n    segtree<M> seg(a);\n \
+    \   for (int it = 0; it < 200; it++) {\n        if (rng() % 2) {\n           \
+    \ int p = rng() % N;\n            a[p] = S(rng() % 100);\n            seg.set(p,\
+    \ a[p]);\n        } else {\n            int l = rng() % (N + 1), r = rng() % (N\
+    \ + 1);\n            if (l > r) std::swap(l, r);\n            S expect = M::e();\n\
+    \            for (int i = l; i < r; i++) expect = naive(expect, a[i]);\n     \
+    \       assert(seg.prod(l, r) == expect);\n        }\n    }\n}\ntemplate <class\
+    \ M, class Naive>\nvoid stress_argmonoid(std::mt19937 &rng, const Naive &better)\
+    \ {\n    using S = typename M::S;\n    const int N = 1 + rng() % 30;\n    std::vector<S>\
+    \ a(N);\n    for (int i = 0; i < N; i++) a[i] = {int(rng() % 5), i};\n    segtree<M>\
+    \ seg(a);\n    for (int it = 0; it < 200; it++) {\n        if (rng() % 2) {\n\
+    \            int p = rng() % N;\n            a[p] = {int(rng() % 5), p};\n   \
+    \         seg.set(p, a[p]);\n        } else {\n            int l = rng() % (N\
+    \ + 1), r = rng() % (N + 1);\n            if (l > r) std::swap(l, r);\n      \
+    \      S got = seg.prod(l, r);\n            if (l == r) {\n                assert(got.id\
+    \ == -1);\n                continue;\n            }\n            int best = l;\n\
+    \            for (int i = l + 1; i < r; i++) {\n                if (better(a[i].val,\
+    \ a[best].val)) best = i;\n            }\n            assert(got.id == best &&\
+    \ got.val == a[best].val);\n        }\n    }\n}\nvoid stress_affine(std::mt19937\
+    \ &rng) {\n    using M = monoid_affine<long long>;\n    constexpr long long MOD\
+    \ = 998244353;\n    const int N = 1 + rng() % 30;\n    std::vector<M::S> a(N);\n\
+    \    for (auto &f : a) f = {(long long)(rng() % 5), (long long)(rng() % 5)};\n\
+    \    segtree<M> seg(a);\n    for (int it = 0; it < 200; it++) {\n        if (rng()\
+    \ % 2) {\n            int p = rng() % N;\n            a[p] = {(long long)(rng()\
+    \ % 5), (long long)(rng() % 5)};\n            seg.set(p, a[p]);\n        } else\
+    \ {\n            int l = rng() % (N + 1), r = rng() % (N + 1);\n            if\
+    \ (l > r) std::swap(l, r);\n            long long x = rng() % 10, y = x;\n   \
+    \         for (int i = l; i < r; i++) y = M::eval(a[i], y) % MOD;\n          \
+    \  assert(M::eval(seg.prod(l, r), x) % MOD == y);\n        }\n    }\n}\nvoid stress_range_add_range_sum(std::mt19937\
+    \ &rng) {\n    using A = range_add_range_sum<long long>;\n    const int N = 1\
+    \ + rng() % 30;\n    std::vector<long long> a(N);\n    std::vector<A::S> init(N);\n\
+    \    for (int i = 0; i < N; i++) {\n        a[i] = rng() % 100;\n        init[i]\
+    \ = A::from(a[i]);\n    }\n    lazy_segtree<A> seg(init);\n    for (int it = 0;\
+    \ it < 200; it++) {\n        int l = rng() % (N + 1), r = rng() % (N + 1);\n \
+    \       if (l > r) std::swap(l, r);\n        if (rng() % 2) {\n            long\
+    \ long x = rng() % 100;\n            for (int i = l; i < r; i++) a[i] += x;\n\
+    \            seg.apply(l, r, x);\n        } else {\n            long long expect\
+    \ = 0;\n            for (int i = l; i < r; i++) expect += a[i];\n            assert(seg.prod(l,\
+    \ r).sum == expect);\n            assert(seg.prod(l, r).len == r - l);\n     \
+    \   }\n    }\n}\ntemplate <class A, class Naive>\nvoid stress_range_add(std::mt19937\
+    \ &rng, const Naive &naive) {\n    const int N = 1 + rng() % 30;\n    std::vector<long\
+    \ long> a(N);\n    for (auto &x : a) x = (long long)(rng() % 100) - 50;\n    lazy_segtree<A>\
     \ seg(a);\n    for (int it = 0; it < 200; it++) {\n        int l = rng() % (N\
     \ + 1), r = rng() % (N + 1);\n        if (l > r) std::swap(l, r);\n        if\
     \ (rng() % 2) {\n            long long x = (long long)(rng() % 100) - 50;\n  \
@@ -286,10 +342,31 @@ data:
     \  } else {\n            long long sum = 0, sq = 0;\n            for (int i =\
     \ l; i < r; i++) sum += a[i], sq += a[i] * a[i];\n            A::S got = seg.prod(l,\
     \ r);\n            assert(got.sum == sum && got.sum_of_squares == sq && got.len\
-    \ == r - l);\n        }\n    }\n}\nint main() {\n    std::mt19937 rng(7959);\n\
-    \    for (int trial = 0; trial < 100; trial++) {\n        stress_monoid<monoid_add<long\
-    \ long>>(rng, [](long long a, long long b) { return a + b; });\n        stress_monoid<monoid_min<int>>(rng,\
-    \ [](int a, int b) { return std::min(a, b); });\n        stress_monoid<monoid_max<int>>(rng,\
+    \ == r - l);\n        }\n    }\n}\ntemplate <class A, class Naive>\nvoid stress_range_assign(std::mt19937\
+    \ &rng, const Naive &naive) {\n    const int N = 1 + rng() % 30;\n    std::vector<long\
+    \ long> a(N);\n    for (auto &x : a) x = (long long)(rng() % 100) - 50;\n    lazy_segtree<A>\
+    \ seg(a);\n    for (int it = 0; it < 200; it++) {\n        int l = rng() % (N\
+    \ + 1), r = rng() % (N + 1);\n        if (l > r) std::swap(l, r);\n        if\
+    \ (rng() % 2) {\n            long long x = (long long)(rng() % 100) - 50;\n  \
+    \          for (int i = l; i < r; i++) a[i] = x;\n            seg.apply(l, r,\
+    \ x);\n        } else {\n            long long expect = A::e();\n            for\
+    \ (int i = l; i < r; i++) expect = naive(expect, a[i]);\n            assert(seg.prod(l,\
+    \ r) == expect);\n        }\n    }\n}\nvoid stress_range_assign_range_sum(std::mt19937\
+    \ &rng) {\n    using A = range_assign_range_sum<long long>;\n    const int N =\
+    \ 1 + rng() % 30;\n    std::vector<long long> a(N);\n    std::vector<A::S> init(N);\n\
+    \    for (int i = 0; i < N; i++) {\n        a[i] = (long long)(rng() % 100) -\
+    \ 50;\n        init[i] = A::from(a[i]);\n    }\n    lazy_segtree<A> seg(init);\n\
+    \    for (int it = 0; it < 200; it++) {\n        int l = rng() % (N + 1), r =\
+    \ rng() % (N + 1);\n        if (l > r) std::swap(l, r);\n        if (rng() % 2)\
+    \ {\n            long long x = (long long)(rng() % 100) - 50;\n            for\
+    \ (int i = l; i < r; i++) a[i] = x;\n            seg.apply(l, r, x);\n       \
+    \ } else {\n            long long expect = 0;\n            for (int i = l; i <\
+    \ r; i++) expect += a[i];\n            assert(seg.prod(l, r).sum == expect);\n\
+    \            assert(seg.prod(l, r).len == r - l);\n        }\n    }\n}\nint main()\
+    \ {\n    std::mt19937 rng(7959);\n    for (int trial = 0; trial < 100; trial++)\
+    \ {\n        stress_monoid<monoid_add<long long>>(rng, [](long long a, long long\
+    \ b) { return a + b; });\n        stress_monoid<monoid_min<int>>(rng, [](int a,\
+    \ int b) { return std::min(a, b); });\n        stress_monoid<monoid_max<int>>(rng,\
     \ [](int a, int b) { return std::max(a, b); });\n        stress_monoid<monoid_gcd<int>>(rng,\
     \ [](int a, int b) { return std::gcd(a, b); });\n        stress_monoid<monoid_xor<unsigned>>(rng,\
     \ [](unsigned a, unsigned b) { return a ^ b; });\n        stress_argmonoid<monoid_argmin<int>>(rng,\
@@ -298,13 +375,19 @@ data:
     \        stress_range_add<range_add_range_min<long long>>(rng, [](long long a,\
     \ long long b) { return std::min(a, b); });\n        stress_range_add<range_add_range_max<long\
     \ long>>(rng, [](long long a, long long b) { return std::max(a, b); });\n    \
-    \    stress_range_add_range_sum_of_squares(rng);\n    }\n    std::cout << \"Hello\
-    \ World\" << std::endl;\n    return 0;\n}\n"
+    \    stress_range_add_range_sum_of_squares(rng);\n        stress_range_assign<range_assign_range_min<long\
+    \ long>>(rng, [](long long a, long long b) { return std::min(a, b); });\n    \
+    \    stress_range_assign<range_assign_range_max<long long>>(rng, [](long long\
+    \ a, long long b) { return std::max(a, b); });\n        stress_range_assign_range_sum(rng);\n\
+    \    }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
   dependsOn:
   - algebra/range_add_range_max.hpp
   - algebra/range_add_range_min.hpp
   - algebra/range_add_range_sum.hpp
   - algebra/range_add_range_sum_of_squares.hpp
+  - algebra/range_assign_range_max.hpp
+  - algebra/range_assign_range_min.hpp
+  - algebra/range_assign_range_sum.hpp
   - datastructure/lazy_segtree.hpp
   - algebra/concept.hpp
   - datastructure/segtree.hpp
@@ -319,7 +402,7 @@ data:
   isVerificationFile: true
   path: test/unit/monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-10-27 20:36:28+09:00'
+  timestamp: '2026-10-28 19:31:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/monoid.test.cpp
