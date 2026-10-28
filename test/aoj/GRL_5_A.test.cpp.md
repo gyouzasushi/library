@@ -22,30 +22,26 @@ data:
     \ u, int v, T w = 1) {\n        assert(0 <= u && u < _n);\n        assert(0 <=\
     \ v && v < _n);\n        g[u].emplace_back(v, w);\n        g[v].emplace_back(u,\
     \ w);\n    }\n    void build() {\n        assert(_n >= 1);\n        std::vector<int>\
-    \ par;\n        std::vector<T> d0;\n        search(0, d0, par);\n        _u =\
-    \ int(std::max_element(d0.begin(), d0.end()) - d0.begin());\n        search(_u,\
-    \ du, par);\n        _v = int(std::max_element(du.begin(), du.end()) - du.begin());\n\
-    \        _path.clear();\n        for (int x = _v; x != -1; x = par[x]) _path.push_back(x);\n\
-    \        std::reverse(_path.begin(), _path.end());\n        search(_v, dv, par);\n\
-    \    }\n    T length() const {\n        return du[_v];\n    }\n    std::pair<int,\
-    \ int> ends() const {\n        return {_u, _v};\n    }\n    const std::vector<int>&\
-    \ path() const {\n        return _path;\n    }\n    T farthest_dist(int x) const\
-    \ {\n        assert(0 <= x && x < _n);\n        return std::max(du[x], dv[x]);\n\
-    \    }\n    int farthest(int x) const {\n        assert(0 <= x && x < _n);\n \
-    \       if (du[x] != dv[x]) return du[x] > dv[x] ? _u : _v;\n        return std::min(_u,\
-    \ _v);\n    }\n\nprivate:\n    int _n, _u = -1, _v = -1;\n    std::vector<std::vector<std::pair<int,\
-    \ T>>> g;\n    std::vector<T> du, dv;\n    std::vector<int> _path;\n    void search(int\
-    \ s, std::vector<T>& d, std::vector<int>& par) const {\n        d.assign(_n, T(0));\n\
-    \        par.assign(_n, -1);\n        std::vector<int> st = {s};\n        par[s]\
-    \ = s;\n        while (!st.empty()) {\n            int x = st.back();\n      \
-    \      st.pop_back();\n            for (auto [y, w] : g[x]) {\n              \
-    \  if (par[y] != -1) continue;\n                par[y] = x;\n                d[y]\
-    \ = d[x] + w;\n                st.push_back(y);\n            }\n        }\n  \
-    \      par[s] = -1;\n    }\n};\n#line 5 \"test/aoj/GRL_5_A.test.cpp\"\nint main()\
-    \ {\n    int n;\n    std::cin >> n;\n    tree_diameter<long long> d(n);\n    for\
-    \ (int i = 0; i < n - 1; i++) {\n        int s, t;\n        long long w;\n   \
-    \     std::cin >> s >> t >> w;\n        d.add_edge(s, t, w);\n    }\n    d.build();\n\
-    \    std::cout << d.length() << '\\n';\n}\n"
+    \ par;\n        std::vector<T> d;\n        search(0, d, par);\n        _u = int(std::max_element(d.begin(),\
+    \ d.end()) - d.begin());\n        search(_u, d, par);\n        _v = int(std::max_element(d.begin(),\
+    \ d.end()) - d.begin());\n        _length = d[_v];\n        _path.clear();\n \
+    \       for (int x = _v; x != -1; x = par[x]) _path.push_back(x);\n        std::reverse(_path.begin(),\
+    \ _path.end());\n    }\n    T length() const {\n        return _length;\n    }\n\
+    \    std::pair<int, int> ends() const {\n        return {_u, _v};\n    }\n   \
+    \ const std::vector<int>& path() const {\n        return _path;\n    }\n\nprivate:\n\
+    \    int _n, _u = -1, _v = -1;\n    T _length = T(0);\n    std::vector<std::vector<std::pair<int,\
+    \ T>>> g;\n    std::vector<int> _path;\n    void search(int s, std::vector<T>&\
+    \ d, std::vector<int>& par) const {\n        d.assign(_n, T(0));\n        par.assign(_n,\
+    \ -1);\n        std::vector<int> st = {s};\n        par[s] = s;\n        while\
+    \ (!st.empty()) {\n            int x = st.back();\n            st.pop_back();\n\
+    \            for (auto [y, w] : g[x]) {\n                if (par[y] != -1) continue;\n\
+    \                par[y] = x;\n                d[y] = d[x] + w;\n             \
+    \   st.push_back(y);\n            }\n        }\n        par[s] = -1;\n    }\n\
+    };\n#line 5 \"test/aoj/GRL_5_A.test.cpp\"\nint main() {\n    int n;\n    std::cin\
+    \ >> n;\n    tree_diameter<long long> d(n);\n    for (int i = 0; i < n - 1; i++)\
+    \ {\n        int s, t;\n        long long w;\n        std::cin >> s >> t >> w;\n\
+    \        d.add_edge(s, t, w);\n    }\n    d.build();\n    std::cout << d.length()\
+    \ << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_A\"\n#include\
     \ <iostream>\n\n#include \"graph/tree_diameter.hpp\"\nint main() {\n    int n;\n\
     \    std::cin >> n;\n    tree_diameter<long long> d(n);\n    for (int i = 0; i\
@@ -57,7 +53,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2026-10-28 19:31:39+09:00'
+  timestamp: '2026-10-28 19:58:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_A.test.cpp

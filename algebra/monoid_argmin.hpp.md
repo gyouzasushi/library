@@ -49,8 +49,8 @@ data:
   timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/monoid.test.cpp
   - test/unit/sparse_table.test.cpp
+  - test/unit/monoid.test.cpp
   - test/library-checker/lca.test.cpp
   - test/library-checker/manhattanmst.test.cpp
 documentation_of: algebra/monoid_argmin.hpp

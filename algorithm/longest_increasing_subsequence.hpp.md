@@ -67,9 +67,9 @@ data:
   timestamp: '2026-10-26 21:56:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DPL_1_D.test.cpp
   - test/unit/longest_increasing_subsequence.test.cpp
   - test/library-checker/longest_increasing_subsequence.test.cpp
+  - test/aoj/DPL_1_D.test.cpp
 documentation_of: algorithm/longest_increasing_subsequence.hpp
 layout: document
 title: Longest Increasing Subsequence

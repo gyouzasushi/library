@@ -189,11 +189,11 @@ data:
   timestamp: '2026-10-24 20:17:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/0355.test.cpp
   - test/unit/string_hash.test.cpp
-  - test/library-checker/enumerate_palindromes.test.cpp
-  - test/library-checker/zalgorithm_rolling_hash.test.cpp
   - test/library-checker/suffix_array_rolling_hash.test.cpp
+  - test/library-checker/zalgorithm_rolling_hash.test.cpp
+  - test/library-checker/enumerate_palindromes.test.cpp
+  - test/aoj/0355.test.cpp
   - test/yukicoder/2231.test.cpp
 documentation_of: string/string_hash.hpp
 layout: document

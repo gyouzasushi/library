@@ -65,10 +65,10 @@ data:
   timestamp: '2026-10-26 01:30:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_2_A.test.cpp
   - test/unit/monoid.test.cpp
-  - test/library-checker/point_set_range_composite.test.cpp
   - test/library-checker/manhattanmst.test.cpp
+  - test/library-checker/point_set_range_composite.test.cpp
+  - test/aoj/DSL_2_A.test.cpp
 documentation_of: datastructure/segtree.hpp
 layout: document
 title: Segment Tree (monoid wrapper)

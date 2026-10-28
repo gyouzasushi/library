@@ -230,11 +230,11 @@ data:
   timestamp: '2026-10-25 23:13:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/wavelet_matrix.test.cpp
   - test/unit/rectangle_sum.test.cpp
-  - test/library-checker/static_range_frequency.test.cpp
+  - test/unit/wavelet_matrix.test.cpp
   - test/library-checker/range_kth_smallest.test.cpp
   - test/library-checker/rectangle_sum.test.cpp
+  - test/library-checker/static_range_frequency.test.cpp
   - test/library-checker/static_range_count_distinct.test.cpp
 documentation_of: datastructure/wavelet_matrix.hpp
 layout: document

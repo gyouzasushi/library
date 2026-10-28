@@ -185,8 +185,8 @@ data:
   timestamp: '2026-10-26 01:30:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/0355.test.cpp
   - test/unit/string_hash.test.cpp
+  - test/aoj/0355.test.cpp
 documentation_of: string/range_update_range_hash.hpp
 layout: document
 title: Range Update Range Hash

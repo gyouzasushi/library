@@ -41,9 +41,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/sqrt_tree.test.cpp
-  - test/unit/persistent_segtree.test.cpp
-  - test/unit/monoid.test.cpp
   - test/unit/weighted_dsu.test.cpp
+  - test/unit/monoid.test.cpp
+  - test/unit/persistent_segtree.test.cpp
   - test/library-checker/unionfind_with_potential.test.cpp
 documentation_of: algebra/monoid_add.hpp
 layout: document
