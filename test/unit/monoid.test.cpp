@@ -9,6 +9,9 @@
 #include "algebra/range_add_range_min.hpp"
 #include "algebra/range_add_range_sum.hpp"
 #include "algebra/range_add_range_sum_of_squares.hpp"
+#include "algebra/range_assign_range_max.hpp"
+#include "algebra/range_assign_range_min.hpp"
+#include "algebra/range_assign_range_sum.hpp"
 #include "datastructure/lazy_segtree.hpp"
 #include "datastructure/segtree.hpp"
 #include "algebra/monoid_add.hpp"
@@ -159,6 +162,51 @@ void stress_range_add_range_sum_of_squares(std::mt19937 &rng) {
         }
     }
 }
+template <class A, class Naive>
+void stress_range_assign(std::mt19937 &rng, const Naive &naive) {
+    const int N = 1 + rng() % 30;
+    std::vector<long long> a(N);
+    for (auto &x : a) x = (long long)(rng() % 100) - 50;
+    lazy_segtree<A> seg(a);
+    for (int it = 0; it < 200; it++) {
+        int l = rng() % (N + 1), r = rng() % (N + 1);
+        if (l > r) std::swap(l, r);
+        if (rng() % 2) {
+            long long x = (long long)(rng() % 100) - 50;
+            for (int i = l; i < r; i++) a[i] = x;
+            seg.apply(l, r, x);
+        } else {
+            long long expect = A::e();
+            for (int i = l; i < r; i++) expect = naive(expect, a[i]);
+            assert(seg.prod(l, r) == expect);
+        }
+    }
+}
+void stress_range_assign_range_sum(std::mt19937 &rng) {
+    using A = range_assign_range_sum<long long>;
+    const int N = 1 + rng() % 30;
+    std::vector<long long> a(N);
+    std::vector<A::S> init(N);
+    for (int i = 0; i < N; i++) {
+        a[i] = (long long)(rng() % 100) - 50;
+        init[i] = A::from(a[i]);
+    }
+    lazy_segtree<A> seg(init);
+    for (int it = 0; it < 200; it++) {
+        int l = rng() % (N + 1), r = rng() % (N + 1);
+        if (l > r) std::swap(l, r);
+        if (rng() % 2) {
+            long long x = (long long)(rng() % 100) - 50;
+            for (int i = l; i < r; i++) a[i] = x;
+            seg.apply(l, r, x);
+        } else {
+            long long expect = 0;
+            for (int i = l; i < r; i++) expect += a[i];
+            assert(seg.prod(l, r).sum == expect);
+            assert(seg.prod(l, r).len == r - l);
+        }
+    }
+}
 int main() {
     std::mt19937 rng(7959);
     for (int trial = 0; trial < 100; trial++) {
@@ -174,6 +222,9 @@ int main() {
         stress_range_add<range_add_range_min<long long>>(rng, [](long long a, long long b) { return std::min(a, b); });
         stress_range_add<range_add_range_max<long long>>(rng, [](long long a, long long b) { return std::max(a, b); });
         stress_range_add_range_sum_of_squares(rng);
+        stress_range_assign<range_assign_range_min<long long>>(rng, [](long long a, long long b) { return std::min(a, b); });
+        stress_range_assign<range_assign_range_max<long long>>(rng, [](long long a, long long b) { return std::max(a, b); });
+        stress_range_assign_range_sum(rng);
     }
     std::cout << "Hello World" << std::endl;
     return 0;
