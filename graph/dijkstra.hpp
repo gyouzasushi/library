@@ -54,7 +54,7 @@ public:
         if (_dist[t] == inf) return {};
         std::vector<int> res;
         for (int v = t; v != -1; v = _prev[v]) res.push_back(v);
-        std::reverse(res.begin(), res.end());
+        std::ranges::reverse(res);
         return res;
     }
 

@@ -21,13 +21,13 @@ public:
         std::vector<int> par;
         std::vector<T> d;
         search(0, d, par);
-        _u = int(std::max_element(d.begin(), d.end()) - d.begin());
+        _u = int(std::ranges::max_element(d) - d.begin());
         search(_u, d, par);
-        _v = int(std::max_element(d.begin(), d.end()) - d.begin());
+        _v = int(std::ranges::max_element(d) - d.begin());
         _length = d[_v];
         _path.clear();
         for (int x = _v; x != -1; x = par[x]) _path.push_back(x);
-        std::reverse(_path.begin(), _path.end());
+        std::ranges::reverse(_path);
     }
     T length() const {
         return _length;

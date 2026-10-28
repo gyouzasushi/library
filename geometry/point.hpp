@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <compare>
 #include <concepts>
 #include <iostream>
 #include <type_traits>
@@ -55,15 +56,9 @@ template <class T> struct point {
     friend bool operator==(const point& a, const point& b) {
         return sgn(a.x - b.x) == 0 && sgn(a.y - b.y) == 0;
     }
-    friend bool operator!=(const point& a, const point& b) {
-        return !(a == b);
-    }
-    friend bool operator<(const point& a, const point& b) {
-        if (sgn(a.x - b.x) != 0) return a.x < b.x;
-        return sgn(a.y - b.y) < 0;
-    }
-    friend bool operator>(const point& a, const point& b) {
-        return b < a;
+    friend std::weak_ordering operator<=>(const point& a, const point& b) {
+        if (int s = sgn(a.x - b.x); s != 0) return s <=> 0;
+        return sgn(a.y - b.y) <=> 0;
     }
     friend std::istream& operator>>(std::istream& is, point& p) {
         return is >> p.x >> p.y;

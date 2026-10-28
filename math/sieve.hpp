@@ -56,7 +56,7 @@ public:
                 for (int j = 0; j < sz; j++) ret.push_back(ret[j] * q);
             }
         }
-        std::sort(ret.begin(), ret.end());
+        std::ranges::sort(ret);
         return ret;
     }
 

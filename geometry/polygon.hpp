@@ -45,8 +45,8 @@ template <class T> int contains(const polygon<T>& poly, const point<T>& p) {
 }
 template <class T> polygon<T> convex_hull(std::vector<point<T>> ps, bool strict = true) {
     int n = int(ps.size());
-    std::sort(ps.begin(), ps.end());
-    ps.erase(std::unique(ps.begin(), ps.end()), ps.end());
+    std::ranges::sort(ps);
+    ps.erase(std::ranges::unique(ps).begin(), ps.end());
     n = int(ps.size());
     if (n <= 2) return ps;
     polygon<T> ret(2 * n);
@@ -66,7 +66,7 @@ template <class T> std::pair<int, int> farthest_pair(const std::vector<point<T>>
     polygon<T> ch = convex_hull(ps);
     int m = int(ch.size());
     auto index_of = [&](const point<T>& p) {
-        return int(std::find(ps.begin(), ps.end(), p) - ps.begin());
+        return int(std::ranges::find(ps, p) - ps.begin());
     };
     if (m == 1) return {0, 1};
     if (m == 2) return {index_of(ch[0]), index_of(ch[1])};
@@ -86,7 +86,7 @@ template <class T> std::pair<int, int> closest_pair(const std::vector<point<T>>&
     assert(n >= 2);
     std::vector<int> id(n);
     for (int i = 0; i < n; i++) id[i] = i;
-    std::sort(id.begin(), id.end(), [&](int i, int j) { return ps[i] < ps[j]; });
+    std::ranges::sort(id, [&](int i, int j) { return ps[i] < ps[j]; });
     std::pair<int, int> ret = {id[0], id[1]};
     T best = norm(ps[id[0]] - ps[id[1]]);
     std::vector<int> buf(n);

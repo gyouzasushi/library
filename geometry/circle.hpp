@@ -68,8 +68,7 @@ template <std::floating_point T> std::vector<point<T>> cross_points(const circle
 }
 template <std::floating_point T> std::vector<point<T>> cross_points(const segment<T>& s, const circle<T>& o) {
     std::vector<point<T>> ret = cross_points(to_line(s), o);
-    ret.erase(std::remove_if(ret.begin(), ret.end(), [&](const point<T>& p) { return !on_segment(s, p); }),
-              ret.end());
+    ret.erase(std::ranges::remove_if(ret, [&](const point<T>& p) { return !on_segment(s, p); }).begin(), ret.end());
     return ret;
 }
 template <std::floating_point T> std::vector<point<T>> cross_points(const circle<T>& o, const segment<T>& s) {
@@ -104,8 +103,8 @@ template <std::floating_point T> std::vector<point<T>> common_tangents(const cir
         std::vector<point<T>> ps = tangent_points(a, p);
         ret.insert(ret.end(), ps.begin(), ps.end());
     }
-    std::sort(ret.begin(), ret.end());
-    ret.erase(std::unique(ret.begin(), ret.end()), ret.end());
+    std::ranges::sort(ret);
+    ret.erase(std::ranges::unique(ret).begin(), ret.end());
     return ret;
 }
 template <std::floating_point T> circle<T> incircle(const point<T>& a, const point<T>& b, const point<T>& c) {
@@ -120,7 +119,7 @@ template <std::floating_point T> circle<T> circumcircle(const point<T>& a, const
 template <std::floating_point T> circle<T> smallest_enclosing_circle(std::vector<point<T>> ps) {
     int n = int(ps.size());
     assert(n >= 1);
-    std::shuffle(ps.begin(), ps.end(), std::mt19937(123456789));
+    std::ranges::shuffle(ps, std::mt19937(123456789));
     circle<T> ret(ps[0], 0);
     for (int i = 1; i < n; i++) {
         if (contains(ret, ps[i])) continue;

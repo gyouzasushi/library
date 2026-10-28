@@ -17,7 +17,7 @@ public:
     explicit rectangle_sum(std::vector<std::pair<T, T>> points)
         requires (!weighted)
     {
-        std::sort(points.begin(), points.end());
+        std::ranges::sort(points);
         int n = int(points.size());
         std::vector<T> ys(n);
         xs.resize(n);
@@ -27,7 +27,7 @@ public:
     explicit rectangle_sum(std::vector<std::tuple<T, T, S>> points)
         requires weighted
     {
-        std::sort(points.begin(), points.end(), [](const auto& a, const auto& b) {
+        std::ranges::sort(points, [](const auto& a, const auto& b) {
             return std::get<0>(a) < std::get<0>(b);
         });
         int n = int(points.size());
@@ -57,8 +57,8 @@ private:
     std::vector<T> xs;
     wavelet_matrix<T, S> wm;
     std::pair<int, int> range(T x1, T x2) const {
-        int l = int(std::lower_bound(xs.begin(), xs.end(), x1) - xs.begin());
-        int r = int(std::lower_bound(xs.begin(), xs.end(), x2) - xs.begin());
+        int l = int(std::ranges::lower_bound(xs, x1) - xs.begin());
+        int r = int(std::ranges::lower_bound(xs, x2) - xs.begin());
         return {l, r};
     }
 };

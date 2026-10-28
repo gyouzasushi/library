@@ -13,7 +13,7 @@ std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,
     int n = x.size();
     assert(int(y.size()) == n);
     std::vector<int> id(n);
-    std::iota(id.begin(), id.end(), 0);
+    std::ranges::iota(id, 0);
     std::vector<int> y_id(n);
     std::vector<std::tuple<int, int, T>> ret;
     for (int a = 0; a < 2; a++) {
@@ -26,10 +26,9 @@ std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,
                     return y[i] - x[i] < y[j] - x[j];
                 });
                 std::vector<T> _y = y;
-                std::sort(_y.begin(), _y.end());
+                std::ranges::sort(_y);
                 for (int i = 0; i < n; i++) {
-                    y_id[i] = std::lower_bound(_y.begin(), _y.end(), y[i]) -
-                              _y.begin();
+                    y_id[i] = std::ranges::lower_bound(_y, y[i]) - _y.begin();
                 }
                 segtree<monoid_argmin<T>> segt(n);
                 for (int i : id) {

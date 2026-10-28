@@ -30,5 +30,5 @@ Library Checker - Sort Points by Argument（[問題](https://judge.yosupo.jp/pro
 ```cpp
 std::vector<geo::point<long long>> ps(n);
 for (auto& p : ps) std::cin >> p;
-std::sort(ps.begin(), ps.end(), geo::arg_less{});
+std::ranges::sort(ps, geo::arg_less{});
 ```

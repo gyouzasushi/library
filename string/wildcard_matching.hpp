@@ -14,7 +14,7 @@ std::vector<bool> wildcard_matching(const std::vector<long long>& a,
     if (m > n) return {};
     if (m == 0) return std::vector<bool>(n + 1, true);
     assert((long double)m * k * k * k * k < 9e18L);
-    std::reverse(b.begin(), b.end());
+    std::ranges::reverse(b);
     auto pw = [](const std::vector<long long>& v, int e) {
         std::vector<long long> r(v.size());
         for (size_t i = 0; i < v.size(); i++) {
@@ -40,11 +40,11 @@ std::vector<bool> wildcard_matching(const std::vector<T>& s,
     std::vector<T> v;
     for (const T& x : s) v.push_back(x);
     for (const T& x : t) v.push_back(x);
-    std::sort(v.begin(), v.end());
-    v.erase(std::unique(v.begin(), v.end()), v.end());
+    std::ranges::sort(v);
+    v.erase(std::ranges::unique(v).begin(), v.end());
     auto id = [&](const T& x) -> long long {
         if (x == wildcard) return 0;
-        return std::lower_bound(v.begin(), v.end(), x) - v.begin() + 1;
+        return std::ranges::lower_bound(v, x) - v.begin() + 1;
     };
     std::vector<long long> a(s.size()), b(t.size());
     for (size_t i = 0; i < s.size(); i++) a[i] = id(s[i]);

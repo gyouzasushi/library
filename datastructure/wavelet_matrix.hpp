@@ -151,12 +151,12 @@ private:
     void build(const std::vector<T>& a, const std::vector<W>& w) {
         n = int(a.size());
         key = a;
-        std::sort(key.begin(), key.end());
-        key.erase(std::unique(key.begin(), key.end()), key.end());
+        std::ranges::sort(key);
+        key.erase(std::ranges::unique(key).begin(), key.end());
         log = key.empty() ? 0 : std::bit_width(unsigned(key.size() - 1));
         std::vector<int> b(n), order(n);
         for (int i = 0; i < n; i++) {
-            b[i] = int(std::lower_bound(key.begin(), key.end(), a[i]) - key.begin());
+            b[i] = int(std::ranges::lower_bound(key, a[i]) - key.begin());
             order[i] = i;
         }
         bv.assign(log, bit_vector(n));
@@ -186,7 +186,7 @@ private:
     }
     // #{ v in key : v < x }
     int rank_of(const T& x) const {
-        return int(std::lower_bound(key.begin(), key.end(), x) - key.begin());
+        return int(std::ranges::lower_bound(key, x) - key.begin());
     }
     // #{ i in [l, r) : b[i] < u }, 0 <= u <= |key|
     int count_rank(int l, int r, int u) const {

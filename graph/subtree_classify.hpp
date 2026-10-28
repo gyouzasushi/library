@@ -29,7 +29,7 @@ std::vector<int> subtree_classify(const std::vector<std::vector<int>>& g, int ro
         for (int v : g[u]) {
             if (v != par[u]) key.push_back(ret[v]);
         }
-        std::sort(key.begin(), key.end());
+        std::ranges::sort(key);
         ret[u] = id.try_emplace(key, int(id.size())).first->second;
     }
     return ret;

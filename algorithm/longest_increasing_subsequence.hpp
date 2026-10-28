@@ -11,7 +11,7 @@ struct longest_increasing_subsequence {
         : n(a.size()), pos(n) {
         std::vector<T> dp;
         for (int i = 0; i < n; i++) {
-            auto it = std::lower_bound(dp.begin(), dp.end(), a[i], comp);
+            auto it = std::ranges::lower_bound(dp, a[i], comp);
             pos[i] = it - dp.begin();
             if (it == dp.end()) {
                 dp.push_back(a[i]);
@@ -30,7 +30,7 @@ struct longest_increasing_subsequence {
                 pos[i] = -1;
             }
         }
-        for (auto& c : cand) std::reverse(c.begin(), c.end());
+        for (auto& c : cand) std::ranges::reverse(c);
     }
     int length() const { return len; }
     int position(int i) const {

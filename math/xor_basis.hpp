@@ -19,7 +19,7 @@ template <std::integral T = long long> struct xor_basis {
         for (T& v : b) {
             if (v & p) v ^= x;
         }
-        b.insert(std::lower_bound(b.begin(), b.end(), x, std::greater<T>()), x);
+        b.insert(std::ranges::lower_bound(b, x, std::greater<T>()), x);
         return true;
     }
     bool contains(T x) const {

@@ -38,8 +38,8 @@ struct mo {
         for (auto [l, r] : lr) n = std::max(n, r);
         int w = std::max(1, (int)(std::sqrt(3.0) * n / std::sqrt(2.0 * q)));
         std::vector<int> ord(q);
-        std::iota(ord.begin(), ord.end(), 0);
-        std::sort(ord.begin(), ord.end(), [&](int a, int b) {
+        std::ranges::iota(ord, 0);
+        std::ranges::sort(ord, [&](int a, int b) {
             int ba = lr[a].first / w, bb = lr[b].first / w;
             if (ba != bb) return ba < bb;
             return (ba & 1) ? lr[a].second > lr[b].second

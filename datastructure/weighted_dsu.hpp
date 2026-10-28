@@ -61,8 +61,7 @@ public:
         std::vector<std::vector<int>> result(_n);
         for (int i = 0; i < _n; i++) result[i].reserve(group_size[i]);
         for (int i = 0; i < _n; i++) result[leader_buf[i]].push_back(i);
-        result.erase(std::remove_if(result.begin(), result.end(),
-                                    [&](const std::vector<int>& v) { return v.empty(); }),
+        result.erase(std::ranges::remove_if(result, [](const std::vector<int>& v) { return v.empty(); }).begin(),
                      result.end());
         return result;
     }

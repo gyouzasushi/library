@@ -86,7 +86,7 @@ std::vector<std::pair<long long, int>> factorize(long long n) {
         st.push_back(d);
         st.push_back(p / d);
     }
-    std::sort(primes.begin(), primes.end());
+    std::ranges::sort(primes);
     for (long long p : primes) {
         if (!ret.empty() && ret.back().first == p) {
             ret.back().second++;
@@ -108,6 +108,6 @@ std::vector<long long> divisors(long long n) {
             for (int j = 0; j < sz; j++) ret.push_back(ret[j] * q);
         }
     }
-    std::sort(ret.begin(), ret.end());
+    std::ranges::sort(ret);
     return ret;
 }
