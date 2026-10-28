@@ -150,6 +150,9 @@ data:
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
+      path: graph/bellman_ford.hpp
+      title: "Bellman\u2013Ford \u6CD5"
+    - icon: ':heavy_check_mark:'
       path: graph/bfs_tree_of_complement.hpp
       title: "\u88DC\u30B0\u30E9\u30D5\u306E BFS \u68EE"
     - icon: ':heavy_check_mark:'
@@ -351,6 +354,9 @@ data:
       path: test/aoj/DSL_2_G.test.cpp
       title: test/aoj/DSL_2_G.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_1_B.test.cpp
+      title: test/aoj/GRL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_3_A.test.cpp
       title: test/aoj/GRL_3_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -540,6 +546,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/aho_corasick.test.cpp
       title: test/unit/aho_corasick.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/bellman_ford.test.cpp
+      title: test/unit/bellman_ford.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/binary_trie.test.cpp
       title: test/unit/binary_trie.test.cpp
