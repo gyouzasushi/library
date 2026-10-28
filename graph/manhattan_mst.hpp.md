@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_argmin.hpp
     title: 'Monoid: Argmin'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/segtree.hpp
     title: Segment Tree (monoid wrapper)
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/manhattanmst.test.cpp
     title: test/library-checker/manhattanmst.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/manhattan_mst.hpp\"\n#include <algorithm>\n#include\
@@ -49,12 +49,12 @@ data:
     \ == n);\n    std::vector<int> id(n);\n    std::ranges::iota(id, 0);\n    std::vector<int>\
     \ y_id(n);\n    std::vector<std::tuple<int, int, T>> ret;\n    for (int a = 0;\
     \ a < 2; a++) {\n        for (int b = 0; b < 2; b++) {\n            for (int c\
-    \ = 0; c < 2; c++) {\n                sort(id.begin(), id.end(), [&](int i, int\
-    \ j) {\n                    if (y[i] - x[i] == y[j] - x[j] && y[i] == y[j])\n\
-    \                        return i < j;\n                    if (y[i] - x[i] ==\
-    \ y[j] - x[j]) return y[i] > y[j];\n                    return y[i] - x[i] < y[j]\
-    \ - x[j];\n                });\n                std::vector<T> _y = y;\n     \
-    \           std::ranges::sort(_y);\n                for (int i = 0; i < n; i++)\
+    \ = 0; c < 2; c++) {\n                std::ranges::sort(id, [&](int i, int j)\
+    \ {\n                    if (y[i] - x[i] == y[j] - x[j] && y[i] == y[j])\n   \
+    \                     return i < j;\n                    if (y[i] - x[i] == y[j]\
+    \ - x[j]) return y[i] > y[j];\n                    return y[i] - x[i] < y[j] -\
+    \ x[j];\n                });\n                std::vector<T> _y = y;\n       \
+    \         std::ranges::sort(_y);\n                for (int i = 0; i < n; i++)\
     \ {\n                    y_id[i] = std::ranges::lower_bound(_y, y[i]) - _y.begin();\n\
     \                }\n                segtree<monoid_argmin<T>> segt(n);\n     \
     \           for (int i : id) {\n                    auto p = segt.prod(y_id[i],\
@@ -62,8 +62,9 @@ data:
     \ p.id, p.val - (x[i] + y[i]));\n                    }\n                    segt.set(y_id[i],\
     \ {x[i] + y[i], i});\n                }\n                std::swap(x, y);\n  \
     \          }\n            for (T &x : x) x = -x;\n        }\n        for (T &y\
-    \ : y) y = -y;\n    }\n    sort(ret.begin(), ret.end(),\n         [](auto a, auto\
-    \ b) { return std::get<2>(a) < std::get<2>(b); });\n    return ret;\n}\n"
+    \ : y) y = -y;\n    }\n    std::ranges::sort(ret,\n                      [](auto\
+    \ a, auto b) { return std::get<2>(a) < std::get<2>(b); });\n    return ret;\n\
+    }\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <numeric>\n\
     #include <tuple>\n#include <vector>\n\n#include \"datastructure/segtree.hpp\"\n\
     #include \"algebra/monoid_argmin.hpp\"\ntemplate <typename T>\nstd::vector<std::tuple<int,\
@@ -72,12 +73,12 @@ data:
     \ == n);\n    std::vector<int> id(n);\n    std::ranges::iota(id, 0);\n    std::vector<int>\
     \ y_id(n);\n    std::vector<std::tuple<int, int, T>> ret;\n    for (int a = 0;\
     \ a < 2; a++) {\n        for (int b = 0; b < 2; b++) {\n            for (int c\
-    \ = 0; c < 2; c++) {\n                sort(id.begin(), id.end(), [&](int i, int\
-    \ j) {\n                    if (y[i] - x[i] == y[j] - x[j] && y[i] == y[j])\n\
-    \                        return i < j;\n                    if (y[i] - x[i] ==\
-    \ y[j] - x[j]) return y[i] > y[j];\n                    return y[i] - x[i] < y[j]\
-    \ - x[j];\n                });\n                std::vector<T> _y = y;\n     \
-    \           std::ranges::sort(_y);\n                for (int i = 0; i < n; i++)\
+    \ = 0; c < 2; c++) {\n                std::ranges::sort(id, [&](int i, int j)\
+    \ {\n                    if (y[i] - x[i] == y[j] - x[j] && y[i] == y[j])\n   \
+    \                     return i < j;\n                    if (y[i] - x[i] == y[j]\
+    \ - x[j]) return y[i] > y[j];\n                    return y[i] - x[i] < y[j] -\
+    \ x[j];\n                });\n                std::vector<T> _y = y;\n       \
+    \         std::ranges::sort(_y);\n                for (int i = 0; i < n; i++)\
     \ {\n                    y_id[i] = std::ranges::lower_bound(_y, y[i]) - _y.begin();\n\
     \                }\n                segtree<monoid_argmin<T>> segt(n);\n     \
     \           for (int i : id) {\n                    auto p = segt.prod(y_id[i],\
@@ -85,8 +86,8 @@ data:
     \ p.id, p.val - (x[i] + y[i]));\n                    }\n                    segt.set(y_id[i],\
     \ {x[i] + y[i], i});\n                }\n                std::swap(x, y);\n  \
     \          }\n            for (T &x : x) x = -x;\n        }\n        for (T &y\
-    \ : y) y = -y;\n    }\n    sort(ret.begin(), ret.end(),\n         [](auto a, auto\
-    \ b) { return std::get<2>(a) < std::get<2>(b); });\n    return ret;\n}"
+    \ : y) y = -y;\n    }\n    std::ranges::sort(ret,\n                      [](auto\
+    \ a, auto b) { return std::get<2>(a) < std::get<2>(b); });\n    return ret;\n}"
   dependsOn:
   - datastructure/segtree.hpp
   - algebra/concept.hpp
@@ -94,8 +95,8 @@ data:
   isVerificationFile: false
   path: graph/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-29 08:24:16+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/manhattanmst.test.cpp
 documentation_of: graph/manhattan_mst.hpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/binomial_coefficient_arbitrary_mod.hpp
     title: Binomial Coefficient (Arbitrary Mod)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/factorize.hpp
     title: Factorize
   _extendedRequiredBy: []

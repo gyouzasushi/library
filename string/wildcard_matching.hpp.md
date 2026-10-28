@@ -6,18 +6,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0378.test.cpp
     title: test/aoj/0378.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/wildcard_pattern_matching.test.cpp
     title: test/library-checker/wildcard_pattern_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unit/wildcard_matching.test.cpp
     title: test/unit/wildcard_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/wildcard_matching.hpp\"\n#include <algorithm>\n#include\
@@ -455,7 +455,7 @@ data:
   path: string/wildcard_matching.hpp
   requiredBy: []
   timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/wildcard_matching.test.cpp
   - test/library-checker/wildcard_pattern_matching.test.cpp

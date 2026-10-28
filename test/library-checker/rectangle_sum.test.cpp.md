@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/rectangle_sum.hpp
     title: Rectangle Sum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -159,7 +159,7 @@ data:
   path: test/library-checker/rectangle_sum.test.cpp
   requiredBy: []
   timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/rectangle_sum.test.cpp
 layout: document

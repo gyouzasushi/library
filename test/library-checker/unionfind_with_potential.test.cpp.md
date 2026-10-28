@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: algebra/group_add.hpp
     title: 'Group: Add'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_add.hpp
     title: 'Monoid: Add'
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/weighted_dsu.hpp
     title: Weighted DSU
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential
@@ -310,7 +310,7 @@ data:
   path: test/library-checker/unionfind_with_potential.test.cpp
   requiredBy: []
   timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/unionfind_with_potential.test.cpp
 layout: document

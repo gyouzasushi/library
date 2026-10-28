@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_add.hpp
     title: 'Monoid: Add'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_affine.hpp
     title: 'Monoid: Affine'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_max.hpp
     title: 'Monoid: Max'
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/dynamic_segtree.hpp
     title: Dynamic Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -223,7 +223,7 @@ data:
   path: test/unit/dynamic_segtree.test.cpp
   requiredBy: []
   timestamp: '2026-10-28 22:07:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/dynamic_segtree.test.cpp
 layout: document

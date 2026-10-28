@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_D.test.cpp
     title: test/aoj/DPL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/longest_increasing_subsequence.test.cpp
     title: test/library-checker/longest_increasing_subsequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unit/longest_increasing_subsequence.test.cpp
     title: test/unit/longest_increasing_subsequence.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algorithm/longest_increasing_subsequence.hpp\"\n#include\
@@ -65,7 +65,7 @@ data:
   path: algorithm/longest_increasing_subsequence.hpp
   requiredBy: []
   timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/longest_increasing_subsequence.test.cpp
   - test/library-checker/longest_increasing_subsequence.test.cpp

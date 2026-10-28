@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unit/dynamic_segtree.test.cpp
     title: test/unit/dynamic_segtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -12,9 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/sparse_table.test.cpp
     title: test/unit/sparse_table.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algebra/monoid_max.hpp\"\n#include <algorithm>\n#include\
@@ -30,7 +30,7 @@ data:
   path: algebra/monoid_max.hpp
   requiredBy: []
   timestamp: '2026-10-23 22:06:19+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/dynamic_segtree.test.cpp
   - test/unit/sparse_table.test.cpp

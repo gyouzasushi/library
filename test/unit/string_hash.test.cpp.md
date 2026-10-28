@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
   - icon: ':heavy_check_mark:'
     path: datastructure/lazy_segtree.hpp
     title: Lazy Segment Tree (acted monoid wrapper)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint2305843009213693951.hpp
     title: modint2305843009213693951
   - icon: ':heavy_check_mark:'
     path: string/range_update_range_hash.hpp
     title: Range Update Range Hash
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: Rolling Hash
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/string_hash.hpp
     title: String Hash
   _extendedRequiredBy: []

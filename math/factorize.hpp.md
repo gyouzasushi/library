@@ -9,15 +9,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/binomial_coefficient.test.cpp
     title: test/library-checker/binomial_coefficient.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/factorize.test.cpp
     title: test/library-checker/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unit/sieve.test.cpp
     title: test/unit/sieve.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/factorize.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -102,7 +102,7 @@ data:
   requiredBy:
   - math/binomial_coefficient_arbitrary_mod.hpp
   timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/sieve.test.cpp
   - test/library-checker/binomial_coefficient.test.cpp

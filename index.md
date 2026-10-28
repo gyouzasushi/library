@@ -3,37 +3,37 @@ data:
   libraryCategories:
   - name: algebra
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/concept.hpp
       title: 'Algebra: Concept'
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algebra/group_add.hpp
       title: 'Group: Add'
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algebra/group_xor.hpp
       title: 'Group: XOR'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_add.hpp
       title: 'Monoid: Add'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_affine.hpp
       title: 'Monoid: Affine'
     - icon: ':heavy_check_mark:'
       path: algebra/monoid_argmax.hpp
       title: 'Monoid: Argmax'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_argmin.hpp
       title: 'Monoid: Argmin'
     - icon: ':heavy_check_mark:'
       path: algebra/monoid_gcd.hpp
       title: 'Monoid: GCD'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_max.hpp
       title: 'Monoid: Max'
     - icon: ':heavy_check_mark:'
       path: algebra/monoid_min.hpp
       title: 'Monoid: Min'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_xor.hpp
       title: 'Monoid: XOR'
     - icon: ':heavy_check_mark:'
@@ -68,10 +68,10 @@ data:
       title: 'Semiring: Plus Times'
   - name: algorithm
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: algorithm/longest_increasing_subsequence.hpp
       title: Longest Increasing Subsequence
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: algorithm/mo.hpp
       title: Mo's Algorithm
   - name: datastructure
@@ -85,7 +85,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/dual_segtree.hpp
       title: Dual Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/dynamic_segtree.hpp
       title: Dynamic Segment Tree
     - icon: ':heavy_check_mark:'
@@ -109,13 +109,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/range_set.hpp
       title: Range Set
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/rectangle_sum.hpp
       title: Rectangle Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/rollback_dsu.hpp
       title: Rollback DSU
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/segtree.hpp
       title: Segment Tree (monoid wrapper)
     - icon: ':heavy_check_mark:'
@@ -127,29 +127,29 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/top_k_sum.hpp
       title: Top K Sum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/wavelet_matrix.hpp
       title: Wavelet Matrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: datastructure/weighted_dsu.hpp
       title: Weighted DSU
   - name: geometry
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/circle.hpp
       title: 'Geometry: Circle'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/line.hpp
       title: 'Geometry: Line'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/point.hpp
       title: 'Geometry: Point'
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/polygon.hpp
       title: 'Geometry: Polygon'
   - name: graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/bfs_tree_of_complement.hpp
       title: "\u88DC\u30B0\u30E9\u30D5\u306E BFS \u68EE"
     - icon: ':heavy_check_mark:'
@@ -158,7 +158,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/chromatic_number.hpp
       title: Chromatic Number
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: "Dijkstra \u6CD5"
     - icon: ':heavy_check_mark:'
@@ -173,20 +173,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/lowlink.hpp
       title: Lowlink
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/manhattan_mst.hpp
       title: Manhattan MST
     - icon: ':heavy_check_mark:'
       path: graph/rerooting.hpp
       title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/subtree_classify.hpp
       title: "\u6839\u4ED8\u304D\u6728\u306E\u540C\u578B\u6027\u306B\u3088\u308B\u90E8\
         \u5206\u6728\u306E\u5206\u985E"
     - icon: ':heavy_check_mark:'
       path: graph/topological_sort.hpp
       title: Topological Sort
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_diameter.hpp
       title: Tree Diameter
   - name: math
@@ -206,7 +206,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/combinatorics.hpp
       title: Combinatorics
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/factorize.hpp
       title: Factorize
     - icon: ':heavy_check_mark:'
@@ -218,16 +218,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: Matrix
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint2305843009213693951.hpp
       title: modint2305843009213693951
     - icon: ':heavy_check_mark:'
       path: math/quotient_blocks.hpp
       title: Quotient Blocks
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/sieve.hpp
       title: Sieve
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/xor_basis.hpp
       title: Xor Basis
     - icon: ':heavy_check_mark:'
@@ -242,16 +242,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/range_update_range_hash.hpp
       title: Range Update Range Hash
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: Rolling Hash
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/string_hash.hpp
       title: String Hash
     - icon: ':heavy_check_mark:'
       path: string/trie.hpp
       title: Trie
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/wildcard_matching.hpp
       title: Wildcard Matching
   verificationCategories:
@@ -388,16 +388,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/closest_pair.test.cpp
       title: test/library-checker/closest_pair.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/connected_components_of_complement_graph.test.cpp
       title: test/library-checker/connected_components_of_complement_graph.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/enumerate_palindromes.test.cpp
       title: test/library-checker/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/enumerate_primes.test.cpp
       title: test/library-checker/enumerate_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/factorize.test.cpp
       title: test/library-checker/factorize.test.cpp
     - icon: ':heavy_check_mark:'
@@ -421,10 +421,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/line_add_get_min.test.cpp
       title: test/library-checker/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/longest_increasing_subsequence.test.cpp
       title: test/library-checker/longest_increasing_subsequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/manhattanmst.test.cpp
       title: test/library-checker/manhattanmst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -442,7 +442,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/point_add_range_sum.test.cpp
       title: test/library-checker/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
       title: test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -457,13 +457,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_point_get.test.cpp
       title: test/library-checker/range_affine_point_get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/range_kth_smallest.test.cpp
       title: test/library-checker/range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/rectangle_sum.test.cpp
       title: test/library-checker/rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
       title: test/library-checker/rooted_tree_isomorphism_classification.test.cpp
     - icon: ':heavy_check_mark:'
@@ -475,22 +475,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/set_xor_min.test.cpp
       title: test/library-checker/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/shortest_path.test.cpp
       title: test/library-checker/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/sort_points_by_argument.test.cpp
       title: test/library-checker/sort_points_by_argument.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/static_convex_hull.test.cpp
       title: test/library-checker/static_convex_hull.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_count_distinct.test.cpp
       title: test/library-checker/static_range_count_distinct.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_frequency.test.cpp
       title: test/library-checker/static_range_frequency.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/static_range_inversions_query.test.cpp
       title: test/library-checker/static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'
@@ -514,10 +514,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/two_edge_connected_components.test.cpp
       title: test/library-checker/two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/unionfind_with_potential.test.cpp
       title: test/library-checker/unionfind_with_potential.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
       title: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
     - icon: ':heavy_check_mark:'
@@ -529,7 +529,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/vertex_set_path_composite.test.cpp
       title: test/library-checker/vertex_set_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/wildcard_pattern_matching.test.cpp
       title: test/library-checker/wildcard_pattern_matching.test.cpp
     - icon: ':heavy_check_mark:'
@@ -549,13 +549,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/dual_segtree.test.cpp
       title: test/unit/dual_segtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/dynamic_segtree.test.cpp
       title: test/unit/dynamic_segtree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/functional_graph.test.cpp
       title: test/unit/functional_graph.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/geometry.test.cpp
       title: test/unit/geometry.test.cpp
     - icon: ':heavy_check_mark:'
@@ -573,7 +573,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/linear_recurrence.test.cpp
       title: test/unit/linear_recurrence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/longest_increasing_subsequence.test.cpp
       title: test/unit/longest_increasing_subsequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -582,7 +582,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/matrix.test.cpp
       title: test/unit/matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/mo.test.cpp
       title: test/unit/mo.test.cpp
     - icon: ':heavy_check_mark:'
@@ -606,16 +606,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/range_set.test.cpp
       title: test/unit/range_set.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/rectangle_sum.test.cpp
       title: test/unit/rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/rerooting.test.cpp
       title: test/unit/rerooting.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/rollback_dsu.test.cpp
       title: test/unit/rollback_dsu.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/sieve.test.cpp
       title: test/unit/sieve.test.cpp
     - icon: ':heavy_check_mark:'
@@ -627,7 +627,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/string_hash.test.cpp
       title: test/unit/string_hash.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/subtree_classify.test.cpp
       title: test/unit/subtree_classify.test.cpp
     - icon: ':heavy_check_mark:'
@@ -636,22 +636,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/topological_sort.test.cpp
       title: test/unit/topological_sort.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/tree_diameter.test.cpp
       title: test/unit/tree_diameter.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/trie.test.cpp
       title: test/unit/trie.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/wavelet_matrix.test.cpp
       title: test/unit/wavelet_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/weighted_dsu.test.cpp
       title: test/unit/weighted_dsu.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/wildcard_matching.test.cpp
       title: test/unit/wildcard_matching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unit/xor_basis.test.cpp
       title: test/unit/xor_basis.test.cpp
     - icon: ':heavy_check_mark:'
@@ -668,7 +668,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1601_2.test.cpp
       title: test/yukicoder/1601_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2231.test.cpp
       title: test/yukicoder/2231.test.cpp
     - icon: ':heavy_check_mark:'

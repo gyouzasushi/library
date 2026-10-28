@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algorithm/longest_increasing_subsequence.hpp
     title: Longest Increasing Subsequence
   _extendedRequiredBy: []

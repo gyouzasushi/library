@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: datastructure/dual_segtree.hpp
     title: Dual Segment Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/dynamic_segtree.hpp
     title: Dynamic Segment Tree
   - icon: ':heavy_check_mark:'
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: datastructure/plus_minus_one_rmq.hpp
     title: Plus Minus One RMQ
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/segtree.hpp
     title: Segment Tree (monoid wrapper)
   - icon: ':heavy_check_mark:'
@@ -26,13 +26,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: datastructure/sqrt_tree.hpp
     title: Sqrt Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: datastructure/weighted_dsu.hpp
     title: Weighted DSU
   - icon: ':heavy_check_mark:'
     path: graph/lowest_common_ancestor.hpp
     title: "\u6700\u5C0F\u5171\u901A\u7956\u5148(LCA)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/manhattan_mst.hpp
     title: Manhattan MST
   - icon: ':heavy_check_mark:'
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/lca.test.cpp
     title: test/library-checker/lca.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/manhattanmst.test.cpp
     title: test/library-checker/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -69,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/matrix_rank.test.cpp
     title: test/library-checker/matrix_rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
     title: test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,16 +90,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/system_of_linear_equations.test.cpp
     title: test/library-checker/system_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/unionfind_with_potential.test.cpp
     title: test/library-checker/unionfind_with_potential.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/dual_segtree.test.cpp
     title: test/unit/dual_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unit/dynamic_segtree.test.cpp
     title: test/unit/dynamic_segtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -123,12 +123,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/string_hash.test.cpp
     title: test/unit/string_hash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unit/weighted_dsu.test.cpp
     title: test/unit/weighted_dsu.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"algebra/concept.hpp\"\n#include <concepts>\ntemplate <class\
@@ -179,7 +179,7 @@ data:
   - datastructure/dynamic_segtree.hpp
   - datastructure/weighted_dsu.hpp
   timestamp: '2026-10-26 01:30:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/dynamic_segtree.test.cpp
   - test/unit/sqrt_tree.test.cpp

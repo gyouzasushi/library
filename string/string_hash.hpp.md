@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint2305843009213693951.hpp
     title: modint2305843009213693951
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: string/range_update_range_hash.hpp
     title: Range Update Range Hash
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: Rolling Hash
   _extendedVerifiedWith:
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/string_hash.test.cpp
     title: test/unit/string_hash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/string_hash.hpp\"\n#include <algorithm>\n#include\
@@ -187,7 +187,7 @@ data:
   - string/range_update_range_hash.hpp
   - string/rolling_hash.hpp
   timestamp: '2026-10-24 20:17:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/string_hash.test.cpp
   - test/library-checker/suffix_array_rolling_hash.test.cpp

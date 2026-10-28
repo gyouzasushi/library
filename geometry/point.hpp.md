@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/circle.hpp
     title: 'Geometry: Circle'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/line.hpp
     title: 'Geometry: Line'
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/polygon.hpp
     title: 'Geometry: Polygon'
   _extendedVerifiedWith:
@@ -84,18 +84,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/closest_pair.test.cpp
     title: test/library-checker/closest_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/sort_points_by_argument.test.cpp
     title: test/library-checker/sort_points_by_argument.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/static_convex_hull.test.cpp
     title: test/library-checker/static_convex_hull.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unit/geometry.test.cpp
     title: test/unit/geometry.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/point.hpp\"\n#include <cmath>\n#include <compare>\n\
@@ -191,7 +191,7 @@ data:
   - geometry/polygon.hpp
   - geometry/line.hpp
   timestamp: '2026-10-28 21:58:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/geometry.test.cpp
   - test/library-checker/static_convex_hull.test.cpp
