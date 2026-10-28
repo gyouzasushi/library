@@ -19,7 +19,7 @@ std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,
     for (int a = 0; a < 2; a++) {
         for (int b = 0; b < 2; b++) {
             for (int c = 0; c < 2; c++) {
-                sort(id.begin(), id.end(), [&](int i, int j) {
+                std::ranges::sort(id, [&](int i, int j) {
                     if (y[i] - x[i] == y[j] - x[j] && y[i] == y[j])
                         return i < j;
                     if (y[i] - x[i] == y[j] - x[j]) return y[i] > y[j];
@@ -44,7 +44,7 @@ std::vector<std::tuple<int, int, T>> manhattan_mst(std::vector<T> x,
         }
         for (T &y : y) y = -y;
     }
-    sort(ret.begin(), ret.end(),
-         [](auto a, auto b) { return std::get<2>(a) < std::get<2>(b); });
+    std::ranges::sort(ret,
+                      [](auto a, auto b) { return std::get<2>(a) < std::get<2>(b); });
     return ret;
 }
