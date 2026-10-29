@@ -5,14 +5,14 @@ data:
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
   - icon: ':heavy_check_mark:'
+    path: algebra/range_assign_range_hash.hpp
+    title: 'Acted Monoid: Range Assign Range Hash'
+  - icon: ':heavy_check_mark:'
     path: datastructure/lazy_segtree.hpp
     title: Lazy Segment Tree (acted monoid wrapper)
   - icon: ':heavy_check_mark:'
     path: math/modint2305843009213693951.hpp
     title: modint2305843009213693951
-  - icon: ':heavy_check_mark:'
-    path: string/range_update_range_hash.hpp
-    title: Range Update Range Hash
   - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: Rolling Hash
@@ -31,47 +31,27 @@ data:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
   bundledCode: "#line 1 \"test/unit/string_hash.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <random>\n\
-    #include <set>\n#include <string>\n#include <vector>\n\n#line 4 \"string/range_update_range_hash.hpp\"\
-    \n\n#line 2 \"datastructure/lazy_segtree.hpp\"\n#include <atcoder/lazysegtree>\n\
-    \n#line 2 \"algebra/concept.hpp\"\n#include <concepts>\ntemplate <class M>\nconcept\
-    \ semigroup = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b)\
-    \ } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\nconcept monoid =\
-    \ semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename M::S>;\n\
-    };\ntemplate <class G>\nconcept group = monoid<G> && requires(typename G::S a)\
-    \ {\n    { G::inv(a) } -> std::same_as<typename G::S>;\n};\ntemplate <class A>\n\
-    concept action = requires(typename A::F f, typename A::F g) {\n    { A::composition(f,\
-    \ g) } -> std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename\
-    \ A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n};\n\
-    template <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
-    \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
-    \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
-    \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
-    \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
-    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
-    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
-    \ntemplate <acted_monoid A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
-    \ A::S, A::op, A::e, typename A::F, A::mapping, A::composition, A::id>;\n#line\
-    \ 3 \"string/string_hash.hpp\"\n#include <array>\n#line 5 \"string/string_hash.hpp\"\
-    \n#include <cstdint>\n#include <numeric>\n#line 9 \"string/string_hash.hpp\"\n\
-    \n#line 5 \"math/modint2305843009213693951.hpp\"\nstruct modint2305843009213693951\
-    \ {\n    using mint = modint2305843009213693951;\n    static constexpr uint64_t\
-    \ mod() {\n        return m;\n    }\n    static mint raw(uint64_t v) {\n     \
-    \   mint x;\n        x._v = v;\n        return x;\n    }\n    modint2305843009213693951()\
-    \ : _v(0) {}\n    template <std::unsigned_integral T>\n    modint2305843009213693951(T\
-    \ v) : _v(reduce(v)) {}\n    template <std::signed_integral T>\n    modint2305843009213693951(T\
-    \ v) {\n        if (v >= 0) {\n            _v = reduce(uint64_t(v));\n       \
-    \ } else {\n            uint64_t x = reduce(uint64_t(0) - uint64_t(v));\n    \
-    \        _v = x == 0 ? 0 : m - x;\n        }\n    }\n    uint64_t val() const\
-    \ {\n        return _v;\n    }\n    mint& operator++() {\n        if (++_v ==\
-    \ m) _v = 0;\n        return *this;\n    }\n    mint& operator--() {\n       \
-    \ if (_v == 0) _v = m;\n        _v--;\n        return *this;\n    }\n    mint\
-    \ operator++(int) {\n        mint r = *this;\n        ++*this;\n        return\
-    \ r;\n    }\n    mint operator--(int) {\n        mint r = *this;\n        --*this;\n\
-    \        return r;\n    }\n    mint& operator+=(const mint& rhs) {\n        _v\
-    \ += rhs._v;\n        if (_v >= m) _v -= m;\n        return *this;\n    }\n  \
-    \  mint& operator-=(const mint& rhs) {\n        _v += m - rhs._v;\n        if\
-    \ (_v >= m) _v -= m;\n        return *this;\n    }\n    mint& operator*=(const\
+    #include <set>\n#include <string>\n#include <vector>\n\n#line 2 \"string/rolling_hash.hpp\"\
+    \n#include <array>\n#line 5 \"string/rolling_hash.hpp\"\n\n#line 5 \"string/string_hash.hpp\"\
+    \n#include <concepts>\n#include <cstdint>\n#include <numeric>\n#line 9 \"string/string_hash.hpp\"\
+    \n#include <type_traits>\n#line 11 \"string/string_hash.hpp\"\n\n#line 5 \"math/modint2305843009213693951.hpp\"\
+    \nstruct modint2305843009213693951 {\n    using mint = modint2305843009213693951;\n\
+    \    static constexpr uint64_t mod() {\n        return m;\n    }\n    static mint\
+    \ raw(uint64_t v) {\n        mint x;\n        x._v = v;\n        return x;\n \
+    \   }\n    modint2305843009213693951() : _v(0) {}\n    template <std::unsigned_integral\
+    \ T>\n    modint2305843009213693951(T v) : _v(reduce(v)) {}\n    template <std::signed_integral\
+    \ T>\n    modint2305843009213693951(T v) {\n        if (v >= 0) {\n          \
+    \  _v = reduce(uint64_t(v));\n        } else {\n            uint64_t x = reduce(uint64_t(0)\
+    \ - uint64_t(v));\n            _v = x == 0 ? 0 : m - x;\n        }\n    }\n  \
+    \  uint64_t val() const {\n        return _v;\n    }\n    mint& operator++() {\n\
+    \        if (++_v == m) _v = 0;\n        return *this;\n    }\n    mint& operator--()\
+    \ {\n        if (_v == 0) _v = m;\n        _v--;\n        return *this;\n    }\n\
+    \    mint operator++(int) {\n        mint r = *this;\n        ++*this;\n     \
+    \   return r;\n    }\n    mint operator--(int) {\n        mint r = *this;\n  \
+    \      --*this;\n        return r;\n    }\n    mint& operator+=(const mint& rhs)\
+    \ {\n        _v += rhs._v;\n        if (_v >= m) _v -= m;\n        return *this;\n\
+    \    }\n    mint& operator-=(const mint& rhs) {\n        _v += m - rhs._v;\n \
+    \       if (_v >= m) _v -= m;\n        return *this;\n    }\n    mint& operator*=(const\
     \ mint& rhs) {\n        constexpr uint64_t mask31 = (uint64_t(1) << 31) - 1;\n\
     \        constexpr uint64_t mask30 = (uint64_t(1) << 30) - 1;\n        uint64_t\
     \ au = _v >> 31, ad = _v & mask31;\n        uint64_t bu = rhs._v >> 31, bd = rhs._v\
@@ -95,7 +75,7 @@ data:
     \ != rhs._v;\n    }\n\nprivate:\n    static constexpr uint64_t m = (uint64_t(1)\
     \ << 61) - 1;\n    static constexpr uint64_t reduce(uint64_t v) {\n        uint64_t\
     \ x = (v >> 61) + (v & m);\n        if (x >= m) x -= m;\n        return x;\n \
-    \   }\n    uint64_t _v;\n};\n#line 11 \"string/string_hash.hpp\"\ntemplate <int\
+    \   }\n    uint64_t _v;\n};\n#line 13 \"string/string_hash.hpp\"\ntemplate <int\
     \ k = 1, class mint = modint2305843009213693951>\nstruct string_hash {\n    static_assert(k\
     \ >= 1);\n    std::array<mint, k> val;\n    int len;\n    string_hash() : val{},\
     \ len(0) {}\n    explicit string_hash(int c) : len(1) {\n        val.fill(mint(c));\n\
@@ -135,47 +115,110 @@ data:
     \ {\n            p[i].resize(m);\n            s[i].resize(m);\n            for\
     \ (int j = sz; j < m; j++) {\n                p[i][j] = p[i][j - 1] * base(i);\n\
     \                s[i][j] = s[i][j - 1] + p[i][j - 1];\n            }\n       \
-    \ }\n    }\n};\ntemplate <class A, class B>\nint lcp(A& a, int l1, int r1, B&\
-    \ b, int l2, int r2) {\n    int ok = 0, ng = std::min(r1 - l1, r2 - l2) + 1;\n\
-    \    while (ng - ok > 1) {\n        int mid = (ok + ng) / 2;\n        (a.prod(l1,\
-    \ l1 + mid) == b.prod(l2, l2 + mid) ? ok : ng) = mid;\n    }\n    return ok;\n\
-    }\ntemplate <class A, class B>\nint cmp(A& a, int l1, int r1, B& b, int l2, int\
-    \ r2) {\n    int x = lcp(a, l1, r1, b, l2, r2);\n    bool ea = l1 + x == r1, eb\
-    \ = l2 + x == r2;\n    if (ea && eb) return 0;\n    if (ea) return -1;\n    if\
-    \ (eb) return 1;\n    return a.get(l1 + x).val[0].val() < b.get(l2 + x).val[0].val()\
-    \ ? -1 : 1;\n}\n#line 7 \"string/range_update_range_hash.hpp\"\ntemplate <int\
-    \ k = 1, class mint = modint2305843009213693951>\nstruct range_update_range_hash\
-    \ {\n    using H = string_hash<k, mint>;\n    range_update_range_hash() : n(0)\
-    \ {}\n    template <class Iterable>\n    explicit range_update_range_hash(const\
-    \ Iterable& s) {\n        std::vector<H> v;\n        for (auto&& c : s) v.emplace_back(int(c));\n\
-    \        n = int(v.size());\n        seg = lazy_segtree<A>(v);\n    }\n    int\
-    \ size() const {\n        return n;\n    }\n    void set(int p, int c) {\n   \
-    \     assert(0 <= c);\n        seg.set(p, H(c));\n    }\n    void apply(int l,\
-    \ int r, int c) {\n        assert(0 <= c);\n        seg.apply(l, r, c);\n    }\n\
-    \    H prod(int l, int r) {\n        return seg.prod(l, r);\n    }\n    H get(int\
-    \ p) {\n        return seg.get(p);\n    }\n    H all_prod() {\n        return\
-    \ seg.all_prod();\n    }\n\nprivate:\n    struct A {\n        using S = H;\n \
-    \       using F = int;\n        static S op(S a, S b) {\n            return a\
-    \ + b;\n        }\n        static S e() {\n            return S();\n        }\n\
-    \        static S mapping(F f, S x) {\n            return f < 0 ? x : H::repeat(f,\
-    \ x.len);\n        }\n        static F composition(F f, F g) {\n            return\
-    \ f < 0 ? g : f;\n        }\n        static F id() {\n            return -1;\n\
-    \        }\n        static constexpr bool composition_commutative = false;\n \
-    \   };\n    int n;\n    lazy_segtree<A> seg;\n};\n#line 5 \"string/rolling_hash.hpp\"\
-    \n\n#line 7 \"string/rolling_hash.hpp\"\ntemplate <int k = 1, class mint = modint2305843009213693951>\n\
-    struct rolling_hash {\n    using H = string_hash<k, mint>;\n    rolling_hash()\
-    \ : n(0) {}\n    template <class Iterable>\n    explicit rolling_hash(const Iterable&\
-    \ s) {\n        std::vector<int> a;\n        for (auto&& c : s) a.push_back(int(c));\n\
-    \        n = int(a.size());\n        for (int i = 0; i < k; i++) {\n         \
-    \   h[i].assign(n + 1, mint(0));\n            for (int j = 0; j < n; j++) h[i][j\
-    \ + 1] = h[i][j] * H::base(i) + mint(a[j]);\n        }\n    }\n    int size()\
-    \ const {\n        return n;\n    }\n    H prod(int l, int r) const {\n      \
-    \  assert(0 <= l && l <= r && r <= n);\n        H res;\n        res.len = r -\
-    \ l;\n        for (int i = 0; i < k; i++) res.val[i] = h[i][r] - h[i][l] * H::pow(i,\
-    \ r - l);\n        return res;\n    }\n    H get(int p) const {\n        return\
-    \ prod(p, p + 1);\n    }\n    H all_prod() const {\n        return prod(0, n);\n\
-    \    }\n\nprivate:\n    int n;\n    std::array<std::vector<mint>, k> h;\n};\n\
-    #line 13 \"test/unit/string_hash.test.cpp\"\nint brute_cmp(const std::string&\
+    \ }\n    }\n};\nnamespace internal {\ntemplate <class H> struct is_string_hash\
+    \ : std::false_type {};\ntemplate <int k, class mint> struct is_string_hash<string_hash<k,\
+    \ mint>> : std::true_type {};\n}  // namespace internal\ntemplate <class A>\n\
+    concept hash_sequence = requires(A& a, int l, int r) {\n    { a.prod(l, r) } ->\
+    \ std::same_as<decltype(a.get(l))>;\n    requires internal::is_string_hash<std::remove_cvref_t<decltype(a.prod(l,\
+    \ r))>>::value;\n};\ntemplate <hash_sequence A, hash_sequence B>\nint lcp(A& a,\
+    \ int l1, int r1, B& b, int l2, int r2) {\n    int ok = 0, ng = std::min(r1 -\
+    \ l1, r2 - l2) + 1;\n    while (ng - ok > 1) {\n        int mid = (ok + ng) /\
+    \ 2;\n        (a.prod(l1, l1 + mid) == b.prod(l2, l2 + mid) ? ok : ng) = mid;\n\
+    \    }\n    return ok;\n}\ntemplate <hash_sequence A, hash_sequence B>\nint compare(A&\
+    \ a, int l1, int r1, B& b, int l2, int r2) {\n    int x = lcp(a, l1, r1, b, l2,\
+    \ r2);\n    bool ea = l1 + x == r1, eb = l2 + x == r2;\n    if (ea && eb) return\
+    \ 0;\n    if (ea) return -1;\n    if (eb) return 1;\n    return a.get(l1 + x).val[0].val()\
+    \ < b.get(l2 + x).val[0].val() ? -1 : 1;\n}\n#line 7 \"string/rolling_hash.hpp\"\
+    \ntemplate <int k = 1, class mint = modint2305843009213693951>\nstruct rolling_hash\
+    \ {\n    using H = string_hash<k, mint>;\n    rolling_hash() : n(0) {}\n    template\
+    \ <class Iterable>\n    explicit rolling_hash(const Iterable& s) {\n        std::vector<int>\
+    \ a;\n        for (auto&& c : s) a.push_back(int(c));\n        n = int(a.size());\n\
+    \        for (int i = 0; i < k; i++) {\n            h[i].assign(n + 1, mint(0));\n\
+    \            for (int j = 0; j < n; j++) h[i][j + 1] = h[i][j] * H::base(i) +\
+    \ mint(a[j]);\n        }\n    }\n    int size() const {\n        return n;\n \
+    \   }\n    H prod(int l, int r) const {\n        assert(0 <= l && l <= r && r\
+    \ <= n);\n        H res;\n        res.len = r - l;\n        for (int i = 0; i\
+    \ < k; i++) res.val[i] = h[i][r] - h[i][l] * H::pow(i, r - l);\n        return\
+    \ res;\n    }\n    H get(int p) const {\n        return prod(p, p + 1);\n    }\n\
+    \    H all_prod() const {\n        return prod(0, n);\n    }\n\nprivate:\n   \
+    \ int n;\n    std::array<std::vector<mint>, k> h;\n};\n#line 2 \"algebra/range_assign_range_hash.hpp\"\
+    \n#include <optional>\n\n#line 5 \"algebra/range_assign_range_hash.hpp\"\ntemplate\
+    \ <int k = 1, class mint = modint2305843009213693951>\nstruct range_assign_range_hash\
+    \ {\n    using S = string_hash<k, mint>;\n    using F = std::optional<int>;\n\
+    \    static S op(S a, S b) {\n        return a + b;\n    }\n    static S e() {\n\
+    \        return S();\n    }\n    static S mapping(F f, S x) {\n        return\
+    \ f ? S::repeat(*f, x.len) : x;\n    }\n    static F composition(F f, F g) {\n\
+    \        return f ? f : g;\n    }\n    static F id() {\n        return std::nullopt;\n\
+    \    }\n    static constexpr bool composition_commutative = false;\n    static\
+    \ S from(int c) {\n        return S(c);\n    }\n};\n#line 2 \"datastructure/lazy_segtree.hpp\"\
+    \n#include <atcoder/lazysegtree>\n\n#line 3 \"algebra/concept.hpp\"\ntemplate\
+    \ <class M>\nconcept semigroup = requires(typename M::S a, typename M::S b) {\n\
+    \    { M::op(a, b) } -> std::same_as<typename M::S>;\n};\ntemplate <class M>\n\
+    concept monoid = semigroup<M> && requires {\n    { M::e() } -> std::same_as<typename\
+    \ M::S>;\n};\ntemplate <class G>\nconcept group = monoid<G> && requires(typename\
+    \ G::S a) {\n    { G::inv(a) } -> std::same_as<typename G::S>;\n};\ntemplate <class\
+    \ A>\nconcept action = requires(typename A::F f, typename A::F g) {\n    { A::composition(f,\
+    \ g) } -> std::same_as<typename A::F>;\n    { A::id() } -> std::same_as<typename\
+    \ A::F>;\n    { A::composition_commutative } -> std::convertible_to<bool>;\n};\n\
+    template <class A>\nconcept acted_monoid = monoid<A> && action<A> && requires(typename\
+    \ A::S x, typename A::F f) {\n    { A::mapping(f, x) } -> std::same_as<typename\
+    \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
+    \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
+    \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
+    \ntemplate <acted_monoid A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
+    \ A::S, A::op, A::e, typename A::F, A::mapping, A::composition, A::id>;\n#line\
+    \ 14 \"test/unit/string_hash.test.cpp\"\nint brute_cmp(const std::string& a, const\
+    \ std::string& b) {\n    return a < b ? -1 : a == b ? 0 : 1;\n}\nint brute_lcp(const\
+    \ std::string& a, const std::string& b) {\n    int i = 0;\n    while (i < int(a.size())\
+    \ && i < int(b.size()) && a[i] == b[i]) i++;\n    return i;\n}\nint main() {\n\
+    \    std::mt19937 rng(7959);\n    for (int trial = 0; trial < 200; trial++) {\n\
+    \        int n = 1 + rng() % 12, m = 1 + rng() % 12;\n        int sigma = 1 +\
+    \ rng() % 3;\n        std::string s(n, 'a'), t(m, 'a');\n        for (auto& c\
+    \ : s) c = 'a' + rng() % sigma;\n        for (auto& c : t) c = 'a' + rng() % sigma;\n\
+    \        rolling_hash<> rs(s);\n        using A = range_assign_range_hash<>;\n\
+    \        std::vector<A::S> init;\n        for (char c : t) init.push_back(A::from(c));\n\
+    \        lazy_segtree<A> rt(init);\n        assert(rs.size() == n);\n        for\
+    \ (int q = 0; q < 30; q++) {\n            if (rng() % 3 == 0) {\n            \
+    \    int l = rng() % (m + 1), r = rng() % (m + 1);\n                if (l > r)\
+    \ std::swap(l, r);\n                char c = 'a' + rng() % sigma;\n          \
+    \      rt.apply(l, r, c);\n                for (int i = l; i < r; i++) t[i] =\
+    \ c;\n            } else if (rng() % 3 == 0) {\n                int p = rng()\
+    \ % m;\n                char c = 'a' + rng() % sigma;\n                rt.set(p,\
+    \ A::from(c));\n                t[p] = c;\n            }\n            int l1 =\
+    \ rng() % (n + 1), r1 = rng() % (n + 1);\n            if (l1 > r1) std::swap(l1,\
+    \ r1);\n            int l2 = rng() % (m + 1), r2 = rng() % (m + 1);\n        \
+    \    if (l2 > r2) std::swap(l2, r2);\n            std::string a = s.substr(l1,\
+    \ r1 - l1), b = t.substr(l2, r2 - l2);\n            assert((rs.prod(l1, r1) ==\
+    \ rt.prod(l2, r2)) == (a == b));\n            assert(lcp(rs, l1, r1, rt, l2, r2)\
+    \ == brute_lcp(a, b));\n            assert(compare(rs, l1, r1, rt, l2, r2) ==\
+    \ brute_cmp(a, b));\n            assert(compare(rt, l2, r2, rs, l1, r1) == brute_cmp(b,\
+    \ a));\n            int l3 = rng() % (n + 1), r3 = rng() % (n + 1);\n        \
+    \    if (l3 > r3) std::swap(l3, r3);\n            std::string c = s.substr(l3,\
+    \ r3 - l3);\n            assert(compare(rs, l1, r1, rs, l3, r3) == brute_cmp(a,\
+    \ c));\n            assert(lcp(rs, l1, r1, rs, l3, r3) == brute_lcp(a, c));\n\
+    \            assert(rs.prod(l1, r1) + rs.prod(l3, r3) == rolling_hash<>(a + c).all_prod());\n\
+    \            assert(rs.prod(l1, r1) + rt.prod(l2, r2) == rolling_hash<>(a + b).all_prod());\n\
+    \            if (l1 < r1) assert(rs.get(l1) == string_hash<>(s[l1]));\n      \
+    \      assert(rt.all_prod() == rolling_hash<>(t).all_prod());\n            assert(rt.prod(l2,\
+    \ r2) == rolling_hash<>(b).all_prod());\n        }\n        {\n            std::string\
+    \ r(n, 'a');\n            char c = 'a' + rng() % sigma;\n            for (auto&\
+    \ x : r) x = c;\n            assert(string_hash<>::repeat(c, n) == rolling_hash<>(r).all_prod());\n\
+    \        }\n        {\n            std::set<string_hash<>> hs;\n            std::set<std::string>\
+    \ ss;\n            for (int l = 0; l <= n; l++)\n                for (int r =\
+    \ l; r <= n; r++) hs.insert(rs.prod(l, r)), ss.insert(s.substr(l, r - l));\n \
+    \           assert(hs.size() == ss.size());\n        }\n    }\n    {\n       \
+    \ rolling_hash<2> rh(std::vector<int>{1, 2, 3});\n        assert(rh.prod(0, 2)\
+    \ + rh.prod(2, 3) == rh.all_prod());\n        assert(rh.prod(0, 0) == string_hash<2>());\n\
+    \        assert(rolling_hash<2>(std::string(\"\")).all_prod() == string_hash<2>());\n\
+    \    }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
+  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+    \n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <random>\n\
+    #include <set>\n#include <string>\n#include <vector>\n\n#include \"string/rolling_hash.hpp\"\
+    \n#include \"string/string_hash.hpp\"\n#include \"algebra/range_assign_range_hash.hpp\"\
+    \n#include \"datastructure/lazy_segtree.hpp\"\nint brute_cmp(const std::string&\
     \ a, const std::string& b) {\n    return a < b ? -1 : a == b ? 0 : 1;\n}\nint\
     \ brute_lcp(const std::string& a, const std::string& b) {\n    int i = 0;\n  \
     \  while (i < int(a.size()) && i < int(b.size()) && a[i] == b[i]) i++;\n    return\
@@ -183,73 +226,28 @@ data:
     \ < 200; trial++) {\n        int n = 1 + rng() % 12, m = 1 + rng() % 12;\n   \
     \     int sigma = 1 + rng() % 3;\n        std::string s(n, 'a'), t(m, 'a');\n\
     \        for (auto& c : s) c = 'a' + rng() % sigma;\n        for (auto& c : t)\
-    \ c = 'a' + rng() % sigma;\n        rolling_hash<> rs(s);\n        range_update_range_hash<>\
-    \ rt(t);\n        assert(rs.size() == n && rt.size() == m);\n        for (int\
-    \ q = 0; q < 30; q++) {\n            if (rng() % 3 == 0) {\n                int\
-    \ l = rng() % (m + 1), r = rng() % (m + 1);\n                if (l > r) std::swap(l,\
-    \ r);\n                char c = 'a' + rng() % sigma;\n                rt.apply(l,\
-    \ r, c);\n                for (int i = l; i < r; i++) t[i] = c;\n            }\
-    \ else if (rng() % 3 == 0) {\n                int p = rng() % m;\n           \
-    \     char c = 'a' + rng() % sigma;\n                rt.set(p, c);\n         \
-    \       t[p] = c;\n            }\n            int l1 = rng() % (n + 1), r1 = rng()\
-    \ % (n + 1);\n            if (l1 > r1) std::swap(l1, r1);\n            int l2\
-    \ = rng() % (m + 1), r2 = rng() % (m + 1);\n            if (l2 > r2) std::swap(l2,\
-    \ r2);\n            std::string a = s.substr(l1, r1 - l1), b = t.substr(l2, r2\
-    \ - l2);\n            assert((rs.prod(l1, r1) == rt.prod(l2, r2)) == (a == b));\n\
-    \            assert(lcp(rs, l1, r1, rt, l2, r2) == brute_lcp(a, b));\n       \
-    \     assert(cmp(rs, l1, r1, rt, l2, r2) == brute_cmp(a, b));\n            assert(cmp(rt,\
-    \ l2, r2, rs, l1, r1) == brute_cmp(b, a));\n            int l3 = rng() % (n +\
-    \ 1), r3 = rng() % (n + 1);\n            if (l3 > r3) std::swap(l3, r3);\n   \
-    \         std::string c = s.substr(l3, r3 - l3);\n            assert(cmp(rs, l1,\
-    \ r1, rs, l3, r3) == brute_cmp(a, c));\n            assert(lcp(rs, l1, r1, rs,\
-    \ l3, r3) == brute_lcp(a, c));\n            assert(rs.prod(l1, r1) + rs.prod(l3,\
-    \ r3) == rolling_hash<>(a + c).all_prod());\n            assert(rs.prod(l1, r1)\
-    \ + rt.prod(l2, r2) == rolling_hash<>(a + b).all_prod());\n            if (l1\
-    \ < r1) assert(rs.get(l1) == string_hash<>(s[l1]));\n            assert(rt.all_prod()\
-    \ == rolling_hash<>(t).all_prod());\n            assert(rt.prod(l2, r2) == rolling_hash<>(b).all_prod());\n\
-    \        }\n        {\n            std::string r(n, 'a');\n            char c\
-    \ = 'a' + rng() % sigma;\n            for (auto& x : r) x = c;\n            assert(string_hash<>::repeat(c,\
-    \ n) == rolling_hash<>(r).all_prod());\n        }\n        {\n            std::set<string_hash<>>\
-    \ hs;\n            std::set<std::string> ss;\n            for (int l = 0; l <=\
-    \ n; l++)\n                for (int r = l; r <= n; r++) hs.insert(rs.prod(l, r)),\
-    \ ss.insert(s.substr(l, r - l));\n            assert(hs.size() == ss.size());\n\
-    \        }\n    }\n    {\n        rolling_hash<2> rh(std::vector<int>{1, 2, 3});\n\
-    \        assert(rh.prod(0, 2) + rh.prod(2, 3) == rh.all_prod());\n        assert(rh.prod(0,\
-    \ 0) == string_hash<2>());\n        assert(rolling_hash<2>(std::string(\"\")).all_prod()\
-    \ == string_hash<2>());\n    }\n    std::cout << \"Hello World\" << std::endl;\n\
-    \    return 0;\n}\n"
-  code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
-    \n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <random>\n\
-    #include <set>\n#include <string>\n#include <vector>\n\n#include \"string/range_update_range_hash.hpp\"\
-    \n#include \"string/rolling_hash.hpp\"\n#include \"string/string_hash.hpp\"\n\
-    int brute_cmp(const std::string& a, const std::string& b) {\n    return a < b\
-    \ ? -1 : a == b ? 0 : 1;\n}\nint brute_lcp(const std::string& a, const std::string&\
-    \ b) {\n    int i = 0;\n    while (i < int(a.size()) && i < int(b.size()) && a[i]\
-    \ == b[i]) i++;\n    return i;\n}\nint main() {\n    std::mt19937 rng(7959);\n\
-    \    for (int trial = 0; trial < 200; trial++) {\n        int n = 1 + rng() %\
-    \ 12, m = 1 + rng() % 12;\n        int sigma = 1 + rng() % 3;\n        std::string\
-    \ s(n, 'a'), t(m, 'a');\n        for (auto& c : s) c = 'a' + rng() % sigma;\n\
-    \        for (auto& c : t) c = 'a' + rng() % sigma;\n        rolling_hash<> rs(s);\n\
-    \        range_update_range_hash<> rt(t);\n        assert(rs.size() == n && rt.size()\
-    \ == m);\n        for (int q = 0; q < 30; q++) {\n            if (rng() % 3 ==\
-    \ 0) {\n                int l = rng() % (m + 1), r = rng() % (m + 1);\n      \
-    \          if (l > r) std::swap(l, r);\n                char c = 'a' + rng() %\
-    \ sigma;\n                rt.apply(l, r, c);\n                for (int i = l;\
-    \ i < r; i++) t[i] = c;\n            } else if (rng() % 3 == 0) {\n          \
-    \      int p = rng() % m;\n                char c = 'a' + rng() % sigma;\n   \
-    \             rt.set(p, c);\n                t[p] = c;\n            }\n      \
-    \      int l1 = rng() % (n + 1), r1 = rng() % (n + 1);\n            if (l1 > r1)\
-    \ std::swap(l1, r1);\n            int l2 = rng() % (m + 1), r2 = rng() % (m +\
-    \ 1);\n            if (l2 > r2) std::swap(l2, r2);\n            std::string a\
-    \ = s.substr(l1, r1 - l1), b = t.substr(l2, r2 - l2);\n            assert((rs.prod(l1,\
-    \ r1) == rt.prod(l2, r2)) == (a == b));\n            assert(lcp(rs, l1, r1, rt,\
-    \ l2, r2) == brute_lcp(a, b));\n            assert(cmp(rs, l1, r1, rt, l2, r2)\
-    \ == brute_cmp(a, b));\n            assert(cmp(rt, l2, r2, rs, l1, r1) == brute_cmp(b,\
+    \ c = 'a' + rng() % sigma;\n        rolling_hash<> rs(s);\n        using A = range_assign_range_hash<>;\n\
+    \        std::vector<A::S> init;\n        for (char c : t) init.push_back(A::from(c));\n\
+    \        lazy_segtree<A> rt(init);\n        assert(rs.size() == n);\n        for\
+    \ (int q = 0; q < 30; q++) {\n            if (rng() % 3 == 0) {\n            \
+    \    int l = rng() % (m + 1), r = rng() % (m + 1);\n                if (l > r)\
+    \ std::swap(l, r);\n                char c = 'a' + rng() % sigma;\n          \
+    \      rt.apply(l, r, c);\n                for (int i = l; i < r; i++) t[i] =\
+    \ c;\n            } else if (rng() % 3 == 0) {\n                int p = rng()\
+    \ % m;\n                char c = 'a' + rng() % sigma;\n                rt.set(p,\
+    \ A::from(c));\n                t[p] = c;\n            }\n            int l1 =\
+    \ rng() % (n + 1), r1 = rng() % (n + 1);\n            if (l1 > r1) std::swap(l1,\
+    \ r1);\n            int l2 = rng() % (m + 1), r2 = rng() % (m + 1);\n        \
+    \    if (l2 > r2) std::swap(l2, r2);\n            std::string a = s.substr(l1,\
+    \ r1 - l1), b = t.substr(l2, r2 - l2);\n            assert((rs.prod(l1, r1) ==\
+    \ rt.prod(l2, r2)) == (a == b));\n            assert(lcp(rs, l1, r1, rt, l2, r2)\
+    \ == brute_lcp(a, b));\n            assert(compare(rs, l1, r1, rt, l2, r2) ==\
+    \ brute_cmp(a, b));\n            assert(compare(rt, l2, r2, rs, l1, r1) == brute_cmp(b,\
     \ a));\n            int l3 = rng() % (n + 1), r3 = rng() % (n + 1);\n        \
     \    if (l3 > r3) std::swap(l3, r3);\n            std::string c = s.substr(l3,\
-    \ r3 - l3);\n            assert(cmp(rs, l1, r1, rs, l3, r3) == brute_cmp(a, c));\n\
-    \            assert(lcp(rs, l1, r1, rs, l3, r3) == brute_lcp(a, c));\n       \
-    \     assert(rs.prod(l1, r1) + rs.prod(l3, r3) == rolling_hash<>(a + c).all_prod());\n\
+    \ r3 - l3);\n            assert(compare(rs, l1, r1, rs, l3, r3) == brute_cmp(a,\
+    \ c));\n            assert(lcp(rs, l1, r1, rs, l3, r3) == brute_lcp(a, c));\n\
+    \            assert(rs.prod(l1, r1) + rs.prod(l3, r3) == rolling_hash<>(a + c).all_prod());\n\
     \            assert(rs.prod(l1, r1) + rt.prod(l2, r2) == rolling_hash<>(a + b).all_prod());\n\
     \            if (l1 < r1) assert(rs.get(l1) == string_hash<>(s[l1]));\n      \
     \      assert(rt.all_prod() == rolling_hash<>(t).all_prod());\n            assert(rt.prod(l2,\
@@ -265,16 +263,16 @@ data:
     \        assert(rolling_hash<2>(std::string(\"\")).all_prod() == string_hash<2>());\n\
     \    }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
   dependsOn:
-  - string/range_update_range_hash.hpp
-  - datastructure/lazy_segtree.hpp
-  - algebra/concept.hpp
+  - string/rolling_hash.hpp
   - string/string_hash.hpp
   - math/modint2305843009213693951.hpp
-  - string/rolling_hash.hpp
+  - algebra/range_assign_range_hash.hpp
+  - datastructure/lazy_segtree.hpp
+  - algebra/concept.hpp
   isVerificationFile: true
   path: test/unit/string_hash.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 12:09:03+09:00'
+  timestamp: '2026-10-30 07:44:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/string_hash.test.cpp

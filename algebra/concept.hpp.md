@@ -41,9 +41,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix.hpp
     title: Matrix
-  - icon: ':heavy_check_mark:'
-    path: string/range_update_range_hash.hpp
-    title: Range Update Range Hash
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0355.test.cpp
@@ -178,7 +175,6 @@ data:
   isVerificationFile: false
   path: algebra/concept.hpp
   requiredBy:
-  - string/range_update_range_hash.hpp
   - graph/lowest_common_ancestor.hpp
   - graph/manhattan_mst.hpp
   - math/matrix.hpp

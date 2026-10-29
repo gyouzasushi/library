@@ -24,9 +24,9 @@ data:
     #define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\n#include\
     \ <iostream>\n\n#line 2 \"string/rolling_hash.hpp\"\n#include <array>\n#include\
     \ <cassert>\n#include <vector>\n\n#line 2 \"string/string_hash.hpp\"\n#include\
-    \ <algorithm>\n#line 5 \"string/string_hash.hpp\"\n#include <cstdint>\n#include\
-    \ <numeric>\n#include <random>\n#line 9 \"string/string_hash.hpp\"\n\n#line 3\
-    \ \"math/modint2305843009213693951.hpp\"\n#include <concepts>\n#line 5 \"math/modint2305843009213693951.hpp\"\
+    \ <algorithm>\n#line 5 \"string/string_hash.hpp\"\n#include <concepts>\n#include\
+    \ <cstdint>\n#include <numeric>\n#include <random>\n#include <type_traits>\n#line\
+    \ 11 \"string/string_hash.hpp\"\n\n#line 5 \"math/modint2305843009213693951.hpp\"\
     \nstruct modint2305843009213693951 {\n    using mint = modint2305843009213693951;\n\
     \    static constexpr uint64_t mod() {\n        return m;\n    }\n    static mint\
     \ raw(uint64_t v) {\n        mint x;\n        x._v = v;\n        return x;\n \
@@ -67,7 +67,7 @@ data:
     \ != rhs._v;\n    }\n\nprivate:\n    static constexpr uint64_t m = (uint64_t(1)\
     \ << 61) - 1;\n    static constexpr uint64_t reduce(uint64_t v) {\n        uint64_t\
     \ x = (v >> 61) + (v & m);\n        if (x >= m) x -= m;\n        return x;\n \
-    \   }\n    uint64_t _v;\n};\n#line 11 \"string/string_hash.hpp\"\ntemplate <int\
+    \   }\n    uint64_t _v;\n};\n#line 13 \"string/string_hash.hpp\"\ntemplate <int\
     \ k = 1, class mint = modint2305843009213693951>\nstruct string_hash {\n    static_assert(k\
     \ >= 1);\n    std::array<mint, k> val;\n    int len;\n    string_hash() : val{},\
     \ len(0) {}\n    explicit string_hash(int c) : len(1) {\n        val.fill(mint(c));\n\
@@ -107,30 +107,35 @@ data:
     \ {\n            p[i].resize(m);\n            s[i].resize(m);\n            for\
     \ (int j = sz; j < m; j++) {\n                p[i][j] = p[i][j - 1] * base(i);\n\
     \                s[i][j] = s[i][j - 1] + p[i][j - 1];\n            }\n       \
-    \ }\n    }\n};\ntemplate <class A, class B>\nint lcp(A& a, int l1, int r1, B&\
-    \ b, int l2, int r2) {\n    int ok = 0, ng = std::min(r1 - l1, r2 - l2) + 1;\n\
-    \    while (ng - ok > 1) {\n        int mid = (ok + ng) / 2;\n        (a.prod(l1,\
-    \ l1 + mid) == b.prod(l2, l2 + mid) ? ok : ng) = mid;\n    }\n    return ok;\n\
-    }\ntemplate <class A, class B>\nint cmp(A& a, int l1, int r1, B& b, int l2, int\
-    \ r2) {\n    int x = lcp(a, l1, r1, b, l2, r2);\n    bool ea = l1 + x == r1, eb\
-    \ = l2 + x == r2;\n    if (ea && eb) return 0;\n    if (ea) return -1;\n    if\
-    \ (eb) return 1;\n    return a.get(l1 + x).val[0].val() < b.get(l2 + x).val[0].val()\
-    \ ? -1 : 1;\n}\n#line 7 \"string/rolling_hash.hpp\"\ntemplate <int k = 1, class\
-    \ mint = modint2305843009213693951>\nstruct rolling_hash {\n    using H = string_hash<k,\
-    \ mint>;\n    rolling_hash() : n(0) {}\n    template <class Iterable>\n    explicit\
-    \ rolling_hash(const Iterable& s) {\n        std::vector<int> a;\n        for\
-    \ (auto&& c : s) a.push_back(int(c));\n        n = int(a.size());\n        for\
-    \ (int i = 0; i < k; i++) {\n            h[i].assign(n + 1, mint(0));\n      \
-    \      for (int j = 0; j < n; j++) h[i][j + 1] = h[i][j] * H::base(i) + mint(a[j]);\n\
-    \        }\n    }\n    int size() const {\n        return n;\n    }\n    H prod(int\
-    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n        H res;\n\
-    \        res.len = r - l;\n        for (int i = 0; i < k; i++) res.val[i] = h[i][r]\
-    \ - h[i][l] * H::pow(i, r - l);\n        return res;\n    }\n    H get(int p)\
-    \ const {\n        return prod(p, p + 1);\n    }\n    H all_prod() const {\n \
-    \       return prod(0, n);\n    }\n\nprivate:\n    int n;\n    std::array<std::vector<mint>,\
-    \ k> h;\n};\n#line 5 \"test/library-checker/enumerate_palindromes.test.cpp\"\n\
-    int main() {\n    std::string s;\n    std::cin >> s;\n    int n = s.size();\n\n\
-    \    rolling_hash<> rh(s);\n    rolling_hash<> rh_rev(std::string(s.rbegin(),\
+    \ }\n    }\n};\nnamespace internal {\ntemplate <class H> struct is_string_hash\
+    \ : std::false_type {};\ntemplate <int k, class mint> struct is_string_hash<string_hash<k,\
+    \ mint>> : std::true_type {};\n}  // namespace internal\ntemplate <class A>\n\
+    concept hash_sequence = requires(A& a, int l, int r) {\n    { a.prod(l, r) } ->\
+    \ std::same_as<decltype(a.get(l))>;\n    requires internal::is_string_hash<std::remove_cvref_t<decltype(a.prod(l,\
+    \ r))>>::value;\n};\ntemplate <hash_sequence A, hash_sequence B>\nint lcp(A& a,\
+    \ int l1, int r1, B& b, int l2, int r2) {\n    int ok = 0, ng = std::min(r1 -\
+    \ l1, r2 - l2) + 1;\n    while (ng - ok > 1) {\n        int mid = (ok + ng) /\
+    \ 2;\n        (a.prod(l1, l1 + mid) == b.prod(l2, l2 + mid) ? ok : ng) = mid;\n\
+    \    }\n    return ok;\n}\ntemplate <hash_sequence A, hash_sequence B>\nint compare(A&\
+    \ a, int l1, int r1, B& b, int l2, int r2) {\n    int x = lcp(a, l1, r1, b, l2,\
+    \ r2);\n    bool ea = l1 + x == r1, eb = l2 + x == r2;\n    if (ea && eb) return\
+    \ 0;\n    if (ea) return -1;\n    if (eb) return 1;\n    return a.get(l1 + x).val[0].val()\
+    \ < b.get(l2 + x).val[0].val() ? -1 : 1;\n}\n#line 7 \"string/rolling_hash.hpp\"\
+    \ntemplate <int k = 1, class mint = modint2305843009213693951>\nstruct rolling_hash\
+    \ {\n    using H = string_hash<k, mint>;\n    rolling_hash() : n(0) {}\n    template\
+    \ <class Iterable>\n    explicit rolling_hash(const Iterable& s) {\n        std::vector<int>\
+    \ a;\n        for (auto&& c : s) a.push_back(int(c));\n        n = int(a.size());\n\
+    \        for (int i = 0; i < k; i++) {\n            h[i].assign(n + 1, mint(0));\n\
+    \            for (int j = 0; j < n; j++) h[i][j + 1] = h[i][j] * H::base(i) +\
+    \ mint(a[j]);\n        }\n    }\n    int size() const {\n        return n;\n \
+    \   }\n    H prod(int l, int r) const {\n        assert(0 <= l && l <= r && r\
+    \ <= n);\n        H res;\n        res.len = r - l;\n        for (int i = 0; i\
+    \ < k; i++) res.val[i] = h[i][r] - h[i][l] * H::pow(i, r - l);\n        return\
+    \ res;\n    }\n    H get(int p) const {\n        return prod(p, p + 1);\n    }\n\
+    \    H all_prod() const {\n        return prod(0, n);\n    }\n\nprivate:\n   \
+    \ int n;\n    std::array<std::vector<mint>, k> h;\n};\n#line 5 \"test/library-checker/enumerate_palindromes.test.cpp\"\
+    \nint main() {\n    std::string s;\n    std::cin >> s;\n    int n = s.size();\n\
+    \n    rolling_hash<> rh(s);\n    rolling_hash<> rh_rev(std::string(s.rbegin(),\
     \ s.rend()));\n\n    std::vector<int> ans(2 * n - 1);\n    for (int i = 0, j =\
     \ 0; i < n; i++, j += 2) {\n        int ok = 0, ng = std::min(i, n - i - 1) +\
     \ 1;\n        while (ng - ok > 1) {\n            int mid = (ok + ng) / 2;\n  \
@@ -166,7 +171,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/enumerate_palindromes.test.cpp
   requiredBy: []
-  timestamp: '2026-10-24 20:17:47+09:00'
+  timestamp: '2026-10-30 07:44:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/enumerate_palindromes.test.cpp

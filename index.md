@@ -55,6 +55,9 @@ data:
       path: algebra/range_add_range_sum_of_squares.hpp
       title: 'Acted Monoid: Range Add Range Sum of Squares'
     - icon: ':heavy_check_mark:'
+      path: algebra/range_assign_range_hash.hpp
+      title: 'Acted Monoid: Range Assign Range Hash'
+    - icon: ':heavy_check_mark:'
       path: algebra/range_assign_range_max.hpp
       title: 'Acted Monoid: Range Assign Range Max'
     - icon: ':heavy_check_mark:'
@@ -263,9 +266,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/aho_corasick.hpp
       title: Aho-Corasick
-    - icon: ':heavy_check_mark:'
-      path: string/range_update_range_hash.hpp
-      title: Range Update Range Hash
     - icon: ':heavy_check_mark:'
       path: string/rolling_hash.hpp
       title: Rolling Hash

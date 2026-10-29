@@ -4,10 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: algebra/concept.hpp
     title: 'Algebra: Concept'
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: string/range_update_range_hash.hpp
-    title: Range Update Range Hash
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0355.test.cpp
@@ -63,8 +60,7 @@ data:
   - algebra/concept.hpp
   isVerificationFile: false
   path: datastructure/lazy_segtree.hpp
-  requiredBy:
-  - string/range_update_range_hash.hpp
+  requiredBy: []
   timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
