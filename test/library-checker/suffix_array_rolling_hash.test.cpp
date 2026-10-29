@@ -10,7 +10,7 @@ int main() {
     std::vector<int> a(n);
     std::iota(a.begin(), a.end(), 0);
     std::sort(a.begin(), a.end(),
-              [&](int i, int j) { return cmp(rh, i, n, rh, j, n) < 0; });
+              [&](int i, int j) { return compare(rh, i, n, rh, j, n) < 0; });
     for (int i = 0; i < n; i++) {
         std::cout << a[i] << " \n"[i == n - 1];
     }

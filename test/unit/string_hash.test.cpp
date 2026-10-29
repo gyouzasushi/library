@@ -7,9 +7,10 @@
 #include <string>
 #include <vector>
 
-#include "string/range_update_range_hash.hpp"
 #include "string/rolling_hash.hpp"
 #include "string/string_hash.hpp"
+#include "algebra/range_assign_range_hash.hpp"
+#include "datastructure/lazy_segtree.hpp"
 int brute_cmp(const std::string& a, const std::string& b) {
     return a < b ? -1 : a == b ? 0 : 1;
 }
@@ -27,8 +28,11 @@ int main() {
         for (auto& c : s) c = 'a' + rng() % sigma;
         for (auto& c : t) c = 'a' + rng() % sigma;
         rolling_hash<> rs(s);
-        range_update_range_hash<> rt(t);
-        assert(rs.size() == n && rt.size() == m);
+        using A = range_assign_range_hash<>;
+        std::vector<A::S> init;
+        for (char c : t) init.push_back(A::from(c));
+        lazy_segtree<A> rt(init);
+        assert(rs.size() == n);
         for (int q = 0; q < 30; q++) {
             if (rng() % 3 == 0) {
                 int l = rng() % (m + 1), r = rng() % (m + 1);
@@ -39,7 +43,7 @@ int main() {
             } else if (rng() % 3 == 0) {
                 int p = rng() % m;
                 char c = 'a' + rng() % sigma;
-                rt.set(p, c);
+                rt.set(p, A::from(c));
                 t[p] = c;
             }
             int l1 = rng() % (n + 1), r1 = rng() % (n + 1);
@@ -49,12 +53,12 @@ int main() {
             std::string a = s.substr(l1, r1 - l1), b = t.substr(l2, r2 - l2);
             assert((rs.prod(l1, r1) == rt.prod(l2, r2)) == (a == b));
             assert(lcp(rs, l1, r1, rt, l2, r2) == brute_lcp(a, b));
-            assert(cmp(rs, l1, r1, rt, l2, r2) == brute_cmp(a, b));
-            assert(cmp(rt, l2, r2, rs, l1, r1) == brute_cmp(b, a));
+            assert(compare(rs, l1, r1, rt, l2, r2) == brute_cmp(a, b));
+            assert(compare(rt, l2, r2, rs, l1, r1) == brute_cmp(b, a));
             int l3 = rng() % (n + 1), r3 = rng() % (n + 1);
             if (l3 > r3) std::swap(l3, r3);
             std::string c = s.substr(l3, r3 - l3);
-            assert(cmp(rs, l1, r1, rs, l3, r3) == brute_cmp(a, c));
+            assert(compare(rs, l1, r1, rs, l3, r3) == brute_cmp(a, c));
             assert(lcp(rs, l1, r1, rs, l3, r3) == brute_lcp(a, c));
             assert(rs.prod(l1, r1) + rs.prod(l3, r3) == rolling_hash<>(a + c).all_prod());
             assert(rs.prod(l1, r1) + rt.prod(l2, r2) == rolling_hash<>(a + b).all_prod());

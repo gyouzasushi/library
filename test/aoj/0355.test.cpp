@@ -1,12 +1,16 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/0355"
 #include <iostream>
 
-#include "string/range_update_range_hash.hpp"
+#include "algebra/range_assign_range_hash.hpp"
+#include "datastructure/lazy_segtree.hpp"
 int main() {
     int n;
     std::string u;
     std::cin >> n >> u;
-    range_update_range_hash<> rh(u);
+    using A = range_assign_range_hash<>;
+    std::vector<A::S> init;
+    for (char c : u) init.push_back(A::from(c));
+    lazy_segtree<A> rh(init);
     int q;
     std::cin >> q;
     while (q--) {
@@ -21,7 +25,7 @@ int main() {
         if (t == "comp") {
             int a, b, c, d;
             std::cin >> a >> b >> c >> d;
-            int sgn = cmp(rh, --a, b, rh, --c, d);
+            int sgn = compare(rh, --a, b, rh, --c, d);
             std::cout << (sgn == -1 ? 's' : sgn == 0 ? 'e' : 't') << '\n';
         }
     }

@@ -2,9 +2,11 @@
 #include <algorithm>
 #include <array>
 #include <cassert>
+#include <concepts>
 #include <cstdint>
 #include <numeric>
 #include <random>
+#include <type_traits>
 #include <vector>
 
 #include "math/modint2305843009213693951.hpp"
@@ -105,7 +107,16 @@ private:
         }
     }
 };
-template <class A, class B>
+namespace internal {
+template <class H> struct is_string_hash : std::false_type {};
+template <int k, class mint> struct is_string_hash<string_hash<k, mint>> : std::true_type {};
+}  // namespace internal
+template <class A>
+concept hash_sequence = requires(A& a, int l, int r) {
+    { a.prod(l, r) } -> std::same_as<decltype(a.get(l))>;
+    requires internal::is_string_hash<std::remove_cvref_t<decltype(a.prod(l, r))>>::value;
+};
+template <hash_sequence A, hash_sequence B>
 int lcp(A& a, int l1, int r1, B& b, int l2, int r2) {
     int ok = 0, ng = std::min(r1 - l1, r2 - l2) + 1;
     while (ng - ok > 1) {
@@ -114,8 +125,8 @@ int lcp(A& a, int l1, int r1, B& b, int l2, int r2) {
     }
     return ok;
 }
-template <class A, class B>
-int cmp(A& a, int l1, int r1, B& b, int l2, int r2) {
+template <hash_sequence A, hash_sequence B>
+int compare(A& a, int l1, int r1, B& b, int l2, int r2) {
     int x = lcp(a, l1, r1, b, l2, r2);
     bool ea = l1 + x == r1, eb = l2 + x == r2;
     if (ea && eb) return 0;
