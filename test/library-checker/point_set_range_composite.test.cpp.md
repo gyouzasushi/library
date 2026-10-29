@@ -37,7 +37,9 @@ data:
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
     \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 5 \"datastructure/segtree.hpp\"\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 5 \"datastructure/segtree.hpp\"\
     \ntemplate <monoid M>\nusing segtree = atcoder::segtree<typename M::S, M::op,\
     \ M::e>;\n#line 2 \"algebra/monoid_affine.hpp\"\ntemplate <class T>\nstruct monoid_affine\
     \ {\n    struct S {\n        T a, b;\n    };\n    static S op(S f, S g) {\n  \
@@ -74,7 +76,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 01:30:50+09:00'
+  timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/point_set_range_composite.test.cpp

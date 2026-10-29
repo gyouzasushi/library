@@ -44,7 +44,9 @@ data:
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
     \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 5 \"datastructure/lazy_segtree.hpp\"\
     \ntemplate <acted_monoid A>\nusing lazy_segtree = atcoder::lazy_segtree<typename\
     \ A::S, A::op, A::e, typename A::F, A::mapping, A::composition, A::id>;\n#line\
     \ 7 \"test/aoj/DSL_2_G.test.cpp\"\nint main() {\n    int n, q;\n    std::cin >>\
@@ -72,7 +74,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_G.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 01:30:50+09:00'
+  timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_G.test.cpp

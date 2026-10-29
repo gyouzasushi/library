@@ -32,7 +32,9 @@ data:
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
     \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 7 \"datastructure/sqrt_tree.hpp\"\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 7 \"datastructure/sqrt_tree.hpp\"\
     \ntemplate <semigroup M> struct sqrt_tree {\n    using S = typename M::S;\n  \
     \  sqrt_tree() {\n    }\n    explicit sqrt_tree(const std::vector<S>& a) : _n(int(a.size()))\
     \ {\n        if (_n == 0) return;\n        _lg = 0;\n        while ((1 << _lg)\
@@ -150,7 +152,7 @@ data:
   isVerificationFile: false
   path: datastructure/sqrt_tree.hpp
   requiredBy: []
-  timestamp: '2026-10-26 23:44:24+09:00'
+  timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/sqrt_tree.test.cpp

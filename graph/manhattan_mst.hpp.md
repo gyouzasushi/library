@@ -36,7 +36,9 @@ data:
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
     \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 5 \"datastructure/segtree.hpp\"\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 5 \"datastructure/segtree.hpp\"\
     \ntemplate <monoid M>\nusing segtree = atcoder::segtree<typename M::S, M::op,\
     \ M::e>;\n#line 2 \"algebra/monoid_argmin.hpp\"\n#include <limits>\ntemplate <class\
     \ T>\nstruct monoid_argmin {\n    struct S {\n        T val;\n        int id;\n\
@@ -95,7 +97,7 @@ data:
   isVerificationFile: false
   path: graph/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2026-10-29 08:24:16+09:00'
+  timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/manhattanmst.test.cpp

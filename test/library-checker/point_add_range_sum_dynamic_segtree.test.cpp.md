@@ -40,7 +40,9 @@ data:
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
     \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 7 \"datastructure/dynamic_segtree.hpp\"\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 7 \"datastructure/dynamic_segtree.hpp\"\
     \ntemplate <monoid M> struct dynamic_segtree {\npublic:\n    using S = typename\
     \ M::S;\n    explicit dynamic_segtree(long long lo = -(1LL << 62), long long hi\
     \ = 1LL << 62) : lo(lo), hi(hi) {\n        assert(lo < hi);\n    }\n    void set(long\
@@ -127,7 +129,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-28 22:07:22+09:00'
+  timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/point_add_range_sum_dynamic_segtree.test.cpp

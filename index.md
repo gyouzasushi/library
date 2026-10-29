@@ -58,6 +58,9 @@ data:
       path: algebra/range_assign_range_sum.hpp
       title: 'Acted Monoid: Range Assign Range Sum'
     - icon: ':heavy_check_mark:'
+      path: algebra/range_chmin_chmax_add_range_sum.hpp
+      title: 'Acted Monoid: Range Chmin Chmax Add Range Sum'
+    - icon: ':heavy_check_mark:'
       path: algebra/semiring_max_plus.hpp
       title: 'Semiring: Max Plus'
     - icon: ':heavy_check_mark:'
@@ -118,6 +121,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/segtree.hpp
       title: Segment Tree (monoid wrapper)
+    - icon: ':heavy_check_mark:'
+      path: datastructure/segtree_beats.hpp
+      title: Segment Tree Beats
     - icon: ':heavy_check_mark:'
       path: datastructure/sparse_table.hpp
       title: Sparse Table
@@ -464,6 +470,9 @@ data:
       path: test/library-checker/range_affine_point_get.test.cpp
       title: test/library-checker/range_affine_point_get.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library-checker/range_chmin_chmax_add_range_sum.test.cpp
+      title: test/library-checker/range_chmin_chmax_add_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library-checker/range_kth_smallest.test.cpp
       title: test/library-checker/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
@@ -624,6 +633,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/rollback_dsu.test.cpp
       title: test/unit/rollback_dsu.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/segtree_beats.test.cpp
+      title: test/unit/segtree_beats.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/sieve.test.cpp
       title: test/unit/sieve.test.cpp

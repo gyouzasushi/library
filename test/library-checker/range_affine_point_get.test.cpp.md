@@ -35,7 +35,9 @@ data:
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
     \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 8 \"datastructure/dual_segtree.hpp\"\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 8 \"datastructure/dual_segtree.hpp\"\
     \ntemplate <action A>\nstruct dual_segtree {\n    using F = typename A::F;\n \
     \   dual_segtree() : dual_segtree(0) {}\n    explicit dual_segtree(int n) : dual_segtree(std::vector<F>(n,\
     \ A::id())) {}\n    explicit dual_segtree(const std::vector<F>& v) : n(int(v.size()))\
@@ -91,7 +93,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/range_affine_point_get.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 01:30:50+09:00'
+  timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/range_affine_point_get.test.cpp

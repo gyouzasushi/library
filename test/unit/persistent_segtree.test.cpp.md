@@ -46,7 +46,9 @@ data:
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
     \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 6 \"datastructure/persistent_segtree.hpp\"\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 6 \"datastructure/persistent_segtree.hpp\"\
     \ntemplate <monoid M> struct persistent_segtree {\npublic:\n    using S = typename\
     \ M::S;\n    explicit persistent_segtree(int n) : persistent_segtree(std::vector<S>(n,\
     \ M::e())) {\n    }\n    explicit persistent_segtree(const std::vector<S>& v)\
@@ -162,7 +164,7 @@ data:
   isVerificationFile: true
   path: test/unit/persistent_segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-27 20:36:28+09:00'
+  timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/persistent_segtree.test.cpp

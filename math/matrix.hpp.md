@@ -53,7 +53,9 @@ data:
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
     \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 2 \"algebra/semiring_plus_times.hpp\"\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 2 \"algebra/semiring_plus_times.hpp\"\
     \ntemplate <class T>\nstruct semiring_plus_times {\n    using S = T;\n    static\
     \ S add(S a, S b) {\n        return a + b;\n    }\n    static S zero() {\n   \
     \     return T(0);\n    }\n    static S mul(S a, S b) {\n        return a * b;\n\
@@ -214,7 +216,7 @@ data:
   isVerificationFile: false
   path: math/matrix.hpp
   requiredBy: []
-  timestamp: '2026-10-27 18:39:50+09:00'
+  timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/matrix.test.cpp

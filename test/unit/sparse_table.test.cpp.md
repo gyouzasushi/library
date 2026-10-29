@@ -50,7 +50,9 @@ data:
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
     \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 8 \"datastructure/sparse_table.hpp\"\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 8 \"datastructure/sparse_table.hpp\"\
     \ntemplate <semigroup M> struct sparse_table {\n    using S = typename M::S;\n\
     \    sparse_table() : _n(0) {\n    }\n    explicit sparse_table(const std::vector<S>&\
     \ a) : _n(int(a.size())) {\n        int log = std::max(1, std::bit_width((unsigned)_n));\n\
@@ -183,7 +185,7 @@ data:
   isVerificationFile: true
   path: test/unit/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 01:30:50+09:00'
+  timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/sparse_table.test.cpp

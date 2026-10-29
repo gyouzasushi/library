@@ -56,7 +56,9 @@ data:
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
     \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n#line 8 \"datastructure/weighted_dsu.hpp\"\
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n#line 8 \"datastructure/weighted_dsu.hpp\"\
     \n\n// potential p[v] of each vertex; diff(a, b) = op(inv(p[a]), p[b])\ntemplate\
     \ <group G> struct weighted_dsu {\npublic:\n    using S = typename G::S;\n   \
     \ weighted_dsu() : weighted_dsu(0) {\n    }\n    explicit weighted_dsu(int n)\
@@ -187,7 +189,7 @@ data:
   isVerificationFile: true
   path: test/unit/weighted_dsu.test.cpp
   requiredBy: []
-  timestamp: '2026-10-28 21:58:46+09:00'
+  timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/weighted_dsu.test.cpp

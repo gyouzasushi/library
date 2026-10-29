@@ -21,6 +21,9 @@ data:
     path: datastructure/segtree.hpp
     title: Segment Tree (monoid wrapper)
   - icon: ':heavy_check_mark:'
+    path: datastructure/segtree_beats.hpp
+    title: Segment Tree Beats
+  - icon: ':heavy_check_mark:'
     path: datastructure/sparse_table.hpp
     title: Sparse Table
   - icon: ':heavy_check_mark:'
@@ -82,6 +85,9 @@ data:
     path: test/library-checker/range_affine_point_get.test.cpp
     title: test/library-checker/range_affine_point_get.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library-checker/range_chmin_chmax_add_range_sum.test.cpp
+    title: test/library-checker/range_chmin_chmax_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library-checker/staticrmq.test.cpp
     title: test/library-checker/staticrmq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -115,6 +121,9 @@ data:
     path: test/unit/persistent_segtree.test.cpp
     title: test/unit/persistent_segtree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/unit/segtree_beats.test.cpp
+    title: test/unit/segtree_beats.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/unit/sparse_table.test.cpp
     title: test/unit/sparse_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -145,7 +154,9 @@ data:
     \ A::S>;\n};\ntemplate <class R>\nconcept semiring = requires(typename R::S a,\
     \ typename R::S b) {\n    { R::add(a, b) } -> std::same_as<typename R::S>;\n \
     \   { R::zero() } -> std::same_as<typename R::S>;\n    { R::mul(a, b) } -> std::same_as<typename\
-    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\n"
+    \ R::S>;\n    { R::one() } -> std::same_as<typename R::S>;\n};\ntemplate <class\
+    \ A>\nconcept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x)\
+    \ {\n    { x.fail } -> std::convertible_to<bool>;\n};\n"
   code: "#pragma once\n#include <concepts>\ntemplate <class M>\nconcept semigroup\
     \ = requires(typename M::S a, typename M::S b) {\n    { M::op(a, b) } -> std::same_as<typename\
     \ M::S>;\n};\ntemplate <class M>\nconcept monoid = semigroup<M> && requires {\n\
@@ -160,7 +171,9 @@ data:
     \ R>\nconcept semiring = requires(typename R::S a, typename R::S b) {\n    { R::add(a,\
     \ b) } -> std::same_as<typename R::S>;\n    { R::zero() } -> std::same_as<typename\
     \ R::S>;\n    { R::mul(a, b) } -> std::same_as<typename R::S>;\n    { R::one()\
-    \ } -> std::same_as<typename R::S>;\n};\n"
+    \ } -> std::same_as<typename R::S>;\n};\ntemplate <class A>\nconcept beats_acted_monoid\
+    \ = acted_monoid<A> && requires(typename A::S x) {\n    { x.fail } -> std::convertible_to<bool>;\n\
+    };\n"
   dependsOn: []
   isVerificationFile: false
   path: algebra/concept.hpp
@@ -170,6 +183,7 @@ data:
   - graph/manhattan_mst.hpp
   - math/matrix.hpp
   - datastructure/segtree.hpp
+  - datastructure/segtree_beats.hpp
   - datastructure/sqrt_tree.hpp
   - datastructure/persistent_segtree.hpp
   - datastructure/dual_segtree.hpp
@@ -178,11 +192,12 @@ data:
   - datastructure/plus_minus_one_rmq.hpp
   - datastructure/dynamic_segtree.hpp
   - datastructure/weighted_dsu.hpp
-  timestamp: '2026-10-26 01:30:50+09:00'
+  timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/dynamic_segtree.test.cpp
   - test/unit/sqrt_tree.test.cpp
+  - test/unit/segtree_beats.test.cpp
   - test/unit/weighted_dsu.test.cpp
   - test/unit/string_hash.test.cpp
   - test/unit/matrix.test.cpp
@@ -201,6 +216,7 @@ data:
   - test/library-checker/lca.test.cpp
   - test/library-checker/manhattanmst.test.cpp
   - test/library-checker/matrix_det.test.cpp
+  - test/library-checker/range_chmin_chmax_add_range_sum.test.cpp
   - test/library-checker/unionfind_with_potential_non_commutative_group.test.cpp
   - test/library-checker/unionfind_with_potential.test.cpp
   - test/library-checker/matrix_product.test.cpp
