@@ -97,17 +97,3 @@ std::vector<std::pair<long long, int>> factorize(long long n) {
     return ret;
 }
 
-std::vector<long long> divisors(long long n) {
-    assert(n >= 1);
-    std::vector<long long> ret = {1};
-    for (auto [p, e] : factorize(n)) {
-        int sz = int(ret.size());
-        long long q = 1;
-        for (int i = 0; i < e; i++) {
-            q *= p;
-            for (int j = 0; j < sz; j++) ret.push_back(ret[j] * q);
-        }
-    }
-    std::ranges::sort(ret);
-    return ret;
-}

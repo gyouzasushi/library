@@ -1,5 +1,4 @@
 #pragma once
-#include <algorithm>
 #include <cassert>
 #include <utility>
 #include <vector>
@@ -43,20 +42,6 @@ public:
             }
             x /= p;
         }
-        return ret;
-    }
-    std::vector<int> divisors(int x) const {
-        assert(1 <= x && x <= _n);
-        std::vector<int> ret = {1};
-        for (auto [p, e] : factorize(x)) {
-            int sz = int(ret.size());
-            int q = 1;
-            for (int i = 0; i < e; i++) {
-                q *= p;
-                for (int j = 0; j < sz; j++) ret.push_back(ret[j] * q);
-            }
-        }
-        std::ranges::sort(ret);
         return ret;
     }
 

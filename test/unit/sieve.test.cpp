@@ -4,6 +4,7 @@
 #include <random>
 #include <vector>
 
+#include "math/divisors.hpp"
 #include "math/factorize.hpp"
 #include "math/sieve.hpp"
 
@@ -41,7 +42,7 @@ int main() {
                 auto g = naive_factorize(x);
                 assert(f.size() == g.size());
                 for (size_t i = 0; i < f.size(); i++) assert(f[i].first == g[i].first && f[i].second == g[i].second);
-                auto d = s.divisors(x);
+                auto d = divisors(s.factorize(x));
                 auto nd = naive_divisors(x);
                 assert(d.size() == nd.size());
                 for (size_t i = 0; i < d.size(); i++) assert(d[i] == nd[i]);
@@ -52,7 +53,7 @@ int main() {
     // sieve(1), sieve(2)
     {
         sieve s1(1);
-        assert(s1.primes().empty() && !s1.is_prime(1) && s1.factorize(1).empty() && s1.divisors(1) == std::vector<int>{1});
+        assert(s1.primes().empty() && !s1.is_prime(1) && s1.factorize(1).empty() && divisors(s1.factorize(1)) == std::vector<int>{1});
         sieve s2(2);
         assert(s2.primes() == std::vector<int>{2} && s2.is_prime(2));
     }
@@ -61,19 +62,19 @@ int main() {
         sieve big(10000000);
         assert(int(big.primes().size()) == 664579);
         assert((big.factorize(9999991) == std::vector<std::pair<int, int>>{{9999991, 1}}));
-        assert(big.divisors(10000000).size() == 8 * 8);
+        assert(divisors(big.factorize(10000000)).size() == 8 * 8);
     }
     // Pollard-rho factorize / divisors (vector form)
     {
         std::mt19937_64 rng(5);
         for (long long x = 1; x <= 2000; x++) {
             assert(factorize(x) == naive_factorize(x));
-            assert(divisors(x) == naive_divisors(x));
+            assert(divisors(factorize(x)) == naive_divisors(x));
         }
         for (int it = 0; it < 300; it++) {
             long long x = 1 + rng() % 1000000000000LL;
             assert(factorize(x) == naive_factorize(x));
-            auto d = divisors(x);
+            auto d = divisors(factorize(x));
             long long cnt = 1;
             for (auto [p, e] : factorize(x)) cnt *= e + 1;
             assert((long long)d.size() == cnt);
@@ -82,7 +83,7 @@ int main() {
                 if (i) assert(d[i - 1] < d[i]);
             }
         }
-        auto d = divisors(897612484786617600LL);  // highly composite, 103680 divisors
+        auto d = divisors(factorize(897612484786617600LL));  // highly composite, 103680 divisors
         assert(d.size() == 103680);
     }
     std::cout << "Hello World" << std::endl;
