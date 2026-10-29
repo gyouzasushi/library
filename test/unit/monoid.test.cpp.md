@@ -20,8 +20,14 @@ data:
     path: algebra/monoid_gcd.hpp
     title: 'Monoid: GCD'
   - icon: ':heavy_check_mark:'
+    path: algebra/monoid_longest_run.hpp
+    title: 'Monoid: Longest Run'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid_max.hpp
     title: 'Monoid: Max'
+  - icon: ':heavy_check_mark:'
+    path: algebra/monoid_max_subarray_sum.hpp
+    title: 'Monoid: Max Subarray Sum'
   - icon: ':heavy_check_mark:'
     path: algebra/monoid_min.hpp
     title: 'Monoid: Min'
@@ -160,16 +166,35 @@ data:
     \       return {std::numeric_limits<T>::max(), -1};\n    }\n};\n#line 3 \"algebra/monoid_gcd.hpp\"\
     \ntemplate <class T>\nstruct monoid_gcd {\n    using S = T;\n    static S op(S\
     \ a, S b) {\n        return std::gcd(a, b);\n    }\n    static S e() {\n     \
-    \   return T(0);\n    }\n};\n#line 2 \"algebra/monoid_max.hpp\"\n#include <algorithm>\n\
-    #line 4 \"algebra/monoid_max.hpp\"\ntemplate <class T>\nstruct monoid_max {\n\
-    \    using S = T;\n    static S op(S a, S b) {\n        return std::max(a, b);\n\
-    \    }\n    static S e() {\n        return std::numeric_limits<T>::lowest();\n\
+    \   return T(0);\n    }\n};\n#line 2 \"algebra/monoid_longest_run.hpp\"\n#include\
+    \ <algorithm>\ntemplate <class T>\nstruct monoid_longest_run {\n    struct S {\n\
+    \        int len;\n        T left, right;\n        int left_run, right_run, longest;\n\
+    \    };\n    static S op(S a, S b) {\n        if (a.len == 0) return b;\n    \
+    \    if (b.len == 0) return a;\n        S c = {a.len + b.len, a.left, b.right,\
+    \ a.left_run, b.right_run, std::max(a.longest, b.longest)};\n        if (a.right\
+    \ == b.left) {\n            c.longest = std::max(c.longest, a.right_run + b.left_run);\n\
+    \            if (a.left_run == a.len) c.left_run = a.len + b.left_run;\n     \
+    \       if (b.right_run == b.len) c.right_run = a.right_run + b.len;\n       \
+    \ }\n        return c;\n    }\n    static S e() {\n        return {0, T(), T(),\
+    \ 0, 0, 0};\n    }\n    static S from(T c) {\n        return {1, c, c, 1, 1, 1};\n\
+    \    }\n};\n#line 4 \"algebra/monoid_max_subarray_sum.hpp\"\ntemplate <class T>\n\
+    struct monoid_max_subarray_sum {\n    struct S {\n        T sum, max_prefix, max_suffix,\
+    \ max_subarray;\n    };\n    static S op(S a, S b) {\n        if (a.max_subarray\
+    \ == ninf) return b;\n        if (b.max_subarray == ninf) return a;\n        return\
+    \ {a.sum + b.sum, std::max(a.max_prefix, a.sum + b.max_prefix), std::max(b.max_suffix,\
+    \ a.max_suffix + b.sum),\n                std::max({a.max_subarray, b.max_subarray,\
+    \ a.max_suffix + b.max_prefix})};\n    }\n    static S e() {\n        return {T(0),\
+    \ ninf, ninf, ninf};\n    }\n    static S from(T v) {\n        return {v, v, v,\
+    \ v};\n    }\n\nprivate:\n    static constexpr T ninf = std::numeric_limits<T>::lowest();\n\
+    };\n#line 4 \"algebra/monoid_max.hpp\"\ntemplate <class T>\nstruct monoid_max\
+    \ {\n    using S = T;\n    static S op(S a, S b) {\n        return std::max(a,\
+    \ b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::lowest();\n\
     \    }\n};\n#line 4 \"algebra/monoid_min.hpp\"\ntemplate <class T>\nstruct monoid_min\
     \ {\n    using S = T;\n    static S op(S a, S b) {\n        return std::min(a,\
     \ b);\n    }\n    static S e() {\n        return std::numeric_limits<T>::max();\n\
     \    }\n};\n#line 2 \"algebra/monoid_xor.hpp\"\ntemplate <class T>\nstruct monoid_xor\
     \ {\n    using S = T;\n    static S op(S a, S b) {\n        return a ^ b;\n  \
-    \  }\n    static S e() {\n        return T(0);\n    }\n};\n#line 25 \"test/unit/monoid.test.cpp\"\
+    \  }\n    static S e() {\n        return T(0);\n    }\n};\n#line 27 \"test/unit/monoid.test.cpp\"\
     \ntemplate <class M, class Naive>\nvoid stress_monoid(std::mt19937 &rng, const\
     \ Naive &naive) {\n    using S = typename M::S;\n    const int N = 1 + rng() %\
     \ 30;\n    std::vector<S> a(N);\n    for (auto &x : a) x = S(rng() % 100);\n \
@@ -253,11 +278,36 @@ data:
     \ (int i = l; i < r; i++) a[i] = x;\n            seg.apply(l, r, x);\n       \
     \ } else {\n            long long expect = 0;\n            for (int i = l; i <\
     \ r; i++) expect += a[i];\n            assert(seg.prod(l, r).sum == expect);\n\
-    \            assert(seg.prod(l, r).len == r - l);\n        }\n    }\n}\nint main()\
-    \ {\n    std::mt19937 rng(7959);\n    for (int trial = 0; trial < 100; trial++)\
-    \ {\n        stress_monoid<monoid_add<long long>>(rng, [](long long a, long long\
-    \ b) { return a + b; });\n        stress_monoid<monoid_min<int>>(rng, [](int a,\
-    \ int b) { return std::min(a, b); });\n        stress_monoid<monoid_max<int>>(rng,\
+    \            assert(seg.prod(l, r).len == r - l);\n        }\n    }\n}\nvoid stress_longest_run(std::mt19937\
+    \ &rng) {\n    using M = monoid_longest_run<char>;\n    const int N = 1 + rng()\
+    \ % 30;\n    std::vector<char> a(N);\n    std::vector<M::S> init(N);\n    for\
+    \ (int i = 0; i < N; i++) {\n        a[i] = 'a' + rng() % 3;\n        init[i]\
+    \ = M::from(a[i]);\n    }\n    segtree<M> seg(init);\n    for (int it = 0; it\
+    \ < 200; it++) {\n        if (rng() % 2) {\n            int p = rng() % N;\n \
+    \           a[p] = 'a' + rng() % 3;\n            seg.set(p, M::from(a[p]));\n\
+    \        } else {\n            int l = rng() % (N + 1), r = rng() % (N + 1);\n\
+    \            if (l > r) std::swap(l, r);\n            int expect = 0, run = 0;\n\
+    \            for (int i = l; i < r; i++) {\n                run = (i > l && a[i]\
+    \ == a[i - 1]) ? run + 1 : 1;\n                expect = std::max(expect, run);\n\
+    \            }\n            assert(seg.prod(l, r).longest == expect);\n      \
+    \  }\n    }\n}\nvoid stress_max_subarray_sum(std::mt19937 &rng) {\n    using M\
+    \ = monoid_max_subarray_sum<long long>;\n    const int N = 1 + rng() % 30;\n \
+    \   std::vector<long long> a(N);\n    std::vector<M::S> init(N);\n    for (int\
+    \ i = 0; i < N; i++) {\n        a[i] = (long long)(rng() % 21) - 10;\n       \
+    \ init[i] = M::from(a[i]);\n    }\n    segtree<M> seg(init);\n    for (int it\
+    \ = 0; it < 200; it++) {\n        if (rng() % 2) {\n            int p = rng()\
+    \ % N;\n            a[p] = (long long)(rng() % 21) - 10;\n            seg.set(p,\
+    \ M::from(a[p]));\n        } else {\n            int l = rng() % (N + 1), r =\
+    \ rng() % (N + 1);\n            if (l > r) std::swap(l, r);\n            long\
+    \ long expect = std::numeric_limits<long long>::lowest();\n            for (int\
+    \ i = l; i < r; i++) {\n                long long s = 0;\n                for\
+    \ (int j = i; j < r; j++) {\n                    s += a[j];\n                \
+    \    expect = std::max(expect, s);\n                }\n            }\n       \
+    \     assert(seg.prod(l, r).max_subarray == expect);\n        }\n    }\n}\nint\
+    \ main() {\n    std::mt19937 rng(7959);\n    for (int trial = 0; trial < 100;\
+    \ trial++) {\n        stress_monoid<monoid_add<long long>>(rng, [](long long a,\
+    \ long long b) { return a + b; });\n        stress_monoid<monoid_min<int>>(rng,\
+    \ [](int a, int b) { return std::min(a, b); });\n        stress_monoid<monoid_max<int>>(rng,\
     \ [](int a, int b) { return std::max(a, b); });\n        stress_monoid<monoid_gcd<int>>(rng,\
     \ [](int a, int b) { return std::gcd(a, b); });\n        stress_monoid<monoid_xor<unsigned>>(rng,\
     \ [](unsigned a, unsigned b) { return a ^ b; });\n        stress_argmonoid<monoid_argmin<int>>(rng,\
@@ -270,7 +320,8 @@ data:
     \ long>>(rng, [](long long a, long long b) { return std::min(a, b); });\n    \
     \    stress_range_assign<range_assign_range_max<long long>>(rng, [](long long\
     \ a, long long b) { return std::max(a, b); });\n        stress_range_assign_range_sum(rng);\n\
-    \    }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
+    \        stress_longest_run(rng);\n        stress_max_subarray_sum(rng);\n   \
+    \ }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <cassert>\n#include <iostream>\n#include <numeric>\n#include <random>\n\
     #include <vector>\n\n#include \"algebra/range_add_range_max.hpp\"\n#include \"\
@@ -280,10 +331,11 @@ data:
     \n#include \"datastructure/lazy_segtree.hpp\"\n#include \"datastructure/segtree.hpp\"\
     \n#include \"algebra/monoid_add.hpp\"\n#include \"algebra/monoid_affine.hpp\"\n\
     #include \"algebra/monoid_argmax.hpp\"\n#include \"algebra/monoid_argmin.hpp\"\
-    \n#include \"algebra/monoid_gcd.hpp\"\n#include \"algebra/monoid_max.hpp\"\n#include\
-    \ \"algebra/monoid_min.hpp\"\n#include \"algebra/monoid_xor.hpp\"\ntemplate <class\
-    \ M, class Naive>\nvoid stress_monoid(std::mt19937 &rng, const Naive &naive) {\n\
-    \    using S = typename M::S;\n    const int N = 1 + rng() % 30;\n    std::vector<S>\
+    \n#include \"algebra/monoid_gcd.hpp\"\n#include \"algebra/monoid_longest_run.hpp\"\
+    \n#include \"algebra/monoid_max_subarray_sum.hpp\"\n#include \"algebra/monoid_max.hpp\"\
+    \n#include \"algebra/monoid_min.hpp\"\n#include \"algebra/monoid_xor.hpp\"\ntemplate\
+    \ <class M, class Naive>\nvoid stress_monoid(std::mt19937 &rng, const Naive &naive)\
+    \ {\n    using S = typename M::S;\n    const int N = 1 + rng() % 30;\n    std::vector<S>\
     \ a(N);\n    for (auto &x : a) x = S(rng() % 100);\n    segtree<M> seg(a);\n \
     \   for (int it = 0; it < 200; it++) {\n        if (rng() % 2) {\n           \
     \ int p = rng() % N;\n            a[p] = S(rng() % 100);\n            seg.set(p,\
@@ -364,11 +416,36 @@ data:
     \ (int i = l; i < r; i++) a[i] = x;\n            seg.apply(l, r, x);\n       \
     \ } else {\n            long long expect = 0;\n            for (int i = l; i <\
     \ r; i++) expect += a[i];\n            assert(seg.prod(l, r).sum == expect);\n\
-    \            assert(seg.prod(l, r).len == r - l);\n        }\n    }\n}\nint main()\
-    \ {\n    std::mt19937 rng(7959);\n    for (int trial = 0; trial < 100; trial++)\
-    \ {\n        stress_monoid<monoid_add<long long>>(rng, [](long long a, long long\
-    \ b) { return a + b; });\n        stress_monoid<monoid_min<int>>(rng, [](int a,\
-    \ int b) { return std::min(a, b); });\n        stress_monoid<monoid_max<int>>(rng,\
+    \            assert(seg.prod(l, r).len == r - l);\n        }\n    }\n}\nvoid stress_longest_run(std::mt19937\
+    \ &rng) {\n    using M = monoid_longest_run<char>;\n    const int N = 1 + rng()\
+    \ % 30;\n    std::vector<char> a(N);\n    std::vector<M::S> init(N);\n    for\
+    \ (int i = 0; i < N; i++) {\n        a[i] = 'a' + rng() % 3;\n        init[i]\
+    \ = M::from(a[i]);\n    }\n    segtree<M> seg(init);\n    for (int it = 0; it\
+    \ < 200; it++) {\n        if (rng() % 2) {\n            int p = rng() % N;\n \
+    \           a[p] = 'a' + rng() % 3;\n            seg.set(p, M::from(a[p]));\n\
+    \        } else {\n            int l = rng() % (N + 1), r = rng() % (N + 1);\n\
+    \            if (l > r) std::swap(l, r);\n            int expect = 0, run = 0;\n\
+    \            for (int i = l; i < r; i++) {\n                run = (i > l && a[i]\
+    \ == a[i - 1]) ? run + 1 : 1;\n                expect = std::max(expect, run);\n\
+    \            }\n            assert(seg.prod(l, r).longest == expect);\n      \
+    \  }\n    }\n}\nvoid stress_max_subarray_sum(std::mt19937 &rng) {\n    using M\
+    \ = monoid_max_subarray_sum<long long>;\n    const int N = 1 + rng() % 30;\n \
+    \   std::vector<long long> a(N);\n    std::vector<M::S> init(N);\n    for (int\
+    \ i = 0; i < N; i++) {\n        a[i] = (long long)(rng() % 21) - 10;\n       \
+    \ init[i] = M::from(a[i]);\n    }\n    segtree<M> seg(init);\n    for (int it\
+    \ = 0; it < 200; it++) {\n        if (rng() % 2) {\n            int p = rng()\
+    \ % N;\n            a[p] = (long long)(rng() % 21) - 10;\n            seg.set(p,\
+    \ M::from(a[p]));\n        } else {\n            int l = rng() % (N + 1), r =\
+    \ rng() % (N + 1);\n            if (l > r) std::swap(l, r);\n            long\
+    \ long expect = std::numeric_limits<long long>::lowest();\n            for (int\
+    \ i = l; i < r; i++) {\n                long long s = 0;\n                for\
+    \ (int j = i; j < r; j++) {\n                    s += a[j];\n                \
+    \    expect = std::max(expect, s);\n                }\n            }\n       \
+    \     assert(seg.prod(l, r).max_subarray == expect);\n        }\n    }\n}\nint\
+    \ main() {\n    std::mt19937 rng(7959);\n    for (int trial = 0; trial < 100;\
+    \ trial++) {\n        stress_monoid<monoid_add<long long>>(rng, [](long long a,\
+    \ long long b) { return a + b; });\n        stress_monoid<monoid_min<int>>(rng,\
+    \ [](int a, int b) { return std::min(a, b); });\n        stress_monoid<monoid_max<int>>(rng,\
     \ [](int a, int b) { return std::max(a, b); });\n        stress_monoid<monoid_gcd<int>>(rng,\
     \ [](int a, int b) { return std::gcd(a, b); });\n        stress_monoid<monoid_xor<unsigned>>(rng,\
     \ [](unsigned a, unsigned b) { return a ^ b; });\n        stress_argmonoid<monoid_argmin<int>>(rng,\
@@ -381,7 +458,8 @@ data:
     \ long>>(rng, [](long long a, long long b) { return std::min(a, b); });\n    \
     \    stress_range_assign<range_assign_range_max<long long>>(rng, [](long long\
     \ a, long long b) { return std::max(a, b); });\n        stress_range_assign_range_sum(rng);\n\
-    \    }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
+    \        stress_longest_run(rng);\n        stress_max_subarray_sum(rng);\n   \
+    \ }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
   dependsOn:
   - algebra/range_add_range_max.hpp
   - algebra/range_add_range_min.hpp
@@ -398,13 +476,15 @@ data:
   - algebra/monoid_argmax.hpp
   - algebra/monoid_argmin.hpp
   - algebra/monoid_gcd.hpp
+  - algebra/monoid_longest_run.hpp
+  - algebra/monoid_max_subarray_sum.hpp
   - algebra/monoid_max.hpp
   - algebra/monoid_min.hpp
   - algebra/monoid_xor.hpp
   isVerificationFile: true
   path: test/unit/monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 12:09:03+09:00'
+  timestamp: '2026-10-29 12:41:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/monoid.test.cpp

@@ -28,8 +28,14 @@ data:
       path: algebra/monoid_gcd.hpp
       title: 'Monoid: GCD'
     - icon: ':heavy_check_mark:'
+      path: algebra/monoid_longest_run.hpp
+      title: 'Monoid: Longest Run'
+    - icon: ':heavy_check_mark:'
       path: algebra/monoid_max.hpp
       title: 'Monoid: Max'
+    - icon: ':heavy_check_mark:'
+      path: algebra/monoid_max_subarray_sum.hpp
+      title: 'Monoid: Max Subarray Sum'
     - icon: ':heavy_check_mark:'
       path: algebra/monoid_min.hpp
       title: 'Monoid: Min'
