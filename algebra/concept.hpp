@@ -29,3 +29,7 @@ concept semiring = requires(typename R::S a, typename R::S b) {
     { R::mul(a, b) } -> std::same_as<typename R::S>;
     { R::one() } -> std::same_as<typename R::S>;
 };
+template <class A>
+concept beats_acted_monoid = acted_monoid<A> && requires(typename A::S x) {
+    { x.fail } -> std::convertible_to<bool>;
+};
