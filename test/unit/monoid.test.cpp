@@ -19,6 +19,8 @@
 #include "algebra/monoid_argmax.hpp"
 #include "algebra/monoid_argmin.hpp"
 #include "algebra/monoid_gcd.hpp"
+#include "algebra/monoid_longest_run.hpp"
+#include "algebra/monoid_max_subarray_sum.hpp"
 #include "algebra/monoid_max.hpp"
 #include "algebra/monoid_min.hpp"
 #include "algebra/monoid_xor.hpp"
@@ -207,6 +209,63 @@ void stress_range_assign_range_sum(std::mt19937 &rng) {
         }
     }
 }
+void stress_longest_run(std::mt19937 &rng) {
+    using M = monoid_longest_run<char>;
+    const int N = 1 + rng() % 30;
+    std::vector<char> a(N);
+    std::vector<M::S> init(N);
+    for (int i = 0; i < N; i++) {
+        a[i] = 'a' + rng() % 3;
+        init[i] = M::from(a[i]);
+    }
+    segtree<M> seg(init);
+    for (int it = 0; it < 200; it++) {
+        if (rng() % 2) {
+            int p = rng() % N;
+            a[p] = 'a' + rng() % 3;
+            seg.set(p, M::from(a[p]));
+        } else {
+            int l = rng() % (N + 1), r = rng() % (N + 1);
+            if (l > r) std::swap(l, r);
+            int expect = 0, run = 0;
+            for (int i = l; i < r; i++) {
+                run = (i > l && a[i] == a[i - 1]) ? run + 1 : 1;
+                expect = std::max(expect, run);
+            }
+            assert(seg.prod(l, r).longest == expect);
+        }
+    }
+}
+void stress_max_subarray_sum(std::mt19937 &rng) {
+    using M = monoid_max_subarray_sum<long long>;
+    const int N = 1 + rng() % 30;
+    std::vector<long long> a(N);
+    std::vector<M::S> init(N);
+    for (int i = 0; i < N; i++) {
+        a[i] = (long long)(rng() % 21) - 10;
+        init[i] = M::from(a[i]);
+    }
+    segtree<M> seg(init);
+    for (int it = 0; it < 200; it++) {
+        if (rng() % 2) {
+            int p = rng() % N;
+            a[p] = (long long)(rng() % 21) - 10;
+            seg.set(p, M::from(a[p]));
+        } else {
+            int l = rng() % (N + 1), r = rng() % (N + 1);
+            if (l > r) std::swap(l, r);
+            long long expect = std::numeric_limits<long long>::lowest();
+            for (int i = l; i < r; i++) {
+                long long s = 0;
+                for (int j = i; j < r; j++) {
+                    s += a[j];
+                    expect = std::max(expect, s);
+                }
+            }
+            assert(seg.prod(l, r).max_subarray == expect);
+        }
+    }
+}
 int main() {
     std::mt19937 rng(7959);
     for (int trial = 0; trial < 100; trial++) {
@@ -225,6 +284,8 @@ int main() {
         stress_range_assign<range_assign_range_min<long long>>(rng, [](long long a, long long b) { return std::min(a, b); });
         stress_range_assign<range_assign_range_max<long long>>(rng, [](long long a, long long b) { return std::max(a, b); });
         stress_range_assign_range_sum(rng);
+        stress_longest_run(rng);
+        stress_max_subarray_sum(rng);
     }
     std::cout << "Hello World" << std::endl;
     return 0;
