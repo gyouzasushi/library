@@ -168,6 +168,9 @@ data:
       path: graph/bfs_tree_of_complement.hpp
       title: "\u88DC\u30B0\u30E9\u30D5\u306E BFS \u68EE"
     - icon: ':heavy_check_mark:'
+      path: graph/bipartite_coloring.hpp
+      title: Bipartite Coloring
+    - icon: ':heavy_check_mark:'
       path: graph/cell.hpp
       title: "\u30B0\u30EA\u30C3\u30C9\u306E\u30DE\u30B9"
     - icon: ':heavy_check_mark:'
@@ -567,6 +570,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/binary_trie.test.cpp
       title: test/unit/binary_trie.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/bipartite_coloring.test.cpp
+      title: test/unit/bipartite_coloring.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/chromatic_number.test.cpp
       title: test/unit/chromatic_number.test.cpp
