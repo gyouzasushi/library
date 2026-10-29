@@ -195,6 +195,9 @@ data:
       path: graph/manhattan_mst.hpp
       title: Manhattan MST
     - icon: ':heavy_check_mark:'
+      path: graph/quotient_graph.hpp
+      title: Quotient Graph
+    - icon: ':heavy_check_mark:'
       path: graph/rerooting.hpp
       title: "\u5168\u65B9\u4F4D\u6728 DP (Rerooting)"
     - icon: ':heavy_check_mark:'
@@ -224,6 +227,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/combinatorics.hpp
       title: Combinatorics
+    - icon: ':heavy_check_mark:'
+      path: math/divisors.hpp
+      title: Divisors
     - icon: ':heavy_check_mark:'
       path: math/factorize.hpp
       title: Factorize
@@ -630,6 +636,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/quotient_blocks.test.cpp
       title: test/unit/quotient_blocks.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/quotient_graph.test.cpp
+      title: test/unit/quotient_graph.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/range_map.test.cpp
       title: test/unit/range_map.test.cpp

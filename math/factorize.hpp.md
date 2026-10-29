@@ -52,12 +52,7 @@ data:
     \ / d);\n    }\n    std::ranges::sort(primes);\n    for (long long p : primes)\
     \ {\n        if (!ret.empty() && ret.back().first == p) {\n            ret.back().second++;\n\
     \        } else {\n            ret.emplace_back(p, 1);\n        }\n    }\n   \
-    \ return ret;\n}\n\nstd::vector<long long> divisors(long long n) {\n    assert(n\
-    \ >= 1);\n    std::vector<long long> ret = {1};\n    for (auto [p, e] : factorize(n))\
-    \ {\n        int sz = int(ret.size());\n        long long q = 1;\n        for\
-    \ (int i = 0; i < e; i++) {\n            q *= p;\n            for (int j = 0;\
-    \ j < sz; j++) ret.push_back(ret[j] * q);\n        }\n    }\n    std::ranges::sort(ret);\n\
-    \    return ret;\n}\n"
+    \ return ret;\n}\n\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <cstdlib>\n\
     #include <numeric>\n#include <utility>\n#include <vector>\n\nnamespace internal\
     \ {\n\nlong long modmul(long long x, long long y, long long mod) {\n    return\
@@ -90,18 +85,13 @@ data:
     \ / d);\n    }\n    std::ranges::sort(primes);\n    for (long long p : primes)\
     \ {\n        if (!ret.empty() && ret.back().first == p) {\n            ret.back().second++;\n\
     \        } else {\n            ret.emplace_back(p, 1);\n        }\n    }\n   \
-    \ return ret;\n}\n\nstd::vector<long long> divisors(long long n) {\n    assert(n\
-    \ >= 1);\n    std::vector<long long> ret = {1};\n    for (auto [p, e] : factorize(n))\
-    \ {\n        int sz = int(ret.size());\n        long long q = 1;\n        for\
-    \ (int i = 0; i < e; i++) {\n            q *= p;\n            for (int j = 0;\
-    \ j < sz; j++) ret.push_back(ret[j] * q);\n        }\n    }\n    std::ranges::sort(ret);\n\
-    \    return ret;\n}\n"
+    \ return ret;\n}\n\n"
   dependsOn: []
   isVerificationFile: false
   path: math/factorize.hpp
   requiredBy:
   - math/binomial_coefficient_arbitrary_mod.hpp
-  timestamp: '2026-10-28 21:58:46+09:00'
+  timestamp: '2026-10-29 21:49:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/sieve.test.cpp
@@ -113,12 +103,11 @@ title: Factorize
 ---
 
 ### 概要
-- 整数を素因数分解する。
+- 整数の素数判定と素因数分解をする。
 
 ### 使い方
 - `is_prime(n)`: $n$ が素数かを返す。
 - `factorize(n)`: $n$ の素因数分解を (素因数, 指数) の列で返す。素因数の昇順。
-- `divisors(n)`: $n$ の約数を昇順に返す。
 
 ### 制約
 - $1 \le n < 2^{63}$
@@ -126,4 +115,3 @@ title: Factorize
 ### 計算量
 - `is_prime`: $\mathcal{O}(\log n)$
 - `factorize`: 期待 $\mathcal{O}(n^{1/4} \log n)$
-- `divisors`: 期待 $\mathcal{O}(n^{1/4} \log n + d(n) \log d(n))$

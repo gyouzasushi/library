@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit/lowlink.test.cpp
     title: test/unit/lowlink.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/unit/quotient_graph.test.cpp
+    title: test/unit/quotient_graph.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -121,6 +124,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/lowlink.test.cpp
+  - test/unit/quotient_graph.test.cpp
   - test/library-checker/two_edge_connected_components.test.cpp
   - test/aoj/GRL_3_B.test.cpp
   - test/aoj/GRL_3_A.test.cpp

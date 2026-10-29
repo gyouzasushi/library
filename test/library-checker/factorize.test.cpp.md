@@ -47,12 +47,7 @@ data:
     \       st.push_back(d);\n        st.push_back(p / d);\n    }\n    std::ranges::sort(primes);\n\
     \    for (long long p : primes) {\n        if (!ret.empty() && ret.back().first\
     \ == p) {\n            ret.back().second++;\n        } else {\n            ret.emplace_back(p,\
-    \ 1);\n        }\n    }\n    return ret;\n}\n\nstd::vector<long long> divisors(long\
-    \ long n) {\n    assert(n >= 1);\n    std::vector<long long> ret = {1};\n    for\
-    \ (auto [p, e] : factorize(n)) {\n        int sz = int(ret.size());\n        long\
-    \ long q = 1;\n        for (int i = 0; i < e; i++) {\n            q *= p;\n  \
-    \          for (int j = 0; j < sz; j++) ret.push_back(ret[j] * q);\n        }\n\
-    \    }\n    std::ranges::sort(ret);\n    return ret;\n}\n#line 4 \"test/library-checker/factorize.test.cpp\"\
+    \ 1);\n        }\n    }\n    return ret;\n}\n\n#line 4 \"test/library-checker/factorize.test.cpp\"\
     \n\n#include <iostream>\n\nint main() {\n    int q;\n    std::cin >> q;\n    while\
     \ (q--) {\n        long long a;\n        std::cin >> a;\n        std::vector<long\
     \ long> ans;\n        for (auto [b, c] : factorize(a)) {\n            ans.resize(ans.size()\
@@ -71,7 +66,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/factorize.test.cpp
   requiredBy: []
-  timestamp: '2026-10-28 21:58:46+09:00'
+  timestamp: '2026-10-29 21:49:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/factorize.test.cpp

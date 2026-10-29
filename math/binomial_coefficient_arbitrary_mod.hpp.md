@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: math/binomial_coefficient_arbitrary_mod.hpp
   requiredBy: []
-  timestamp: '2026-10-28 21:58:46+09:00'
+  timestamp: '2026-10-29 21:49:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/binomial_coefficient.test.cpp
