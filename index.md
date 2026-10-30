@@ -134,6 +134,9 @@ data:
       path: datastructure/segtree_beats.hpp
       title: Segment Tree Beats
     - icon: ':heavy_check_mark:'
+      path: datastructure/slope_trick.hpp
+      title: Slope Trick
+    - icon: ':heavy_check_mark:'
       path: datastructure/sparse_table.hpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
@@ -660,6 +663,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unit/sieve.test.cpp
       title: test/unit/sieve.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unit/slope_trick.test.cpp
+      title: test/unit/slope_trick.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unit/sparse_table.test.cpp
       title: test/unit/sparse_table.test.cpp
