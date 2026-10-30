@@ -24,9 +24,9 @@ data:
     #define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\n#include\
     \ <iostream>\n\n#line 2 \"string/rolling_hash.hpp\"\n#include <array>\n#include\
     \ <cassert>\n#include <vector>\n\n#line 2 \"string/string_hash.hpp\"\n#include\
-    \ <algorithm>\n#line 5 \"string/string_hash.hpp\"\n#include <concepts>\n#include\
-    \ <cstdint>\n#include <numeric>\n#include <random>\n#include <type_traits>\n#line\
-    \ 11 \"string/string_hash.hpp\"\n\n#line 5 \"math/modint2305843009213693951.hpp\"\
+    \ <algorithm>\n#line 5 \"string/string_hash.hpp\"\n#include <compare>\n#include\
+    \ <concepts>\n#include <cstdint>\n#include <numeric>\n#include <random>\n#include\
+    \ <type_traits>\n#line 12 \"string/string_hash.hpp\"\n\n#line 5 \"math/modint2305843009213693951.hpp\"\
     \nstruct modint2305843009213693951 {\n    using mint = modint2305843009213693951;\n\
     \    static constexpr uint64_t mod() {\n        return m;\n    }\n    static mint\
     \ raw(uint64_t v) {\n        mint x;\n        x._v = v;\n        return x;\n \
@@ -67,7 +67,7 @@ data:
     \ != rhs._v;\n    }\n\nprivate:\n    static constexpr uint64_t m = (uint64_t(1)\
     \ << 61) - 1;\n    static constexpr uint64_t reduce(uint64_t v) {\n        uint64_t\
     \ x = (v >> 61) + (v & m);\n        if (x >= m) x -= m;\n        return x;\n \
-    \   }\n    uint64_t _v;\n};\n#line 13 \"string/string_hash.hpp\"\ntemplate <int\
+    \   }\n    uint64_t _v;\n};\n#line 14 \"string/string_hash.hpp\"\ntemplate <int\
     \ k = 1, class mint = modint2305843009213693951>\nstruct string_hash {\n    static_assert(k\
     \ >= 1);\n    std::array<mint, k> val;\n    int len;\n    string_hash() : val{},\
     \ len(0) {}\n    explicit string_hash(int c) : len(1) {\n        val.fill(mint(c));\n\
@@ -116,13 +116,14 @@ data:
     \ int l1, int r1, B& b, int l2, int r2) {\n    int ok = 0, ng = std::min(r1 -\
     \ l1, r2 - l2) + 1;\n    while (ng - ok > 1) {\n        int mid = (ok + ng) /\
     \ 2;\n        (a.prod(l1, l1 + mid) == b.prod(l2, l2 + mid) ? ok : ng) = mid;\n\
-    \    }\n    return ok;\n}\ntemplate <hash_sequence A, hash_sequence B>\nint compare(A&\
-    \ a, int l1, int r1, B& b, int l2, int r2) {\n    int x = lcp(a, l1, r1, b, l2,\
-    \ r2);\n    bool ea = l1 + x == r1, eb = l2 + x == r2;\n    if (ea && eb) return\
-    \ 0;\n    if (ea) return -1;\n    if (eb) return 1;\n    return a.get(l1 + x).val[0].val()\
-    \ < b.get(l2 + x).val[0].val() ? -1 : 1;\n}\n#line 7 \"string/rolling_hash.hpp\"\
-    \ntemplate <int k = 1, class mint = modint2305843009213693951>\nstruct rolling_hash\
-    \ {\n    using H = string_hash<k, mint>;\n    rolling_hash() : n(0) {}\n    template\
+    \    }\n    return ok;\n}\ntemplate <hash_sequence A, hash_sequence B>\nstd::strong_ordering\
+    \ compare(A& a, int l1, int r1, B& b, int l2, int r2) {\n    int x = lcp(a, l1,\
+    \ r1, b, l2, r2);\n    bool ea = l1 + x == r1, eb = l2 + x == r2;\n    if (ea\
+    \ && eb) return std::strong_ordering::equal;\n    if (ea) return std::strong_ordering::less;\n\
+    \    if (eb) return std::strong_ordering::greater;\n    return a.get(l1 + x).val[0].val()\
+    \ <=> b.get(l2 + x).val[0].val();\n}\n#line 7 \"string/rolling_hash.hpp\"\ntemplate\
+    \ <int k = 1, class mint = modint2305843009213693951>\nstruct rolling_hash {\n\
+    \    using H = string_hash<k, mint>;\n    rolling_hash() : n(0) {}\n    template\
     \ <class Iterable>\n    explicit rolling_hash(const Iterable& s) {\n        std::vector<int>\
     \ a;\n        for (auto&& c : s) a.push_back(int(c));\n        n = int(a.size());\n\
     \        for (int i = 0; i < k; i++) {\n            h[i].assign(n + 1, mint(0));\n\
@@ -171,7 +172,7 @@ data:
   isVerificationFile: true
   path: test/library-checker/enumerate_palindromes.test.cpp
   requiredBy: []
-  timestamp: '2026-10-30 07:44:57+09:00'
+  timestamp: '2026-10-30 12:39:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/enumerate_palindromes.test.cpp
