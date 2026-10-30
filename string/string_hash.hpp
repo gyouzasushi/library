@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <array>
 #include <cassert>
+#include <compare>
 #include <concepts>
 #include <cstdint>
 #include <numeric>
@@ -126,11 +127,11 @@ int lcp(A& a, int l1, int r1, B& b, int l2, int r2) {
     return ok;
 }
 template <hash_sequence A, hash_sequence B>
-int compare(A& a, int l1, int r1, B& b, int l2, int r2) {
+std::strong_ordering compare(A& a, int l1, int r1, B& b, int l2, int r2) {
     int x = lcp(a, l1, r1, b, l2, r2);
     bool ea = l1 + x == r1, eb = l2 + x == r2;
-    if (ea && eb) return 0;
-    if (ea) return -1;
-    if (eb) return 1;
-    return a.get(l1 + x).val[0].val() < b.get(l2 + x).val[0].val() ? -1 : 1;
+    if (ea && eb) return std::strong_ordering::equal;
+    if (ea) return std::strong_ordering::less;
+    if (eb) return std::strong_ordering::greater;
+    return a.get(l1 + x).val[0].val() <=> b.get(l2 + x).val[0].val();
 }

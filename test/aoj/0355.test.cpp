@@ -25,8 +25,8 @@ int main() {
         if (t == "comp") {
             int a, b, c, d;
             std::cin >> a >> b >> c >> d;
-            int sgn = compare(rh, --a, b, rh, --c, d);
-            std::cout << (sgn == -1 ? 's' : sgn == 0 ? 'e' : 't') << '\n';
+            auto sgn = compare(rh, --a, b, rh, --c, d);
+            std::cout << (sgn < 0 ? 's' : sgn == 0 ? 'e' : 't') << '\n';
         }
     }
 }

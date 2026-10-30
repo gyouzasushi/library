@@ -10,7 +10,7 @@ documentation_of: algebra/range_assign_range_hash.hpp
 - `S = string_hash<k, mint>`, `F = std::optional<int>`
 - `from(c)`: 1 文字 `c` のハッシュ値を返す。初期化や一点更新ではこれで `S` を作る。
 - `apply(l, r, c)` で `s[l], ..., s[r - 1]` を `c` にする。
-- `prod(l, r)` が `s[l, r)` のハッシュ値。`lcp`, `cmp` にそのまま渡せる。
+- `prod(l, r)` が `s[l, r)` のハッシュ値。
 
 ### 制約
 - $0 \le c <$ `mint::mod()`

@@ -16,7 +16,7 @@ documentation_of: string/string_hash.hpp
 - `a < b`: `set` や `map` のキーにするための全順序。
 - `hash_sequence`: `prod(l, r)` と `get(p)` が同じ `string_hash` を返す型の concept。`rolling_hash` と `lazy_segtree<range_assign_range_hash>` が満たす。
 - `lcp(a, l1, r1, b, l2, r2)`: `a` の `[l1, r1)` と `b` の `[l2, r2)` の最長共通接頭辞の長さを返す。`a`, `b` は `hash_sequence`。
-- `compare(a, l1, r1, b, l2, r2)`: `a` の `[l1, r1)` と `b` の `[l2, r2)` を辞書順で比較し、$-1, 0, 1$ のいずれかを返す。
+- `compare(a, l1, r1, b, l2, r2)`: `a` の `[l1, r1)` と `b` の `[l2, r2)` を辞書順で比較した結果を返す。
 
 ### 制約
 - 文字は $0 \le c <$ `mint::mod()`

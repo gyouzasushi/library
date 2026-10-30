@@ -16,17 +16,17 @@ void solve() {
     auto gt = [&](int i, int j) {
         if (i == -1) return true;
         if (j - i > m) {
-            int cmp1 = compare(rht, 0, m, rhs, i, i + m);
-            if (cmp1 != 0) return cmp1 == 1;
-            int cmp2 = compare(rhs, j, j + m, rht, 0, m);
-            return cmp2 == 1;
+            auto cmp1 = compare(rht, 0, m, rhs, i, i + m);
+            if (cmp1 != 0) return cmp1 > 0;
+            auto cmp2 = compare(rhs, j, j + m, rht, 0, m);
+            return cmp2 > 0;
         }
-        int cmp1 = compare(rht, 0, j - i, rhs, i, j);
-        if (cmp1 != 0) return cmp1 == 1;
-        int cmp2 = compare(rht, j - i, m, rht, 0, m - (j - i));
-        if (cmp2 != 0) return cmp2 == 1;
-        int cmp3 = compare(rhs, i + m, j + m, rht, m - (j - i), m);
-        return cmp3 == 1;
+        auto cmp1 = compare(rht, 0, j - i, rhs, i, j);
+        if (cmp1 != 0) return cmp1 > 0;
+        auto cmp2 = compare(rht, j - i, m, rht, 0, m - (j - i));
+        if (cmp2 != 0) return cmp2 > 0;
+        auto cmp3 = compare(rhs, i + m, j + m, rht, m - (j - i), m);
+        return cmp3 > 0;
     };
     int ans = -1;
     for (int i = 0; i < n - m + 1; i++) {

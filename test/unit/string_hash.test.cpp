@@ -11,9 +11,6 @@
 #include "string/string_hash.hpp"
 #include "algebra/range_assign_range_hash.hpp"
 #include "datastructure/lazy_segtree.hpp"
-int brute_cmp(const std::string& a, const std::string& b) {
-    return a < b ? -1 : a == b ? 0 : 1;
-}
 int brute_lcp(const std::string& a, const std::string& b) {
     int i = 0;
     while (i < int(a.size()) && i < int(b.size()) && a[i] == b[i]) i++;
@@ -53,12 +50,12 @@ int main() {
             std::string a = s.substr(l1, r1 - l1), b = t.substr(l2, r2 - l2);
             assert((rs.prod(l1, r1) == rt.prod(l2, r2)) == (a == b));
             assert(lcp(rs, l1, r1, rt, l2, r2) == brute_lcp(a, b));
-            assert(compare(rs, l1, r1, rt, l2, r2) == brute_cmp(a, b));
-            assert(compare(rt, l2, r2, rs, l1, r1) == brute_cmp(b, a));
+            assert(compare(rs, l1, r1, rt, l2, r2) == (a <=> b));
+            assert(compare(rt, l2, r2, rs, l1, r1) == (b <=> a));
             int l3 = rng() % (n + 1), r3 = rng() % (n + 1);
             if (l3 > r3) std::swap(l3, r3);
             std::string c = s.substr(l3, r3 - l3);
-            assert(compare(rs, l1, r1, rs, l3, r3) == brute_cmp(a, c));
+            assert(compare(rs, l1, r1, rs, l3, r3) == (a <=> c));
             assert(lcp(rs, l1, r1, rs, l3, r3) == brute_lcp(a, c));
             assert(rs.prod(l1, r1) + rs.prod(l3, r3) == rolling_hash<>(a + c).all_prod());
             assert(rs.prod(l1, r1) + rt.prod(l2, r2) == rolling_hash<>(a + b).all_prod());
