@@ -28,6 +28,17 @@ public:
         _path.clear();
         for (int x = _v; x != -1; x = par[x]) _path.push_back(x);
         std::ranges::reverse(_path);
+        for (int i = 0;; i++) {
+            T pos = d[_path[i]];
+            if (pos == _length - pos) {
+                _center = {_path[i], _path[i]};
+                break;
+            }
+            if (pos > _length - pos) {
+                _center = {_path[i - 1], _path[i]};
+                break;
+            }
+        }
     }
     T length() const {
         return _length;
@@ -38,9 +49,13 @@ public:
     const std::vector<int>& path() const {
         return _path;
     }
+    std::pair<int, int> center() const {
+        return _center;
+    }
 
 private:
     int _n, _u = -1, _v = -1;
+    std::pair<int, int> _center = {-1, -1};
     T _length = T(0);
     std::vector<std::vector<std::pair<int, T>>> g;
     std::vector<int> _path;

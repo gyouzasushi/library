@@ -13,6 +13,7 @@ documentation_of: graph/tree_diameter.hpp
 - `length()`: 直径の長さを返す。
 - `ends()`: 直径の両端 `(u, v)` を返す。
 - `path()`: `u` から `v` への直径の頂点列を返す。
+- `center()`: 直径の中点を返す。頂点 `c` にあれば `(c, c)`、辺 $(a, b)$ の内部にあれば `(a, b)`。
 
 ### 制約
 - $1 \le n$

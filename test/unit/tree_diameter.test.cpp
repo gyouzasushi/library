@@ -51,6 +51,24 @@ int main() {
             assert(found);
         }
         assert(len == diam);
+        auto [a, b] = d.center();
+        std::vector<long long> ecc(n);
+        for (int s = 0; s < n; s++) ecc[s] = *std::max_element(dist[s].begin(), dist[s].end());
+        if (a == b) {
+            assert(0 <= a && a < n);
+            assert(2 * ecc[a] == diam);
+        } else {
+            long long w = -1;
+            for (auto [y, ww] : g[a]) {
+                if (y == b) w = ww;
+            }
+            assert(w > 0);
+            double t = diam / 2.0 - dist[u][a];
+            assert(0 < t && t < w);
+            double e = 0;
+            for (int x = 0; x < n; x++) e = std::max(e, std::min(dist[a][x] + t, dist[b][x] + w - t));
+            assert(e == diam / 2.0);
+        }
     }
     std::cout << "Hello World" << std::endl;
     return 0;
