@@ -25,18 +25,23 @@ data:
     \ - d.begin());\n        search(_u, d, par);\n        _v = int(std::ranges::max_element(d)\
     \ - d.begin());\n        _length = d[_v];\n        _path.clear();\n        for\
     \ (int x = _v; x != -1; x = par[x]) _path.push_back(x);\n        std::ranges::reverse(_path);\n\
-    \    }\n    T length() const {\n        return _length;\n    }\n    std::pair<int,\
-    \ int> ends() const {\n        return {_u, _v};\n    }\n    const std::vector<int>&\
-    \ path() const {\n        return _path;\n    }\n\nprivate:\n    int _n, _u = -1,\
-    \ _v = -1;\n    T _length = T(0);\n    std::vector<std::vector<std::pair<int,\
-    \ T>>> g;\n    std::vector<int> _path;\n    void search(int s, std::vector<T>&\
-    \ d, std::vector<int>& par) const {\n        d.assign(_n, T(0));\n        par.assign(_n,\
-    \ -1);\n        std::vector<int> st = {s};\n        par[s] = s;\n        while\
-    \ (!st.empty()) {\n            int x = st.back();\n            st.pop_back();\n\
-    \            for (auto [y, w] : g[x]) {\n                if (par[y] != -1) continue;\n\
-    \                par[y] = x;\n                d[y] = d[x] + w;\n             \
-    \   st.push_back(y);\n            }\n        }\n        par[s] = -1;\n    }\n\
-    };\n"
+    \        for (int i = 0;; i++) {\n            T pos = d[_path[i]];\n         \
+    \   if (pos == _length - pos) {\n                _center = {_path[i], _path[i]};\n\
+    \                break;\n            }\n            if (pos > _length - pos) {\n\
+    \                _center = {_path[i - 1], _path[i]};\n                break;\n\
+    \            }\n        }\n    }\n    T length() const {\n        return _length;\n\
+    \    }\n    std::pair<int, int> ends() const {\n        return {_u, _v};\n   \
+    \ }\n    const std::vector<int>& path() const {\n        return _path;\n    }\n\
+    \    std::pair<int, int> center() const {\n        return _center;\n    }\n\n\
+    private:\n    int _n, _u = -1, _v = -1;\n    std::pair<int, int> _center = {-1,\
+    \ -1};\n    T _length = T(0);\n    std::vector<std::vector<std::pair<int, T>>>\
+    \ g;\n    std::vector<int> _path;\n    void search(int s, std::vector<T>& d, std::vector<int>&\
+    \ par) const {\n        d.assign(_n, T(0));\n        par.assign(_n, -1);\n   \
+    \     std::vector<int> st = {s};\n        par[s] = s;\n        while (!st.empty())\
+    \ {\n            int x = st.back();\n            st.pop_back();\n            for\
+    \ (auto [y, w] : g[x]) {\n                if (par[y] != -1) continue;\n      \
+    \          par[y] = x;\n                d[y] = d[x] + w;\n                st.push_back(y);\n\
+    \            }\n        }\n        par[s] = -1;\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
     #include <vector>\ntemplate <class T>\nstruct tree_diameter {\npublic:\n    tree_diameter()\
     \ : tree_diameter(0) {\n    }\n    explicit tree_diameter(int n) : _n(n), g(n)\
@@ -48,23 +53,28 @@ data:
     \   search(_u, d, par);\n        _v = int(std::ranges::max_element(d) - d.begin());\n\
     \        _length = d[_v];\n        _path.clear();\n        for (int x = _v; x\
     \ != -1; x = par[x]) _path.push_back(x);\n        std::ranges::reverse(_path);\n\
-    \    }\n    T length() const {\n        return _length;\n    }\n    std::pair<int,\
-    \ int> ends() const {\n        return {_u, _v};\n    }\n    const std::vector<int>&\
-    \ path() const {\n        return _path;\n    }\n\nprivate:\n    int _n, _u = -1,\
-    \ _v = -1;\n    T _length = T(0);\n    std::vector<std::vector<std::pair<int,\
-    \ T>>> g;\n    std::vector<int> _path;\n    void search(int s, std::vector<T>&\
-    \ d, std::vector<int>& par) const {\n        d.assign(_n, T(0));\n        par.assign(_n,\
-    \ -1);\n        std::vector<int> st = {s};\n        par[s] = s;\n        while\
-    \ (!st.empty()) {\n            int x = st.back();\n            st.pop_back();\n\
-    \            for (auto [y, w] : g[x]) {\n                if (par[y] != -1) continue;\n\
-    \                par[y] = x;\n                d[y] = d[x] + w;\n             \
-    \   st.push_back(y);\n            }\n        }\n        par[s] = -1;\n    }\n\
-    };\n"
+    \        for (int i = 0;; i++) {\n            T pos = d[_path[i]];\n         \
+    \   if (pos == _length - pos) {\n                _center = {_path[i], _path[i]};\n\
+    \                break;\n            }\n            if (pos > _length - pos) {\n\
+    \                _center = {_path[i - 1], _path[i]};\n                break;\n\
+    \            }\n        }\n    }\n    T length() const {\n        return _length;\n\
+    \    }\n    std::pair<int, int> ends() const {\n        return {_u, _v};\n   \
+    \ }\n    const std::vector<int>& path() const {\n        return _path;\n    }\n\
+    \    std::pair<int, int> center() const {\n        return _center;\n    }\n\n\
+    private:\n    int _n, _u = -1, _v = -1;\n    std::pair<int, int> _center = {-1,\
+    \ -1};\n    T _length = T(0);\n    std::vector<std::vector<std::pair<int, T>>>\
+    \ g;\n    std::vector<int> _path;\n    void search(int s, std::vector<T>& d, std::vector<int>&\
+    \ par) const {\n        d.assign(_n, T(0));\n        par.assign(_n, -1);\n   \
+    \     std::vector<int> st = {s};\n        par[s] = s;\n        while (!st.empty())\
+    \ {\n            int x = st.back();\n            st.pop_back();\n            for\
+    \ (auto [y, w] : g[x]) {\n                if (par[y] != -1) continue;\n      \
+    \          par[y] = x;\n                d[y] = d[x] + w;\n                st.push_back(y);\n\
+    \            }\n        }\n        par[s] = -1;\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/tree_diameter.hpp
   requiredBy: []
-  timestamp: '2026-10-28 21:58:46+09:00'
+  timestamp: '2026-11-01 20:53:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/tree_diameter.test.cpp
@@ -84,6 +94,7 @@ title: Tree Diameter
 - `length()`: 直径の長さを返す。
 - `ends()`: 直径の両端 `(u, v)` を返す。
 - `path()`: `u` から `v` への直径の頂点列を返す。
+- `center()`: 直径の中点を返す。頂点 `c` にあれば `(c, c)`、辺 $(a, b)$ の内部にあれば `(a, b)`。
 
 ### 制約
 - $1 \le n$

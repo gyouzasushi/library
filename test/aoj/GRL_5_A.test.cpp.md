@@ -26,22 +26,27 @@ data:
     \ - d.begin());\n        search(_u, d, par);\n        _v = int(std::ranges::max_element(d)\
     \ - d.begin());\n        _length = d[_v];\n        _path.clear();\n        for\
     \ (int x = _v; x != -1; x = par[x]) _path.push_back(x);\n        std::ranges::reverse(_path);\n\
-    \    }\n    T length() const {\n        return _length;\n    }\n    std::pair<int,\
-    \ int> ends() const {\n        return {_u, _v};\n    }\n    const std::vector<int>&\
-    \ path() const {\n        return _path;\n    }\n\nprivate:\n    int _n, _u = -1,\
-    \ _v = -1;\n    T _length = T(0);\n    std::vector<std::vector<std::pair<int,\
-    \ T>>> g;\n    std::vector<int> _path;\n    void search(int s, std::vector<T>&\
-    \ d, std::vector<int>& par) const {\n        d.assign(_n, T(0));\n        par.assign(_n,\
-    \ -1);\n        std::vector<int> st = {s};\n        par[s] = s;\n        while\
-    \ (!st.empty()) {\n            int x = st.back();\n            st.pop_back();\n\
-    \            for (auto [y, w] : g[x]) {\n                if (par[y] != -1) continue;\n\
-    \                par[y] = x;\n                d[y] = d[x] + w;\n             \
-    \   st.push_back(y);\n            }\n        }\n        par[s] = -1;\n    }\n\
-    };\n#line 5 \"test/aoj/GRL_5_A.test.cpp\"\nint main() {\n    int n;\n    std::cin\
-    \ >> n;\n    tree_diameter<long long> d(n);\n    for (int i = 0; i < n - 1; i++)\
-    \ {\n        int s, t;\n        long long w;\n        std::cin >> s >> t >> w;\n\
-    \        d.add_edge(s, t, w);\n    }\n    d.build();\n    std::cout << d.length()\
-    \ << '\\n';\n}\n"
+    \        for (int i = 0;; i++) {\n            T pos = d[_path[i]];\n         \
+    \   if (pos == _length - pos) {\n                _center = {_path[i], _path[i]};\n\
+    \                break;\n            }\n            if (pos > _length - pos) {\n\
+    \                _center = {_path[i - 1], _path[i]};\n                break;\n\
+    \            }\n        }\n    }\n    T length() const {\n        return _length;\n\
+    \    }\n    std::pair<int, int> ends() const {\n        return {_u, _v};\n   \
+    \ }\n    const std::vector<int>& path() const {\n        return _path;\n    }\n\
+    \    std::pair<int, int> center() const {\n        return _center;\n    }\n\n\
+    private:\n    int _n, _u = -1, _v = -1;\n    std::pair<int, int> _center = {-1,\
+    \ -1};\n    T _length = T(0);\n    std::vector<std::vector<std::pair<int, T>>>\
+    \ g;\n    std::vector<int> _path;\n    void search(int s, std::vector<T>& d, std::vector<int>&\
+    \ par) const {\n        d.assign(_n, T(0));\n        par.assign(_n, -1);\n   \
+    \     std::vector<int> st = {s};\n        par[s] = s;\n        while (!st.empty())\
+    \ {\n            int x = st.back();\n            st.pop_back();\n            for\
+    \ (auto [y, w] : g[x]) {\n                if (par[y] != -1) continue;\n      \
+    \          par[y] = x;\n                d[y] = d[x] + w;\n                st.push_back(y);\n\
+    \            }\n        }\n        par[s] = -1;\n    }\n};\n#line 5 \"test/aoj/GRL_5_A.test.cpp\"\
+    \nint main() {\n    int n;\n    std::cin >> n;\n    tree_diameter<long long> d(n);\n\
+    \    for (int i = 0; i < n - 1; i++) {\n        int s, t;\n        long long w;\n\
+    \        std::cin >> s >> t >> w;\n        d.add_edge(s, t, w);\n    }\n    d.build();\n\
+    \    std::cout << d.length() << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_A\"\n#include\
     \ <iostream>\n\n#include \"graph/tree_diameter.hpp\"\nint main() {\n    int n;\n\
     \    std::cin >> n;\n    tree_diameter<long long> d(n);\n    for (int i = 0; i\
@@ -53,7 +58,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2026-10-28 21:58:46+09:00'
+  timestamp: '2026-11-01 20:53:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_A.test.cpp

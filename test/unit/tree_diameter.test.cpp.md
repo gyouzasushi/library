@@ -27,41 +27,55 @@ data:
     \   search(_u, d, par);\n        _v = int(std::ranges::max_element(d) - d.begin());\n\
     \        _length = d[_v];\n        _path.clear();\n        for (int x = _v; x\
     \ != -1; x = par[x]) _path.push_back(x);\n        std::ranges::reverse(_path);\n\
-    \    }\n    T length() const {\n        return _length;\n    }\n    std::pair<int,\
-    \ int> ends() const {\n        return {_u, _v};\n    }\n    const std::vector<int>&\
-    \ path() const {\n        return _path;\n    }\n\nprivate:\n    int _n, _u = -1,\
-    \ _v = -1;\n    T _length = T(0);\n    std::vector<std::vector<std::pair<int,\
-    \ T>>> g;\n    std::vector<int> _path;\n    void search(int s, std::vector<T>&\
-    \ d, std::vector<int>& par) const {\n        d.assign(_n, T(0));\n        par.assign(_n,\
-    \ -1);\n        std::vector<int> st = {s};\n        par[s] = s;\n        while\
-    \ (!st.empty()) {\n            int x = st.back();\n            st.pop_back();\n\
-    \            for (auto [y, w] : g[x]) {\n                if (par[y] != -1) continue;\n\
-    \                par[y] = x;\n                d[y] = d[x] + w;\n             \
-    \   st.push_back(y);\n            }\n        }\n        par[s] = -1;\n    }\n\
-    };\n#line 9 \"test/unit/tree_diameter.test.cpp\"\nint main() {\n    std::mt19937\
-    \ rng(20261028);\n    for (int trial = 0; trial < 300; trial++) {\n        int\
-    \ n = 1 + rng() % 12;\n        bool weighted = trial % 2;\n        std::vector<std::vector<std::pair<int,\
-    \ long long>>> g(n);\n        tree_diameter<long long> d(n);\n        for (int\
-    \ v = 1; v < n; v++) {\n            int p = rng() % v;\n            long long\
-    \ w = weighted ? rng() % 5 : 1;\n            g[v].emplace_back(p, w);\n      \
-    \      g[p].emplace_back(v, w);\n            d.add_edge(p, v, w);\n        }\n\
-    \        d.build();\n        std::vector<std::vector<long long>> dist(n, std::vector<long\
-    \ long>(n, -1));\n        for (int s = 0; s < n; s++) {\n            std::vector<int>\
-    \ st = {s};\n            dist[s][s] = 0;\n            while (!st.empty()) {\n\
-    \                int x = st.back();\n                st.pop_back();\n        \
-    \        for (auto [y, w] : g[x]) {\n                    if (dist[s][y] != -1)\
-    \ continue;\n                    dist[s][y] = dist[s][x] + w;\n              \
-    \      st.push_back(y);\n                }\n            }\n        }\n       \
-    \ long long diam = 0;\n        for (int s = 0; s < n; s++) diam = std::max(diam,\
-    \ *std::max_element(dist[s].begin(), dist[s].end()));\n        assert(d.length()\
-    \ == diam);\n        auto [u, v] = d.ends();\n        assert(dist[u][v] == diam);\n\
-    \        const std::vector<int>& path = d.path();\n        assert(path.front()\
-    \ == u && path.back() == v);\n        long long len = 0;\n        for (int i =\
-    \ 0; i + 1 < int(path.size()); i++) {\n            bool found = false;\n     \
-    \       for (auto [y, w] : g[path[i]]) {\n                if (y == path[i + 1])\
-    \ found = true, len += w;\n            }\n            assert(found);\n       \
-    \ }\n        assert(len == diam);\n    }\n    std::cout << \"Hello World\" <<\
-    \ std::endl;\n    return 0;\n}\n"
+    \        for (int i = 0;; i++) {\n            T pos = d[_path[i]];\n         \
+    \   if (pos == _length - pos) {\n                _center = {_path[i], _path[i]};\n\
+    \                break;\n            }\n            if (pos > _length - pos) {\n\
+    \                _center = {_path[i - 1], _path[i]};\n                break;\n\
+    \            }\n        }\n    }\n    T length() const {\n        return _length;\n\
+    \    }\n    std::pair<int, int> ends() const {\n        return {_u, _v};\n   \
+    \ }\n    const std::vector<int>& path() const {\n        return _path;\n    }\n\
+    \    std::pair<int, int> center() const {\n        return _center;\n    }\n\n\
+    private:\n    int _n, _u = -1, _v = -1;\n    std::pair<int, int> _center = {-1,\
+    \ -1};\n    T _length = T(0);\n    std::vector<std::vector<std::pair<int, T>>>\
+    \ g;\n    std::vector<int> _path;\n    void search(int s, std::vector<T>& d, std::vector<int>&\
+    \ par) const {\n        d.assign(_n, T(0));\n        par.assign(_n, -1);\n   \
+    \     std::vector<int> st = {s};\n        par[s] = s;\n        while (!st.empty())\
+    \ {\n            int x = st.back();\n            st.pop_back();\n            for\
+    \ (auto [y, w] : g[x]) {\n                if (par[y] != -1) continue;\n      \
+    \          par[y] = x;\n                d[y] = d[x] + w;\n                st.push_back(y);\n\
+    \            }\n        }\n        par[s] = -1;\n    }\n};\n#line 9 \"test/unit/tree_diameter.test.cpp\"\
+    \nint main() {\n    std::mt19937 rng(20261028);\n    for (int trial = 0; trial\
+    \ < 300; trial++) {\n        int n = 1 + rng() % 12;\n        bool weighted =\
+    \ trial % 2;\n        std::vector<std::vector<std::pair<int, long long>>> g(n);\n\
+    \        tree_diameter<long long> d(n);\n        for (int v = 1; v < n; v++) {\n\
+    \            int p = rng() % v;\n            long long w = weighted ? rng() %\
+    \ 5 : 1;\n            g[v].emplace_back(p, w);\n            g[p].emplace_back(v,\
+    \ w);\n            d.add_edge(p, v, w);\n        }\n        d.build();\n     \
+    \   std::vector<std::vector<long long>> dist(n, std::vector<long long>(n, -1));\n\
+    \        for (int s = 0; s < n; s++) {\n            std::vector<int> st = {s};\n\
+    \            dist[s][s] = 0;\n            while (!st.empty()) {\n            \
+    \    int x = st.back();\n                st.pop_back();\n                for (auto\
+    \ [y, w] : g[x]) {\n                    if (dist[s][y] != -1) continue;\n    \
+    \                dist[s][y] = dist[s][x] + w;\n                    st.push_back(y);\n\
+    \                }\n            }\n        }\n        long long diam = 0;\n  \
+    \      for (int s = 0; s < n; s++) diam = std::max(diam, *std::max_element(dist[s].begin(),\
+    \ dist[s].end()));\n        assert(d.length() == diam);\n        auto [u, v] =\
+    \ d.ends();\n        assert(dist[u][v] == diam);\n        const std::vector<int>&\
+    \ path = d.path();\n        assert(path.front() == u && path.back() == v);\n \
+    \       long long len = 0;\n        for (int i = 0; i + 1 < int(path.size());\
+    \ i++) {\n            bool found = false;\n            for (auto [y, w] : g[path[i]])\
+    \ {\n                if (y == path[i + 1]) found = true, len += w;\n         \
+    \   }\n            assert(found);\n        }\n        assert(len == diam);\n \
+    \       auto [a, b] = d.center();\n        std::vector<long long> ecc(n);\n  \
+    \      for (int s = 0; s < n; s++) ecc[s] = *std::max_element(dist[s].begin(),\
+    \ dist[s].end());\n        if (a == b) {\n            assert(0 <= a && a < n);\n\
+    \            assert(2 * ecc[a] == diam);\n        } else {\n            long long\
+    \ w = -1;\n            for (auto [y, ww] : g[a]) {\n                if (y == b)\
+    \ w = ww;\n            }\n            assert(w > 0);\n            double t = diam\
+    \ / 2.0 - dist[u][a];\n            assert(0 < t && t < w);\n            double\
+    \ e = 0;\n            for (int x = 0; x < n; x++) e = std::max(e, std::min(dist[a][x]\
+    \ + t, dist[b][x] + w - t));\n            assert(e == diam / 2.0);\n        }\n\
+    \    }\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <random>\n\
     #include <vector>\n\n#include \"graph/tree_diameter.hpp\"\nint main() {\n    std::mt19937\
@@ -86,14 +100,23 @@ data:
     \ 0; i + 1 < int(path.size()); i++) {\n            bool found = false;\n     \
     \       for (auto [y, w] : g[path[i]]) {\n                if (y == path[i + 1])\
     \ found = true, len += w;\n            }\n            assert(found);\n       \
-    \ }\n        assert(len == diam);\n    }\n    std::cout << \"Hello World\" <<\
-    \ std::endl;\n    return 0;\n}\n"
+    \ }\n        assert(len == diam);\n        auto [a, b] = d.center();\n       \
+    \ std::vector<long long> ecc(n);\n        for (int s = 0; s < n; s++) ecc[s] =\
+    \ *std::max_element(dist[s].begin(), dist[s].end());\n        if (a == b) {\n\
+    \            assert(0 <= a && a < n);\n            assert(2 * ecc[a] == diam);\n\
+    \        } else {\n            long long w = -1;\n            for (auto [y, ww]\
+    \ : g[a]) {\n                if (y == b) w = ww;\n            }\n            assert(w\
+    \ > 0);\n            double t = diam / 2.0 - dist[u][a];\n            assert(0\
+    \ < t && t < w);\n            double e = 0;\n            for (int x = 0; x < n;\
+    \ x++) e = std::max(e, std::min(dist[a][x] + t, dist[b][x] + w - t));\n      \
+    \      assert(e == diam / 2.0);\n        }\n    }\n    std::cout << \"Hello World\"\
+    \ << std::endl;\n    return 0;\n}\n"
   dependsOn:
   - graph/tree_diameter.hpp
   isVerificationFile: true
   path: test/unit/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2026-10-28 21:58:46+09:00'
+  timestamp: '2026-11-01 20:53:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit/tree_diameter.test.cpp
