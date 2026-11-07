@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: algebra/range_affine_range_sum.hpp
+    title: 'Acted Monoid: Range Affine Range Sum'
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library-checker/point_set_range_composite.test.cpp
     title: test/library-checker/point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/range_affine_range_sum.test.cpp
+    title: test/library-checker/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unit/dynamic_segtree.test.cpp
     title: test/unit/dynamic_segtree.test.cpp
@@ -30,12 +36,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: algebra/monoid_affine.hpp
-  requiredBy: []
+  requiredBy:
+  - algebra/range_affine_range_sum.hpp
   timestamp: '2026-10-23 22:06:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/dynamic_segtree.test.cpp
   - test/unit/monoid.test.cpp
+  - test/library-checker/range_affine_range_sum.test.cpp
   - test/library-checker/point_set_range_composite.test.cpp
 documentation_of: algebra/monoid_affine.hpp
 layout: document

@@ -86,8 +86,8 @@ data:
   timestamp: '2026-10-29 08:50:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/bellman_ford.test.cpp
   - test/aoj/GRL_1_B.test.cpp
+  - test/unit/bellman_ford.test.cpp
 documentation_of: graph/bellman_ford.hpp
 layout: document
 title: "Bellman\u2013Ford \u6CD5"

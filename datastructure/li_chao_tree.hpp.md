@@ -115,8 +115,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/li_chao_tree.test.cpp
-  - test/library-checker/line_add_get_min.test.cpp
   - test/library-checker/segment_add_get_min.test.cpp
+  - test/library-checker/line_add_get_min.test.cpp
 documentation_of: datastructure/li_chao_tree.hpp
 layout: document
 title: Li Chao Tree

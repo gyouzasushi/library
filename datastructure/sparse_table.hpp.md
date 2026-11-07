@@ -72,8 +72,8 @@ data:
   isVerificationFile: false
   path: datastructure/sparse_table.hpp
   requiredBy:
-  - graph/lowest_common_ancestor.hpp
   - datastructure/plus_minus_one_rmq.hpp
+  - graph/lowest_common_ancestor.hpp
   timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

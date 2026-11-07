@@ -95,8 +95,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/sieve.test.cpp
-  - test/library-checker/binomial_coefficient.test.cpp
   - test/library-checker/factorize.test.cpp
+  - test/library-checker/binomial_coefficient.test.cpp
 documentation_of: math/factorize.hpp
 layout: document
 title: Factorize

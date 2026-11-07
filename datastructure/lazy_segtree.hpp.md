@@ -13,6 +13,9 @@ data:
     path: test/aoj/DSL_2_G.test.cpp
     title: test/aoj/DSL_2_G.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library-checker/range_affine_range_sum.test.cpp
+    title: test/library-checker/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/unit/monoid.test.cpp
     title: test/unit/monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -64,10 +67,11 @@ data:
   timestamp: '2026-10-29 12:09:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/DSL_2_G.test.cpp
+  - test/aoj/0355.test.cpp
   - test/unit/string_hash.test.cpp
   - test/unit/monoid.test.cpp
-  - test/aoj/0355.test.cpp
-  - test/aoj/DSL_2_G.test.cpp
+  - test/library-checker/range_affine_range_sum.test.cpp
 documentation_of: datastructure/lazy_segtree.hpp
 layout: document
 title: Lazy Segment Tree (acted monoid wrapper)

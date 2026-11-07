@@ -77,8 +77,8 @@ data:
   timestamp: '2026-11-01 20:53:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/tree_diameter.test.cpp
   - test/aoj/GRL_5_A.test.cpp
+  - test/unit/tree_diameter.test.cpp
 documentation_of: graph/tree_diameter.hpp
 layout: document
 title: Tree Diameter

@@ -230,12 +230,12 @@ data:
   timestamp: '2026-10-28 21:58:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/rectangle_sum.test.cpp
   - test/unit/wavelet_matrix.test.cpp
-  - test/library-checker/range_kth_smallest.test.cpp
-  - test/library-checker/rectangle_sum.test.cpp
-  - test/library-checker/static_range_frequency.test.cpp
+  - test/unit/rectangle_sum.test.cpp
   - test/library-checker/static_range_count_distinct.test.cpp
+  - test/library-checker/static_range_frequency.test.cpp
+  - test/library-checker/rectangle_sum.test.cpp
+  - test/library-checker/range_kth_smallest.test.cpp
 documentation_of: datastructure/wavelet_matrix.hpp
 layout: document
 title: Wavelet Matrix

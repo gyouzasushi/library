@@ -59,9 +59,9 @@ data:
   timestamp: '2026-10-29 21:49:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/NTL_1_A.test.cpp
   - test/unit/sieve.test.cpp
   - test/library-checker/enumerate_primes.test.cpp
-  - test/aoj/NTL_1_A.test.cpp
 documentation_of: math/sieve.hpp
 layout: document
 title: Sieve

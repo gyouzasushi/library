@@ -55,6 +55,9 @@ data:
       path: algebra/range_add_range_sum_of_squares.hpp
       title: 'Acted Monoid: Range Add Range Sum of Squares'
     - icon: ':heavy_check_mark:'
+      path: algebra/range_affine_range_sum.hpp
+      title: 'Acted Monoid: Range Affine Range Sum'
+    - icon: ':heavy_check_mark:'
       path: algebra/range_assign_range_hash.hpp
       title: 'Acted Monoid: Range Assign Range Hash'
     - icon: ':heavy_check_mark:'
@@ -487,6 +490,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library-checker/range_affine_point_get.test.cpp
       title: test/library-checker/range_affine_point_get.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library-checker/range_affine_range_sum.test.cpp
+      title: test/library-checker/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/range_chmin_chmax_add_range_sum.test.cpp
       title: test/library-checker/range_chmin_chmax_add_range_sum.test.cpp

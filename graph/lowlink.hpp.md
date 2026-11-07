@@ -123,11 +123,11 @@ data:
   timestamp: '2026-10-25 23:38:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/lowlink.test.cpp
-  - test/unit/quotient_graph.test.cpp
-  - test/library-checker/two_edge_connected_components.test.cpp
   - test/aoj/GRL_3_B.test.cpp
   - test/aoj/GRL_3_A.test.cpp
+  - test/unit/quotient_graph.test.cpp
+  - test/unit/lowlink.test.cpp
+  - test/library-checker/two_edge_connected_components.test.cpp
 documentation_of: graph/lowlink.hpp
 layout: document
 title: Lowlink

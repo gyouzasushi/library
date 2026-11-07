@@ -146,8 +146,8 @@ data:
   timestamp: '2026-10-30 12:39:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unit/string_hash.test.cpp
   - test/aoj/0355.test.cpp
+  - test/unit/string_hash.test.cpp
 documentation_of: algebra/range_assign_range_hash.hpp
 layout: document
 title: 'Acted Monoid: Range Assign Range Hash'
