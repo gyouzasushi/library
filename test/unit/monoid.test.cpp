@@ -1,4 +1,5 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A"
+#include <atcoder/modint>
 #include <cassert>
 #include <iostream>
 #include <numeric>
@@ -8,6 +9,7 @@
 #include "algebra/range_add_range_max.hpp"
 #include "algebra/range_add_range_min.hpp"
 #include "algebra/range_add_range_sum.hpp"
+#include "algebra/range_affine_range_sum.hpp"
 #include "algebra/range_add_range_sum_of_squares.hpp"
 #include "algebra/range_assign_range_max.hpp"
 #include "algebra/range_assign_range_min.hpp"
@@ -113,6 +115,32 @@ void stress_range_add_range_sum(std::mt19937 &rng) {
             seg.apply(l, r, x);
         } else {
             long long expect = 0;
+            for (int i = l; i < r; i++) expect += a[i];
+            assert(seg.prod(l, r).sum == expect);
+            assert(seg.prod(l, r).len == r - l);
+        }
+    }
+}
+void stress_range_affine_range_sum(std::mt19937 &rng) {
+    using mint = atcoder::modint998244353;
+    using A = range_affine_range_sum<mint>;
+    const int N = 1 + rng() % 30;
+    std::vector<mint> a(N);
+    std::vector<A::S> init(N);
+    for (int i = 0; i < N; i++) {
+        a[i] = rng() % 100;
+        init[i] = A::from(a[i]);
+    }
+    lazy_segtree<A> seg(init);
+    for (int it = 0; it < 200; it++) {
+        int l = rng() % (N + 1), r = rng() % (N + 1);
+        if (l > r) std::swap(l, r);
+        if (rng() % 2) {
+            mint x = rng() % 5, y = rng() % 5;
+            for (int i = l; i < r; i++) a[i] = x * a[i] + y;
+            seg.apply(l, r, {x, y});
+        } else {
+            mint expect = 0;
             for (int i = l; i < r; i++) expect += a[i];
             assert(seg.prod(l, r).sum == expect);
             assert(seg.prod(l, r).len == r - l);
@@ -278,6 +306,7 @@ int main() {
         stress_argmonoid<monoid_argmax<int>>(rng, [](int a, int b) { return a > b; });
         stress_affine(rng);
         stress_range_add_range_sum(rng);
+        stress_range_affine_range_sum(rng);
         stress_range_add<range_add_range_min<long long>>(rng, [](long long a, long long b) { return std::min(a, b); });
         stress_range_add<range_add_range_max<long long>>(rng, [](long long a, long long b) { return std::max(a, b); });
         stress_range_add_range_sum_of_squares(rng);
